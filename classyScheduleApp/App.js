@@ -9,7 +9,7 @@ export default function App() {
       <Text>Hello!</Text>
       <Image style={styles.tinyLogo}source={require('./assets/favicon.png')}/>
       <Image style ={styles.logo} source={{uri: 'https://picsum.photos/200/300',}}/>
-
+      <Text>Hello from Andrew!</Text>
     </SafeAreaView>
   );
 }
