@@ -12,6 +12,7 @@ export default function App() {
       <Text>Hello from Andrew!</Text>
       <Text>--------------------</Text>
       <Text>Hello from Zak!</Text>
+      <Text>Hello from Brendan!</Text>
     </SafeAreaView>
   );
 }
