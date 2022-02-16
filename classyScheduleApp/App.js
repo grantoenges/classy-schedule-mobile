@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View,Image, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Image, SafeAreaView, TextInput } from 'react-native';
 
 export default function App() {
   console.log(require('./assets/favicon.png'))
@@ -13,9 +13,43 @@ export default function App() {
       <Text>--------------------</Text>
       <Text>Hello from Zak!</Text>
       <Text>Hello from Brendan!</Text>
+      <UserTextInput>
+      </UserTextInput>
+      <PassTextInput>
+      </PassTextInput>
     </SafeAreaView>
   );
 }
+
+const UserTextInput = () => {
+  const [text, onChangeText] = React.useState(null);
+
+  return (
+    <SafeAreaView>
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeText}
+        value={text}
+        placeholder="Username"
+      />
+    </SafeAreaView>
+  );
+};
+
+const PassTextInput = () => {
+  const [text, onChangeText] = React.useState(null);
+
+  return (
+    <SafeAreaView>
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeText}
+        value={text}
+        placeholder="Password"
+      />
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -31,5 +65,16 @@ const styles = StyleSheet.create({
   logo: {
     width: 200,
     height: 300,
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  },
+  login: {
+    margin: 24,
+    fontSize: 16,
+    fontWeight: 'normal',
   },
 });
