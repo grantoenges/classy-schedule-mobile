@@ -1,22 +1,20 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import { SafeAreaView, View,Text } from 'react-native';
+import {Button, Card, TextInput} from 'react-native-paper'
 
-export default class Home extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <TouchableOpacity style={styles.button} 
-        onPress={() => this.props.navigation.navigate({ routeName: 'SignInScreen'})}>
-          <Text style={styles.buttonText}>SignInScreen</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}
-        onPress={() => this.props.navigation.navigate({ routeName: 'NewAccountScreen'})}>
-          <Text style={styles.buttonText}>NewAccountScreen</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
+const WelcomeScreen = () => {
+  return (
+    <SafeAreaView>
+        <Card>
+            <Card.Title title= "Home"/>
+
+        </Card>
+    </SafeAreaView>
+ );
 }
+
+
+export default WelcomeScreen;
 
 const styles = StyleSheet.create({
   container: {
