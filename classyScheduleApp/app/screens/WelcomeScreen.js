@@ -1,36 +1,41 @@
 import React from 'react';
-import {ImageBackground, Text, View, StyleSheet} from 'react-native'
+import { SafeAreaView, View,Text,StyleSheet } from 'react-native';
+import {Button, Card, TextInput} from 'react-native-paper'
 
+const WelcomeScreenFun = ({navigation}) => {
+     const login = () => navigation.navigate("Login")
 
-function WelcomeScreen(props) {
-    return (
-    <View style={styles.background}>
-        <Text>Testing</Text>
-        <ImageBackground
-            style={styles.image}
-            source={require("../assets/icon.png")}>
-        </ImageBackground>
-        <ImageBackground
-            style={styles.image}
-            source={require("../assets/favicon.png")}>
-        </ImageBackground>
-      </View>
-    
-    );
+  return (
+    <SafeAreaView style={styles.container}>
+        <Card>
+            <Card.Title style = {styles.title} title= "Welcome Screen"/>
+            <Button onPress={login}>Login</Button>
+        </Card>
+    </SafeAreaView>
+ );
 }
 
 const styles = StyleSheet.create({
-    background:{
-        flex : 1,
-        backgroundColor : '#fff',
-        justifyContent: 'center',
-        alignItems: 'center'
-        
+    container: {
+      flex: 1,
+      padding: 24,
+      backgroundColor: "#eaeaea"
     },
-    image:{
-        width:100,
-        height:100,
+    title: {
+      marginTop: 16,
+      paddingVertical: 8,
+      borderWidth: 4,
+      borderColor: "#20232a",
+      borderRadius: 6,
+      backgroundColor: "#61dafb",
+      color: "#20232a",
+      textAlign: "center",
+      fontSize: 30,
+      fontWeight: "bold"
     }
-})
+  });
+  
 
-export default WelcomeScreen;
+export default WelcomeScreenFun;
+
+

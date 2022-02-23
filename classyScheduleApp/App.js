@@ -1,11 +1,14 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import{NavigationContainer} from '@react-navigation/native-stack'
-import WelcomeScreen from './app/screens/WelcomeScreen';
+import * as React from 'react';
+import { SafeAreaView, View,Text } from 'react-native';
+import {Provider as PaperProvider, TextInput} from 'react-native-paper'
+import AppNavigator from './app/appNavigator';
 
-
-export default function App() {
-    return(
-      <WelcomeScreen/>
-    );
+function App() {
+  return (
+    <PaperProvider>
+      <AppNavigator></AppNavigator>
+    </PaperProvider>
+ );
 }
+
+export default App;
