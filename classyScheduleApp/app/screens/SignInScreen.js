@@ -6,7 +6,7 @@ const SignInScreenFun = () => {
   return (
     <SafeAreaView>
         <TextInput label={'Username'}></TextInput>
-        <TextInput label={'password'}></TextInput>
+        <TextInput label={'Password'}></TextInput>
         <Button>Login</Button>
     </SafeAreaView>
  );
