@@ -1,26 +1,22 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import { SafeAreaView, View,Text } from 'react-native';
+import {Button, TextInput} from 'react-native-paper'
 
-export default class NewAccountScreen extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.text}>I am the NewAccountScreen screen</Text>
-      </View>
-    );
-  }
+
+const NewAccountFunc = ({navigation}) => {
+    const login = () => navigation.navigate("Welcome")
+    const newAccount = () => navigation.navigate("NewAccount")
+
+  return (
+    <SafeAreaView>
+        <TextInput label={'Username'}></TextInput>
+        <TextInput  secureTextEntry={true}  label={'Password'}></TextInput>
+        <TextInput  secureTextEntry={true}  label={'Retype Password'}></TextInput>
+
+        <Button onPress={login}>Create Account</Button>
+    </SafeAreaView>
+ );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    fontSize:16,
-    fontWeight:'500',
-    color:'#212121',
-    textAlign:'center'
-  }
-});
+
+export default NewAccountFunc;

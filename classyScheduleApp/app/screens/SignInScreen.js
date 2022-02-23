@@ -5,11 +5,14 @@ import {Button, TextInput} from 'react-native-paper'
 
 const SignInScreenFun = ({navigation}) => {
     const login = () => navigation.navigate("Welcome")
+    const newAccount = () => navigation.navigate("NewAccount")
+
   return (
     <SafeAreaView>
         <TextInput label={'Username'}></TextInput>
-        <TextInput label={'Password'}></TextInput>
+        <TextInput  secureTextEntry={true}  label={'Password'}></TextInput>
         <Button onPress={login}>Login</Button>
+        <Button onPress={newAccount}>Create Account</Button>
     </SafeAreaView>
  );
 }

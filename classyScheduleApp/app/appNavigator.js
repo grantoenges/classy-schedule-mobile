@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack'
 import { NavigationContainer } from "@react-navigation/native";
 import  SignInScreenFun from "./screens/SignInScreen"; 
 import WelcomeScreenFun from "./screens/WelcomeScreen";
+import NewAccountScreen from "./screens/NewAccountScreen";
 
 const {Navigator, Screen} = createStackNavigator ();
 
@@ -12,6 +13,7 @@ const AppNavigator = () => (
         <Navigator initialRouteName = "Login">
             <Screen name = "Login" component = {SignInScreenFun}/>
             <Screen name = "Welcome" component = {WelcomeScreenFun}/>
+            <Screen name = "NewAccount" component = {NewAccountScreen}/>
 
         </Navigator>
     </NavigationContainer>
