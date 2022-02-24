@@ -11,8 +11,8 @@ const {Navigator, Screen} = createStackNavigator ();
 const AppNavigator = () => (
     <NavigationContainer>
         <Navigator initialRouteName = "Login">
+            <Screen name = "Welcome" component = {WelcomeScreenFun} options={{headerLeft: (props) => null }}/>
             <Screen name = "Login" component = {SignInScreenFun}/>
-            <Screen name = "Welcome" component = {WelcomeScreenFun}/>
             <Screen name = "NewAccount" component = {NewAccountScreen}/>
 
         </Navigator>

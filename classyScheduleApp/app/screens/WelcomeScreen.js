@@ -7,10 +7,10 @@ const WelcomeScreenFun = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-        <Card>
-            <Card.Title style = {styles.title} title= "Welcome Screen"/>
-            <Button onPress={login}>Login</Button>
+        <Card style={styles.cardStyle}>
+            <Card.Title title= "Welcome Screen"/>
         </Card>
+        <Button style={styles.buttonStyle} onPress={login}>Login</Button>
     </SafeAreaView>
  );
 }
@@ -19,7 +19,13 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       padding: 24,
-      backgroundColor: "#eaeaea"
+      
+    },
+    cardStyle:{
+        backgroundColor:"purple"
+    },
+    buttonStyle:{
+        borderColor:"purple"
     },
     title: {
       marginTop: 16,
