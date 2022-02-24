@@ -8,7 +8,7 @@ function App() {
     <PaperProvider>
       <AppNavigator></AppNavigator>
     </PaperProvider>
- );
+  );
 }
 
 export default App;
