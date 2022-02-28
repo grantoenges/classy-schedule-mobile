@@ -11,6 +11,7 @@ import ClassesCTFun from "./screens/classesCanTeachScreen";
 import ClassesPTFun from "./screens/classesPreferredToTeach";
 import TimesCTFun from "./screens/timesCantTeach";
 import DaysPrefFun from "./screens/daysPreferred";
+import ClassInputFun from "./screens/classInputting";
 
 
 const {Navigator, Screen} = createStackNavigator ();
@@ -29,7 +30,7 @@ const AppNavigator = () => (
             <Screen name = 'Classes Preferred Teach' component={ClassesPTFun}/>
             <Screen name = 'Times Cant Teach' component={TimesCTFun}/>
             <Screen name = 'Days Prefered Teach' component={DaysPrefFun}/>
-
+            <Screen name = 'Class Input' component={ClassInputFun}/>
 
         </Navigator>
     </NavigationContainer>

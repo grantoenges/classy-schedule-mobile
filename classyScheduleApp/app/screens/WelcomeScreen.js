@@ -7,7 +7,7 @@ const WelcomeScreenFun = ({navigation}) => {
      const prefs = () => navigation.navigate("Preferences")
      const settings = () => navigation.navigate("Settings")
      const schedule = () => navigation.navigate("Schedule")
-
+    const Input = () => navigation.navigate("Class Input")
 
 
   return (
@@ -19,6 +19,7 @@ const WelcomeScreenFun = ({navigation}) => {
         <Button style={styles.buttonStyle} onPress={prefs}>Preferences</Button>
         <Button style={styles.buttonStyle} onPress={settings}>Settings</Button>
         <Button style={styles.buttonStyle} onPress={schedule}>Schedule</Button>
+        <Button style={styles.buttonStyle} onPress={Input}>Class Input</Button>
 
     </SafeAreaView>
  );
