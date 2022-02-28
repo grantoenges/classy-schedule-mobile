@@ -31,7 +31,6 @@ const AppNavigator = () => (
             <Screen name = 'Times Cant Teach' component={TimesCTFun}/>
             <Screen name = 'Days Prefered Teach' component={DaysPrefFun}/>
             <Screen name = 'Class Input' component={ClassInputFun}/>
-
         </Navigator>
     </NavigationContainer>
 )
