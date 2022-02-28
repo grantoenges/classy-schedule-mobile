@@ -7,7 +7,7 @@ const ClassInputFun = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
         <Card style={styles.cardStyle}>
-            <Card.Title title= "Class Input Screen   :)"/>
+            <Card.Title title= "Class Input Screen :)"/>
         </Card>
     </SafeAreaView>
  );
