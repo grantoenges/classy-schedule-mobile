@@ -4,8 +4,10 @@ import {Button, Card, TextInput} from 'react-native-paper'
 
 const PreferenceFun = ({navigation}) => {
      const login = () => navigation.navigate("Login")
-     const DaysCT = () => navigation.navigate("Classes Can Teach")
-     const DaysPT = () => navigation.navigate("Classes Preferred Teach")
+     const ClassesCT = () => navigation.navigate("Classes Can Teach")
+     const ClassesPT = () => navigation.navigate("Classes Preferred Teach")
+     const TimesCT = () => navigation.navigate("Times Cant Teach")
+     const DaysPT = () => navigation.navigate("Days Prefered Teach")
 
      
   return (
@@ -13,8 +15,11 @@ const PreferenceFun = ({navigation}) => {
         <Card style={styles.cardStyle}>
             <Card.Title title= "Preference Screen"/>
         </Card>
-        <Button style={styles.buttonStyle} onPress={DaysCT}>Classes Can Teach</Button>
-        <Button style={styles.buttonStyle} onPress={DaysPT}>Classes Preffered To Teach</Button>
+        <Button style={styles.buttonStyle} onPress={ClassesCT}>Classes Can Teach</Button>
+        <Button style={styles.buttonStyle} onPress={ClassesPT}>Classes Preffered To Teach</Button>
+        <Button style={styles.buttonStyle} onPress={TimesCT}>Times Cant Teach</Button>
+        <Button style={styles.buttonStyle} onPress={DaysPT}>Days Preferred Teach</Button>
+
 
     </SafeAreaView>
  );
