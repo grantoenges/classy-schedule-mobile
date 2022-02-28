@@ -2,24 +2,13 @@ import React from 'react';
 import { SafeAreaView, View,Text,StyleSheet } from 'react-native';
 import {Button, Card, TextInput} from 'react-native-paper'
 
-const WelcomeScreenFun = ({navigation}) => {
-     const login = () => navigation.navigate("Login")
-     const prefs = () => navigation.navigate("Preferences")
-     const settings = () => navigation.navigate("Settings")
-     const schedule = () => navigation.navigate("Schedule")
-
-
+const ClassesCTFun = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
         <Card style={styles.cardStyle}>
-            <Card.Title title= "Welcome Screen"/>
+            <Card.Title title= "Classes can teach Screen"/>
         </Card>
-        <Button style={styles.buttonStyle} onPress={login}>Login</Button>
-        <Button style={styles.buttonStyle} onPress={prefs}>Preferences</Button>
-        <Button style={styles.buttonStyle} onPress={settings}>Settings</Button>
-        <Button style={styles.buttonStyle} onPress={schedule}>Schedule</Button>
-
     </SafeAreaView>
  );
 }
@@ -51,6 +40,6 @@ const styles = StyleSheet.create({
   });
   
 
-export default WelcomeScreenFun;
+export default ClassesCTFun;
 
 
