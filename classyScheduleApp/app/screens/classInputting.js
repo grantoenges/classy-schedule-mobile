@@ -1,13 +1,21 @@
 import React from 'react';
 import { SafeAreaView, View,Text,StyleSheet } from 'react-native';
 import {Button, Card, TextInput} from 'react-native-paper'
+import {Picker} from '@react-native-picker/picker';
+import { useState } from 'react';
 
 const ClassInputFun = ({navigation}) => {
+    const [selectedLanguage, setSelectedLanguage] = useState();
 
   return (
     <SafeAreaView style={styles.container}>
         <Card style={styles.cardStyle}>
-            <Card.Title title= "Class Input Screen"/>
+            <Card.Title title= "Class Input Screen :)"/>
+            <Picker
+            selectedValue={selectedLanguage} onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}>
+            <Picker.Item label="Java" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+            </Picker>
         </Card>
     </SafeAreaView>
  );
