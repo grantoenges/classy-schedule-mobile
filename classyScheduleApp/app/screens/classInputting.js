@@ -10,11 +10,11 @@ const ClassInputFun = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
         <Card style={styles.cardStyle}>
-            <Card.Title title= "Class Input Screen :)"/>
-            <Picker
+            <Card.Title title= "Class Input Screen"/>
+            <Picker  style={styles.buttonStyle}
             selectedValue={selectedLanguage} onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}>
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
+            <Picker.Item label="Cisc" value="CISC" />
+            <Picker.Item label="Stats" value="STAT" />
             </Picker>
         </Card>
     </SafeAreaView>
