@@ -15,6 +15,9 @@ const ClassInputFun = ({navigation}) => {
             selectedValue={selectedLanguage} onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}>
             <Picker.Item label="Cisc" value="CISC" />
             <Picker.Item label="Stats" value="STAT" />
+            <Picker.Item label="Other option" value="Other" />
+            <Picker.Item label="wasd" value="wasd" />
+
             </Picker>
         </Card>
     </SafeAreaView>

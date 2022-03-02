@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
       width:"90%",
       padding: 10,
       marginLeft: 20,
-      justifyContent:'flex-start',
       alignItems: 'center'
   },
 
