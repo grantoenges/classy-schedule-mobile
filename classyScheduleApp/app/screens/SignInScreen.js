@@ -25,12 +25,14 @@ function passwordValidator(password) {
 
 const SignInScreenFun = ({navigation}) => {
     const newAccount = () => navigation.navigate("NewAccount");
-    const [email, setEmail] = useState({ value: ' ', error: ' ' });
-    const [password, setPassword] = useState({ value: ' ', error: ' ' });
+    let value = value || '';
+    const [email, setEmail] = useState({value: '', error: ''});
+    const [password, setPassword] = useState({value: '', error: ''});
+
     const onLoginPressed = () => {
       const emailError = emailValidator(email.value)
       const passwordError = passwordValidator(password.value)
-      console.log("error " + emailError + " " + passwordError)
+
       if (emailError || passwordError) {
         setEmail({ ...email, error: emailError })
         setPassword({ ...password, error: passwordError })
@@ -48,6 +50,7 @@ const SignInScreenFun = ({navigation}) => {
             style={styles.TextInput}
             placeholder="Email"
             placeholderTextColor="#ABC"
+            value={email.value}
             onChangeText={(email) => setEmail({value: email, error: '' })}
             error={!!email.error}
             errorText={email.error}
@@ -62,6 +65,7 @@ const SignInScreenFun = ({navigation}) => {
                 placeholder="Password"
                 placeholderTextColor="#ABC"
                 secureTextEntry={true}
+                value={password.value}
                 onChangeText={(password) => setPassword({value: password, error: '' })}
                 error={!!password.error}
                 errorText={password.error}    
@@ -87,7 +91,7 @@ const styles = StyleSheet.create({
   inputView: {
       backgroundColor: "#fff",
       borderRadius: 30,
-      width: "70%",
+      width: "100%",
       height: 45,
       marginBottom: 20,
       alignItems: "center",
