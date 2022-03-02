@@ -13,7 +13,7 @@ const WelcomeScreenFun = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
         <Card style={styles.cardStyle}>
-            <Card.Title title= "Welcome Screenns"/>
+            <Card.Title title= "Welcome Screen"/>
         </Card>
         <Button style={styles.buttonStyle} onPress={login}>Login</Button>
         <Button style={styles.buttonStyle} onPress={prefs}>Preferences</Button>

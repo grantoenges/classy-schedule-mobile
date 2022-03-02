@@ -46,23 +46,23 @@ const SignInScreenFun = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
         <View style={styles.inputView}>
-          <TextInput
-              style={styles.TextInput}
-              placeholder="Email."
-              placeholderTextColor="#ABC"
-              value={email.value}
-              onChangeText={(email) => setEmail({value: email, error: '' })}
-              error={!!email.error}
-              errorText={email.error}
-              textContentType="emailAddress"
-              keyboardType="email-address"
-          />
+        <TextInput
+            style={styles.TextInput}
+            placeholder="Email"
+            placeholderTextColor="#ABC"
+            value={email.value}
+            onChangeText={(email) => setEmail({value: email, error: '' })}
+            error={!!email.error}
+            errorText={email.error}
+            textContentType="emailAddress"
+            keyboardType="email-address"
+        />
         </View>
 
         <View style={styles.inputView}>
             <TextInput
                 style={styles.TextInput}
-                placeholder="Password."
+                placeholder="Password"
                 placeholderTextColor="#ABC"
                 secureTextEntry={true}
                 value={password.value}
@@ -100,8 +100,10 @@ const styles = StyleSheet.create({
   TextInput: {
       height: 50,
       flex: 1,
+      width:"90%",
       padding: 10,
       marginLeft: 20,
+      alignItems: 'center'
   },
 
 });
