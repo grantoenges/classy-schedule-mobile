@@ -44,10 +44,10 @@ const SignInScreenFun = ({navigation}) => {
     }
 
   return (
-    <SafeAreaView style={styles.container}>
-        <View style={styles.inputView}>
+    <SafeAreaView>
+       
         <TextInput
-            style={styles.TextInput}
+            
             placeholder="Email"
             placeholderTextColor="#ABC"
             value={email.value}
@@ -57,12 +57,12 @@ const SignInScreenFun = ({navigation}) => {
             textContentType="emailAddress"
             keyboardType="email-address"
         />
-        </View>
+      
 
-        <View style={styles.inputView}>
+       
             <TextInput
-                style={styles.TextInput}
-                placeholder="Password"
+                
+                placeholder="Passwoord"
                 placeholderTextColor="#ABC"
                 secureTextEntry={true}
                 value={password.value}
@@ -70,7 +70,7 @@ const SignInScreenFun = ({navigation}) => {
                 error={!!password.error}
                 errorText={password.error}    
             />
-        </View>
+        
         <Button onPress={onLoginPressed}>Login</Button>
         <Button onPress={newAccount}>Create Account</Button>
         <TouchableOpacity>
