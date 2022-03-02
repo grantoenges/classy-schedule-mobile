@@ -12,7 +12,6 @@ const NewAccountFunc = ({navigation}) => {
         <TextInput label={'Username'}></TextInput>
         <TextInput  secureTextEntry={true}  label={'Password'}></TextInput>
         <TextInput  secureTextEntry={true}  label={'Retype Password'}></TextInput>
-
         <Button onPress={login}>Create Account</Button>
     </SafeAreaView>
  );

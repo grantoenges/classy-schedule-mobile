@@ -48,7 +48,7 @@ const SignInScreenFun = ({navigation}) => {
         <View style={styles.inputView}>
         <TextInput
             style={styles.TextInput}
-            placeholder="Email."
+            placeholder="Email"
             placeholderTextColor="#ABC"
             value={email.value}
             onChangeText={(email) => setEmail({value: email, error: '' })}
@@ -62,7 +62,7 @@ const SignInScreenFun = ({navigation}) => {
         <View style={styles.inputView}>
             <TextInput
                 style={styles.TextInput}
-                placeholder="Password."
+                placeholder="Password"
                 placeholderTextColor="#ABC"
                 secureTextEntry={true}
                 value={password.value}
@@ -100,8 +100,10 @@ const styles = StyleSheet.create({
   TextInput: {
       height: 50,
       flex: 1,
+      width:"90%",
       padding: 10,
       marginLeft: 20,
+      alignItems: 'center'
   },
 
 });
