@@ -108,7 +108,6 @@ const SignInScreenFun = ({navigation}) => {
             />
         </View>
         <Button onPress={onLoginPressed}>Login</Button>
-        <h1>hello world</h1>
         <Button onPress={newAccount}>Create Account</Button>
         <Button onPress={storeData()}>Store Data</Button>
         <TouchableOpacity>
