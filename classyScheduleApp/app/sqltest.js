@@ -6,7 +6,7 @@ var config =
     host: 'capstonedb01.mysql.database.azure.com',
     user: 'androidteam',
     password: 'androidpass',
-    database: 'testdb',
+    database: 'classyschedule',
     port: 3306,
     ssl: {ca: fs.readFileSync("./classy-schedule-mobile/classyScheduleApp/app/sqltest/DigiCertGlobalRootCA.crt.pem")}
 };
@@ -21,7 +21,7 @@ conn.connect(
     }
     else
     {
-       console.log("Connection established.");
+      console.log("Connection established.");
       queryDatabase();
     }
 });
@@ -32,3 +32,5 @@ function queryDatabase(){
     console.log(JSON.stringify(results));
   })
 }
+
+export {queryDatabase};
