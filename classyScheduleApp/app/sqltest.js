@@ -4,11 +4,11 @@ const fs = require('fs');
 var config =
 {
     host: 'capstonedb01.mysql.database.azure.com',
-    user: 'androidteam',
-    password: 'androidpass',
+    user: 'webdevteam',
+    password: 'webdevpass',
     database: 'testdb',
     port: 3306,
-    ssl: {ca: fs.readFileSync("./classy-schedule-mobile/classyScheduleApp/app/sqltest/DigiCertGlobalRootCA.crt.pem")}
+    //ssl: {ca: fs.readFileSync("./classyScheduleApp/app/DigiCertGlobalRootCA.crt.pem")}
 };
 
 const conn = new mysql.createConnection(config);
