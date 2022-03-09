@@ -8,7 +8,7 @@ var config =
     password: 'androidpass',
     database: 'classyschedule',
     port: 3306,
-    ssl: {ca: fs.readFileSync("./classy-schedule-mobile/classyScheduleApp/app/sqltest/DigiCertGlobalRootCA.crt.pem")}
+    //ssl: {ca: fs.readFileSync("./classyScheduleApp/app/DigiCertGlobalRootCA.crt.pem")}
 };
 
 const conn = new mysql.createConnection(config);
@@ -32,5 +32,3 @@ function queryDatabase(){
     console.log(JSON.stringify(results));
   })
 }
-
-export {queryDatabase};

@@ -2,7 +2,6 @@ import  React, { useState } from 'react';
 import {StyleSheet, SafeAreaView, View,Text, TouchableOpacity} from 'react-native';
 import {Button, TextInput} from 'react-native-paper'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {queryDatabase} from '../sqltest.js'
 
 function emailValidator(email) {
   const re = /\S+@\S+\.\S+/
@@ -61,7 +60,6 @@ const SignInScreenFun = ({navigation}) => {
   const onLoginPressed = () => {
     const emailError = emailValidator(email.value)
     const passwordError = passwordValidator(password.value)
-    queryDatabase();
     if (emailError || passwordError) {
       setEmail({ ...email, error: emailError })
       setPassword({ ...password, error: passwordError })
