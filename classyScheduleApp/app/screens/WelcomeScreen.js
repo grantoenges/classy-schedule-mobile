@@ -1,13 +1,15 @@
 import React from 'react';
 import { SafeAreaView, View,Text,StyleSheet } from 'react-native';
 import {Button, Card, TextInput} from 'react-native-paper'
+import Teste from '../sqlRe'
 
 const WelcomeScreenFun = ({navigation}) => {
      const login = () => navigation.navigate("Login")
      const prefs = () => navigation.navigate("Preferences")
      const settings = () => navigation.navigate("Settings")
      const schedule = () => navigation.navigate("Schedule")
-    const Input = () => navigation.navigate("Class Input")
+     const Input = () => navigation.navigate("Class Input")
+    
 
 
   return (
@@ -20,6 +22,8 @@ const WelcomeScreenFun = ({navigation}) => {
         <Button style={styles.buttonStyle} onPress={settings}>Settings</Button>
         <Button style={styles.buttonStyle} onPress={schedule}>Schedule</Button>
         <Button style={styles.buttonStyle} onPress={Input}>Class Input</Button>
+        <Button style={styles.buttonStyle} onPress={Teste}>Class Input</Button>
+
 
     </SafeAreaView>
  );

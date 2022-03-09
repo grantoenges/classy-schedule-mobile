@@ -8,6 +8,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ClassInputFun = () => {
     const [selectedLanguage, setSelectedLanguage] = useState();
+    const [classTitle, setClassTitle] = useState();
+    const [classNumber, setClassNum] = useState();
+
     const storeData = async (value) => {
         try {
           await AsyncStorage.setItem('@storage_Key', value)
@@ -26,6 +29,11 @@ const ClassInputFun = () => {
           // error reading value
         }
     }
+    const getstate = () => {
+      alert(classTitle)
+      alert(classNumber)
+      alert(selectedLanguage)
+    }
   return (
     <SafeAreaView style={styles.container}>
         <Card style={styles.cardStyle}>
@@ -34,12 +42,11 @@ const ClassInputFun = () => {
             selectedValue={selectedLanguage} onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}>
             <Picker.Item label="Cisc" value="CISC" />
             <Picker.Item label="Stats" value="STAT" />
-            <Picker.Item label="Other option" value="Other" />
-            <Picker.Item label="wasd" value="wasd" />
             </Picker>
-            <Button onPress={() => storeData("66666666")}>save data </Button>
-            <Button onPress={getData}>retr data </Button>
-
+            <TextInput onChangeText={(classNumber) => setClassNum(classNumber)} label={'Class number'}></TextInput>
+            <TextInput onChangeText={(classTitle) => setClassTitle(classTitle)} label={'Class Title'}></TextInput>
+            <Button onPress={() => storeData(selectedLanguage)}>save data </Button>
+            <Button onPress={getstate}>retr data </Button>
         </Card>
     </SafeAreaView>
  );
