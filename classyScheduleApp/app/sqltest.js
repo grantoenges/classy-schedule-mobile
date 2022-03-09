@@ -21,7 +21,7 @@ conn.connect(
     }
     else
     {
-       console.log("Connection established.");
+      console.log("Connection established.");
       queryDatabase();
     }
 });
