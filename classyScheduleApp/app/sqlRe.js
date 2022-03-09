@@ -4,8 +4,8 @@ const fs = require('fs');
 var config =
 {
     host: 'capstonedb01.mysql.database.azure.com',
-    user: 'webdevteam',
-    password: 'webdevpass',
+    user: 'androidteam',
+    password: 'androidpass',
     database: 'testdb',
     port: 3306,
     ssl: {ca: fs.readFileSync("./classyScheduleApp/app/DigiCertGlobalRootCA.crt.pem")}
