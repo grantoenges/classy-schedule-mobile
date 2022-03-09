@@ -3,6 +3,17 @@ import { SafeAreaView, View,Text } from 'react-native';
 import {Button, TextInput} from 'react-native-paper'
 
 
+function emailValidator(email) {
+  const re = /\S+@\S+\.\S+/
+  if (!email) {
+    return "Email can't be empty.";
+  } 
+  if (!re.test(email)) {
+    return "Ooops! We need a valid email address.";
+  }
+  return "";
+}
+
 function passwordValidator(password) {
   //if str does not contain a capital letter return false
   if(!/[A-Z]/.test(password)){
