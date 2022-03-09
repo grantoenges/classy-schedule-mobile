@@ -79,8 +79,8 @@ const SignInScreenFun = ({navigation}) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-        <View style={styles.inputView}>
+    <SafeAreaView>
+       
         <TextInput
             style={styles.TextInput}
             placeholder="Email."
@@ -92,9 +92,9 @@ const SignInScreenFun = ({navigation}) => {
             textContentType="emailAddress"
             keyboardType="email-address"
         />
-        </View>
+      
 
-        <View style={styles.inputView}>
+       
             <TextInput
                 style={styles.TextInput}
                 placeholder="Password."
@@ -104,7 +104,7 @@ const SignInScreenFun = ({navigation}) => {
                 error={!!password.error}
                 errorText={password.error}    
             />
-        </View>
+        
         <Button onPress={onLoginPressed}>Login</Button>
         <Button onPress={newAccount}>Create Account</Button>
         <Button onPress={storeData()}>Store Data</Button>
