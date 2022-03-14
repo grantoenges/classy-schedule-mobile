@@ -2,7 +2,6 @@ import  React, { useState } from 'react';
 import {StyleSheet, SafeAreaView, View,Text, TouchableOpacity} from 'react-native';
 import {Button, TextInput} from 'react-native-paper'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import 
 
 function emailValidator(email) {
   const re = /\S+@\S+\.\S+/
@@ -66,7 +65,7 @@ const SignInScreenFun = ({navigation}) => {
         />
       
 
-       
+      
             <TextInput
                 style={styles.TextInput}
                 placeholder="Password."
