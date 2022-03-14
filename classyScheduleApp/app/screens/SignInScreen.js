@@ -1,13 +1,19 @@
-import  React, { useState } from 'react';
-import {StyleSheet, SafeAreaView, View,Text, TouchableOpacity} from 'react-native';
-import {Button, TextInput} from 'react-native-paper'
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  SafeAreaView,
+  View,
+  Text,
+  TouchableOpacity,
+} from "react-native";
+import { Button, TextInput } from "react-native-paper";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function emailValidator(email) {
-  const re = /\S+@\S+\.\S+/
+  const re = /\S+@\S+\.\S+/;
   if (!email) {
     return "Email can't be empty.";
-  } 
+  }
   if (!re.test(email)) {
     return "Ooops! We need a valid email address.";
   }
@@ -15,102 +21,89 @@ function emailValidator(email) {
 }
 
 function passwordValidator(password) {
-    if(password.length === 0){
-      return false;
-    }
-    return true;
+  if (password.length === 0) {
+    return false;
+  }
+  return true;
 }
 
-
-const SignInScreenFun = ({navigation}) => {
+const SignInScreenFun = ({ navigation }) => {
   const newAccount = () => navigation.navigate("NewAccount");
-  let value = value || '';
-  const [email, setEmail] = useState({value: '', error: ''});
-  const [password, setPassword] = useState({value: '', error: ''});
+  let value = value || "";
+  const [email, setEmail] = useState({ value: "", error: "" });
+  const [password, setPassword] = useState({ value: "", error: "" });
 
   const onLoginPressed = () => {
-    const emailError = emailValidator(email.value)
-    const passwordError = passwordValidator(password.value)
+    const emailError = emailValidator(email.value);
+    const passwordError = passwordValidator(password.value);
     if (emailError || passwordError) {
-      setEmail({ ...email, error: emailError })
-      setPassword({ ...password, error: passwordError })
+      setEmail({ ...email, error: emailError });
+      setPassword({ ...password, error: passwordError });
       alert(emailError + " " + passwordError);
     } else {
       navigation.navigate("Welcome");
     }
-    
-  }
+  };
 
   const storeData = async (value) => {
     try {
-      await AsyncStorage.setItem('@storage_Key', value)
+      await AsyncStorage.setItem("@storage_Key", value);
     } catch (e) {
       // saving error
     }
-  }
+  };
 
   return (
     <SafeAreaView>
-       
-        <TextInput
-            style={styles.TextInput}
-            placeholder="Email."
-            placeholderTextColor="#ABC"
-            value={email.value}
-            onChangeText={(email) => setEmail({value: email, error: '' })}
-            error={!!email.error}
-            errorText={email.error}
-            textContentType="emailAddress"
-            keyboardType="email-address"
-        />
-      
+      <TextInput
+        style={styles.TextInput}
+        placeholder="Email."
+        placeholderTextColor="#ABC"
+        value={email.value}
+        onChangeText={(email) => setEmail({ value: email, error: "" })}
+        error={!!email.error}
+        errorText={email.error}
+        textContentType="emailAddress"
+        keyboardType="email-address"
+      />
 
-      
-            <TextInput
-                style={styles.TextInput}
-                placeholder="Password."
-                placeholderTextColor="#ABC"
-                secureTextEntry={true}
-                onChangeText={(password) => setPassword({value: password, error: '' })}
-                error={!!password.error}
-                errorText={password.error}    
-            />
-        
-        <Button onPress={onLoginPressed}>Login</Button>
-        <Button onPress={newAccount}>Create Account</Button>
-        <Button onPress={storeData()}>Store Data</Button>
-        <TouchableOpacity>
-            <Text>Forgot Password?</Text>
-        </TouchableOpacity>
+      <TextInput
+        style={styles.TextInput}
+        placeholder="Password."
+        placeholderTextColor="#ABC"
+        secureTextEntry={true}
+        onChangeText={(password) => setPassword({ value: password, error: "" })}
+        error={!!password.error}
+        errorText={password.error}
+      />
+
+      <Button onPress={onLoginPressed}>Login</Button>
+      <Button onPress={newAccount}>Create Account</Button>
+      <TouchableOpacity>
+        <Text>Forgot Password?</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   inputView: {
-      backgroundColor: "#fff",
-      borderRadius: 30,
-      width: "70%",
-      height: 45,
-      marginBottom: 20,
-      alignItems: "center",
-  },
-  
-  TextInput: {
-      height: 50,
-      flex: 1,
-      padding: 10,
-      marginLeft: 20,
+    backgroundColor: "#fff",
+    borderRadius: 30,
+    width: "70%",
+    height: 45,
+    marginBottom: 20,
+    alignItems: "center",
   },
 
+  TextInput: {},
 });
-
 
 export default SignInScreenFun;
