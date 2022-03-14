@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, View,Text,StyleSheet } from 'react-native';
 import {Button, Card, TextInput} from 'react-native-paper'
-import Teste from '../sqlRe'
+
 
 const WelcomeScreenFun = ({navigation}) => {
      const login = () => navigation.navigate("Login")
