@@ -19,19 +19,23 @@
     "axios": "^0.26.0",
     "body-parser": "^1.19.2",
     "expo": "^44.0.0",
+    "expo-crypto": "~10.1.1",
     "expo-status-bar": "~1.2.0",
     "express": "^4.17.3",
     "fs": "^0.0.1-security",
     "mysql": "^2.18.1",
+    "node-libs-react-native": "^1.2.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
+    "react-native-crypto": "^2.2.0",
     "react-native-gesture-handler": "~2.1.0",
     "react-native-paper": "^4.11.2",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
     "react-native-vector-icons": "^9.1.0",
-    "react-native-web": "0.17.1"
+    "react-native-web": "0.17.1",
+    "rn-nodeify": "^10.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

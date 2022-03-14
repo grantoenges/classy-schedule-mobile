@@ -12,7 +12,7 @@ import ClassesPTFun from "./screens/classesPreferredToTeach";
 import TimesCTFun from "./screens/timesCantTeach";
 import DaysPrefFun from "./screens/daysPreferred";
 import ClassInputFun from "./screens/classInputting";
-//import ConDB from "./sqlRea"; 
+import DbCon from "./sqlRe"; 
 
 const {Navigator, Screen} = createStackNavigator ();
 
@@ -31,6 +31,7 @@ const AppNavigator = () => (
             <Screen name = 'Times Cant Teach' component={TimesCTFun}/>
             <Screen name = 'Days Prefered Teach' component={DaysPrefFun}/>
             <Screen name = 'Class Input' component={ClassInputFun}/>
+            <Screen name = 'Database' component={DbCon}/>
 
 
         </Navigator>
