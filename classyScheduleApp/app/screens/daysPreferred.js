@@ -13,9 +13,6 @@ const DaysPrefFun = ({navigation}) => {
     <SafeAreaView style={styles.container}>
         <Card style={styles.cardStyle}>
             <Card.Title title= "Days Preferred to Teach"/>
-            <Text>
-              <center>Select Days Preferred to Teach</center>
-            </Text>
         </Card>
 
         <View >
@@ -79,8 +76,6 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       padding: 24,
-      alignItems: 'center',
-      justifyContent: 'center',
     },
     cardStyle:{
         backgroundColor:"powderblue"
