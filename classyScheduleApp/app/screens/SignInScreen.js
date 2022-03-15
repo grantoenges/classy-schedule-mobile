@@ -82,14 +82,20 @@ const SignInScreenFun = ({ navigation }) => {
       <TouchableOpacity style={styles.center}>
         <Text>Forgot Password?</Text>
       </TouchableOpacity>
+      <View style = {styles.container}>
+      <Image
+        style={styles.tinyLogo}
+        source={require('../assets/ClassyLogoSquare.png')}
+      />
+      </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
+    flex: 0,
+    
     alignItems: "center",
     justifyContent: "center",
   },
@@ -106,7 +112,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-
+  tinyLogo:{
+    width: 150,
+    height: 150,
+    marginTop: 10,
+    alignItems: "center",
+  },
   TextInput: {},
 });
 
