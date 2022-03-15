@@ -1,58 +1,76 @@
 import React from 'react';
-import { useState, CheckBox } from 'react';
-import { SafeAreaView, View,Text,StyleSheet } from 'react-native';
-import {Button, Card, TextInput} from 'react-native-paper'
+import {SafeAreaView, View, StyleSheet } from 'react-native';
+import {Button, Card, Checkbox, Text} from 'react-native-paper'
 
 const DaysPrefFun = ({navigation}) => {
-  const [toggleCheckBox, setToggleCheckBox] = useState(false)
-
-  const days = [
-    {
-      name: "Monday"
-    },
-    {
-      name: "Tuesday"
-    },
-    {
-      name: "Wednesday"
-    },
-    {
-      name: "Thursday"
-    },
-    {
-      name: "Friday"
-    }
-  ];
+  const [mondayChecked, setMondayChecked] = React.useState(false);
+  const [tuesdayChecked, setTuesdayChecked] = React.useState(false);
+  const [wednesdayChecked, setWednesdayChecked] = React.useState(false);
+  const [thursdayChecked, setThursdayChecked] = React.useState(false);
+  const [fridayChecked, setFridayChecked] = React.useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
         <Card style={styles.cardStyle}>
-            <Card.Title title= "Days preferred to teach Screen"/>
+            <Card.Title title= "Days Preferred to Teach"/>
+            <Text>
+              <center>Select Days Preferred to Teach</center>
+            </Text>
         </Card>
 
-    <div className="App">
-      <h3>Days Preferred To Teach</h3>
-      <ul className="days-list">
-        {days.map(({ name }, index) => {
-          return (
-            <li key={index}>
-              <div className="days-list-item">
-                <div className="left-section">
-                  <input
-                    type="checkbox"
-                    id={`custom-checkbox-${index}`}
-                    name={name}
-                    value={name}
-                  />
-                  <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
-                </div>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-    <Button>Submit Day Preferences </Button>
+        <View >
+          <Checkbox.Item 
+            labelStyle={styles.label}
+            label="Monday" 
+            color="black"
+            uncheckedColor="black"
+            status={mondayChecked ? 'checked' : 'unchecked'} 
+            onPress={() => {
+              setMondayChecked(!mondayChecked);
+            }} 
+          />
+          <Checkbox.Item 
+            labelStyle={styles.label}
+            label="Tuesday" 
+            color="black"
+            uncheckedColor="black"
+            status={tuesdayChecked ? 'checked' : 'unchecked'} 
+            onPress={() => {
+              setTuesdayChecked(!tuesdayChecked);
+            }} 
+          />
+          <Checkbox.Item 
+            labelStyle={styles.label}
+            label="Wednesday" 
+            color="black"
+            uncheckedColor="black"
+            status={wednesdayChecked ? 'checked' : 'unchecked'} 
+            onPress={() => {
+              setWednesdayChecked(!wednesdayChecked);
+            }} 
+          />
+          <Checkbox.Item 
+            labelStyle={styles.label}
+            label="Thursday" 
+            color="black"
+            uncheckedColor="black"
+            status={thursdayChecked ? 'checked' : 'unchecked'} 
+            onPress={() => {
+              setThursdayChecked(!thursdayChecked);
+            }} 
+          />
+          <Checkbox.Item 
+            labelStyle={styles.label}
+            label="Friday" 
+            color="black"
+            uncheckedColor="black"
+            status={fridayChecked ? 'checked' : 'unchecked'} 
+            onPress={() => {
+              setFridayChecked(!fridayChecked);
+            }} 
+          />
+        </View>
+      <Button>Submit Day Preferences</Button>
     </SafeAreaView>
  );
 }
@@ -61,12 +79,17 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       padding: 24,
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     cardStyle:{
         backgroundColor:"powderblue"
     },
     buttonStyle:{
         backgroundColor :"silver"
+    },
+    label: {
+      color: 'black'
     },
     title: {
       marginTop: 16,
@@ -84,5 +107,3 @@ const styles = StyleSheet.create({
   
 
 export default DaysPrefFun;
-
-
