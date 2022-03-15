@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   View,
   Text,
+  Image,
   TouchableOpacity,
 } from "react-native";
 import { Button, TextInput } from "react-native-paper";
@@ -57,7 +58,7 @@ const SignInScreenFun = ({ navigation }) => {
     <SafeAreaView>
       <TextInput
         style={styles.TextInput}
-        placeholder="Email."
+        label= "Email"
         placeholderTextColor="#ABC"
         value={email.value}
         onChangeText={(email) => setEmail({ value: email, error: "" })}
@@ -69,7 +70,7 @@ const SignInScreenFun = ({ navigation }) => {
 
       <TextInput
         style={styles.TextInput}
-        placeholder="Password."
+        label = "Password"
         placeholderTextColor="#ABC"
         secureTextEntry={true}
         onChangeText={(password) => setPassword({ value: password, error: "" })}
@@ -82,14 +83,20 @@ const SignInScreenFun = ({ navigation }) => {
       <TouchableOpacity style={styles.center}>
         <Text>Forgot Password?</Text>
       </TouchableOpacity>
+      <View style = {styles.container}>
+      <Image
+        style={styles.tinyLogo}
+        source={require('../assets/ClassyLogoSquare.png')}
+      />
+      </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
+    flex: 0,
+    
     alignItems: "center",
     justifyContent: "center",
   },
@@ -106,7 +113,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-
+  tinyLogo:{
+    width: 150,
+    height: 150,
+    marginTop: 10,
+    alignItems: "center",
+    marginTop: "30%",
+  },
   TextInput: {},
 });
 
