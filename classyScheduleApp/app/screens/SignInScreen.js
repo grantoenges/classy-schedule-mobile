@@ -22,9 +22,9 @@ function emailValidator(email) {
 
 function passwordValidator(password) {
   if (password.length === 0) {
-    return false;
+    return "Cannot have empty password field";
   }
-  return true;
+  return "";
 }
 
 const SignInScreenFun = ({ navigation }) => {
@@ -79,7 +79,7 @@ const SignInScreenFun = ({ navigation }) => {
 
       <Button onPress={onLoginPressed}>Login</Button>
       <Button onPress={newAccount}>Create Account</Button>
-      <TouchableOpacity>
+      <TouchableOpacity style={styles.center}>
         <Text>Forgot Password?</Text>
       </TouchableOpacity>
     </SafeAreaView>
@@ -101,6 +101,10 @@ const styles = StyleSheet.create({
     height: 45,
     marginBottom: 20,
     alignItems: "center",
+  },
+  center: {
+    alignItems: "center",
+    justifyContent: "center"
   },
 
   TextInput: {},
