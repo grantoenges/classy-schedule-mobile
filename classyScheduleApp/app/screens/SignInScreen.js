@@ -58,7 +58,7 @@ const SignInScreenFun = ({ navigation }) => {
     <SafeAreaView>
       <TextInput
         style={styles.TextInput}
-        placeholder="Email."
+        label= "Email"
         placeholderTextColor="#ABC"
         value={email.value}
         onChangeText={(email) => setEmail({ value: email, error: "" })}
@@ -70,7 +70,7 @@ const SignInScreenFun = ({ navigation }) => {
 
       <TextInput
         style={styles.TextInput}
-        placeholder="Password."
+        label = "Password"
         placeholderTextColor="#ABC"
         secureTextEntry={true}
         onChangeText={(password) => setPassword({ value: password, error: "" })}
