@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   View,
   Text,
+  Image,
   TouchableOpacity,
 } from "react-native";
 import { Button, TextInput } from "react-native-paper";
@@ -117,6 +118,7 @@ const styles = StyleSheet.create({
     height: 150,
     marginTop: 10,
     alignItems: "center",
+    marginTop: "30%",
   },
   TextInput: {},
 });
