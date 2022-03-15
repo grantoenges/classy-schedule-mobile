@@ -7,7 +7,7 @@ const ClassesPTFun = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
         <Card style={styles.cardStyle}>
-            <Card.Title title= "Classes preferred to teach Screen"/>
+            <Card.Title title= "Classes preferred to Teach Screen"/>
         </Card>
     </SafeAreaView>
  );
