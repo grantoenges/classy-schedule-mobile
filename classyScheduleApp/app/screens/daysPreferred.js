@@ -1,13 +1,14 @@
 import React from "react";
+import { useState } from "react";
 import { SafeAreaView, View, StyleSheet } from "react-native";
 import { Button, Card, Checkbox, Text } from "react-native-paper";
 
 const DaysPrefFun = ({ navigation }) => {
-  const [mondayChecked, setMondayChecked] = React.useState(false);
-  const [tuesdayChecked, setTuesdayChecked] = React.useState(false);
-  const [wednesdayChecked, setWednesdayChecked] = React.useState(false);
-  const [thursdayChecked, setThursdayChecked] = React.useState(false);
-  const [fridayChecked, setFridayChecked] = React.useState(false);
+  const [mondayChecked, setMondayChecked] = useState(false);
+  const [tuesdayChecked, setTuesdayChecked] = useState(false);
+  const [wednesdayChecked, setWednesdayChecked] = useState(false);
+  const [thursdayChecked, setThursdayChecked] = useState(false);
+  const [fridayChecked, setFridayChecked] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
