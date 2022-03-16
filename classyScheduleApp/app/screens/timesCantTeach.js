@@ -1,126 +1,222 @@
-import React from 'react';
-import { useState, CheckBox } from 'react';
-import { SafeAreaView, View,Text,StyleSheet } from 'react-native';
-import {Button, Card, TextInput, Checkbox} from 'react-native-paper';
+import React from "react";
+import { useState, CheckBox } from "react";
+import { SafeAreaView, View, Text, StyleSheet, ScrollView } from "react-native";
+import { Button, Card, TextInput, Checkbox } from "react-native-paper";
 
-
-const TimesCTFun = ({navigation}) => {
+const TimesCTFun = ({ navigation }) => {
   const [morningChecked, setMorningChecked] = React.useState(false);
   const [afternoonChecked, setAfternoonChecked] = React.useState(false);
   const [eveningChecked, setEveningChecked] = React.useState(false);
 
-  const times3DaysWeek = [
-    {
-      name: "8:15am-9:20am"
-    },
-    {
-      name: "9:35am-10:40am"
-    },
-    {
-      name: "10:55am-12:00am"
-    },
-    {
-      name: "12:15am-1:20am"
-    },
-    {
-      name: "1:35am-2:40am"
-    }
-  ];
+  const [threeDay1Checked, setThreeDay1Checked] = React.useState(false);
+  const [threeDay2Checked, setThreeDay2Checked] = React.useState(false);
+  const [threeDay3Checked, setThreeDay3Checked] = React.useState(false);
+  const [threeDay4Checked, setThreeDay4Checked] = React.useState(false);
+  const [threeDay5Checked, setThreeDay5Checked] = React.useState(false);
 
-  const times2DaysWeek = [
-    {
-      name: "8:00am-9:40am"
-    },
-    {
-      name: "9:55am-11:35am"
-    },
-    {
-      name: "1:30am-3:10am"
-    },
-    {
-      name: "3:25am-5:00am"
-    },
-    {
-      name: "5:30am-7:15am"
-    },
-    {
-      name: "7:30am-9:15am"
-    },
-  ];
+  const [twoDay1Checked, setTwoDay1Checked] = React.useState(false);
+  const [twoDay2Checked, setTwoDay2Checked] = React.useState(false);
+  const [twoDay3Checked, setTwoDay3Checked] = React.useState(false);
+  const [twoDay4Checked, setTwoDay4Checked] = React.useState(false);
+  const [twoDay5Checked, setTwoDay5Checked] = React.useState(false);
+  const [twoDay6Checked, setTwoDay6Checked] = React.useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView>
         <Card style={styles.cardStyle}>
-            <Card.Title title= "Times Can't Teach Screen"/>
+          <Card.Title title="Time of Day Preferred to Teach" />
         </Card>
-      
-      <View >
-          <Checkbox.Item 
+
+        <View>
+          <Checkbox.Item
             labelStyle={styles.label}
-            label="Morning" 
+            label="Morning"
             color="black"
             uncheckedColor="black"
-            status={morningChecked ? 'checked' : 'unchecked'} 
+            status={morningChecked ? "checked" : "unchecked"}
             onPress={() => {
               setMorningChecked(!morningChecked);
-            }} 
+            }}
           />
-          <Checkbox.Item 
+          <Checkbox.Item
             labelStyle={styles.label}
-            label="Afternoon" 
+            label="Afternoon"
             color="black"
             uncheckedColor="black"
-            status={afternoonChecked ? 'checked' : 'unchecked'} 
+            status={afternoonChecked ? "checked" : "unchecked"}
             onPress={() => {
               setAfternoonChecked(!afternoonChecked);
-            }} 
+            }}
           />
-          <Checkbox.Item 
+          <Checkbox.Item
             labelStyle={styles.label}
-            label="Evening" 
+            label="Evening"
             color="black"
             uncheckedColor="black"
-            status={eveningChecked ? 'checked' : 'unchecked'} 
+            status={eveningChecked ? "checked" : "unchecked"}
             onPress={() => {
               setEveningChecked(!eveningChecked);
-            }} 
+            }}
           />
-        </View>  
+        </View>
 
+        <Card style={styles.cardStyle}>
+          <Card.Title title="3 Days a Week Time Slots Can't Teach" />
+        </Card>
+
+        <View>
+          <Checkbox.Item
+            labelStyle={styles.label}
+            label="8:15am-9:20am"
+            color="black"
+            uncheckedColor="black"
+            status={threeDay1Checked ? "checked" : "unchecked"}
+            onPress={() => {
+              setThreeDay1Checked(!threeDay1Checked);
+            }}
+          />
+          <Checkbox.Item
+            labelStyle={styles.label}
+            label="9:35am-10:40am"
+            color="black"
+            uncheckedColor="black"
+            status={threeDay2Checked ? "checked" : "unchecked"}
+            onPress={() => {
+              setThreeDay2Checked(!threeDay2Checked);
+            }}
+          />
+          <Checkbox.Item
+            labelStyle={styles.label}
+            label="10:55am-12:00pm"
+            color="black"
+            uncheckedColor="black"
+            status={threeDay3Checked ? "checked" : "unchecked"}
+            onPress={() => {
+              setThreeDay3Checked(!threeDay3Checked);
+            }}
+          />
+          <Checkbox.Item
+            labelStyle={styles.label}
+            label="12:15pm-1:20pm"
+            color="black"
+            uncheckedColor="black"
+            status={threeDay4Checked ? "checked" : "unchecked"}
+            onPress={() => {
+              setThreeDay4Checked(!threeDay4Checked);
+            }}
+          />
+          <Checkbox.Item
+            labelStyle={styles.label}
+            label="1:35pm-2:40pm"
+            color="black"
+            uncheckedColor="black"
+            status={threeDay5Checked ? "checked" : "unchecked"}
+            onPress={() => {
+              setThreeDay5Checked(!threeDay5Checked);
+            }}
+          />
+        </View>
+
+        <Card style={styles.cardStyle}>
+          <Card.Title title="2 Days a Week Time Slots Can't Teach" />
+        </Card>
+
+        <View>
+          <Checkbox.Item
+            labelStyle={styles.label}
+            label="8:00am-9:40am"
+            color="black"
+            uncheckedColor="black"
+            status={twoDay1Checked ? "checked" : "unchecked"}
+            onPress={() => {
+              setTwoDay1Checked(!twoDay1Checked);
+            }}
+          />
+          <Checkbox.Item
+            labelStyle={styles.label}
+            label="9:55am-11:35am"
+            color="black"
+            uncheckedColor="black"
+            status={twoDay2Checked ? "checked" : "unchecked"}
+            onPress={() => {
+              setTwoDay2Checked(!twoDay2Checked);
+            }}
+          />
+          <Checkbox.Item
+            labelStyle={styles.label}
+            label="1:30pm-3:10pm"
+            color="black"
+            uncheckedColor="black"
+            status={twoDay3Checked ? "checked" : "unchecked"}
+            onPress={() => {
+              setTwoDay3Checked(!twoDay3Checked);
+            }}
+          />
+          <Checkbox.Item
+            labelStyle={styles.label}
+            label="3:25pm-5:00pm"
+            color="black"
+            uncheckedColor="black"
+            status={twoDay4Checked ? "checked" : "unchecked"}
+            onPress={() => {
+              setTwoDay4Checked(!twoDay4Checked);
+            }}
+          />
+          <Checkbox.Item
+            labelStyle={styles.label}
+            label="5:30pm-7:15pm"
+            color="black"
+            uncheckedColor="black"
+            status={twoDay5Checked ? "checked" : "unchecked"}
+            onPress={() => {
+              setTwoDay5Checked(!twoDay5Checked);
+            }}
+          />
+          <Checkbox.Item
+            labelStyle={styles.label}
+            label="7:30pm-9:15pm"
+            color="black"
+            uncheckedColor="black"
+            status={twoDay6Checked ? "checked" : "unchecked"}
+            onPress={() => {
+              setTwoDay6Checked(!twoDay6Checked);
+            }}
+          />
+        </View>
+        <Button>Save Day Preferences</Button>
+      </ScrollView>
     </SafeAreaView>
- );
-}
+  );
+};
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      padding: 24,
-      backgroundColor: '#fff',
-    },
-    cardStyle:{
-        backgroundColor:"powderblue"
-    },
-    buttonStyle:{
-        backgroundColor :"silver"
-    },
-    label: {
-      color: 'black'
-    },
-    title: {
-      marginTop: 16,
-      paddingVertical: 8,
-      borderWidth: 4,
-      borderColor: "#20232a",
-      borderRadius: 6,
-      backgroundColor: "#61dafb",
-      color: "#20232a",
-      textAlign: "center",
-      fontSize: 30,
-      fontWeight: "bold"
-    }
-  });
-  
+  container: {
+    flex: 1,
+    padding: 24,
+    backgroundColor: "#fff",
+  },
+  cardStyle: {
+    backgroundColor: "powderblue",
+  },
+  buttonStyle: {
+    backgroundColor: "silver",
+  },
+  label: {
+    color: "black",
+  },
+  title: {
+    marginTop: 16,
+    paddingVertical: 8,
+    borderWidth: 4,
+    borderColor: "#20232a",
+    borderRadius: 6,
+    backgroundColor: "#61dafb",
+    color: "#20232a",
+    textAlign: "center",
+    fontSize: 30,
+    fontWeight: "bold",
+  },
+});
 
 export default TimesCTFun;
-
-
