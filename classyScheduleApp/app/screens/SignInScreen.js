@@ -29,7 +29,7 @@ function passwordValidator(password) {
 }
 
 const SignInScreenFun = ({ navigation }) => {
-  const newAccount = () => navigation.navigate("NewAccount");
+  const newAccount = () => navigation.navigate("New Account");
   let value = value || "";
   const [email, setEmail] = useState({ value: "", error: "" });
   const [password, setPassword] = useState({ value: "", error: "" });
@@ -45,17 +45,17 @@ const SignInScreenFun = ({ navigation }) => {
       navigation.navigate("Welcome");
     }
   };
-
+  {/*
   const storeData = async (value) => {
     try {
       await AsyncStorage.setItem("@storage_Key", value);
     } catch (e) {
       // saving error
     }
-  };
+  };  */}
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.back}>
       <TextInput
         style={styles.TextInput}
         label= "Email"
@@ -78,8 +78,8 @@ const SignInScreenFun = ({ navigation }) => {
         errorText={password.error}
       />
 
-      <Button onPress={onLoginPressed}>Login</Button>
-      <Button onPress={newAccount}>Create Account</Button>
+      <Button loading ={false} mode="contained" onPress={onLoginPressed}>Login</Button>
+      <Button icon="account-plus"  onPress={newAccount}>Create Account</Button>
       <TouchableOpacity style={styles.center}>
         <Text>Forgot Password?</Text>
       </TouchableOpacity>
@@ -94,11 +94,13 @@ const SignInScreenFun = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  back:{
+    
+  },
   container: {
     flex: 0,
-    
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-end",
   },
 
   inputView: {
