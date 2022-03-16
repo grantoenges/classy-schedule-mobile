@@ -72,6 +72,7 @@ const SignInScreenFun = ({ navigation }) => {
         style={styles.TextInput}
         label = "Password"
         placeholderTextColor="#ABC"
+        value={password.value}
         secureTextEntry={true}
         onChangeText={(password) => setPassword({ value: password, error: "" })}
         error={!!password.error}
