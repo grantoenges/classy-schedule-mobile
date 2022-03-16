@@ -8,26 +8,30 @@ const WelcomeScreenFun = ({ navigation }) => {
   const settings = () => navigation.navigate("Settings");
   const schedule = () => navigation.navigate("Schedule");
   const Input = () => navigation.navigate("Class Input");
+  const ApiTester = () => navigation.navigate("Api Test");
 
   return (
     <SafeAreaView style={styles.container}>
       <Card style={styles.cardStyle}>
         <Card.Title title="Welcome Screen" />
       </Card>
-      <Button style={styles.buttonStyle} onPress={login}>
+      <Button mode="outlined" style={styles.buttonStyle} onPress={login}>
         Login
       </Button>
-      <Button style={styles.buttonStyle} onPress={prefs}>
+      <Button mode="outlined"  style={styles.buttonStyle} onPress={prefs}>
         Preferences
       </Button>
-      <Button style={styles.buttonStyle} onPress={settings}>
+      <Button mode="outlined"  icon="cog" style={styles.buttonStyle} onPress={settings}>
         Settings
       </Button>
-      <Button style={styles.buttonStyle} onPress={schedule}>
+      <Button mode="outlined" style={styles.buttonStyle} onPress={schedule}>
         Schedule
       </Button>
-      <Button style={styles.buttonStyle} onPress={Input}>
+      <Button mode="outlined" style={styles.buttonStyle} onPress={Input}>
         Class Input
+      </Button>
+      <Button mode="outlined" style={styles.buttonStyle} onPress={ApiTester}>
+        API Test (Will crash)
       </Button>
     </SafeAreaView>
   );
@@ -42,7 +46,7 @@ const styles = StyleSheet.create({
     backgroundColor: "powderblue",
   },
   buttonStyle: {
-    backgroundColor: "silver",
+    
   },
   title: {
     marginTop: 16,

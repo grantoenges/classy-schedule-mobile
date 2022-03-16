@@ -12,6 +12,7 @@ import ClassesPTFun from "./screens/classesPreferredToTeach";
 import TimesCTFun from "./screens/timesCantTeach";
 import DaysPrefFun from "./screens/daysPreferred";
 import ClassInputFun from "./screens/classInputting";
+import Apitest from "./screens/apiTest";
 //import ConDB from "./sqlRea"; 
 
 const {Navigator, Screen} = createStackNavigator ();
@@ -22,7 +23,7 @@ const AppNavigator = () => (
         <Navigator initialRouteName = "Login">
             <Screen name = "Welcome" component = {WelcomeScreenFun} options={{headerLeft: (props) => null }}/>
             <Screen name = "Login" component = {SignInScreenFun}/>
-            <Screen name = "NewAccount" component = {NewAccountScreen}/>
+            <Screen name = "New Account" component = {NewAccountScreen}/>
             <Screen name = 'Preferences' component={PreferenceFun}/>
             <Screen name = 'Settings' component={SettingFun}/>
             <Screen name = 'Schedule' component={ScheduleFun}/>
@@ -31,6 +32,8 @@ const AppNavigator = () => (
             <Screen name = 'Times Cant Teach' component={TimesCTFun}/>
             <Screen name = 'Days Prefered Teach' component={DaysPrefFun}/>
             <Screen name = 'Class Input' component={ClassInputFun}/>
+            <Screen name = 'Api Test' component={Apitest}/>
+
 
 
         </Navigator>
