@@ -35,8 +35,7 @@ function passwordValidator(password) {
   if(password.length <8 || password.length>30) {
     return "Error, password length is invalid.";
   }
-  setPassword({value: password, error: '' });
-  console.log(password);
+  return ""
 }
 
 //take in a string and determine if it contains special characters or not
@@ -69,7 +68,7 @@ const NewAccountFunc = ({navigation}) => {
       const emailError = emailValidator(email.value);
       const passwordError = passwordValidator(password.value);
       const samePass = passwordSame(repass, password.value)
-      if ((emailError || passwordError) || !samePass) {
+      if ((emailError || passwordError) || samePass) {
         setEmail({ ...email, error: emailError });
         setPassword({ ...password, error: passwordError });
         alert(emailError + " " + passwordError + " " + samePass);
@@ -105,13 +104,13 @@ const NewAccountFunc = ({navigation}) => {
         placeholderTextColor="#ABC"
         value={repass.value}
         secureTextEntry={true}
-        onChangeText={(password) => confirmPass({value:password, error: ""})}
+        onChangeText={(passConf) => confirmPass(passConf, password.value)}
       />
         <Button onPress={login}>Navigate to Welcome</Button>
         <Button onPress={onPressed}>Create Account</Button>
 
     </SafeAreaView>
- );
+  );
 }
 
 
