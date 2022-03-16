@@ -15,6 +15,7 @@ import ClassInputFun from "./screens/classInputting";
 import Apitest from "./screens/apiTest";
 //import ConDB from "./sqlRea"; 
 
+
 const {Navigator, Screen} = createStackNavigator ();
 
 

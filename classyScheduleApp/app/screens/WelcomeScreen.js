@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, View, Text, StyleSheet } from "react-native";
+import { SafeAreaView, View, Text,Image, StyleSheet } from "react-native";
 import { Button, Card, TextInput } from "react-native-paper";
 
 const WelcomeScreenFun = ({ navigation }) => {
@@ -33,6 +33,7 @@ const WelcomeScreenFun = ({ navigation }) => {
       <Button mode="outlined" style={styles.buttonStyle} onPress={ApiTester}>
         API Test (Will crash)
       </Button>
+      
     </SafeAreaView>
   );
 };
@@ -42,8 +43,15 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
   },
+  tinyLogo:{
+    width: 150,
+    height: 150,
+    marginTop: 10,
+    alignItems: "center",
+    marginTop: "30%",
+  },
   cardStyle: {
-    backgroundColor: "powderblue",
+    backgroundColor: "grey",
   },
   buttonStyle: {
     
