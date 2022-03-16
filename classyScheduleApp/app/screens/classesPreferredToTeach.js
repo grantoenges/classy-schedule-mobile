@@ -232,7 +232,7 @@ const ClassesPTFun = ({navigation}) => {
           }}
         />
       </View>
-      <Button>Save Day Preferences</Button>
+      <Button>Save Classes Preferred to Teach</Button>
     </SafeAreaView>
   );
 };
@@ -241,17 +241,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
-  cardStyle:{
-      backgroundColor:"powderblue"
+  cardStyle: {
+    backgroundColor: "powderblue",
   },
-  buttonStyle:{
-      backgroundColor :"silver"
+  buttonStyle: {
+    backgroundColor: "silver",
   },
   label: {
-    color: 'black'
+    color: "black",
   },
   title: {
     marginTop: 16,
@@ -263,9 +261,9 @@ const styles = StyleSheet.create({
     color: "#20232a",
     textAlign: "center",
     fontSize: 30,
-    fontWeight: "bold"
-  }
-  });
+    fontWeight: "bold",
+  },
+});
   
 
 export default ClassesPTFun;
