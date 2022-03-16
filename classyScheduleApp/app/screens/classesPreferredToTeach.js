@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, View,Text,StyleSheet } from 'react-native';
+import { SafeAreaView, View, Text, StyleSheet, ScrollView } from 'react-native';
 import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
 
 const ClassesPTFun = ({navigation}) => {
@@ -26,6 +26,7 @@ const ClassesPTFun = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView>
       <Card style={styles.cardStyle}>
         <Card.Title title="Classes Preferred to Teach" />
       </Card>
@@ -233,6 +234,7 @@ const ClassesPTFun = ({navigation}) => {
         />
       </View>
       <Button>Save Classes Preferred to Teach</Button>
+      </ScrollView>
     </SafeAreaView>
   );
 };
