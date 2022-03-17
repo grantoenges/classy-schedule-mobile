@@ -1,44 +1,39 @@
-import React, {Component} from 'react';
-import { Text, Card } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, FlatList, Text, View } from 'react-native';
 
-export default class dpitest extends Component {
-   constructor(props) {
-   super(props);
-   this.state = {
-       dept_name : {},
-    }
-   }
+ const Apitest = () => {
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
 
-componentDidMount() {
-fetch('https://capstonedbapi.azurewebsites.net/department-management/departments')
-.then(response => {
-    if (response.ok) {
-        return response;
-    } else {
-        let error = new Error('Error ' + response.status + ': ' + response.statusText);
-        error.response = response;
-        throw error;
+  const getMovies = async () => {
+     try {
+      const response = await fetch('https://reactnative.dev/movies.json');
+      const json = await response.json();
+      setData(json.movies);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
-    },
-    error => {
-        let errmess = new Error(error.message);
-        throw errmess;
-    })
-.then(response => response.json())
-.then(dept => {
-    this.setState({dept_name : dept_name });
-})
-.catch(error => {
-    this.setState({ errMessage: error.message });
-});
-}
-render () {
-    const dept_name = this.state.dept_name;
-    return (       
-   <Card
-      title="React native extraordinair">
-      <Text>Tim</Text>
-    </Card>
-);
-}
-}
+  }
+
+  useEffect(() => {
+    getMovies();
+  }, []);
+
+  return (
+    <View style={{ flex: 1, padding: 24 }}>
+      {isLoading ? <ActivityIndicator/> : (
+        <FlatList
+          data={data}
+          keyExtractor={({ id }, index) => id}
+          renderItem={({ item }) => (
+            <Text>{item.title}, {item.releaseYear}</Text>
+          )}
+        />
+      )}
+    </View>
+  );
+};
+
+export default Apitest;
