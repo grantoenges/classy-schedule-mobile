@@ -1,25 +1,25 @@
 import React from "react";
-import { useState, CheckBox } from "react";
+import { useState } from "react";
 import { SafeAreaView, View, Text, StyleSheet, ScrollView } from "react-native";
 import { Button, Card, TextInput, Checkbox } from "react-native-paper";
 
 const TimesCTFun = ({ navigation }) => {
-  const [morningChecked, setMorningChecked] = React.useState(false);
-  const [afternoonChecked, setAfternoonChecked] = React.useState(false);
-  const [eveningChecked, setEveningChecked] = React.useState(false);
+  const [morningChecked, setMorningChecked] = useState(false);
+  const [afternoonChecked, setAfternoonChecked] = useState(false);
+  const [eveningChecked, setEveningChecked] = useState(false);
 
-  const [threeDay1Checked, setThreeDay1Checked] = React.useState(false);
-  const [threeDay2Checked, setThreeDay2Checked] = React.useState(false);
-  const [threeDay3Checked, setThreeDay3Checked] = React.useState(false);
-  const [threeDay4Checked, setThreeDay4Checked] = React.useState(false);
-  const [threeDay5Checked, setThreeDay5Checked] = React.useState(false);
+  const [threeDay1Checked, setThreeDay1Checked] = useState(false);
+  const [threeDay2Checked, setThreeDay2Checked] = useState(false);
+  const [threeDay3Checked, setThreeDay3Checked] = useState(false);
+  const [threeDay4Checked, setThreeDay4Checked] = useState(false);
+  const [threeDay5Checked, setThreeDay5Checked] = useState(false);
 
-  const [twoDay1Checked, setTwoDay1Checked] = React.useState(false);
-  const [twoDay2Checked, setTwoDay2Checked] = React.useState(false);
-  const [twoDay3Checked, setTwoDay3Checked] = React.useState(false);
-  const [twoDay4Checked, setTwoDay4Checked] = React.useState(false);
-  const [twoDay5Checked, setTwoDay5Checked] = React.useState(false);
-  const [twoDay6Checked, setTwoDay6Checked] = React.useState(false);
+  const [twoDay1Checked, setTwoDay1Checked] = useState(false);
+  const [twoDay2Checked, setTwoDay2Checked] = useState(false);
+  const [twoDay3Checked, setTwoDay3Checked] = useState(false);
+  const [twoDay4Checked, setTwoDay4Checked] = useState(false);
+  const [twoDay5Checked, setTwoDay5Checked] = useState(false);
+  const [twoDay6Checked, setTwoDay6Checked] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
