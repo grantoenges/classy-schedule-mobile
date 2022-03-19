@@ -5,15 +5,16 @@ import { ActivityIndicator, FlatList, Text, View } from 'react-native';
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
-  const getMovies = async () => {
+  const getJson = async () => {
      try {
       const response = await fetch('https://capstonedbapi.azurewebsites.net/department-management/departments', {
-        method: 'GET',
-        headers: {
+        method: 'GET'
+        /*,  Example of how headers look
+        headers: { 
             'Access-Control-Allow-Origin': '*',
             'accept': 'text/plain',
             'Content-Type': 'application/json'
-        },
+        },*/
         
     });
       const json = await response.json();
@@ -27,7 +28,7 @@ import { ActivityIndicator, FlatList, Text, View } from 'react-native';
   }
 
   useEffect(() => {
-    getMovies();
+    getJson();
   }, []);
 
   return (
