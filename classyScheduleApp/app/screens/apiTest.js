@@ -11,7 +11,7 @@ import { ActivityIndicator, FlatList, Text, View } from 'react-native';
         method: 'GET'
         /*,  Example of how headers look
         headers: { 
-            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Origin': '*',  
             'accept': 'text/plain',
             'Content-Type': 'application/json'
         },*/
