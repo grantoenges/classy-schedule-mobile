@@ -10,7 +10,7 @@ import { ActivityIndicator, FlatList, Text, View } from 'react-native';
       const response = await fetch('https://capstonedbapi.azurewebsites.net/department-management/departments', {
         method: 'GET'
         /*,  Example of how headers look
-        headers: {
+        headers: { 
             'Access-Control-Allow-Origin': '*',
             'accept': 'text/plain',
             'Content-Type': 'application/json'
