@@ -1,25 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Text, View } from 'react-native';
 
- const Apites = () => {
+ const Apitest = () => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
-  const getJson = async () => {
+  const getMovies = async () => {
      try {
-      const response = await fetch('https://capstonedbapi.azurewebsites.net/department-management/departments', {
-        method: 'GET'
-        /*,  Example of how headers look
-        headers: { 
-            'Access-Control-Allow-Origin': '*',
-            'accept': 'text/plain',
-            'Content-Type': 'application/json'
-        },*/
-        
-    });
+      const response = await fetch('https://reactnative.dev/movies.json');
       const json = await response.json();
-      console.log(json);
-      setData(json);
+      setData(json.movies);
     } catch (error) {
       console.error(error);
     } finally {
@@ -28,7 +18,7 @@ import { ActivityIndicator, FlatList, Text, View } from 'react-native';
   }
 
   useEffect(() => {
-    getJson();
+    getMovies();
   }, []);
 
   return (
@@ -38,7 +28,7 @@ import { ActivityIndicator, FlatList, Text, View } from 'react-native';
           data={data}
           keyExtractor={({ id }, index) => id}
           renderItem={({ item }) => (
-            <Text>{item.dept_name}</Text>
+            <Text>{item.title}, {item.releaseYear}</Text>
           )}
         />
       )}
@@ -46,4 +36,4 @@ import { ActivityIndicator, FlatList, Text, View } from 'react-native';
   );
 };
 
-export default Apites;
+export default Apitest;

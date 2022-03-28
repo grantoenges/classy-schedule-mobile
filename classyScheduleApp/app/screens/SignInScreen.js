@@ -6,6 +6,7 @@ import {
   Text,
   Image,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -73,15 +74,16 @@ const SignInScreenFun = ({ navigation }) => {
         style={styles.TextInput}
         label = "Password"
         placeholderTextColor="#ABC"
+        value={password.value}
         secureTextEntry={true}
         onChangeText={(password) => setPassword({ value: password, error: "" })}
         error={!!password.error}
         errorText={password.error}
       />
 
-      <Button loading ={false} mode="contained" onPress={onLoginPressed}>Login</Button>
+      <Button loading ={true} mode="contained" onPress={onLoginPressed}>Login</Button>
       <Button icon="account-plus"  onPress={newAccount}>Create Account</Button>
-      <TouchableOpacity style={styles.center}>
+      <TouchableOpacity style={styles.center} onPress={() => alert("Then remember it!")}>
         <Text>Forgot Password?</Text>
       </TouchableOpacity>
       <View style = {styles.container}>
