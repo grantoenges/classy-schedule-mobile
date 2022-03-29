@@ -12,7 +12,9 @@ import { Button, TextInput } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {getApi} from "../databaseService";
 
+//Function that validates email
 function emailValidator(email) {
+  //Regular expression to check if there is valid email format
   const re = /\S+@\S+\.\S+/;
   if (!email) {
     return "Email can't be empty.";
@@ -23,6 +25,7 @@ function emailValidator(email) {
   return "";
 }
 
+//Function checks to see if password field is empty or not
 function passwordValidator(password) {
   if (password.length === 0) {
     return "Cannot have empty password field";
@@ -33,9 +36,11 @@ function passwordValidator(password) {
 const SignInScreenFun = ({ navigation }) => {
   const newAccount = () => navigation.navigate("New Account");
   let value = value || "";
-  const [email, setEmail] = useState({ value: "", error: "" });
-  const [password, setPassword] = useState({ value: "", error: "" });
 
+  const [email, setEmail] = useState({ value: "", error: "" }); 
+  const [password, setPassword] = useState({ value: "", error: "" });
+  
+  //When login is pressed this will run error checkers and navigation if no problems
   const onLoginPressed = () => {
     const emailError = emailValidator(email.value);
     const passwordError = passwordValidator(password.value);
@@ -58,6 +63,7 @@ const SignInScreenFun = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.back}>
+      {/* Email input field */}
       <TextInput
         style={styles.TextInput}
         label= "Email"
@@ -69,7 +75,7 @@ const SignInScreenFun = ({ navigation }) => {
         textContentType="emailAddress"
         keyboardType="email-address"
       />
-
+      {/* Password input field */}
       <TextInput
         style={styles.TextInput}
         label = "Password"
@@ -80,9 +86,10 @@ const SignInScreenFun = ({ navigation }) => {
         error={!!password.error}
         errorText={password.error}
       />
-
+      {/* Login button */}
       <Button loading ={true} mode="contained" onPress={onLoginPressed}>Login</Button>
       <Button icon="account-plus"  onPress={newAccount}>Create Account</Button>
+      {/* Forgot password */}
       <TouchableOpacity style={styles.center} onPress={() => alert("Then remember it!")}>
         <Text>Forgot Password?</Text>
       </TouchableOpacity>
