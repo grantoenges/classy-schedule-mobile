@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { SafeAreaView, View, StyleSheet } from "react-native";
 import { Button, Card, Checkbox, Text } from "react-native-paper";
-
+import styles from '../Style'
 const DaysPrefFun = ({ navigation }) => {
   const [mondayChecked, setMondayChecked] = useState(false);
   const [tuesdayChecked, setTuesdayChecked] = useState(false);
@@ -73,32 +73,5 @@ const DaysPrefFun = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-  },
-  cardStyle: {
-    backgroundColor: "powderblue",
-  },
-  buttonStyle: {
-    backgroundColor: "silver",
-  },
-  label: {
-    color: "black",
-  },
-  title: {
-    marginTop: 16,
-    paddingVertical: 8,
-    borderWidth: 4,
-    borderColor: "#20232a",
-    borderRadius: 6,
-    backgroundColor: "#61dafb",
-    color: "#20232a",
-    textAlign: "center",
-    fontSize: 30,
-    fontWeight: "bold",
-  },
-});
 
 export default DaysPrefFun;

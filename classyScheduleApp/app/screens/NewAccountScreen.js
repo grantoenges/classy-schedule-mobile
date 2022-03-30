@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { SafeAreaView, View,Text } from 'react-native';
 import {Button, TextInput} from 'react-native-paper'
+import styles from '../Style'
 
 //Function that checks to see if there is valid email
 function emailValidator(email) {
