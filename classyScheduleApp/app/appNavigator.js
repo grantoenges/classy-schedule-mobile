@@ -4,16 +4,16 @@ import { NavigationContainer } from "@react-navigation/native";
 import  SignInScreenFun from "./screens/SignInScreen"; 
 import WelcomeScreenFun from "./screens/WelcomeScreen";
 import NewAccountScreen from "./screens/NewAccountScreen";
-import PreferenceFun from "./screens/preferencesScreen";
-import SettingFun from "./screens/settings";
-import ScheduleFun from "./screens/schedule";
-import ClassesCTFun from "./screens/classesCanTeachScreen";
-import ClassesPTFun from "./screens/classesPreferredToTeach";
-import TimesCTFun from "./screens/timesCantTeach";
-import DaysPrefFun from "./screens/daysPreferred";
-import ClassInputFun from "./screens/classInputting";
-import Apites from "./screens/apiTest";
-import ApiList from "./screens/apiT";
+import PreferenceFun from "./screens/PreferencesScreen";
+import SettingFun from "./screens/Settings";
+import ScheduleFun from "./screens/Schedule";
+import ClassesCTFun from "./screens/ClassesCanTeachScreen";
+import ClassesPTFun from "./screens/ClassesPreferredToTeach";
+import TimesCTFun from "./screens/TimesUnableToTeach";
+import DaysPrefFun from "./screens/DaysPreferred";
+import ClassInputFun from "./screens/ClassInputting";
+import Apites from "./screens/ApiTest";
+import ApiList from "./screens/ApiT";
 /*This variable creates a stack navigator, this is our holder that allows for 
 screens to be navigated to from other screens as well as allowing for native use
 of the back button in order to navigate between them.
