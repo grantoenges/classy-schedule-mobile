@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, View, Text,Image, StyleSheet, TouchableOpacity } from "react-native";
+import { SafeAreaView, View, Text,Image, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { Button, Card, TextInput, TouchableRipple } from "react-native-paper";
 
 /** This method is what displays the screen for this page
