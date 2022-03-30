@@ -4,6 +4,8 @@ import { SafeAreaView, View, Text, StyleSheet, ScrollView } from "react-native";
 import { Button, Card, TextInput, Checkbox } from "react-native-paper";
 import styles from '../Style'
 
+// TimesCTFun creates useState objects for each teaching time group and each possible teaching time slot
+// it then creates the page view, containing title and checkboxes for each time group and each possible teaching time slot
 const TimesCTFun = ({ navigation }) => {
   const [morningChecked, setMorningChecked] = useState(false);
   const [afternoonChecked, setAfternoonChecked] = useState(false);
