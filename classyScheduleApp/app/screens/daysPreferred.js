@@ -3,6 +3,8 @@ import { useState } from "react";
 import { SafeAreaView, View, StyleSheet, Alert } from "react-native";
 import { Button, Card, Checkbox, Text } from "react-native-paper";
 
+import styles from '../Style'
+
 // DaysPrefFun creates useState objects for each possible day of the week
 // it then creates the page view, containing title and checkboxes for each day of the week
 const DaysPrefFun = ({ navigation }) => {
@@ -115,34 +117,5 @@ const DaysPrefFun = ({ navigation }) => {
     </SafeAreaView>
   );
 };
-
-// styles creates the pseudo-css for the page
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-  },
-  cardStyle: {
-    backgroundColor: "powderblue",
-  },
-  buttonStyle: {
-    backgroundColor: "silver",
-  },
-  label: {
-    color: "black",
-  },
-  title: {
-    marginTop: 16,
-    paddingVertical: 8,
-    borderWidth: 4,
-    borderColor: "#20232a",
-    borderRadius: 6,
-    backgroundColor: "#61dafb",
-    color: "#20232a",
-    textAlign: "center",
-    fontSize: 30,
-    fontWeight: "bold",
-  },
-});
 
 export default DaysPrefFun;

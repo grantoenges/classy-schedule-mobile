@@ -11,6 +11,7 @@ import {
 import { Button, TextInput } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {getApi} from "../databaseService";
+import styles from '../Style'
 
 //Function that validates email
 function emailValidator(email) {
@@ -39,7 +40,7 @@ const SignInScreenFun = ({ navigation }) => {
 
   const [email, setEmail] = useState({ value: "", error: "" }); 
   const [password, setPassword] = useState({ value: "", error: "" });
-  
+
   //When login is pressed this will run error checkers and navigation if no problems
   const onLoginPressed = () => {
     const emailError = emailValidator(email.value);
@@ -90,10 +91,10 @@ const SignInScreenFun = ({ navigation }) => {
       <Button loading ={true} mode="contained" onPress={onLoginPressed}>Login</Button>
       <Button icon="account-plus"  onPress={newAccount}>Create Account</Button>
       {/* Forgot password */}
-      <TouchableOpacity style={styles.center} onPress={() => alert("Then remember it!")}>
+      <TouchableOpacity style={styles.centerPage} onPress={() => alert("Then remember it!")}>
         <Text>Forgot Password?</Text>
       </TouchableOpacity>
-      <View style = {styles.container}>
+      <View style = {styles.centerPage}>
       <Image
         style={styles.tinyLogo}
         source={require('../assets/ClassyLogoSquare.png')}
@@ -103,36 +104,6 @@ const SignInScreenFun = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  back:{
-    
-  },
-  container: {
-    flex: 0,
-    alignItems: "center",
-    justifyContent: "flex-end",
-  },
 
-  inputView: {
-    backgroundColor: "#fff",
-    borderRadius: 30,
-    width: "70%",
-    height: 45,
-    marginBottom: 20,
-    alignItems: "center",
-  },
-  center: {
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  tinyLogo:{
-    width: 150,
-    height: 150,
-    marginTop: 10,
-    alignItems: "center",
-    marginTop: "30%",
-  },
-  TextInput: {},
-});
 
 export default SignInScreenFun;
