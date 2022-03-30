@@ -25,7 +25,7 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
         /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
         /* 
         headers: { 
-            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Origin': '*',  
             'accept': 'text/plain',
             'Content-Type': 'application/json'
         },*/
