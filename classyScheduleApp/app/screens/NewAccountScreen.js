@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { SafeAreaView, View,Text } from 'react-native';
 import {Button, TextInput} from 'react-native-paper'
 
-
+//Function that checks to see if there is valid email
 function emailValidator(email) {
+  //Regular expression that checks if valid email format
   const re = /\S+@\S+\.\S+/
   if (!email) {
     return "Email can't be empty.";
@@ -14,6 +15,7 @@ function emailValidator(email) {
   return "";
 }
 
+//Function that checks if password is valid and strong
 function passwordValidator(password) {
   //if str does not contain a capital letter return false
   if(!/[A-Z]/.test(password)){
@@ -51,6 +53,7 @@ lowerCase = str.toLowerCase();
 return lowerCase.search("password");
 }  
 
+//Checks to see if password and retype password field are same
 function passwordSame(password, value) {
   if(password === value) {
     return ""
@@ -79,7 +82,7 @@ const NewAccountFunc = ({navigation}) => {
 
   return (
     <SafeAreaView>
-
+        {/* Email input field */}
         <TextInput
         label= "Email"
         placeholderTextColor="#ABC"
@@ -90,6 +93,7 @@ const NewAccountFunc = ({navigation}) => {
         textContentType="emailAddress"
         keyboardType="email-address"
       />
+      {/* Password input field */}
         <TextInput
         label = "Password"
         placeholderTextColor="#ABC"
@@ -99,6 +103,7 @@ const NewAccountFunc = ({navigation}) => {
         error={!!password.error}
         errorText={password.error}
       />
+      {/* Retype password input field */}
       <TextInput
         label = "Retype Password"
         placeholderTextColor="#ABC"
@@ -107,6 +112,7 @@ const NewAccountFunc = ({navigation}) => {
         onChangeText={(passConf) => confirmPass(passConf, password.value)}
       />
         <Button onPress={login}>Navigate to Welcome</Button>
+        {/* Create account button */}
         <Button onPress={onPressed}>Create Account</Button>
 
     </SafeAreaView>
