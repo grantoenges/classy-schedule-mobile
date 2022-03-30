@@ -1,6 +1,16 @@
-import React from "react";
-const MyComponent = () => {
+import React from 'react'
 
+export const MyComponent = () => {
+  React.useEffect(() => {
+    const subscription = RNShake.addListener(() => {
+      // Your code here...
+      alert("Ska")
+    })
+
+    return () => {
+      // Your code here...
+      alert("[]")
+      subscription.remove()
+    }
+  }, [])
 }
-
-// when you're done, don't forget to unsubscribe
