@@ -1,6 +1,8 @@
 import React from "react";
 import { SafeAreaView, View, Text,Image, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { Button, Card, TextInput, TouchableRipple } from "react-native-paper";
+import { MyComponent } from "./shake";
+import RNShake from 'react-native-shake';
 
 /** This method is what displays the screen for this page
  * Inputs: Navigation class (allowing for the page to navigate to other pages)
@@ -21,6 +23,26 @@ const WelcomeScreenFun = ({ navigation }) => {
   const ApiTester = () => navigation.navigate("Api Test");
 //Color for react native button text is #6200ed
 //Might need to change textFamily for android in textStyle
+
+ 
+ const MyComponent = () => {
+  React.useEffect(() => {
+    const subscription = RNShake.addListener(() => {
+      // Your code here...
+      console.log("shook")
+    })
+
+    return () => {
+      // Your code here...
+      console.log('Not ')
+      //subscription.remove()
+    }
+  }, [])
+}
+
+
+MyComponent();
+
   return (
     <SafeAreaView style={styles.container}>
       <Card style={styles.cardStyle}>
@@ -52,6 +74,11 @@ const WelcomeScreenFun = ({ navigation }) => {
           </TouchableOpacity>
           <TouchableOpacity mode="contained" style={styles.buttonStyle} onPress={ApiTester}>
             <Text style={styles.textStyle}>API Test</Text> 
+          </TouchableOpacity>
+        </View>
+        <View style={styles.viewStyle}>
+          <TouchableOpacity mode="contained" style={styles.buttonStyle} onPress={Input}>
+            <Text style={styles.textStyle}>Class Input</Text>
           </TouchableOpacity>
         </View>
       </View>
