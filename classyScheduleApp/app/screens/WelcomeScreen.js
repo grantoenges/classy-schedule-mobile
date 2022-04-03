@@ -1,7 +1,7 @@
 import React from "react";
 import { SafeAreaView, View, Text,Image, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { Button, Card, TextInput, TouchableRipple } from "react-native-paper";
-import { MyComponent } from "./shake";
+import { MyComponent } from "./Shake";
 import RNShake from 'react-native-shake';
 
 import styles from '../Style'
