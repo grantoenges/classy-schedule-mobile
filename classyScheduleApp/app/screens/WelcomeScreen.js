@@ -78,12 +78,12 @@ MyComponent();
             <Text style={styles.textStyle}>Class Input</Text>
           </TouchableOpacity>
           <TouchableOpacity mode="contained" style={styles.buttonStyle} onPress={ApiLister}>
-            <Text style={styles.textStyle}>API List</Text> 
+            <Text style={styles.textStyle}>Dynamic checklist List</Text> 
           </TouchableOpacity>
         </View>
         <View style={styles.viewStyle}>
-          <TouchableOpacity mode="contained" style={styles.buttonStyle} onPress={Input}>
-            <Text style={styles.textStyle}>Class Input</Text>
+          <TouchableOpacity mode="contained" style={styles.buttonStyle} onPress={ApiTester}>
+            <Text style={styles.textStyle}>APi test</Text>
           </TouchableOpacity>
         </View>
       </View>
