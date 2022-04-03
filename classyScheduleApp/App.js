@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SafeAreaView, View,Text } from 'react-native';
 import {Provider as PaperProvider, TextInput} from 'react-native-paper'
-import AppNavigator from './app/appNavigator';
+import AppNavigator from './app/AppNavigator';
 
 
 /*This method is technically the default starting page for the app 

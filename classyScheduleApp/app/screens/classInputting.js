@@ -59,7 +59,7 @@ const ClassInputFun = () => {
             </Picker>
             <TextInput onChangeText={(classNumber) => setClassNum(classNumber)} label={'Class number'}></TextInput>
             <TextInput onChangeText={(classTitle) => setClassTitle(classTitle)} label={'Class Title'}></TextInput>
-            <Button onPress={() => storeData(selectedLanguage)}>save data </Button>
+            <Button onPress={() => storeData(selectedLanguage)} >save data </Button>
             <Button onPress={getstate}>retreive data </Button>
         </Card>
     </SafeAreaView>
