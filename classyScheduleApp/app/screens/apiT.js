@@ -32,7 +32,7 @@ const ApiList = () => {
             extraData={({ item }) => ( item.checked)}
 
           />
-          <Checkbox.Item label="Test Button (outside of list)" color="black" uncheckedColor="black" status={stat400Checked ? "checked" : "unchecked"}  onPress={() => {
+          <Checkbox.Item label="Test Button(outside of list)" color="black" uncheckedColor="black" status={stat400Checked ? "checked" : "unchecked"}  onPress={() => {
             setstat400Checked(!stat400Checked);
           }}/>
       </View>
