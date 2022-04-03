@@ -1,6 +1,8 @@
 import React from "react";
-import { SafeAreaView, View, Text,Image, StyleSheet, TouchableOpacity } from "react-native";
+import { SafeAreaView, View, Text,Image, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { Button, Card, TextInput, TouchableRipple } from "react-native-paper";
+import { MyComponent } from "./shake";
+import RNShake from 'react-native-shake';
 
 import styles from '../Style'
 
@@ -26,6 +28,26 @@ const WelcomeScreenFun = ({ navigation }) => {
 
 //Color for react native button text is #6200ed
 //Might need to change textFamily for android in textStyle
+
+ 
+ const MyComponent = () => {
+  React.useEffect(() => {
+    const subscription = RNShake.addListener(() => {
+      // Your code here...
+      console.log("shook")
+    })
+
+    return () => {
+      // Your code here...
+      console.log('Not ')
+      //subscription.remove()
+    }
+  }, [])
+}
+
+
+MyComponent();
+
   return (
     <SafeAreaView style={styles.container}>
       <Card style={styles.cardStyleWelcome}>
@@ -57,6 +79,11 @@ const WelcomeScreenFun = ({ navigation }) => {
           </TouchableOpacity>
           <TouchableOpacity mode="contained" style={styles.buttonStyle} onPress={ApiLister}>
             <Text style={styles.textStyle}>API List</Text> 
+          </TouchableOpacity>
+        </View>
+        <View style={styles.viewStyle}>
+          <TouchableOpacity mode="contained" style={styles.buttonStyle} onPress={Input}>
+            <Text style={styles.textStyle}>Class Input</Text>
           </TouchableOpacity>
         </View>
       </View>
