@@ -22,6 +22,8 @@ const WelcomeScreenFun = ({ navigation }) => {
   const Input = () => navigation.navigate("Class Input");
   /**This function navigates the user to the Api test page */
   const ApiTester = () => navigation.navigate("Api Test");
+  const ApiLister = () => navigation.navigate("Api List");
+
 //Color for react native button text is #6200ed
 //Might need to change textFamily for android in textStyle
   return (
@@ -53,8 +55,8 @@ const WelcomeScreenFun = ({ navigation }) => {
           <TouchableOpacity mode="contained" style={styles.buttonStyle} onPress={Input}>
             <Text style={styles.textStyle}>Class Input</Text>
           </TouchableOpacity>
-          <TouchableOpacity mode="contained" style={styles.buttonStyle} onPress={ApiTester}>
-            <Text style={styles.textStyle}>API Test</Text> 
+          <TouchableOpacity mode="contained" style={styles.buttonStyle} onPress={ApiLister}>
+            <Text style={styles.textStyle}>API List</Text> 
           </TouchableOpacity>
         </View>
       </View>

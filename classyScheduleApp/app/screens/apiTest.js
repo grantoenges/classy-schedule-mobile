@@ -21,19 +21,16 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
   const getJson = async () => {
      try {
       const response = await fetch('https://capstonedbapi.azurewebsites.net/department-management/departments', {
-        method: 'GET'
+        method: 'GET',
         /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
-        /* 
         headers: { 
-            'Access-Control-Allow-Origin': '*',  
-            'accept': 'text/plain',
-            'Content-Type': 'application/json'
-        },*/
-    });
+            "Authorization": "test",
+        },
+        });
       const json = await response.json();
-      /*console.log(json);*/
+      console.log(json);
       setData(json);
-    } catch (error) {
+      } catch (error) {
       console.error(error);
     } finally {
       setLoading(false);
