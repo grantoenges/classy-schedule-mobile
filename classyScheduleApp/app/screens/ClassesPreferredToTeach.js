@@ -3,6 +3,9 @@ import { SafeAreaView, View, Text, StyleSheet, ScrollView } from 'react-native';
 import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
 import styles from '../Style';
 
+// ClassesPTFun creates useState objects for each class offered.
+// It also makes the application page to display them and allows users to
+// select a checkbox and save the classes they prefer to teach.
 const ClassesPTFun = ({navigation}) => {
   const [cisc130Checked, setcisc130Checked] = React.useState(false);
   const [cisc131Checked, setcisc131Checked] = React.useState(false);
