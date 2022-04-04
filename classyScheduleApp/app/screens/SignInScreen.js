@@ -105,5 +105,4 @@ const SignInScreenFun = ({ navigation }) => {
 };
 
 
-
 export default SignInScreenFun;

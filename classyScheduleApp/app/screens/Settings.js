@@ -17,4 +17,3 @@ const SettingFun = ({navigation}) => {
 
 export default SettingFun;
 
-

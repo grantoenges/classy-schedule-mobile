@@ -18,4 +18,3 @@ const ScheduleFun = ({navigation}) => {
 
 export default ScheduleFun;
 
-
