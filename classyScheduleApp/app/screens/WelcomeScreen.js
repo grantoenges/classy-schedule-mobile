@@ -74,7 +74,7 @@ MyComponent();
             <Text style={styles.textStyle}>Class Input</Text>
           </TouchableOpacity>
           <TouchableOpacity mode="contained" style={styles.buttonStyle} activeOpacity={0.8} onPress={ApiLister}>
-            <Text style={styles.textStyle}>Dynamic checklist List</Text> 
+            <Text style={styles.textStyle}>API checklist example</Text> 
           </TouchableOpacity>
         </View>
         <View style={styles.viewStyle}>

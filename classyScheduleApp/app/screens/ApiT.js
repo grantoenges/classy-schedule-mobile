@@ -9,9 +9,8 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
 
   /*This usestate variable is used as the json data obtained from the api calls storage location*/
   const [data, setData] = useState([]);
-  const [dataT, setDataT] = useState([
+  const [dataT, setDataT] = useState([]);
 
-  ]);
   /*
   getJson's purpose is to make a call to the API point and set our usestate variable to the data that 
   should be returned while also updating the isLoading variable to reflect the loading status 
@@ -67,49 +66,17 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
     <View style={{ flex: 1, padding: 24 }}>      
       <Button onPress={()=>{console.log('hh')}} mode="contained" >Save Data</Button>
       {isLoading ? <Button loading ={true} mode="outlined"> Loading</Button> : (
-        
         <FlatList
           data={dataT}
           keyExtractor={({ class_num }) => class_num}
           renderItem={({ item }) => (
               <Checkbox.Item label={item.class_name} color="darkblue" uncheckedColor="black"status={item.checked? 'checked':'unchecked'} onPress={()=>{item.checked = !item.checked; setDummy(!dummy)}}/>
             )}
-        />
-        
+        />   
       )}
-
     </View>
   );
 };
-
-/*This is the pages chouce for design of different containers. Similar syntax to CSS. Subject to drastic change. */
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      padding: 24,
-    },
-    cardStyle: {
-      backgroundColor: "powderblue",
-    },
-    buttonStyle: {
-      backgroundColor: "silver",
-    },
-    label: {
-      color: "black",
-    },
-    title: {
-      marginTop: 16,
-      paddingVertical: 8,
-      borderWidth: 4,
-      borderColor: "#20232a",
-      borderRadius: 6,
-      backgroundColor: "#61dafb",
-      color: "#20232a",
-      textAlign: "center",
-      fontSize: 30,
-      fontWeight: "bold",
-    },
-  });
 
 export default ApiList;
 
