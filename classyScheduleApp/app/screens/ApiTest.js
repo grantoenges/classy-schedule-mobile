@@ -43,7 +43,7 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
           })),
         ]);
       console.log(dataT);
-      setData(json);
+      //setData(json);
       } catch (error) {
       console.error(error);
     } finally {
@@ -60,7 +60,7 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
   /*This return is where the actual react part of the app is made and the  */
   return (
     <View style={{ flex: 1, padding: 24 }}>
-      {isLoading ? <ActivityIndicator/> : (
+      {isLoading ? <Button loading ={true} mode="contained"> Loading</Button> : (
         <FlatList
           data={dataT}
           keyExtractor={({ dept_id }) => dept_id}

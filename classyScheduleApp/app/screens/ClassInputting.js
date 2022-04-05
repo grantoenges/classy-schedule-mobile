@@ -52,12 +52,11 @@ const ClassInputFun = () => {
     <SafeAreaView style={styles.container}>
         <Card style={styles.cardStyle}>
             <Card.Title title= "Class Input Screen"/>
-            <Picker  style={styles.buttonStyle}
-            selectedValue={selectedLanguage} onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}>
-            <Picker.Item label="Cisc" value="CISC" />
-            <Picker.Item label="Stats" value="STAT" />
+            <Picker  style={styles.buttonStyle} selectedValue={selectedLanguage} dropdownIconRippleColor='purple' prompt='Pick department' onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}>
+              <Picker.Item label="Cisc" value="CISC" />
+              <Picker.Item label="Stats" value="STAT" />
             </Picker>
-            <TextInput onChangeText={(classNumber) => setClassNum(classNumber)} label={'Class number'}></TextInput>
+            <TextInput  onChangeText={(classNumber) => setClassNum(classNumber)} label={'Class number'}></TextInput>
             <TextInput onChangeText={(classTitle) => setClassTitle(classTitle)} label={'Class Title'}></TextInput>
             <Button onPress={() => storeData(selectedLanguage)} >save data </Button>
             <Button onPress={getstate}>retreive data </Button>
