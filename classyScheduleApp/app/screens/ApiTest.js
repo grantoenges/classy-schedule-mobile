@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Text, View, StyleSheet } from 'react-native';
+import { ActivityIndicator, FlatList, Text, ScrollView, View, StyleSheet } from 'react-native';
 import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
 
  const Apites = () => {
@@ -61,8 +61,10 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
 
   /*This return is where the actual react part of the app is made and the  */
   return (
-    <View style={{ flex: 1, padding: 24 }}>
+    <View style={{ flex: 1, padding: 24 }}>      
+      <Button onPress={()=>{console.log('hh')}}>Save Data</Button>
       {isLoading ? <Button loading ={true} mode="contained"> Loading</Button> : (
+        
         <FlatList
           data={dataT}
           keyExtractor={({ dept_id }) => dept_id}
@@ -70,7 +72,9 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
               <Checkbox.Item label={item.dept_name} color="green" uncheckedColor="black"status={item.checked? 'checked':'unchecked'} onPress={()=>{item.checked = !item.checked; setDummy(!dummy)}}/>
             )}
         />
+        
       )}
+
     </View>
   );
 };
