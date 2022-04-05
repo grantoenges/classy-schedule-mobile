@@ -25,6 +25,7 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
   const getJson = async () => {
      try {
        setLoading(true);
+       setDataT([]);
       const response = await fetch('https://capstonedbapi.azurewebsites.net/department-management/departments', {
         method: 'GET',
         /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
@@ -39,11 +40,12 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
           ...json.map(({dept_id, dept_name}) => ({
             dept_id,
             dept_name,
+            checked:false
           //
           })),
         ]);
       console.log(dataT);
-      setData(json);
+      //setData(json);
       } catch (error) {
       console.error(error);
     } finally {
@@ -60,7 +62,7 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
   /*This return is where the actual react part of the app is made and the  */
   return (
     <View style={{ flex: 1, padding: 24 }}>
-      {isLoading ? <ActivityIndicator/> : (
+      {isLoading ? <Button loading ={true} mode="contained"> Loading</Button> : (
         <FlatList
           data={dataT}
           keyExtractor={({ dept_id }) => dept_id}

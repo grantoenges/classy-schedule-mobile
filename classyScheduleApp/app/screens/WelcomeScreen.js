@@ -54,7 +54,7 @@ MyComponent();
       <View style={styles.scrollview}>
         <View style={styles.viewStyle}>
           <TouchableOpacity mode="contained"   activeOpacity={0.8} style={styles.buttonStyle} onPress={login}>
-            <Text style={styles.textStyle}>Login</Text>
+            <Text style={styles.textStyle}>Logout</Text>
           </TouchableOpacity>
           <TouchableOpacity mode="contained"  style={styles.buttonStyle} activeOpacity={0.8} onPress={prefs}>
             <Text style={styles.textStyle}>Preferences</Text>
