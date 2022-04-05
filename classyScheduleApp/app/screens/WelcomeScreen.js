@@ -3,7 +3,6 @@ import { SafeAreaView, View, Text,Image, StyleSheet, TouchableOpacity, Alert, Sc
 import { Button, Card, TextInput, TouchableRipple } from "react-native-paper";
 import { MyComponent } from "./Shake";
 import RNShake from 'react-native-shake';
-
 import styles from '../Style'
 
 /** This method is what displays the screen for this page
