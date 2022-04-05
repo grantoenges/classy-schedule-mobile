@@ -11,6 +11,7 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
   const [isLoading, setLoading] = useState(true);
   const [dummy, setDummy] = React.useState(false);
 
+  
   /*This usestate variable is used as the json data obtained from the api calls storage location*/
   const [data, setData] = useState([]);
   const [dataT, setDataT] = useState([]);
