@@ -25,6 +25,7 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
   const getJson = async () => {
      try {
        setLoading(true);
+       setDataT([]);
       const response = await fetch('https://capstonedbapi.azurewebsites.net/department-management/departments', {
         method: 'GET',
         /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
@@ -39,6 +40,7 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
           ...json.map(({dept_id, dept_name}) => ({
             dept_id,
             dept_name,
+            checked:false
           //
           })),
         ]);
