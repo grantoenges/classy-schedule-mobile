@@ -30,7 +30,7 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
         /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
         headers: { 
           //Will need the authorization to be a saved string each time we sign in
-          'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
+          'Authorization': auth
         },
         });
       const json = await response.json();
