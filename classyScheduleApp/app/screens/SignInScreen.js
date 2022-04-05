@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
-import { Button, TextInput } from "react-native-paper";
+import { Button, TextInput, Title } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {getApi} from "../databaseService";
 import styles from '../Style'
