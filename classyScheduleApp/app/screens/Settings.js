@@ -1,14 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { SafeAreaView, View,Text,StyleSheet } from 'react-native';
 import {Button, Card, TextInput} from 'react-native-paper'
 import styles from '../Style'
 
 const SettingFun = ({navigation}) => {
-
+  const [dummy, setDummy] = useState(true);
+  const [mode, setMode] = useState('Dark Mode (COMING SOON!)');
+  const [pmode, setpMode] = useState('Light Mode (Already here)');
+  
   return (
     <SafeAreaView style={styles.container}>
-        <Card style={styles.cardStyle}>
-            <Card.Title title= "Settings Screen"/>
+        <Card >
+            <Card.Title title= "Settings Will go here"/>
+            <Button onPress={()=>{console.log('hh'); setDummy(!dummy);}} mode={dummy? "contained":'outlined'} >{dummy? mode:pmode}</Button>
         </Card>
     </SafeAreaView>
  );

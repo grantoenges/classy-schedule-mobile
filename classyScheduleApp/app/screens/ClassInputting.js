@@ -60,10 +60,10 @@ const ClassInputFun = () => {
               <Picker.Item label="Computer Science" value="CISC" />
               <Picker.Item label="Statistics" value="STAT" />
             </Picker>
-            <TextInput onChangeText={(classNumber) => setClassNum(classNumber)} label={'Class Number'}></TextInput>
-            <TextInput onChangeText={(classTitle) => setClassTitle(classTitle)} label={'Class Title'}></TextInput>
-            <TextInput onChangeText={(classCapacity) => setClassCapacity(classCapacity)} label={'Capacity'}></TextInput>
-            <TextInput onChangeText={(classCredits) => setClassCredits(classCredits)} label={'Credits'}></TextInput>
+            <TextInput keyboardType="numeric" maxLength={4} onChangeText={(classNumber) => setClassNum(classNumber)} label={'Class Number'}></TextInput>
+            <TextInput maxLength={30}multiline={false} onChangeText={(classTitle) => setClassTitle(classTitle)} label={'Class Title'}></TextInput>
+            <TextInput keyboardType='numeric' maxLength={4} onChangeText={(classCapacity) => setClassCapacity(classCapacity)} label={'Capacity'}></TextInput>
+            <TextInput keyboardType='numeric' maxLength={2} defaultValue='4' onChangeText={(classCredits) => setClassCredits(classCredits)} label={'Credits'}></TextInput>
 
             <Button mode="contained" onPress={() => storeData(selectedLanguage)} >save data </Button>
             {/*<Button onPress={getstate}>retreive data </Button>*/}
