@@ -5,7 +5,7 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
 
 const API_URL = "https://jsonplaceholder.typicode.com/users";
 const ApiList = () => {
-  const [stat400Checked, setstat400Checked] = React.useState(false);
+  const [testCheck, setstat400Checked] = React.useState(false);
   const [dummy, setDummy] = React.useState(false);
 
     const[data, setState] = useState([
@@ -32,8 +32,8 @@ const ApiList = () => {
             extraData={({ item }) => ( item.checked)}
 
           />
-          <Checkbox.Item label="Test Button(outside of list)" color="black" uncheckedColor="black" status={stat400Checked ? "checked" : "unchecked"}  onPress={() => {
-            setstat400Checked(!stat400Checked);
+          <Checkbox.Item label="Test Button(outside of list)" color="black" uncheckedColor="black" status={testCheck ? "checked" : "unchecked"}  onPress={() => {
+            setstat400Checked(!testCheck);
           }}/>
       </View>
         );

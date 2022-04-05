@@ -5,9 +5,13 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
  const Apites = () => {
   /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
   const [isLoading, setLoading] = useState(true);
+  const [dummy, setDummy] = React.useState(false);
+
   /*This usestate variable is used as the json data obtained from the api calls storage location*/
   const [data, setData] = useState([]);
+  const [dataT, setDataT] = useState([
 
+  ]);
   /*
   getJson's purpose is to make a call to the API point and set our usestate variable to the data that 
   should be returned while also updating the isLoading variable to reflect the loading status 
@@ -20,15 +24,25 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
   */
   const getJson = async () => {
      try {
+       setLoading(true);
       const response = await fetch('https://capstonedbapi.azurewebsites.net/department-management/departments', {
         method: 'GET',
         /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
         headers: { 
-            "Authorization": "test",
+          //Will need the authorization to be a saved string each time we sign in
+          'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
         },
         });
       const json = await response.json();
-      console.log(json);
+        setDataT((dataT) => [
+          ...dataT,
+          ...json.map(({dept_id, dept_name}) => ({
+            dept_id,
+            dept_name,
+          //
+          })),
+        ]);
+      console.log(dataT);
       setData(json);
       } catch (error) {
       console.error(error);
@@ -48,11 +62,11 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
     <View style={{ flex: 1, padding: 24 }}>
       {isLoading ? <ActivityIndicator/> : (
         <FlatList
-          data={data}
-          keyExtractor={({ id }, index) => (id,index)}
+          data={dataT}
+          keyExtractor={({ dept_id }) => dept_id}
           renderItem={({ item }) => (
-            <Text>{item.dept_name}</Text>
-          )}
+              <Checkbox.Item label={item.dept_name} color="green" uncheckedColor="black"status={item.checked? 'checked':'unchecked'} onPress={()=>{item.checked = !item.checked; setDummy(!dummy)}}/>
+            )}
         />
       )}
     </View>
