@@ -1,249 +1,81 @@
-import React from 'react';
-import { SafeAreaView, View, Text, StyleSheet, ScrollView } from 'react-native';
-import {Button, Card, Checkbox, TextInput} from 'react-native-paper';
-import styles from '../Style';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, FlatList, Text, ScrollView, View, StyleSheet } from 'react-native';
+import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
 
-// ClassesCTFun creates useState objects for each class offered.
-// It also makes the application page to display them and allows users to
-// select a checkbox and save the classes they can teach.
-const ClassesCTFun = ({navigation}) => {
-  const [cisc130Checked, setcisc130Checked] = React.useState(false);
-  const [cisc131Checked, setcisc131Checked] = React.useState(false);
-  const [cisc230Checked, setcisc230Checked] = React.useState(false);
-  const [cisc231Checked, setcisc231Checked] = React.useState(false);
-  const [cisc340Checked, setcisc340Checked] = React.useState(false);
-  const [cisc350Checked, setcisc350Checked] = React.useState(false);
-  const [cisc380Checked, setcisc380Checked] = React.useState(false);
-  const [cisc480Checked, setcisc480Checked] = React.useState(false);
-  const [cisc310Checked, setcisc310Checked] = React.useState(false);
-  const [cisc342Checked, setcisc342Checked] = React.useState(false);
-  const [cisc370Checked, setcisc370Checked] = React.useState(false);
-  const [cisc369Checked, setcisc369Checked] = React.useState(false);
-  const [cisc375Checked, setcisc375Checked] = React.useState(false);
-  const [cisc420Checked, setcisc420Checked] = React.useState(false);
-  const [cisc440Checked, setcisc440Checked] = React.useState(false);
-  const [cisc450Checked, setcisc450Checked] = React.useState(false);
-  const [cisc451Checked, setcisc451Checked] = React.useState(false);
-  const [stat220Checked, setstat220Checked] = React.useState(false);
-  const [stat360Checked, setstat360Checked] = React.useState(false);
-  const [stat400Checked, setstat400Checked] = React.useState(false);
+ const ClassesCTFun = () => {
+  /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
+  const [isLoading, setLoading] = useState(true);
+  const [dummy, setDummy] = React.useState(false);
 
+  /*This usestate variable is used as the json data obtained from the api calls storage location*/
+  const [data, setData] = useState([]);
+  const [dataT, setDataT] = useState([]);
+
+  /*
+  getJson's purpose is to make a call to the API point and set our usestate variable to the data that 
+  should be returned while also updating the isLoading variable to reflect the loading status 
+    ------------------
+    Inputs: None
+    Outputs: None (But the data variable should be set to the json from the API)
+    -------------------
+   If for some reason the API call fails then the try catch block should be aware of that failure and 
+   should send that error to the console.log 
+  */
+  const getJson = async () => {
+     try {
+       setLoading(true);
+       setDataT([]);
+      const response = await fetch('https://capstonedbapi.azurewebsites.net/class-management/classes', {
+        method: 'GET',
+        /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
+        headers: { 
+          //Will need the authorization to be a saved string each time we sign in
+          'Authorization': auth
+        },
+        });
+      const json = await response.json();
+      console.log(json);
+
+        setDataT((dataT) => [
+          ...dataT,
+          ...json.map(({class_num,dept_id, class_name, capacity, credits}) => ({
+            class_num,
+            dept_id,
+            class_name,
+            checked:false
+          //
+          })),
+        ]);
+      //console.log(dataT);
+      //setData(json);
+      } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+  
+  /*useEffect is a react native hook that allows us to get to using our usestate variables and allowing
+  for the dynamic rendering of that data onto the screen. This useeffect for example calls our getJson method */
+  useEffect(() => {
+    getJson();
+  }, []);
+
+  /*This return is where the actual react part of the app is made and the  */
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
-      <Card style={styles.cardStyle}>
-        <Card.Title title="Classes can Teach" />
-      </Card>
-
-      <View>
-        <Checkbox.Item
-          labelStyle={styles.label}
-          label="CISC 130"
-          color="black"
-          uncheckedColor="black"
-          status={cisc130Checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setcisc130Checked(!cisc130Checked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={styles.label}
-          label="CISC 131"
-          color="black"
-          uncheckedColor="black"
-          status={cisc131Checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setcisc131Checked(!cisc131Checked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={styles.label}
-          label="CISC 230"
-          color="black"
-          uncheckedColor="black"
-          status={cisc230Checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setcisc230Checked(!cisc230Checked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={styles.label}
-          label="CISC 231"
-          color="black"
-          uncheckedColor="black"
-          status={cisc231Checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setcisc231Checked(!cisc231Checked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={styles.label}
-          label="CISC 340"
-          color="black"
-          uncheckedColor="black"
-          status={cisc340Checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setcisc340Checked(!cisc340Checked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={styles.label}
-          label="CISC 350"
-          color="black"
-          uncheckedColor="black"
-          status={cisc350Checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setcisc350Checked(!cisc350Checked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={styles.label}
-          label="CISC 380"
-          color="black"
-          uncheckedColor="black"
-          status={cisc380Checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setcisc380Checked(!cisc380Checked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={styles.label}
-          label="CISC 480"
-          color="black"
-          uncheckedColor="black"
-          status={cisc480Checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setcisc480Checked(!cisc480Checked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={styles.label}
-          label="CISC 310"
-          color="black"
-          uncheckedColor="black"
-          status={cisc310Checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setcisc310Checked(!cisc310Checked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={styles.label}
-          label="CISC 342"
-          color="black"
-          uncheckedColor="black"
-          status={cisc342Checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setcisc342Checked(!cisc342Checked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={styles.label}
-          label="CISC 370"
-          color="black"
-          uncheckedColor="black"
-          status={cisc370Checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setcisc370Checked(!cisc370Checked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={styles.label}
-          label="CISC 369"
-          color="black"
-          uncheckedColor="black"
-          status={cisc369Checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setcisc369Checked(!cisc369Checked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={styles.label}
-          label="CISC 375"
-          color="black"
-          uncheckedColor="black"
-          status={cisc375Checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setcisc375Checked(!cisc375Checked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={styles.label}
-          label="CISC 420"
-          color="black"
-          uncheckedColor="black"
-          status={cisc420Checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setcisc420Checked(!cisc420Checked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={styles.label}
-          label="CISC 440"
-          color="black"
-          uncheckedColor="black"
-          status={cisc440Checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setcisc440Checked(!cisc440Checked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={styles.label}
-          label="CISC 450"
-          color="black"
-          uncheckedColor="black"
-          status={cisc450Checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setcisc450Checked(!cisc450Checked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={styles.label}
-          label="CISC 451"
-          color="black"
-          uncheckedColor="black"
-          status={cisc451Checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setcisc451Checked(!cisc451Checked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={styles.label}
-          label="STAT 220"
-          color="black"
-          uncheckedColor="black"
-          status={stat220Checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setstat220Checked(!stat220Checked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={styles.label}
-          label="STAT 360"
-          color="black"
-          uncheckedColor="black"
-          status={stat360Checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setstat360Checked(!stat360Checked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={styles.label}
-          label="STAT 400"
-          color="black"
-          uncheckedColor="black"
-          status={stat400Checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setstat400Checked(!stat400Checked);
-          }}
-        />
-      </View>
-      <Button>Save Classes can Teach</Button>
-      </ScrollView>
-    </SafeAreaView>
+    <View style={{ flex: 1, padding: 24 }}>      
+      <Button onPress={()=>{console.log('h')}} mode="contained" >Save Data</Button>
+      {isLoading ? <Button loading ={true} mode="outlined"> Loading</Button> : (
+        <FlatList
+          data={dataT}
+          keyExtractor={({ class_num }) => class_num}
+          renderItem={({ item }) => (
+              <Checkbox.Item label={item.class_name} color="darkblue" uncheckedColor="black"status={item.checked? 'checked':'unchecked'} onPress={()=>{item.checked = !item.checked; setDummy(!dummy)}}/>
+            )}
+        />   
+      )}
+    </View>
   );
 };
-  
+
 export default ClassesCTFun;
-
-
-

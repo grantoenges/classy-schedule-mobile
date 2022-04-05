@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Text, ScrollView, View, StyleSheet } from 'react-native';
 import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
+//import Apites from './apiTest';
+
 
  const ApiList = () => {
+  global.auth = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s';
+
   /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
   const [isLoading, setLoading] = useState(true);
   const [dummy, setDummy] = React.useState(false);
 
   /*This usestate variable is used as the json data obtained from the api calls storage location*/
   const [data, setData] = useState([]);
-  const [dataT, setDataT] = useState([
+  const [dataT, setDataT] = useState([]);
 
-  ]);
   /*
   getJson's purpose is to make a call to the API point and set our usestate variable to the data that 
   should be returned while also updating the isLoading variable to reflect the loading status 
@@ -31,7 +34,7 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
         /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
         headers: { 
           //Will need the authorization to be a saved string each time we sign in
-          'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
+          'Authorization': auth//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
         },
         });
       const json = await response.json();
@@ -67,49 +70,17 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
     <View style={{ flex: 1, padding: 24 }}>      
       <Button onPress={()=>{console.log('hh')}} mode="contained" >Save Data</Button>
       {isLoading ? <Button loading ={true} mode="outlined"> Loading</Button> : (
-        
         <FlatList
           data={dataT}
           keyExtractor={({ class_num }) => class_num}
           renderItem={({ item }) => (
               <Checkbox.Item label={item.class_name} color="darkblue" uncheckedColor="black"status={item.checked? 'checked':'unchecked'} onPress={()=>{item.checked = !item.checked; setDummy(!dummy)}}/>
             )}
-        />
-        
+        />   
       )}
-
     </View>
   );
 };
-
-/*This is the pages chouce for design of different containers. Similar syntax to CSS. Subject to drastic change. */
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      padding: 24,
-    },
-    cardStyle: {
-      backgroundColor: "powderblue",
-    },
-    buttonStyle: {
-      backgroundColor: "silver",
-    },
-    label: {
-      color: "black",
-    },
-    title: {
-      marginTop: 16,
-      paddingVertical: 8,
-      borderWidth: 4,
-      borderColor: "#20232a",
-      borderRadius: 6,
-      backgroundColor: "#61dafb",
-      color: "#20232a",
-      textAlign: "center",
-      fontSize: 30,
-      fontWeight: "bold",
-    },
-  });
 
 export default ApiList;
 
