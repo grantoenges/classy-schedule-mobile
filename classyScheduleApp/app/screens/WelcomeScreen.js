@@ -29,24 +29,22 @@ const WelcomeScreenFun = ({ navigation }) => {
 //Might need to change textFamily for android in textStyle
 
  
- const MyComponent = () => {
+ //const MyComponent = () => {}
+  //MyComponent();
+
   React.useEffect(() => {
     const subscription = RNShake.addListener(() => {
       // Your code here...
-      console.log("shook")
+      console.log("shaken");
     })
-
     return () => {
       // Your code here...
-      console.log('Not ')
-      //subscription.remove()
+      console.log("Not shaken");
+      subscription.remove();
     }
-  }, [])
-}
+  }, []);
 
-
-MyComponent();
-
+  
   return (
     <SafeAreaView style={styles.container}>
       
