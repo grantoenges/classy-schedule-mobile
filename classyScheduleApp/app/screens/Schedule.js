@@ -14,7 +14,6 @@ const ScheduleFun = () =>{
     { 'start': '2022-04-15 13:35:00', 'duration': '01:00:00', 'note': 'Teach computer graphics' },
     { 'start': '2022-04-14 13:35:00', 'duration': '02:00:00', 'note': 'Intro to cisc lab' },
     { 'start': '2022-04-16 13:35:00', 'duration': '01:00:00', 'note': 'Read Sawins angry emails' },
-    
   ]
  
   return (
