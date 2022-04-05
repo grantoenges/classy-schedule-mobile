@@ -24,10 +24,12 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
   */
   const getJson = async () => {
      try {
+       setLoading(true);
       const response = await fetch('https://capstonedbapi.azurewebsites.net/department-management/departments', {
         method: 'GET',
         /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
         headers: { 
+          //Will need the authorization to be a saved string each time we sign in
           'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
         },
         });
@@ -63,7 +65,7 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
           data={dataT}
           keyExtractor={({ dept_id }) => dept_id}
           renderItem={({ item }) => (
-              <Checkbox.Item label={item.dept_name} color="green" uncheckedColor="blue"status={item.checked? 'checked':'unchecked'} onPress={()=>{item.checked = !item.checked; setDummy(!dummy)}}/>
+              <Checkbox.Item label={item.dept_name} color="green" uncheckedColor="black"status={item.checked? 'checked':'unchecked'} onPress={()=>{item.checked = !item.checked; setDummy(!dummy)}}/>
             )}
         />
       )}
