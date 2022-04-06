@@ -1,9 +1,11 @@
 import React from "react";
+
 import { SafeAreaView, View, Text,Image, StyleSheet, TouchableOpacity, Alert, ScrollView } from "react-native";
 import { Button, Card, TextInput, TouchableRipple } from "react-native-paper";
 import { MyComponent } from "./Shake";
 import RNShake from 'react-native-shake';
 import styles from '../Style'
+
 
 /** This method is what displays the screen for this page
  * Inputs: Navigation class (allowing for the page to navigate to other pages)
@@ -25,24 +27,25 @@ const WelcomeScreenFun = ({ navigation }) => {
   const ApiTester = () => navigation.navigate("Api Test");
   const ApiLister = () => navigation.navigate("Api List");
 
-//Color for react native button text is #6200ed
-//Might need to change textFamily for android in textStyle
+  //Color for react native button text is #6200ed
+  //Might need to change textFamily for android in textStyle
 
- 
- //const MyComponent = () => {}
-  //MyComponent();
+  const MyComponent = () => {
+    React.useEffect(() => {
+      const subscription = RNShake.addListener(() => {
+        // Your code here...
+        console.log("shook");
+      });
 
-  React.useEffect(() => {
-    const subscription = RNShake.addListener(() => {
-      // Your code here...
-      console.log("shaken");
-    })
-    return () => {
-      // Your code here...
-      console.log("Not shaken");
-      subscription.remove();
-    }
-  }, []);
+      return () => {
+        // Your code here...
+        console.log("Not ");
+        //subscription.remove()
+      };
+    }, []);
+  };
+
+  MyComponent();
 
   
   return (
@@ -81,7 +84,6 @@ const WelcomeScreenFun = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
-      
     </SafeAreaView>
   );
 };
