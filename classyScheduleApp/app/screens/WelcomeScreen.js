@@ -1,10 +1,18 @@
 import React from "react";
-import { SafeAreaView, View, Text,Image, StyleSheet, TouchableOpacity, Alert } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import { Button, Card, TextInput, TouchableRipple } from "react-native-paper";
 import { MyComponent } from "./Shake";
-import RNShake from 'react-native-shake';
+import RNShake from "react-native-shake";
 
-import styles from '../Style'
+import styles from "../Style";
 
 /** This method is what displays the screen for this page
  * Inputs: Navigation class (allowing for the page to navigate to other pages)
@@ -26,27 +34,25 @@ const WelcomeScreenFun = ({ navigation }) => {
   const ApiTester = () => navigation.navigate("Api Test");
   const ApiLister = () => navigation.navigate("Api List");
 
-//Color for react native button text is #6200ed
-//Might need to change textFamily for android in textStyle
+  //Color for react native button text is #6200ed
+  //Might need to change textFamily for android in textStyle
 
- 
- const MyComponent = () => {
-  React.useEffect(() => {
-    const subscription = RNShake.addListener(() => {
-      // Your code here...
-      console.log("shook")
-    })
+  const MyComponent = () => {
+    React.useEffect(() => {
+      const subscription = RNShake.addListener(() => {
+        // Your code here...
+        console.log("shook");
+      });
 
-    return () => {
-      // Your code here...
-      console.log('Not ')
-      //subscription.remove()
-    }
-  }, [])
-}
+      return () => {
+        // Your code here...
+        console.log("Not ");
+        //subscription.remove()
+      };
+    }, []);
+  };
 
-
-MyComponent();
+  MyComponent();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -56,43 +62,68 @@ MyComponent();
 
       <View style={styles.centerPageMargin}>
         <View style={styles.viewStyle}>
-          <TouchableOpacity mode="contained"  style={styles.buttonStyle} onPress={login}>
+          <TouchableOpacity
+            mode="contained"
+            style={styles.buttonStyle}
+            onPress={login}
+          >
             <Text style={styles.textStyle}>Login</Text>
           </TouchableOpacity>
-          <TouchableOpacity mode="contained"  style={styles.buttonStyle} onPress={prefs}>
+          <TouchableOpacity
+            mode="contained"
+            style={styles.buttonStyle}
+            onPress={prefs}
+          >
             <Text style={styles.textStyle}>Preferences</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.viewStyle}>
-          <TouchableOpacity mode="contained"  icon="cog" style={styles.buttonStyle} onPress={settings}>
+          <TouchableOpacity
+            mode="contained"
+            icon="cog"
+            style={styles.buttonStyle}
+            onPress={settings}
+          >
             <Text style={styles.textStyle}>Settings</Text>
           </TouchableOpacity>
-          <TouchableOpacity mode="contained" style={styles.buttonStyle} onPress={schedule}>
+          <TouchableOpacity
+            mode="contained"
+            style={styles.buttonStyle}
+            onPress={schedule}
+          >
             <Text style={styles.textStyle}>Schedule</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.viewStyle}>
-          <TouchableOpacity mode="contained" style={styles.buttonStyle} onPress={Input}>
+          <TouchableOpacity
+            mode="contained"
+            style={styles.buttonStyle}
+            onPress={Input}
+          >
             <Text style={styles.textStyle}>Class Input</Text>
           </TouchableOpacity>
-          <TouchableOpacity mode="contained" style={styles.buttonStyle} onPress={ApiLister}>
-            <Text style={styles.textStyle}>Dynamic checklist List</Text> 
+          <TouchableOpacity
+            mode="contained"
+            style={styles.buttonStyle}
+            onPress={ApiLister}
+          >
+            <Text style={styles.textStyle}>Dynamic checklist List</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.viewStyle}>
-          <TouchableOpacity mode="contained" style={styles.buttonStyle} onPress={ApiTester}>
+          <TouchableOpacity
+            mode="contained"
+            style={styles.buttonStyle}
+            onPress={ApiTester}
+          >
             <Text style={styles.textStyle}>APi test</Text>
           </TouchableOpacity>
         </View>
       </View>
-      
     </SafeAreaView>
   );
 };
 
-
-
 export default WelcomeScreenFun;
-
