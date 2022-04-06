@@ -1,7 +1,8 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet, Dimensions } from 'react-native';
 
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
+
 
 export default StyleSheet.create({
     container: {
@@ -75,11 +76,11 @@ export default StyleSheet.create({
     },
     cardStyle: {
     backgroundColor: "powderblue",
-  },
-  label: {
+    },
+    label: {
     color: "black",
-  },
-  title: {
+    },
+    title: {
     marginTop: 16,
     paddingVertical: 8,
     borderWidth: 4,
@@ -90,7 +91,6 @@ export default StyleSheet.create({
     textAlign: "center",
     fontSize: 30,
     fontWeight: "bold",
-
     },
     buttonStyleT:{
         backgroundColor :"silver"
@@ -98,3 +98,6 @@ export default StyleSheet.create({
     scheduleHeight: {
         height: screen.height * .82
     }
+});
+
+

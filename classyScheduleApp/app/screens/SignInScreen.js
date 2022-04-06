@@ -10,8 +10,9 @@ import {
 } from "react-native";
 import { Button, TextInput, Title } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getApi } from "../databaseService";
-import styles from "../Style";
+import {getApi} from "../databaseService";
+import styles from '../Style'
+
 
 //Function that validates email
 function emailValidator(email) {
@@ -39,7 +40,7 @@ const SignInScreenFun = ({ navigation }) => {
   let value = value || "";
 
   const [isLoading, setLoading] = useState(false);
-  const [email, setEmail] = useState({ value: "", error: "" });
+  const [email, setEmail] = useState({ value: "", error: "" }); 
   const [password, setPassword] = useState({ value: "", error: "" });
 
   //When login is pressed this will run error checkers and navigation if no problems
@@ -57,23 +58,22 @@ const SignInScreenFun = ({ navigation }) => {
       navigation.navigate("Welcome");
     }
   };
-  {
-    /*
+  {/*
   const storeData = async (value) => {
     try {
       await AsyncStorage.setItem("@storage_Key", value);
     } catch (e) {
       // saving error
     }
-  };  */
-  }
+  };  */}
 
+  
   return (
     <SafeAreaView style={styles.back}>
       {/* Email input field */}
       <TextInput
         style={styles.TextInput}
-        label="Email"
+        label= "Email"
         placeholderTextColor="#ABC"
         value={email.value}
         onChangeText={(email) => setEmail({ value: email, error: "" })}
@@ -85,7 +85,7 @@ const SignInScreenFun = ({ navigation }) => {
       {/* Password input field */}
       <TextInput
         style={styles.TextInput}
-        label="Password"
+        label = "Password"
         placeholderTextColor="#ABC"
         value={password.value}
         secureTextEntry={true}
@@ -94,31 +94,21 @@ const SignInScreenFun = ({ navigation }) => {
         errorText={password.error}
       />
       {/* Login button */}
-      <Button
-        loading={isLoading}
-        mode="contained"
-        onPress={() => onLoginPressed()}
-      >
-        Login
-      </Button>
-      <Button icon="account-plus" onPress={newAccount}>
-        Create Account
-      </Button>
+      <Button loading ={isLoading} mode="contained" onPress={() => onLoginPressed()}>Login</Button>
+      <Button icon="account-plus"  onPress={newAccount}>Create Account</Button>
       {/* Forgot password */}
-      <TouchableOpacity
-        style={styles.centerPage}
-        onPress={() => alert("Then remember it!")}
-      >
+      <TouchableOpacity style={styles.centerPage} onPress={() => alert("Then remember it!")}>
         <Text>Forgot Password?</Text>
       </TouchableOpacity>
-      <View style={styles.centerPage}>
-        <Image
-          style={styles.tinyLogo}
-          source={require("../assets/ClassyLogoSquare.png")}
-        />
+      <View style = {styles.centerPage}>
+      <Image
+        style={styles.tinyLogo}
+        source={require('../assets/ClassyLogoSquare.png')}
+      />
       </View>
     </SafeAreaView>
   );
 };
+
 
 export default SignInScreenFun;
