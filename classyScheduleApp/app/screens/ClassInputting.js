@@ -3,6 +3,7 @@ import { SafeAreaView, View,Text,StyleSheet } from 'react-native';
 import {Button, Card, TextInput} from 'react-native-paper'
 import {Picker} from '@react-native-picker/picker';
 import { useState } from 'react';
+import styles from '../Style'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -13,6 +14,10 @@ const ClassInputFun = () => {
     const [classTitle, setClassTitle] = useState();
     /** This use state is used for the storage of the classes integer number. */
     const [classNumber, setClassNum] = useState();
+
+    const [classCredits, setClassCredits] = useState();
+
+    const [classCapacity, setClassCapacity] = useState();
 
     /** This method use is to store a given value into one predetermined location into the devices memory.
      *   Inputs: value (should be integer but can be anything)
@@ -49,47 +54,48 @@ const ClassInputFun = () => {
       alert(selectedLanguage)
     }
   return (
-    <SafeAreaView style={styles.container}>
-        <Card style={styles.cardStyle}>
-            <Card.Title title= "Class Input Screen"/>
-            <Picker  style={styles.buttonStyle}
-            selectedValue={selectedLanguage} onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}>
-            <Picker.Item label="Cisc" value="CISC" />
-            <Picker.Item label="Stats" value="STAT" />
+    <SafeAreaView style={style.container}>
+        <Card style={style.cardStyle}>
+            
+            <Picker color='purple' style={style.buttonStyle} selectedValue={selectedLanguage} dropdownIconRippleColor='#7F46C7' prompt='Pick department' onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}>
+              <Picker.Item label="Computer Science" value="CISC" />
+              <Picker.Item label="Statistics" value="STAT" />
             </Picker>
-            <TextInput onChangeText={(classNumber) => setClassNum(classNumber)} label={'Class number'}></TextInput>
+            <TextInput  onChangeText={(classNumber) => setClassNum(classNumber)} label={'Class number'}></TextInput>
             <TextInput onChangeText={(classTitle) => setClassTitle(classTitle)} label={'Class Title'}></TextInput>
-            <Button onPress={() => storeData(selectedLanguage)} >save data </Button>
-            <Button onPress={getstate}>retreive data </Button>
+            <TextInput onChangeText={(classCapacity) => setClassCapacity(classCapacity)} label={'Class Capacity'}></TextInput>
+            <TextInput defaultValue='4' collapsable={true} onChangeText={(classCredits) => setClassCredits(classCredits)} label={'Class Credits'}></TextInput>
+            <Button mode="contained" onPress={() => storeData(selectedLanguage)} >save data </Button>
+            {/*<Button onPress={getstate}>retreive data </Button>*/}
         </Card>
     </SafeAreaView>
  );
 }
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      padding: 24,
-    },
-    cardStyle:{
-      backgroundColor:"powderblue"
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 24,
   },
-  buttonStyle:{
-      backgroundColor :"silver"
-  },
-    title: {
-      marginTop: 16,
-      paddingVertical: 8,
-      borderWidth: 4,
-      borderColor: "#20232a",
-      borderRadius: 6,
-      backgroundColor: "#61dafb",
-      color: "#20232a",
-      textAlign: "center",
-      fontSize: 30,
-      fontWeight: "bold"
-    }
-  });
+  cardStyle:{
+   // backgroundColor:"powderblue"
+},
+buttonStyle:{
+    backgroundColor :"silver"
+},
+  title: {
+    marginTop: 16,
+    paddingVertical: 8,
+    borderWidth: 4,
+    borderColor: "#20232a",
+    borderRadius: 6,
+    backgroundColor: "#61dafb",
+    color: "#20232a",
+    textAlign: "center",
+    fontSize: 30,
+    fontWeight: "bold"
+  }
+});
   
 
 export default ClassInputFun;

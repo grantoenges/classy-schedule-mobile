@@ -1,9 +1,20 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const window = Dimensions.get("window");
+const screen = Dimensions.get("screen");
+
 
 export default StyleSheet.create({
     container: {
         flex: 1,
         padding: 24,
+        
+    },
+    scrollview: {
+        flex: 2,
+        alignItems:"center",
+        marginHorizontal: 0,
+        //paddingBottom: bottomNavigatorBarHeight
     },
     centerPage: {
         justifyContent: "center",
@@ -13,6 +24,7 @@ export default StyleSheet.create({
         justifyContent: "center",
         alignItems:"center",
         marginTop: 40,
+        
     },
     tinyLogo:{
         width: 150,
@@ -27,17 +39,19 @@ export default StyleSheet.create({
     buttonStyle: {
         width: "100%",
         height: "100%",
-        minWidth: 150,
-        minHeight: 150,
-        maxWidth:175,
-        maxHeight: 175,
+        minWidth: window.width*.4,
+        minHeight: screen.height*.18,
+        maxWidth: window.width*.45,
+        maxHeight: screen.height*.25,
         textAlign: "center",
-        backgroundColor: "#6200ed",
+        //backgroundColor: "#6200ed",
+        backgroundColor: "#9400D3",
         borderRadius: 20,
         borderWidth: 1,
         borderColor: "white",
-        elevation: 20,
+        elevation: 10,
         justifyContent: "center",
+        
     },
     textStyle: {
         

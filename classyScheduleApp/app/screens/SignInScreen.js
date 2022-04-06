@@ -8,10 +8,11 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
-import { Button, TextInput } from "react-native-paper";
+import { Button, TextInput, Title } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {getApi} from "../databaseService";
 import styles from '../Style'
+
 
 //Function that validates email
 function emailValidator(email) {
@@ -38,18 +39,22 @@ const SignInScreenFun = ({ navigation }) => {
   const newAccount = () => navigation.navigate("New Account");
   let value = value || "";
 
+  const [isLoading, setLoading] = useState(false);
   const [email, setEmail] = useState({ value: "", error: "" }); 
   const [password, setPassword] = useState({ value: "", error: "" });
 
   //When login is pressed this will run error checkers and navigation if no problems
   const onLoginPressed = () => {
+    setLoading(true);
     const emailError = emailValidator(email.value);
     const passwordError = passwordValidator(password.value);
     if (emailError || passwordError) {
       setEmail({ ...email, error: emailError });
       setPassword({ ...password, error: passwordError });
       alert(emailError + " " + passwordError);
+      setLoading(false);
     } else {
+      setLoading(false);
       navigation.navigate("Welcome");
     }
   };
@@ -62,6 +67,7 @@ const SignInScreenFun = ({ navigation }) => {
     }
   };  */}
 
+  
   return (
     <SafeAreaView style={styles.back}>
       {/* Email input field */}
@@ -88,7 +94,7 @@ const SignInScreenFun = ({ navigation }) => {
         errorText={password.error}
       />
       {/* Login button */}
-      <Button loading ={true} mode="contained" onPress={onLoginPressed}>Login</Button>
+      <Button loading ={isLoading} mode="contained" onPress={() => onLoginPressed()}>Login</Button>
       <Button icon="account-plus"  onPress={newAccount}>Create Account</Button>
       {/* Forgot password */}
       <TouchableOpacity style={styles.centerPage} onPress={() => alert("Then remember it!")}>

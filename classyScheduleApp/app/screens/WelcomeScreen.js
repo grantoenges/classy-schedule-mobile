@@ -1,18 +1,11 @@
 import React from "react";
-import {
-  SafeAreaView,
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  Alert,
-} from "react-native";
+
+import { SafeAreaView, View, Text,Image, StyleSheet, TouchableOpacity, Alert, ScrollView } from "react-native";
 import { Button, Card, TextInput, TouchableRipple } from "react-native-paper";
 import { MyComponent } from "./Shake";
-import RNShake from "react-native-shake";
+import RNShake from 'react-native-shake';
+import styles from '../Style'
 
-import styles from "../Style";
 
 /** This method is what displays the screen for this page
  * Inputs: Navigation class (allowing for the page to navigate to other pages)
@@ -56,68 +49,36 @@ const WelcomeScreenFun = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Card style={styles.cardStyleWelcome}>
-        <Card.Title title="Navigation Screen" />
-      </Card>
-
-      <View style={styles.centerPageMargin}>
+      
+      <View style={styles.scrollview}>
         <View style={styles.viewStyle}>
-          <TouchableOpacity
-            mode="contained"
-            style={styles.buttonStyle}
-            onPress={login}
-          >
-            <Text style={styles.textStyle}>Login</Text>
+          <TouchableOpacity mode="contained"   activeOpacity={0.8} style={styles.buttonStyle} onPress={login}>
+            <Text style={styles.textStyle}>Logout</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            mode="contained"
-            style={styles.buttonStyle}
-            onPress={prefs}
-          >
+          <TouchableOpacity mode="contained"  style={styles.buttonStyle} activeOpacity={0.8} onPress={prefs}>
             <Text style={styles.textStyle}>Preferences</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.viewStyle}>
-          <TouchableOpacity
-            mode="contained"
-            icon="cog"
-            style={styles.buttonStyle}
-            onPress={settings}
-          >
+          <TouchableOpacity mode="contained" style={styles.buttonStyle} activeOpacity={0.8} onPress={settings}>
             <Text style={styles.textStyle}>Settings</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            mode="contained"
-            style={styles.buttonStyle}
-            onPress={schedule}
-          >
+          <TouchableOpacity mode="contained" style={styles.buttonStyle} activeOpacity={0.8} onPress={schedule}>
             <Text style={styles.textStyle}>Schedule</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.viewStyle}>
-          <TouchableOpacity
-            mode="contained"
-            style={styles.buttonStyle}
-            onPress={Input}
-          >
+          <TouchableOpacity mode="contained" style={styles.buttonStyle} activeOpacity={0.8} onPress={Input}>
             <Text style={styles.textStyle}>Class Input</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            mode="contained"
-            style={styles.buttonStyle}
-            onPress={ApiLister}
-          >
-            <Text style={styles.textStyle}>Dynamic checklist List</Text>
+          <TouchableOpacity mode="contained" style={styles.buttonStyle} activeOpacity={0.8} onPress={ApiLister}>
+            <Text style={styles.textStyle}>API checklist example</Text> 
           </TouchableOpacity>
         </View>
         <View style={styles.viewStyle}>
-          <TouchableOpacity
-            mode="contained"
-            style={styles.buttonStyle}
-            onPress={ApiTester}
-          >
+          <TouchableOpacity mode="contained" style={styles.buttonStyle} activeOpacity={0.8} onPress={ApiTester}>
             <Text style={styles.textStyle}>APi test</Text>
           </TouchableOpacity>
         </View>
@@ -125,5 +86,6 @@ const WelcomeScreenFun = ({ navigation }) => {
     </SafeAreaView>
   );
 };
+
 
 export default WelcomeScreenFun;
