@@ -1,58 +1,71 @@
 import React from "react";
-import { SafeAreaView, View, Text, StyleSheet } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import { Button, Card, TextInput } from "react-native-paper";
+import styles from "../Style";
 
+/** This method is what displays the screen for this page
+ * Inputs: Navigation class (allowing for the page to navigate to other pages)
+ * Outputs: An array of buttons that allow for the user to press them and move to other screens
+ */
 const PreferenceFun = ({ navigation }) => {
-  const login = () => navigation.navigate("Login");
+  /**This function navigates the user to the Classes Can Teach page */
   const ClassesCT = () => navigation.navigate("Classes Can Teach");
+  /**This function navigates the user to the Classes Preferred Teach page */
   const ClassesPT = () => navigation.navigate("Classes Preferred Teach");
+  /**This function navigates the user to the Times Unable To Teach page */
   const TimesCT = () => navigation.navigate("Times Unable To Teach");
-  const DaysPT = () => navigation.navigate("Days Prefered Teach");
+  /**This function navigates the user to the Days Preferred To Teach page */
+  const DaysPT = () => navigation.navigate("Days Prefered To Teach");
 
   return (
     <SafeAreaView style={styles.container}>
-      <Card style={styles.cardStyle}>
-        <Card.Title title="Preference Screen" />
-      </Card>
-      <Button style={styles.buttonStyle} onPress={ClassesCT}>
-        Classes Can Teach
-      </Button>
-      <Button style={styles.buttonStyle} onPress={ClassesPT}>
-        Classes Preffered To Teach
-      </Button>
-      <Button style={styles.buttonStyle} onPress={TimesCT}>
-        Times Unable To Teach
-      </Button>
-      <Button style={styles.buttonStyle} onPress={DaysPT}>
-        Days Preferred Teach
-      </Button>
+      <View style={styles.scrollview}>
+        <View style={styles.viewStyle}>
+          <TouchableOpacity
+            mode="contained"
+            activeOpacity={0.8}
+            style={styles.buttonStyle}
+            onPress={ClassesCT}
+          >
+            <Text style={styles.textStyle}>Classes Can Teach</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            mode="contained"
+            activeOpacity={0.8}
+            style={styles.buttonStyle}
+            onPress={ClassesPT}
+          >
+            <Text style={styles.textStyle}>Classes Preferred To Teach</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.viewStyle}>
+          <TouchableOpacity
+            mode="contained"
+            activeOpacity={0.8}
+            style={styles.buttonStyle}
+            onPress={TimesCT}
+          >
+            <Text style={styles.textStyle}>Times Unable To Teach</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            mode="contained"
+            activeOpacity={0.8}
+            style={styles.buttonStyle}
+            onPress={DaysPT}
+          >
+            <Text style={styles.textStyle}>Days Prefered To Teach</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-  },
-  cardStyle: {
-    backgroundColor: "powderblue",
-  },
-  buttonStyle: {
-    backgroundColor: "silver",
-  },
-  title: {
-    marginTop: 16,
-    paddingVertical: 8,
-    borderWidth: 4,
-    borderColor: "#20232a",
-    borderRadius: 6,
-    backgroundColor: "#61dafb",
-    color: "#20232a",
-    textAlign: "center",
-    fontSize: 30,
-    fontWeight: "bold",
-  },
-});
 
 export default PreferenceFun;
