@@ -6,7 +6,7 @@ const PreferenceFun = ({ navigation }) => {
   const login = () => navigation.navigate("Login");
   const ClassesCT = () => navigation.navigate("Classes Can Teach");
   const ClassesPT = () => navigation.navigate("Classes Preferred Teach");
-  const TimesCT = () => navigation.navigate("Times Cant Teach");
+  const TimesCT = () => navigation.navigate("Times Unable To Teach");
   const DaysPT = () => navigation.navigate("Days Prefered Teach");
 
   return (
@@ -21,7 +21,7 @@ const PreferenceFun = ({ navigation }) => {
         Classes Preffered To Teach
       </Button>
       <Button style={styles.buttonStyle} onPress={TimesCT}>
-        Times Cant Teach
+        Times Unable To Teach
       </Button>
       <Button style={styles.buttonStyle} onPress={DaysPT}>
         Days Preferred Teach
@@ -56,4 +56,3 @@ const styles = StyleSheet.create({
 });
 
 export default PreferenceFun;
-
