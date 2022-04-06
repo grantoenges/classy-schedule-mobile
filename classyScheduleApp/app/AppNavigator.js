@@ -38,7 +38,7 @@ const AppNavigator = () => (
       <Screen name="Classes Can Teach" component={ClassesCTFun} />
       <Screen name="Classes Preferred Teach" component={ClassesPTFun} />
       <Screen name="Times Unable To Teach" component={TimesCTFun} />
-      <Screen name="Days Prefered To Teach" component={DaysPrefFun} />
+      <Screen name="Days Prefered Teach" component={DaysPrefFun} />
       <Screen name="Class Input" component={ClassInputFun} />
       <Screen name="Api Test" component={Apites} />
       <Screen name="Api List" component={ApiList} />
