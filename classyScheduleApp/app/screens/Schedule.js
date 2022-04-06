@@ -14,11 +14,15 @@ const ScheduleFun = () =>{
     { 'start': '2022-04-15 13:35:00', 'duration': '01:00:00', 'note': 'Teach computer graphics' },
     { 'start': '2022-04-14 13:35:00', 'duration': '02:00:00', 'note': 'Intro to cisc lab' },
     { 'start': '2022-04-16 13:35:00', 'duration': '01:00:00', 'note': 'Read Sawins angry emails' },
+    { 'start': '2022-04-16 15:35:00', 'duration': '01:00:00', 'note': 'Read Sawins angry emails' },
+    { 'start': '2022-04-16 17:35:00', 'duration': '01:00:00', 'note': 'Read Sawins angry emails' },
+    { 'start': '2022-04-16 18:35:00', 'duration': '01:00:00', 'note': 'Even MORE of Sawins angry emails' },
+
   ]
  
   return (
     <View style={styless.container}>
-      <WeeklyCalendar events={sampleEvents} style={{ height: 750 }} themeColor='#7F46C7' selected='2022-04-11'/>
+      <WeeklyCalendar events={sampleEvents} style={{ height: '100%' }} themeColor='#7F46C7' selected='2022-04-11'/>
     </View>
   );
 }
