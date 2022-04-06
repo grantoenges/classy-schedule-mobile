@@ -238,7 +238,6 @@ const TimesCTFun = ({ navigation }) => {
             }}
           />
         </View>
-        <Button>Save Day Preferences</Button>
       </ScrollView>
     </SafeAreaView>
   );
