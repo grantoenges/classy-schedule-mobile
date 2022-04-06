@@ -39,13 +39,13 @@ export default StyleSheet.create({
     buttonStyle: {
         width: "100%",
         height: "100%",
-        minWidth: window.width*.4,
+        minWidth: screen.width*.4,
         minHeight: screen.height*.18,
-        maxWidth: window.width*.45,
+        maxWidth: screen.width*.45,
         maxHeight: screen.height*.25,
         textAlign: "center",
-        //backgroundColor: "#6200ed",
-        backgroundColor: "#9400D3",
+        backgroundColor: "#6200ed",
+        //backgroundColor: "#9400D3",
         borderRadius: 20,
         borderWidth: 1,
         borderColor: "white",
@@ -95,6 +95,9 @@ export default StyleSheet.create({
     buttonStyleT:{
         backgroundColor :"silver"
     },
+    scheduleHeight: {
+        height: screen.height * .82
+    }
 });
 
 
