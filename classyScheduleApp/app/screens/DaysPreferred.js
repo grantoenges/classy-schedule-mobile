@@ -17,7 +17,8 @@ const DaysPrefFun = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Card style={styles.cardStyle}>
-        <Card.Title title="Days Preferred to Teach" />
+        
+        <Text style={styles.title}>Days Preferred to Teach</Text>
       </Card>
 
       <View>

@@ -19,10 +19,10 @@ const ScheduleFun = () =>{
 
     
   ]
- 
+  //"#7F46C7" original schedule color
   return (
     <View style={styless.container}>
-      <WeeklyCalendar events={sampleEvents} style={styles.scheduleHeight} themeColor='#7F46C7' selected='2022-04-11'/>
+      <WeeklyCalendar events={sampleEvents} style={styles.scheduleHeight} themeColor='#6200ed' selected='2022-04-11'/>
     </View>
   );
 }

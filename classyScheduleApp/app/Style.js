@@ -27,11 +27,11 @@ export default StyleSheet.create({
         
     },
     tinyLogo:{
-        width: 150,
-        height: 150,
+        width: screen.width*.5,
+        height: screen.height*.25,
         marginTop: 10,
         alignItems: "center",
-        marginTop: "30%",
+        marginTop: "25%",
     },
     cardStyleWelcome: {
         backgroundColor: "grey",
@@ -45,7 +45,7 @@ export default StyleSheet.create({
         maxHeight: screen.height*.25,
         textAlign: "center",
         backgroundColor: "#6200ed",
-        //backgroundColor: "#9400D3",
+        //backgroundColor: "#7F46C7",
         borderRadius: 20,
         borderWidth: 1,
         borderColor: "white",
@@ -76,21 +76,18 @@ export default StyleSheet.create({
     },
     cardStyle: {
     backgroundColor: "powderblue",
+    margin: 10,
     },
     label: {
     color: "black",
     },
     title: {
-    marginTop: 16,
-    paddingVertical: 8,
-    borderWidth: 4,
-    borderColor: "#20232a",
-    borderRadius: 6,
-    backgroundColor: "#61dafb",
+    margin: 6,
     color: "#20232a",
     textAlign: "center",
-    fontSize: 30,
-    fontWeight: "bold",
+    fontSize: 20,
+    fontWeight: "600",
+    flexWrap: "wrap",
     },
     buttonStyleT:{
         backgroundColor :"silver"
