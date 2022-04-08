@@ -1,9 +1,19 @@
 import React from "react";
-import { SafeAreaView, View, Text,Image, StyleSheet, TouchableOpacity, Alert, ScrollView } from "react-native";
+
+import {
+  SafeAreaView,
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Alert,
+  ScrollView,
+} from "react-native";
 import { Button, Card, TextInput, TouchableRipple } from "react-native-paper";
 import { MyComponent } from "./Shake";
-import RNShake from 'react-native-shake';
-import styles from '../Style'
+import RNShake from "react-native-shake";
+import styles from "../Style";
 
 /** This method is what displays the screen for this page
  * Inputs: Navigation class (allowing for the page to navigate to other pages)
@@ -25,8 +35,8 @@ const WelcomeScreenFun = ({ navigation }) => {
   const ApiTester = () => navigation.navigate("Api Test");
   const ApiLister = () => navigation.navigate("Api List");
 
-//Color for react native button text is #6200ed
-//Might need to change textFamily for android in textStyle
+  //Color for react native button text is #6200ed
+  //Might need to change textFamily for android in textStyle
 
  
  //const MyComponent = () => {}
@@ -47,44 +57,76 @@ const WelcomeScreenFun = ({ navigation }) => {
   
   return (
     <SafeAreaView style={styles.container}>
-      
       <View style={styles.scrollview}>
         <View style={styles.viewStyle}>
-          <TouchableOpacity mode="contained"   activeOpacity={0.8} style={styles.buttonStyle} onPress={login}>
+          <TouchableOpacity
+            mode="contained"
+            activeOpacity={0.8}
+            style={styles.buttonStyle}
+            onPress={login}
+          >
             <Text style={styles.textStyle}>Logout</Text>
           </TouchableOpacity>
-          <TouchableOpacity mode="contained"  style={styles.buttonStyle} activeOpacity={0.8} onPress={prefs}>
+          <TouchableOpacity
+            mode="contained"
+            style={styles.buttonStyle}
+            activeOpacity={0.8}
+            onPress={prefs}
+          >
             <Text style={styles.textStyle}>Preferences</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.viewStyle}>
-          <TouchableOpacity mode="contained" style={styles.buttonStyle} activeOpacity={0.8} onPress={settings}>
+          <TouchableOpacity
+            mode="contained"
+            style={styles.buttonStyle}
+            activeOpacity={0.8}
+            onPress={settings}
+          >
             <Text style={styles.textStyle}>Settings</Text>
           </TouchableOpacity>
-          <TouchableOpacity mode="contained" style={styles.buttonStyle} activeOpacity={0.8} onPress={schedule}>
+          <TouchableOpacity
+            mode="contained"
+            style={styles.buttonStyle}
+            activeOpacity={0.8}
+            onPress={schedule}
+          >
             <Text style={styles.textStyle}>Schedule</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.viewStyle}>
-          <TouchableOpacity mode="contained" style={styles.buttonStyle} activeOpacity={0.8} onPress={Input}>
+          <TouchableOpacity
+            mode="contained"
+            style={styles.buttonStyle}
+            activeOpacity={0.8}
+            onPress={Input}
+          >
             <Text style={styles.textStyle}>Class Input</Text>
           </TouchableOpacity>
-          <TouchableOpacity mode="contained" style={styles.buttonStyle} activeOpacity={0.8} onPress={ApiLister}>
-            <Text style={styles.textStyle}>API checklist example</Text> 
+          <TouchableOpacity
+            mode="contained"
+            style={styles.buttonStyle}
+            activeOpacity={0.8}
+            onPress={ApiLister}
+          >
+            <Text style={styles.textStyle}>API checklist example</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.viewStyle}>
-          <TouchableOpacity mode="contained" style={styles.buttonStyle} activeOpacity={0.8} onPress={ApiTester}>
+          <TouchableOpacity
+            mode="contained"
+            style={styles.buttonStyle}
+            activeOpacity={0.8}
+            onPress={ApiTester}
+          >
             <Text style={styles.textStyle}>APi test</Text>
           </TouchableOpacity>
         </View>
       </View>
-      
     </SafeAreaView>
   );
 };
-
 
 export default WelcomeScreenFun;

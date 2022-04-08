@@ -3,7 +3,7 @@ import { useState } from "react";
 import { SafeAreaView, View, StyleSheet, Alert } from "react-native";
 import { Button, Card, Checkbox, Text } from "react-native-paper";
 
-import styles from '../Style'
+import styles from "../Style";
 
 // DaysPrefFun creates useState objects for each possible day of the week
 // it then creates the page view, containing title and checkboxes for each day of the week
@@ -17,16 +17,26 @@ const DaysPrefFun = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Card style={styles.cardStyle}>
-        <Card.Title title="Days Preferred to Teach" />
+        
+        <Text style={styles.title}>Days Preferred to Teach</Text>
       </Card>
+
       <View>
-        <Text>Monday is {mondayChecked ? "True" : "False"}</Text>
-        <Text>Tuesday is {tuesdayChecked ? "True" : "False"}</Text>
-        <Text>Wednesday is {wednesdayChecked ? "True" : "False"}</Text>
-        <Text>Thursday is {thursdayChecked ? "True" : "False"}</Text>
-        <Text>Friday is {fridayChecked ? "True" : "False"}</Text>
-      </View>
-      <View>
+        <Button
+          onPress={() =>
+            Alert.alert(
+              JSON.stringify({
+                monday: mondayChecked,
+                tuesday: tuesdayChecked,
+                wednesday: wednesdayChecked,
+                thursday: thursdayChecked,
+                friday: fridayChecked,
+              })
+            )
+          }
+        >
+          Save Days Preferred to Teach
+        </Button>
         <Checkbox.Item
           labelStyle={styles.label}
           label="Monday"
@@ -98,25 +108,8 @@ const DaysPrefFun = ({ navigation }) => {
         Save Days Preferred to Teach
       </Button>
       */}
-
-      <Button
-        onPress={() =>
-          Alert.alert(
-            JSON.stringify({
-              monday: mondayChecked,
-              tuesday: tuesdayChecked,
-              wednesday: wednesdayChecked,
-              thursday: thursdayChecked,
-              friday: fridayChecked,
-            })
-          )
-        }
-      >
-        Save Days Preferred to Teach JSON ALERT
-      </Button>
     </SafeAreaView>
   );
 };
 
 export default DaysPrefFun;
-
