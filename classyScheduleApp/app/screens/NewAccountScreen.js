@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SafeAreaView, View,Text } from 'react-native';
+import { SafeAreaView, View,Text, Image } from 'react-native';
 import {Button, TextInput} from 'react-native-paper'
 import styles from '../Style'
 
@@ -112,10 +112,16 @@ const NewAccountFunc = ({navigation}) => {
         secureTextEntry={true}
         onChangeText={(passConf) => confirmPass(passConf, password.value)}
       />
+      <Button icon="account-plus" mode="contained" onPress={onPressed}>Create Account</Button>
         <Button onPress={login}>Navigate to Welcome</Button>
         {/* Create account button */}
-        <Button onPress={onPressed}>Create Account</Button>
-
+        
+        <View style = {styles.centerPage}>
+      <Image
+        style={styles.tinyLogo}
+        source={require('../assets/ClassyLogoSquare.png')}
+      />
+      </View>
     </SafeAreaView>
   );
 }

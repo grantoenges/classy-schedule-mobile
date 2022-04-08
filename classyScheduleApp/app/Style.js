@@ -27,7 +27,7 @@ export default StyleSheet.create({
         
     },
     tinyLogo:{
-        width: screen.width*.5,
+        width: screen.width*.6,
         height: screen.height*.25,
         marginTop: 10,
         alignItems: "center",

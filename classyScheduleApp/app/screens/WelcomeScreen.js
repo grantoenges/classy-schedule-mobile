@@ -55,6 +55,7 @@ const WelcomeScreenFun = ({ navigation }) => {
 
   MyComponent();
 
+  
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.scrollview}>

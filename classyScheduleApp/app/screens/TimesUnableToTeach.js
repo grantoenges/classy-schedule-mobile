@@ -34,6 +34,7 @@ const TimesCTFun = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
+      <Button mode="contained" onPress={()=>{console.log()}}>Save Preferences</Button>
         <Card style={styles.cardStyle}>
           <Text style={styles.title}>Time Of Day Preferred To Teach</Text>
         </Card>
@@ -85,7 +86,7 @@ const TimesCTFun = ({ navigation }) => {
         </View>
 
         <Card style={styles.cardStyle}>
-          <Text style={styles.title}>3 Days A Week Times Unable To Teach</Text>
+          <Card.Title title="3 Days a Week unable to Teach" />
         </Card>
 
         <View>
@@ -157,7 +158,7 @@ const TimesCTFun = ({ navigation }) => {
         </View>
 
         <Card style={styles.cardStyle}>
-          <Text style={styles.title}>2 Days A Week Times Unable To Teach</Text>
+          <Card.Title title="2 Days a Week unable to Teach" />
         </Card>
       
         <View>
@@ -238,7 +239,7 @@ const TimesCTFun = ({ navigation }) => {
             }}
           />
         </View>
-        <Button>Save Day Preferences</Button>
+        <Button mode="contained" onPress={()=>{console.log()}} >Save Preferences</Button>
       </ScrollView>
     </SafeAreaView>
   );

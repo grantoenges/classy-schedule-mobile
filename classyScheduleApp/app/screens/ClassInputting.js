@@ -15,9 +15,8 @@ const ClassInputFun = () => {
     /** This use state is used for the storage of the classes integer number. */
     const [classNumber, setClassNum] = useState();
 
-    const [classCredits, setClassCredits] = useState();
-
     const [classCapacity, setClassCapacity] = useState();
+    const [classCredits, setClassCredits] = useState();
 
     /** This method use is to store a given value into one predetermined location into the devices memory.
      *   Inputs: value (should be integer but can be anything)
@@ -61,10 +60,11 @@ const ClassInputFun = () => {
               <Picker.Item label="Computer Science" value="CISC" />
               <Picker.Item label="Statistics" value="STAT" />
             </Picker>
-            <TextInput  onChangeText={(classNumber) => setClassNum(classNumber)} label={'Class number'}></TextInput>
-            <TextInput onChangeText={(classTitle) => setClassTitle(classTitle)} label={'Class Title'}></TextInput>
-            <TextInput onChangeText={(classCapacity) => setClassCapacity(classCapacity)} label={'Class Capacity'}></TextInput>
-            <TextInput defaultValue='4' collapsable={true} onChangeText={(classCredits) => setClassCredits(classCredits)} label={'Class Credits'}></TextInput>
+            <TextInput keyboardType="numeric" maxLength={4} onChangeText={(classNumber) => setClassNum(classNumber)} label={'Class Number'}></TextInput>
+            <TextInput maxLength={30}multiline={false} onChangeText={(classTitle) => setClassTitle(classTitle)} label={'Class Title'}></TextInput>
+            <TextInput keyboardType='numeric' maxLength={4} onChangeText={(classCapacity) => setClassCapacity(classCapacity)} label={'Capacity'}></TextInput>
+            <TextInput keyboardType='numeric' maxLength={2} defaultValue='4' onChangeText={(classCredits) => setClassCredits(classCredits)} label={'Credits'}></TextInput>
+
             <Button mode="contained" onPress={() => storeData(selectedLanguage)} >save data </Button>
             {/*<Button onPress={getstate}>retreive data </Button>*/}
         </Card>

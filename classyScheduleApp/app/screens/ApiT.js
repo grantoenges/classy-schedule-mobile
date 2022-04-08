@@ -5,16 +5,46 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
 
 
  const ApiList = () => {
-  global.auth = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s';
+  global.auth = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDk0NTA0NDgsImV4cCI6MTY1MDA1NTI0OCwiaWF0IjoxNjQ5NDUwNDQ4fQ.OoPrpvgpbItWR-m_SSq-SqunbLWPSLd2nuBQZldBjGg';
 
   /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
   const [isLoading, setLoading] = useState(true);
-  const [dummy, setDummy] = React.useState(false);
+  const [dummy, setDummy] = useState(false);
+  //const [auth, setAuth] = useState('');
+
+  
+
 
   /*This usestate variable is used as the json data obtained from the api calls storage location*/
   const [data, setData] = useState([]);
   const [dataT, setDataT] = useState([]);
 
+
+  const getAuth = async () => {
+    try {
+      setLoading(true);
+     const response = await fetch('https://capstonedbapi.azurewebsites.net/Users/authenticate', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: 'test',
+        password: 'test'
+      })
+    });
+     const json = await response.json();
+     console.log(json.token);
+     //setAuth(json.token);
+     //console.log(dataT);
+     //setData(json);
+     } catch (error) {
+     console.error(error);
+   } finally {
+     setLoading(false);
+   }
+ }
   /*
   getJson's purpose is to make a call to the API point and set our usestate variable to the data that 
   should be returned while also updating the isLoading variable to reflect the loading status 
@@ -38,7 +68,7 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
         },
         });
       const json = await response.json();
-      console.log(json);
+      //console.log(json);
 
         setDataT((dataT) => [
           ...dataT,
@@ -62,6 +92,7 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
   /*useEffect is a react native hook that allows us to get to using our usestate variables and allowing
   for the dynamic rendering of that data onto the screen. This useeffect for example calls our getJson method */
   useEffect(() => {
+    getAuth();
     getJson();
   }, []);
 
