@@ -38,21 +38,22 @@ const WelcomeScreenFun = ({ navigation }) => {
   //Color for react native button text is #6200ed
   //Might need to change textFamily for android in textStyle
 
- 
- //const MyComponent = () => {}
-  //MyComponent();
+  const MyComponent = () => {
+    React.useEffect(() => {
+      const subscription = RNShake.addListener(() => {
+        // Your code here...
+        console.log("shook");
+      });
 
-  React.useEffect(() => {
-    const subscription = RNShake.addListener(() => {
-      // Your code here...
-      console.log("shaken");
-    })
-    return () => {
-      // Your code here...
-      console.log("Not shaken");
-      subscription.remove();
-    }
-  }, []);
+      return () => {
+        // Your code here...
+        console.log("Not ");
+        //subscription.remove()
+      };
+    }, []);
+  };
+
+  MyComponent();
 
   
   return (
