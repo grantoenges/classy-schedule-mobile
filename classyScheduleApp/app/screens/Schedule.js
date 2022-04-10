@@ -4,7 +4,12 @@ import {Button, Card, TextInput} from 'react-native-paper'
 import styles from '../Style'
 import WeeklyCalendar from 'react-native-weekly-calendar';
  
+
+/*This method is used to fetch and to display a users schedule to them.
+It should set the day to the current day, having the calandar sync with the current day.
+*/
 const ScheduleFun = () =>{
+  //This current iteration of the app cannot fetch a users schedule just yet so we have just made a sample version of a schedule for testing.
   const sampleEvents = [
     { 'start': '2022-04-11 10:15:00', 'duration':  '01:00:00', 'note': 'Teach Intro to Cisc' },
     { 'start': '2022-04-13 10:15:00', 'duration': '01:00:00', 'note': 'Teach Intro to Cisc' },

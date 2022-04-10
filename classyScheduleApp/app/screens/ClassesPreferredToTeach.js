@@ -35,7 +35,8 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
         });
       const json = await response.json();
       console.log(json);
-
+      
+      /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
         setDataT((dataT) => [
           ...dataT,
           ...json.map(({class_num,dept_id, class_name, capacity, credits}) => ({

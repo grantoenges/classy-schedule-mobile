@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   SafeAreaView,
   View,
@@ -33,11 +32,13 @@ const WelcomeScreenFun = ({ navigation }) => {
   const Input = () => navigation.navigate("Class Input");
   /**This function navigates the user to the Api test page */
   const ApiTester = () => navigation.navigate("Api Test");
+  /**This function navigates the user to the Api list page */
   const ApiLister = () => navigation.navigate("Api List");
 
   //Color for react native button text is #6200ed
   //Might need to change textFamily for android in textStyle
 
+  //This is where the shake work/testing/failure is happening
   const MyComponent = () => {
     React.useEffect(() => {
       const subscription = RNShake.addListener(() => {
@@ -69,8 +70,6 @@ const WelcomeScreenFun = ({ navigation }) => {
   const ScheduleLongClick = () => {
     alert('Brings the user to the schedule page where they can see their schedule.');
   };
-
-  MyComponent();
 
   
   return (

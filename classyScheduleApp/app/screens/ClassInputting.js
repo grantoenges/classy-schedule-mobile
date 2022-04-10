@@ -14,8 +14,9 @@ const ClassInputFun = () => {
     const [classTitle, setClassTitle] = useState();
     /** This use state is used for the storage of the classes integer number. */
     const [classNumber, setClassNum] = useState();
-
+    /** This use state is used for the storage of the classes integer capacity. */
     const [classCapacity, setClassCapacity] = useState();
+        /** This use state is used for the storage of the classes integer credits value. */
     const [classCredits, setClassCredits] = useState();
 
     /** This method use is to store a given value into one predetermined location into the devices memory.
