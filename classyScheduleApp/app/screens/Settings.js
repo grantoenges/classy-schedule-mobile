@@ -12,7 +12,7 @@ const SettingFun = ({navigation}) => {
     <SafeAreaView style={styles.container}>
         <Card >
             <Card.Title title= "Settings Will go here"/>
-            <Button onPress={()=>{console.log('hh'); setDummy(!dummy);}} mode={dummy? "contained":'outlined'} >{dummy? mode:pmode}</Button>
+            <Button loading={dummy} onPress={()=>{console.log('hh'); setDummy(!dummy);}} mode={dummy? "contained":'outlined'} >{dummy? mode:pmode}</Button>
         </Card>
     </SafeAreaView>
  );
