@@ -53,6 +53,23 @@ const WelcomeScreenFun = ({ navigation }) => {
     }, []);
   };
 
+  //handlers for Long Click help alerts
+  const LoginLongClick = () => {
+    alert('Logs the user out and returns the user to the login page.');
+  };
+
+  const PrefsLongClick = () => {
+    alert('Brings the user to the preferences menu where they can select their preferences.');
+  };
+
+  const SettingsLongClick = () => {
+    alert('Brings the user to the settings menu where they can adjust their settings.');
+  };
+
+  const ScheduleLongClick = () => {
+    alert('Brings the user to the schedule page where they can see their schedule.');
+  };
+
   MyComponent();
 
   
@@ -65,6 +82,7 @@ const WelcomeScreenFun = ({ navigation }) => {
             activeOpacity={0.8}
             style={styles.buttonStyle}
             onPress={login}
+            onLongPress={LoginLongClick}
           >
             <Text style={styles.textStyle}>Logout</Text>
           </TouchableOpacity>
@@ -73,6 +91,7 @@ const WelcomeScreenFun = ({ navigation }) => {
             style={styles.buttonStyle}
             activeOpacity={0.8}
             onPress={prefs}
+            onLongPress={PrefsLongClick}
           >
             <Text style={styles.textStyle}>Preferences</Text>
           </TouchableOpacity>
@@ -84,6 +103,7 @@ const WelcomeScreenFun = ({ navigation }) => {
             style={styles.buttonStyle}
             activeOpacity={0.8}
             onPress={settings}
+            onLongPress={SettingsLongClick}
           >
             <Text style={styles.textStyle}>Settings</Text>
           </TouchableOpacity>
@@ -92,6 +112,7 @@ const WelcomeScreenFun = ({ navigation }) => {
             style={styles.buttonStyle}
             activeOpacity={0.8}
             onPress={schedule}
+            onLongPress={ScheduleLongClick}
           >
             <Text style={styles.textStyle}>Schedule</Text>
           </TouchableOpacity>
