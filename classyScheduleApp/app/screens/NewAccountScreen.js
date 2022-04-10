@@ -19,6 +19,9 @@ function emailValidator(email) {
 //Function that checks if password is valid and strong
 function passwordValidator(password) {
   //if str does not contain a capital letter return false
+  if(password.length == 0) {
+    return "Error, password cannot be blank."
+  }
   if(!/[A-Z]/.test(password)){
     return "Error, password does not contain capital letter.";
   }
