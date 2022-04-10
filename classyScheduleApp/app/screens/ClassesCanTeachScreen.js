@@ -63,7 +63,7 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
 
   /*This return is where the actual react part of the app is made and the  */
   return (
-    <View style={{ flex: 1, padding: 24 }}>      
+    <View style={{ flex: 1, padding: 24 }}>
       <Button onPress={()=>{console.log('h')}} mode="contained" >Save Data</Button>
       {isLoading ? <Button loading ={true} mode="outlined"> Loading</Button> : (
         <FlatList
