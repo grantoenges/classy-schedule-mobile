@@ -1,3 +1,7 @@
+/*  Universal styling page, all styling on pages is located here
+    Styling is adjusted by window and screen dimensions so that
+    styling will look nice on multiple devices of varying sizes
+*/
 import { StyleSheet, Dimensions } from 'react-native';
 
 const window = Dimensions.get("window");
