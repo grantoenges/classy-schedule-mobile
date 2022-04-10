@@ -15,7 +15,7 @@ import styles from "../Style";
  */
 const PreferenceFun = ({ navigation }) => {
   const ClassesCT = () => navigation.navigate("Classes Can Teach");
-  const ClassesPT = () => navigation.navigate("Classes Preferred Teach");
+  const ClassesPT = () => navigation.navigate("Classes Preferred To Teach");
   const TimesCT = () => navigation.navigate("Times Unable To Teach");
   const DaysPT = () => navigation.navigate("Days Prefered To Teach");
 
