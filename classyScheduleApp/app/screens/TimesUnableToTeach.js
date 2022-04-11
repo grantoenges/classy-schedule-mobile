@@ -86,7 +86,7 @@ const TimesCTFun = ({ navigation }) => {
         </View>
 
         <Card style={styles.cardStyle}>
-          <Card.Title title="3 Days a Week unable to Teach" />
+          <Text style={styles.title}>3 Days a Week unable to Teach</Text>
         </Card>
 
         <View>
@@ -158,7 +158,7 @@ const TimesCTFun = ({ navigation }) => {
         </View>
 
         <Card style={styles.cardStyle}>
-          <Card.Title title="2 Days a Week unable to Teach" />
+          <Text style={styles.title}>2 Days a Week unable to Teach</Text>
         </Card>
       
         <View>
