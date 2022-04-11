@@ -1,25 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Text, ScrollView, View, StyleSheet } from 'react-native';
 import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
-//import Apites from './apiTest';
 
 
  const ApiList = () => {
+   /*This is a temporary variable that holds the current authorization token to allow for connections with the database */
   global.auth = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDk0NTA0NDgsImV4cCI6MTY1MDA1NTI0OCwiaWF0IjoxNjQ5NDUwNDQ4fQ.OoPrpvgpbItWR-m_SSq-SqunbLWPSLd2nuBQZldBjGg';
 
   /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
   const [isLoading, setLoading] = useState(true);
+  /*This usestate variable is used as a flag, keeping track of the when the page has information changed and will need a reload of the data*/
   const [dummy, setDummy] = useState(false);
-  //const [auth, setAuth] = useState('');
 
   
 
 
   /*This usestate variable is used as the json data obtained from the api calls storage location*/
-  const [data, setData] = useState([]);
+  //const [data, setData] = useState([]);
   const [dataT, setDataT] = useState([]);
 
-
+  /*
+  getAuth's purpose is to make a call to the API point that obtains our authorization token 
+    ------------------
+    Inputs: None
+    Outputs: None (But the auth token from the API should be sent to the console logs)
+    -------------------
+   If for some reason the API call fails then the try catch block should be aware of that failure and 
+   should send that error to the console.log 
+  */
   const getAuth = async () => {
     try {
       setLoading(true);
@@ -45,6 +53,7 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
      setLoading(false);
    }
  }
+
   /*
   getJson's purpose is to make a call to the API point and set our usestate variable to the data that 
   should be returned while also updating the isLoading variable to reflect the loading status 
@@ -68,8 +77,7 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
         },
         });
       const json = await response.json();
-      //console.log(json);
-
+      /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
         setDataT((dataT) => [
           ...dataT,
           ...json.map(({class_num,dept_id, class_name, capacity, credits}) => ({
@@ -96,7 +104,7 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
     getJson();
   }, []);
 
-  /*This return is where the actual react part of the app is made and the  */
+  /*This return is where the actual react part of the app is made and the data will be displayed for the user  */
   return (
     <View style={{ flex: 1, padding: 24 }}>      
       <Button onPress={()=>{console.log('hh')}} mode="contained" >Save Data</Button>
