@@ -86,7 +86,7 @@ export default StyleSheet.create({
     color: "black",
     },
     title: {
-    margin: 6,
+    margin: 8,
     color: "#20232a",
     textAlign: "center",
     fontSize: 20,
