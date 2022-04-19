@@ -84,11 +84,16 @@ export default StyleSheet.create({
         marginHorizontal: 10,
     },
     modalStyle: {
-        borderRadius: 20,
+        
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5,
-        margin: 0
+        margin: 0,
+        
+        alignItems:"center",
+        textAlign: "center",
+        backgroundColor: 'rgba(52, 52, 52, 0.25)',
+    
     },
     
     viewStyle: {
