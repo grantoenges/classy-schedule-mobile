@@ -58,24 +58,13 @@ const WelcomeScreenFun = ({ navigation }) => {
     }, []);
   };
 
-  //handlers for Long Click help alerts
-  const LoginLongClick = () => {
-    alert('Logs the user out and returns the user to the login page.');
-  };
 
-  const PrefsLongClick = () => {
-    alert('Brings the user to the preferences menu where they can select their preferences.');
-  };
-
-  const SettingsLongClick = () => {
-    alert('Brings the user to the settings menu where they can adjust their settings.');
-  };
-
-  const ScheduleLongClick = () => {
-    alert('Brings the user to the schedule page where they can see their schedule.');
-  };
-
-  const [modalVisible, setModalVisible] = useState(false);
+  
+//Use state constants for modal visibility
+  const [loginModal, setModalLogin] = useState(false);
+  const [prefModal, setModalPref] = useState(false);
+  const [settingsModal, setModalSettings] = useState(false);
+  const [scheduleModal, setModalSchedule] = useState(false);
   
   return (
     <SafeAreaView style={styles.container}>
@@ -86,23 +75,22 @@ const WelcomeScreenFun = ({ navigation }) => {
             activeOpacity={0.8}
             style={styles.buttonStyle}
             onPress={login}
-            onLongPress={() => setModalVisible(true)}
+            onLongPress={() => setModalLogin(true)}
           >
             <Text style={styles.textStyle}>Logout</Text>
             <Modal
               contentContainerStyle={styles.modalStyle}
               animationType="slide"
               transparent={true}
-              visible={modalVisible}
+              visible={loginModal}
               onDismiss={() => {
-                setModalVisible(!modalVisible);
+                setModalLogin(!loginModal);
               }}
-              
             >
             
             <Pressable
               style={styles.modalStyle}
-              onPress={() => setModalVisible(!modalVisible)}
+              onPress={() => setModalLogin(!loginModal)}
               >
                 <Text style={styles.modalText}>Logs the user out and returns the user to the login page.</Text>
             </Pressable>
@@ -115,9 +103,27 @@ const WelcomeScreenFun = ({ navigation }) => {
             style={styles.buttonStyle}
             activeOpacity={0.8}
             onPress={prefs}
-            onLongPress={PrefsLongClick}
+            onLongPress={() => setModalPref(true)}
           >
             <Text style={styles.textStyle}>Preferences</Text>
+            <Modal
+              contentContainerStyle={styles.modalStyle}
+              animationType="slide"
+              transparent={true}
+              visible={prefModal}
+              onDismiss={() => {
+                setModalVisible(!prefModal);
+              }}
+            >
+            
+            <Pressable
+              style={styles.modalStyle}
+              onPress={() => setModalPref(!prefModal)}
+              >
+                <Text style={styles.modalText}>Brings the user to the preferences menu where they can select their preferences.</Text>
+            </Pressable>
+            
+            </Modal>
           </TouchableOpacity>
         </View>
 
@@ -127,18 +133,54 @@ const WelcomeScreenFun = ({ navigation }) => {
             style={styles.buttonStyle}
             activeOpacity={0.8}
             onPress={settings}
-            onLongPress={SettingsLongClick}
+            onLongPress={() => setModalSettings(true)}
           >
             <Text style={styles.textStyle}>Settings</Text>
+            <Modal
+              contentContainerStyle={styles.modalStyle}
+              animationType="slide"
+              transparent={true}
+              visible={settingsModal}
+              onDismiss={() => {
+                setModalSettings(!settingsModal);
+              }}
+            >
+            
+            <Pressable
+              style={styles.modalStyle}
+              onPress={() => setModalSettings(!settingsModal)}
+              >
+                <Text style={styles.modalText}>Brings the user to the settings menu where they can adjust their settings.</Text>
+            </Pressable>
+            
+            </Modal>
           </TouchableOpacity>
           <TouchableOpacity
             mode="contained"
             style={styles.buttonStyle}
             activeOpacity={0.8}
             onPress={schedule}
-            onLongPress={ScheduleLongClick}
+            onLongPress={() => setModalSchedule(true)}
           >
             <Text style={styles.textStyle}>Schedule</Text>
+            <Modal
+              contentContainerStyle={styles.modalStyle}
+              animationType="slide"
+              transparent={true}
+              visible={scheduleModal}
+              onDismiss={() => {
+                setModalSchedule(!scheduleModal);
+              }}
+            >
+            
+            <Pressable
+              style={styles.modalStyle}
+              onPress={() => setModalSchedule(!scheduleModal)}
+              >
+                <Text style={styles.modalText}>Brings the user to the schedule page where they can see their schedule.</Text>
+            </Pressable>
+            
+            </Modal>
           </TouchableOpacity>
         </View>
 
