@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import {
   SafeAreaView,
   View,
@@ -8,8 +9,9 @@ import {
   TouchableOpacity,
   Alert,
   ScrollView,
+  Pressable,
 } from "react-native";
-import { Button, Card, TextInput, TouchableRipple } from "react-native-paper";
+import { Button, Card, TextInput, TouchableRipple, Modal} from "react-native-paper";
 import { MyComponent } from "./Shake";
 import RNShake from "react-native-shake";
 import styles from "../Style";
@@ -71,6 +73,7 @@ const WelcomeScreenFun = ({ navigation }) => {
     alert('Brings the user to the schedule page where they can see their schedule.');
   };
 
+  const [modalVisible, setModalVisible] = useState(false);
   
   return (
     <SafeAreaView style={styles.container}>
@@ -81,10 +84,30 @@ const WelcomeScreenFun = ({ navigation }) => {
             activeOpacity={0.8}
             style={styles.buttonStyle}
             onPress={login}
-            onLongPress={LoginLongClick}
+            onLongPress={() => setModalVisible(true)}
           >
             <Text style={styles.textStyle}>Logout</Text>
+            <Modal
+              contentContainerStyle={styles.modalStyle}
+              animationType="slide"
+              transparent={true}
+              visible={modalVisible}
+              onDismiss={() => {
+                setModalVisible(!modalVisible);
+              }}
+              
+            >
+            
+            <Pressable
+              style={styles.modalStyle}
+              onPress={() => setModalVisible(!modalVisible)}
+              >
+                <Text style={styles.modalText}>Logs the user out and returns the user to the login page.</Text>
+            </Pressable>
+            
+            </Modal>
           </TouchableOpacity>
+
           <TouchableOpacity
             mode="contained"
             style={styles.buttonStyle}

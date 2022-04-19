@@ -72,6 +72,24 @@ export default StyleSheet.create({
         marginVertical: 9,
         marginHorizontal: 16,
     },
+    modalText: {
+        color: "white",
+        justifyContent: "flex-start",
+        alignItems:"flex-start",
+        textAlign: "center",
+        fontWeight: '500',
+        fontSize: 12,
+        fontFamily: "System",
+        textTransform: "uppercase",
+        marginHorizontal: 10,
+    },
+    modalStyle: {
+        borderRadius: 20,
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+        margin: 0
+    },
     
     viewStyle: {
         flex:-1,
