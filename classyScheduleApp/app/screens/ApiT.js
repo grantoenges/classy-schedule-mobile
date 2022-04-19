@@ -5,7 +5,7 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
 
 export const getAuthorization = async () => {
   try {
-   const response = await fetch('https://capstonedbapi.azurewebsites.net/Users/authenticate', {
+   const response = await fetch('https://capstonedbapi.azurewebsites.net/user-management/authenticate', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -124,7 +124,7 @@ export const getAuthorization = async () => {
   /*useEffect is a react native hook that allows us to get to using our usestate variables and allowing
   for the dynamic rendering of that data onto the screen. This useeffect for example calls our getJson method */
   useEffect(() => {
-    getAuth();
+    //getAuth();
     getJson();
   }, []);
 
