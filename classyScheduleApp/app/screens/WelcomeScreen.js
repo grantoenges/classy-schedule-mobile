@@ -22,6 +22,8 @@ import styles from "../Style";
  */
 
 const WelcomeScreenFun = ({ navigation }) => {
+  global.auth = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDk0NTA0NDgsImV4cCI6MTY1MDA1NTI0OCwiaWF0IjoxNjQ5NDUwNDQ4fQ.OoPrpvgpbItWR-m_SSq-SqunbLWPSLd2nuBQZldBjGg';
+
   /**This function navigates the user to the Login page */
   const login = () => navigation.navigate("Login");
   /**This function navigates the user to the Preferences page */
