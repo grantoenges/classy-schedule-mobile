@@ -3,6 +3,29 @@ import { ActivityIndicator, FlatList, Text, ScrollView, View, StyleSheet } from 
 import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
 
 
+export const getAuthorization = async () => {
+  try {
+   const response = await fetch('https://capstonedbapi.azurewebsites.net/Users/authenticate', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      username: 'test',
+      password: 'test'
+    })
+  });
+   const json = await response.json();
+   //console.log(json.token);
+   //console.log('json', json.token);
+   return json.token;
+   } catch (error) {
+   console.error(error);
+ } finally {
+ }
+}
+
  const ApiList = () => {
    /*This is a temporary variable that holds the current authorization token to allow for connections with the database */
   global.auth = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDk0NTA0NDgsImV4cCI6MTY1MDA1NTI0OCwiaWF0IjoxNjQ5NDUwNDQ4fQ.OoPrpvgpbItWR-m_SSq-SqunbLWPSLd2nuBQZldBjGg';
@@ -68,12 +91,13 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
      try {
        setLoading(true);
        setDataT([]);
+       console.log('Current auth token', AUTH);
       const response = await fetch('https://capstonedbapi.azurewebsites.net/class-management/classes', {
         method: 'GET',
         /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
         headers: { 
           //Will need the authorization to be a saved string each time we sign in
-          'Authorization': auth//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
+          'Authorization': AUTH._W//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
         },
         });
       const json = await response.json();

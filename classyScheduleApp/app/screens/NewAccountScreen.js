@@ -72,6 +72,7 @@ const NewAccountFunc = ({navigation}) => {
     const [password, setPassword] = useState({ value: "", error: "" });
     const [repass, confirmPass] = useState({value:"", error: ""});
     const onPressed = () => {
+      console.log(AUTH._W);
       const emailError = emailValidator(email.value);
       const passwordError = passwordValidator(password.value);
       const samePass = passwordSame(repass, password.value)

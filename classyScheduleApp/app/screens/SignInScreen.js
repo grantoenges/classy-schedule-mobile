@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { Button, TextInput, Title } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {getApi} from "../databaseService";
+import { getAuthorization } from "./ApiT";
 import styles from '../Style'
 
 
@@ -36,6 +36,9 @@ function passwordValidator(password) {
 }
 
 const SignInScreenFun = ({ navigation }) => {
+  global.AUTH = getAuthorization();
+  //global.AUTH = AUTH._W
+  console.log('func call', AUTH._W);
   const newAccount = () => navigation.navigate("New Account");
   let value = value || "";
 
@@ -45,6 +48,7 @@ const SignInScreenFun = ({ navigation }) => {
 
   //When login is pressed this will run error checkers and navigation if no problems
   const onLoginPressed = () => {
+
     setLoading(true);
     const emailError = emailValidator(email.value);
     const passwordError = passwordValidator(password.value);
