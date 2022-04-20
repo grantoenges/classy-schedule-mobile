@@ -112,7 +112,7 @@ const WelcomeScreenFun = ({ navigation }) => {
               transparent={true}
               visible={prefModal}
               onDismiss={() => {
-                setModalVisible(!prefModal);
+                setModalPref(!prefModal);
               }}
             >
             
