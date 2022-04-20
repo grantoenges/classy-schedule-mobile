@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { Button, TextInput, Title } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getAuthorization } from "./ApiT";
+import { getAuthorization } from "../databaseService";
 import styles from '../Style'
 
 
