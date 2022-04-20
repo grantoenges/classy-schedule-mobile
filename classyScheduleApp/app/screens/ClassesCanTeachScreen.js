@@ -43,7 +43,6 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
             dept_id,
             class_name,
             checked:false
-          //
           })),
         ]);
       //console.log(dataT);
