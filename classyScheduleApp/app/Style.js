@@ -2,11 +2,21 @@
     Styling is adjusted by window and screen dimensions so that
     styling will look nice on multiple devices of varying sizes
 */
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Appearance } from 'react-native';
 
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
 
+const colorScheme = Appearance.getColorScheme()
+//const style = null;
+
+if(colorScheme === 'dark') {
+    
+
+} else {
+    
+
+}
 
 export default StyleSheet.create({
     container: {
