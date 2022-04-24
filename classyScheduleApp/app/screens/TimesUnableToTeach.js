@@ -1,8 +1,15 @@
 import React from "react";
 import { useState } from "react";
-import { SafeAreaView, View, Text, StyleSheet, ScrollView } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Alert,
+} from "react-native";
 import { Button, Card, TextInput, Checkbox } from "react-native-paper";
-import styles from '../Style'
+import styles from "../Style";
 
 // TimesCTFun creates useState objects for each teaching time group and each possible teaching time slot
 // it then creates the page view, containing title and checkboxes for each time group and each possible teaching time slot
@@ -27,11 +34,25 @@ const TimesCTFun = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
+      <Button mode="contained" onPress={()=>{console.log()}}>Save Preferences</Button>
         <Card style={styles.cardStyle}>
-          <Card.Title title="Time of Day Preferred to Teach" />
+          <Text style={styles.title}>Time Of Day Preferred To Teach</Text>
         </Card>
 
         <View>
+          <Button
+            onPress={() =>
+              Alert.alert(
+                JSON.stringify({
+                  morning: morningChecked,
+                  afternoon: afternoonChecked,
+                  evening: eveningChecked,
+                })
+              )
+            }
+          >
+            Save Time of Day Preferences
+          </Button>
           <Checkbox.Item
             labelStyle={styles.label}
             label="Morning"
@@ -65,10 +86,25 @@ const TimesCTFun = ({ navigation }) => {
         </View>
 
         <Card style={styles.cardStyle}>
-          <Card.Title title="3 Days a Week Time Slots Can't Teach" />
+          <Text style={styles.title}>3 Days a Week unable to Teach</Text>
         </Card>
 
         <View>
+          <Button
+            onPress={() =>
+              Alert.alert(
+                JSON.stringify({
+                  slot1: threeDay1Checked,
+                  slot2: threeDay2Checked,
+                  slot3: threeDay3Checked,
+                  slot4: threeDay4Checked,
+                  slot5: threeDay5Checked,
+                })
+              )
+            }
+          >
+            Save 3 Days A Week Times Unable To Teach
+          </Button>
           <Checkbox.Item
             labelStyle={styles.label}
             label="8:15am-9:20am"
@@ -122,10 +158,26 @@ const TimesCTFun = ({ navigation }) => {
         </View>
 
         <Card style={styles.cardStyle}>
-          <Card.Title title="2 Days a Week Time Slots Can't Teach" />
+          <Text style={styles.title}>2 Days a Week unable to Teach</Text>
         </Card>
-
+      
         <View>
+          <Button
+            onPress={() =>
+              Alert.alert(
+                JSON.stringify({
+                  slot1: twoDay1Checked,
+                  slot2: twoDay2Checked,
+                  slot3: twoDay3Checked,
+                  slot4: twoDay4Checked,
+                  slot5: twoDay5Checked,
+                  slot6: twoDay6Checked,
+                })
+              )
+            }
+          >
+            Save 2 Days A Week Times Unable To Teach
+          </Button>
           <Checkbox.Item
             labelStyle={styles.label}
             label="8:00am-9:40am"
@@ -187,11 +239,10 @@ const TimesCTFun = ({ navigation }) => {
             }}
           />
         </View>
-        <Button>Save Day Preferences</Button>
+        <Button mode="contained" onPress={()=>{console.log()}} >Save Preferences</Button>
       </ScrollView>
     </SafeAreaView>
   );
 };
-
 
 export default TimesCTFun;

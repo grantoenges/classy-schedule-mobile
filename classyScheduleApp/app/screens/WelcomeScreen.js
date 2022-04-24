@@ -1,10 +1,20 @@
 import React from "react";
-import { SafeAreaView, View, Text,Image, StyleSheet, TouchableOpacity, Alert } from "react-native";
-import { Button, Card, TextInput, TouchableRipple } from "react-native-paper";
+import { useState } from "react";
+import {
+  SafeAreaView,
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Alert,
+  ScrollView,
+  Pressable,
+} from "react-native";
+import { Button, Card, TextInput, TouchableRipple, Modal} from "react-native-paper";
 import { MyComponent } from "./Shake";
-import RNShake from 'react-native-shake';
-
-import styles from '../Style'
+import RNShake from "react-native-shake";
+import styles from "../Style";
 
 /** This method is what displays the screen for this page
  * Inputs: Navigation class (allowing for the page to navigate to other pages)
@@ -12,6 +22,8 @@ import styles from '../Style'
  */
 
 const WelcomeScreenFun = ({ navigation }) => {
+  global.auth = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDk0NTA0NDgsImV4cCI6MTY1MDA1NTI0OCwiaWF0IjoxNjQ5NDUwNDQ4fQ.OoPrpvgpbItWR-m_SSq-SqunbLWPSLd2nuBQZldBjGg';
+
   /**This function navigates the user to the Login page */
   const login = () => navigation.navigate("Login");
   /**This function navigates the user to the Preferences page */
@@ -24,74 +36,185 @@ const WelcomeScreenFun = ({ navigation }) => {
   const Input = () => navigation.navigate("Class Input");
   /**This function navigates the user to the Api test page */
   const ApiTester = () => navigation.navigate("Api Test");
+  /**This function navigates the user to the Api list page */
   const ApiLister = () => navigation.navigate("Api List");
 
-//Color for react native button text is #6200ed
-//Might need to change textFamily for android in textStyle
+  //Color for react native button text is #6200ed
+  //Might need to change textFamily for android in textStyle
 
- 
- const MyComponent = () => {
-  React.useEffect(() => {
-    const subscription = RNShake.addListener(() => {
-      // Your code here...
-      console.log("shook")
-    })
+  //This is where the shake work/testing/failure is happening
+  const MyComponent = () => {
+    React.useEffect(() => {
+      const subscription = RNShake.addListener(() => {
+        // Your code here...
+        console.log("shook");
+      });
 
-    return () => {
-      // Your code here...
-      console.log('Not ')
-      //subscription.remove()
-    }
-  }, [])
-}
+      return () => {
+        // Your code here...
+        console.log("Not ");
+        //subscription.remove()
+      };
+    }, []);
+  };
 
 
-MyComponent();
-
+  
+//Use state constants for modal visibility
+  const [loginModal, setModalLogin] = useState(false);
+  const [prefModal, setModalPref] = useState(false);
+  const [settingsModal, setModalSettings] = useState(false);
+  const [scheduleModal, setModalSchedule] = useState(false);
+  
   return (
     <SafeAreaView style={styles.container}>
-      <Card style={styles.cardStyleWelcome}>
-        <Card.Title title="Navigation Screen" />
-      </Card>
-
-      <View style={styles.centerPageMargin}>
+      <View style={styles.scrollview}>
         <View style={styles.viewStyle}>
-          <TouchableOpacity mode="contained"  style={styles.buttonStyle} onPress={login}>
-            <Text style={styles.textStyle}>Login</Text>
+          <TouchableOpacity
+            mode="contained"
+            activeOpacity={0.8}
+            style={styles.buttonStyle}
+            onPress={login}
+            onLongPress={() => setModalLogin(true)}
+          >
+            <Text style={styles.textStyle}>Logout</Text>
+            <Modal
+              contentContainerStyle={styles.modalStyle}
+              animationType="slide"
+              transparent={true}
+              visible={loginModal}
+              onDismiss={() => {
+                setModalLogin(!loginModal);
+              }}
+            >
+            
+            <Pressable
+              style={styles.modalStyle}
+              onPress={() => setModalLogin(!loginModal)}
+              >
+                <Text style={styles.modalText}>Logs the user out and returns the user to the login page.</Text>
+            </Pressable>
+            
+            </Modal>
           </TouchableOpacity>
-          <TouchableOpacity mode="contained"  style={styles.buttonStyle} onPress={prefs}>
+
+          <TouchableOpacity
+            mode="contained"
+            style={styles.buttonStyle}
+            activeOpacity={0.8}
+            onPress={prefs}
+            onLongPress={() => setModalPref(true)}
+          >
             <Text style={styles.textStyle}>Preferences</Text>
+            <Modal
+              contentContainerStyle={styles.modalStyle}
+              animationType="slide"
+              transparent={true}
+              visible={prefModal}
+              onDismiss={() => {
+                setModalPref(!prefModal);
+              }}
+            >
+            
+            <Pressable
+              style={styles.modalStyle}
+              onPress={() => setModalPref(!prefModal)}
+              >
+                <Text style={styles.modalText}>Brings the user to the preferences menu where they can select their preferences.</Text>
+            </Pressable>
+            
+            </Modal>
           </TouchableOpacity>
         </View>
 
         <View style={styles.viewStyle}>
-          <TouchableOpacity mode="contained"  icon="cog" style={styles.buttonStyle} onPress={settings}>
+          <TouchableOpacity
+            mode="contained"
+            style={styles.buttonStyle}
+            activeOpacity={0.8}
+            onPress={settings}
+            onLongPress={() => setModalSettings(true)}
+          >
             <Text style={styles.textStyle}>Settings</Text>
+            <Modal
+              contentContainerStyle={styles.modalStyle}
+              animationType="slide"
+              transparent={true}
+              visible={settingsModal}
+              onDismiss={() => {
+                setModalSettings(!settingsModal);
+              }}
+            >
+            
+            <Pressable
+              style={styles.modalStyle}
+              onPress={() => setModalSettings(!settingsModal)}
+              >
+                <Text style={styles.modalText}>Brings the user to the settings menu where they can adjust their settings.</Text>
+            </Pressable>
+            
+            </Modal>
           </TouchableOpacity>
-          <TouchableOpacity mode="contained" style={styles.buttonStyle} onPress={schedule}>
+          <TouchableOpacity
+            mode="contained"
+            style={styles.buttonStyle}
+            activeOpacity={0.8}
+            onPress={schedule}
+            onLongPress={() => setModalSchedule(true)}
+          >
             <Text style={styles.textStyle}>Schedule</Text>
+            <Modal
+              contentContainerStyle={styles.modalStyle}
+              animationType="slide"
+              transparent={true}
+              visible={scheduleModal}
+              onDismiss={() => {
+                setModalSchedule(!scheduleModal);
+              }}
+            >
+            
+            <Pressable
+              style={styles.modalStyle}
+              onPress={() => setModalSchedule(!scheduleModal)}
+              >
+                <Text style={styles.modalText}>Brings the user to the schedule page where they can see their schedule.</Text>
+            </Pressable>
+            
+            </Modal>
           </TouchableOpacity>
         </View>
 
         <View style={styles.viewStyle}>
-          <TouchableOpacity mode="contained" style={styles.buttonStyle} onPress={Input}>
+          <TouchableOpacity
+            mode="contained"
+            style={styles.buttonStyle}
+            activeOpacity={0.8}
+            onPress={Input}
+          >
             <Text style={styles.textStyle}>Class Input</Text>
           </TouchableOpacity>
-          <TouchableOpacity mode="contained" style={styles.buttonStyle} onPress={ApiLister}>
-            <Text style={styles.textStyle}>Dynamic checklist List</Text> 
+          <TouchableOpacity
+            mode="contained"
+            style={styles.buttonStyle}
+            activeOpacity={0.8}
+            onPress={ApiLister}
+          >
+            <Text style={styles.textStyle}>API checklist example</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.viewStyle}>
-          <TouchableOpacity mode="contained" style={styles.buttonStyle} onPress={ApiTester}>
+          <TouchableOpacity
+            mode="contained"
+            style={styles.buttonStyle}
+            activeOpacity={0.8}
+            onPress={ApiTester}
+          >
             <Text style={styles.textStyle}>APi test</Text>
           </TouchableOpacity>
         </View>
       </View>
-      
     </SafeAreaView>
   );
 };
-
-
 
 export default WelcomeScreenFun;

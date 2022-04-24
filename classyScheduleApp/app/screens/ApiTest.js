@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Text, View, StyleSheet } from 'react-native';
+import { ActivityIndicator, FlatList, Text, ScrollView, View, StyleSheet } from 'react-native';
 import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
 
  const Apites = () => {
   /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
   const [isLoading, setLoading] = useState(true);
+  const [dummy, setDummy] = React.useState(false);
+
   /*This usestate variable is used as the json data obtained from the api calls storage location*/
   const [data, setData] = useState([]);
+  const [dataT, setDataT] = useState([
 
+  ]);
   /*
   getJson's purpose is to make a call to the API point and set our usestate variable to the data that 
   should be returned while also updating the isLoading variable to reflect the loading status 
@@ -20,19 +24,35 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
   */
   const getJson = async () => {
      try {
-      const response = await fetch('https://capstonedbapi.azurewebsites.net/department-management/departments', {
+       setLoading(true);
+       setDataT([]);
+      const response = await fetch('https://capstonedbapi.azurewebsites.net/class-management/classes', {
         method: 'GET',
         /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
         headers: { 
-            "Authorization": "test",
+          //Will need the authorization to be a saved string each time we sign in
+          'Authorization': AUTH._W
         },
         });
-      const json = await response.json();
-      console.log(json);
-      setData(json);
+        const json = await response.json();
+
+        setDataT((dataT) => [
+          ...dataT,
+          ...json.map(({class_num,dept_id, class_name, capacity, credits}) => ({
+            class_num,
+            dept_id,
+            class_name,
+            checked:false
+          //
+          })),
+        ]);
+      //console.log(dataT);
+      //setData(json);
       } catch (error) {
       console.error(error);
     } finally {
+
+      
       setLoading(false);
     }
   }
@@ -43,17 +63,19 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
     getJson();
   }, []);
 
-  /*This return is where the actual react part of the app is made and the  */
+  /*This return is where the actual react part of the app is made and the 
+  */
   return (
-    <View style={{ flex: 1, padding: 24 }}>
-      {isLoading ? <ActivityIndicator/> : (
+    <View style={{ flex: 1, padding: 24 }}>      
+      <Button onPress={()=>{console.log('hh')}} mode="contained" >Save Data</Button>
+      {isLoading ? <Button loading ={true} mode="outlined"> Loading</Button> : (
         <FlatList
-          data={data}
-          keyExtractor={({ id }, index) => (id,index)}
+          data={dataT}
+          keyExtractor={({ class_num }) => class_num}
           renderItem={({ item }) => (
-            <Text>{item.dept_name}</Text>
-          )}
-        />
+              <Checkbox.Item label={ item.dept_id + ": " + item.class_name} color="darkblue" uncheckedColor="black"status={item.checked? 'checked':'unchecked'} onPress={()=>{item.checked = !item.checked; setDummy(!dummy)}}/>
+            )}
+        />   
       )}
     </View>
   );

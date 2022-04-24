@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SafeAreaView, View,Text } from 'react-native';
+import { SafeAreaView, View,Text, Image } from 'react-native';
 import {Button, TextInput} from 'react-native-paper'
 import styles from '../Style'
 
@@ -19,6 +19,9 @@ function emailValidator(email) {
 //Function that checks if password is valid and strong
 function passwordValidator(password) {
   //if str does not contain a capital letter return false
+  if(password.length == 0) {
+    return "Error, password cannot be blank."
+  }
   if(!/[A-Z]/.test(password)){
     return "Error, password does not contain capital letter.";
   }
@@ -69,6 +72,7 @@ const NewAccountFunc = ({navigation}) => {
     const [password, setPassword] = useState({ value: "", error: "" });
     const [repass, confirmPass] = useState({value:"", error: ""});
     const onPressed = () => {
+      console.log(AUTH._W);
       const emailError = emailValidator(email.value);
       const passwordError = passwordValidator(password.value);
       const samePass = passwordSame(repass, password.value)
@@ -112,10 +116,16 @@ const NewAccountFunc = ({navigation}) => {
         secureTextEntry={true}
         onChangeText={(passConf) => confirmPass(passConf, password.value)}
       />
+      <Button icon="account-plus" mode="contained" onPress={onPressed}>Create Account</Button>
         <Button onPress={login}>Navigate to Welcome</Button>
         {/* Create account button */}
-        <Button onPress={onPressed}>Create Account</Button>
-
+        
+        <View style = {styles.centerPage}>
+      <Image
+        style={styles.tinyLogo}
+        source={require('../assets/ClassyLogoSquare.png')}
+      />
+      </View>
     </SafeAreaView>
   );
 }

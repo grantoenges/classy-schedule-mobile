@@ -1,9 +1,34 @@
-import { StyleSheet } from 'react-native';
+/*  Universal styling page, all styling on pages is located here
+    Styling is adjusted by window and screen dimensions so that
+    styling will look nice on multiple devices of varying sizes
+*/
+import { StyleSheet, Dimensions, Appearance } from 'react-native';
+
+const window = Dimensions.get("window");
+const screen = Dimensions.get("screen");
+
+const colorScheme = Appearance.getColorScheme()
+//const style = null;
+
+if(colorScheme === 'dark') {
+    
+
+} else {
+    
+
+}
 
 export default StyleSheet.create({
     container: {
         flex: 1,
         padding: 24,
+        
+    },
+    scrollview: {
+        flex: 2,
+        alignItems:"center",
+        marginHorizontal: 0,
+        //paddingBottom: bottomNavigatorBarHeight
     },
     centerPage: {
         justifyContent: "center",
@@ -13,13 +38,14 @@ export default StyleSheet.create({
         justifyContent: "center",
         alignItems:"center",
         marginTop: 40,
+        
     },
     tinyLogo:{
-        width: 150,
-        height: 150,
+        width: screen.width*.6,
+        height: screen.height*.25,
         marginTop: 10,
         alignItems: "center",
-        marginTop: "30%",
+        marginTop: "25%",
     },
     cardStyleWelcome: {
         backgroundColor: "grey",
@@ -27,17 +53,19 @@ export default StyleSheet.create({
     buttonStyle: {
         width: "100%",
         height: "100%",
-        minWidth: 150,
-        minHeight: 150,
-        maxWidth:175,
-        maxHeight: 175,
+        minWidth: screen.width*.4,
+        minHeight: screen.height*.18,
+        maxWidth: screen.width*.45,
+        maxHeight: screen.height*.25,
         textAlign: "center",
         backgroundColor: "#6200ed",
+        //backgroundColor: "#7F46C7",
         borderRadius: 20,
         borderWidth: 1,
         borderColor: "white",
-        elevation: 20,
+        elevation: 10,
         justifyContent: "center",
+        
     },
     textStyle: {
         
@@ -54,6 +82,29 @@ export default StyleSheet.create({
         marginVertical: 9,
         marginHorizontal: 16,
     },
+    modalText: {
+        color: "white",
+        justifyContent: "flex-start",
+        alignItems:"flex-start",
+        textAlign: "center",
+        fontWeight: '500',
+        fontSize: 12,
+        fontFamily: "System",
+        textTransform: "uppercase",
+        marginHorizontal: 10,
+    },
+    modalStyle: {
+        
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+        margin: 0,
+        
+        alignItems:"center",
+        textAlign: "center",
+        backgroundColor: 'rgba(52, 52, 52, 0.25)',
+    
+    },
     
     viewStyle: {
         flex:-1,
@@ -62,25 +113,25 @@ export default StyleSheet.create({
     },
     cardStyle: {
     backgroundColor: "powderblue",
+    margin: 10,
     },
     label: {
     color: "black",
     },
     title: {
-    marginTop: 16,
-    paddingVertical: 8,
-    borderWidth: 4,
-    borderColor: "#20232a",
-    borderRadius: 6,
-    backgroundColor: "#61dafb",
+    margin: 8,
     color: "#20232a",
     textAlign: "center",
-    fontSize: 30,
-    fontWeight: "bold",
+    fontSize: 20,
+    fontWeight: "600",
+    flexWrap: "wrap",
     },
     buttonStyleT:{
         backgroundColor :"silver"
     },
+    scheduleHeight: {
+        height: screen.height * .82
+    }
 });
 
 
