@@ -14,17 +14,36 @@ import DaysPrefFun from "./screens/DaysPreferred";
 import ClassInputFun from "./screens/ClassInputting";
 import Apites from "./screens/ApiTest";
 import ApiList from "./screens/ApiT";
+import { Appearance } from 'react-native';
 /*This variable creates a stack navigator, this is our holder that allows for 
 screens to be navigated to from other screens as well as allowing for native use
 of the back button in order to navigate between them.
 */
 const { Navigator, Screen } = createStackNavigator();
+//const colorScheme = Appearance.getColorScheme();
+//const colorScheme = "dark"
+const colorScheme = Appearance.getColorScheme();
+//Maybe darktheme  #1F1A24 or #332940
+const darkTheme = "#1F1A24"
+const lightTheme = "#E1D9D1"
 
 /*This variable is what stores every page of the app. This is done as a way to allow for 
 any page of the app to be able to navigate to another page without issues (hopefully)*/
 const AppNavigator = () => (
   <NavigationContainer>
-    <Navigator initialRouteName="Login">
+    <Navigator initialRouteName="Login" 
+    screenOptions={
+      {headerStyle:{
+        backgroundColor: colorScheme==="dark" ? darkTheme : lightTheme,
+      },
+      headerTitleStyle: {
+        color: colorScheme==="dark" ? "grey" : "black"
+      },
+      }
+      
+    }
+
+    >
       <Screen
         name="Welcome"
         component={WelcomeScreenFun}

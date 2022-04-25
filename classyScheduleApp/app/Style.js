@@ -2,27 +2,62 @@
     Styling is adjusted by window and screen dimensions so that
     styling will look nice on multiple devices of varying sizes
 */
-import { StyleSheet, Dimensions, Appearance } from 'react-native';
+import { StyleSheet, Dimensions, Appearance} from 'react-native';
 
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
+//const colorScheme = 'dark'
+const colorScheme = Appearance.getColorScheme();
 
-const colorScheme = Appearance.getColorScheme()
-//const style = null;
-
-if(colorScheme === 'dark') {
-    
-
-} else {
-    
-
-}
+const darkTheme = "#1A1A1A"
+const lightTheme = "#FAFAFA"
 
 export default StyleSheet.create({
+    noPadContainer: {
+        flex: 1,
+        backgroundColor: colorScheme==="dark" ? darkTheme : lightTheme
+    },
     container: {
         flex: 1,
         padding: 24,
-        
+        backgroundColor: colorScheme==="dark" ? darkTheme : lightTheme
+    },
+    TextInput: {
+        backgroundColor: colorScheme==="dark" ? "grey" : "#FAFAFA",
+    },
+    overlay: {
+        flex: 2,
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        opacity: colorScheme==="dark" ? 0.7 : 1.0,
+        backgroundColor: colorScheme==="dark" ? 'black' : 'transparent',
+        width: window.width,
+        height: window.height,
+        alignItems:"center",
+        marginHorizontal: 0,
+    },
+    generalOverlay: {
+        flex: 1,
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        opacity: colorScheme==="dark" ? 0.7 : 1.0,
+        backgroundColor: colorScheme==="dark" ? 'black' : 'transparent',
+        width: window.width,
+        height: window.height,
+        marginHorizontal: 0,
+    },
+    generalButtonContained: {
+        //backgroundColor: "#6200ed"
+        backgroundColor: colorScheme==="dark" ? '#332940' : '#6200ed',
+        color: colorScheme==="dark" ? '#696969' : '#FAFAFA',
+    },
+    generalButton: {
+        color: colorScheme==="dark" ? '#696969' : '#FAFAFA',
+    },
+    generalText: {
+        color: colorScheme==="dark" ? '#696969' : 'black',
     },
     scrollview: {
         flex: 2,
@@ -58,11 +93,11 @@ export default StyleSheet.create({
         maxWidth: screen.width*.45,
         maxHeight: screen.height*.25,
         textAlign: "center",
-        backgroundColor: "#6200ed",
+        backgroundColor: colorScheme==="dark" ? '#332940' : '#6200ed',
         //backgroundColor: "#7F46C7",
         borderRadius: 20,
         borderWidth: 1,
-        borderColor: "white",
+        borderColor: colorScheme==="dark" ? '#696969' : 'white',
         elevation: 10,
         justifyContent: "center",
         
@@ -70,7 +105,7 @@ export default StyleSheet.create({
     textStyle: {
         
         //color: "#6200ed",
-        color: "white",
+        color: colorScheme==="dark" ? '#a1a1a1' : 'white',
         justifyContent: "center",
         alignItems:"center",
         textAlign: "center",

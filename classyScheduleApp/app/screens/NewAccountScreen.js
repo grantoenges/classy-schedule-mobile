@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SafeAreaView, View,Text, Image } from 'react-native';
+import { SafeAreaView, View,Text, Image, Appearance } from 'react-native';
 import {Button, TextInput} from 'react-native-paper'
 import styles from '../Style'
 
@@ -85,10 +85,16 @@ const NewAccountFunc = ({navigation}) => {
       }
     };
 
+    //const colorScheme = "dark";
+    const colorScheme = Appearance.getColorScheme();
+    let color = (colorScheme==="dark" ? "grey" : "white");
+    let color2 = (colorScheme==="dark" ? "grey" : "#6200ed");
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.noPadContainer}>
+      <View style={styles.generalOverlay}>
         {/* Email input field */}
         <TextInput
+        style={styles.TextInput}
         label= "Email"
         placeholderTextColor="#ABC"
         value={email.value}
@@ -97,9 +103,10 @@ const NewAccountFunc = ({navigation}) => {
         errorText={email.error}
         textContentType="emailAddress"
         keyboardType="email-address"
-      />
-      {/* Password input field */}
+        />
+        {/* Password input field */}
         <TextInput
+        style={styles.TextInput}
         label = "Password"
         placeholderTextColor="#ABC"
         value={password.value}
@@ -107,25 +114,28 @@ const NewAccountFunc = ({navigation}) => {
         onChangeText={(password) => setPassword({ value: password, error: "" })}
         error={!!password.error}
         errorText={password.error}
-      />
-      {/* Retype password input field */}
-      <TextInput
-        label = "Retype Password"
-        placeholderTextColor="#ABC"
-        value={repass.value}
-        secureTextEntry={true}
-        onChangeText={(passConf) => confirmPass(passConf, password.value)}
-      />
-      <Button icon="account-plus" mode="contained" onPress={onPressed}>Create Account</Button>
-        <Button onPress={login}>Navigate to Welcome</Button>
+        />
+        {/* Retype password input field */}
+        <TextInput
+          style={styles.TextInput}
+          label = "Retype Password"
+          placeholderTextColor="#ABC"
+          value={repass.value}
+          secureTextEntry={true}
+          onChangeText={(passConf) => confirmPass(passConf, password.value)}
+        />
         {/* Create account button */}
-        
+        <Button style={styles.generalButtonContained} color={color} icon="account-plus"  onPress={onPressed}>Create Account</Button>
+        <Button style={styles.generalButton} color={color2} onPress={login}>Navigate to Welcome</Button>
+          
         <View style = {styles.centerPage}>
-      <Image
-        style={styles.tinyLogo}
-        source={require('../assets/ClassyLogoSquare.png')}
-      />
+          <Image
+            style={styles.tinyLogo}
+            source={require('../assets/ClassyLogoSquare.png')}
+          />
+        </View>
       </View>
+        
     </SafeAreaView>
   );
 }

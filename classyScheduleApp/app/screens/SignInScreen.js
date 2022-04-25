@@ -7,6 +7,7 @@ import {
   Image,
   TouchableOpacity,
   Alert,
+  Appearance,
 } from "react-native";
 import { Button, TextInput, Title } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -70,11 +71,15 @@ const SignInScreenFun = ({ navigation }) => {
       // saving error
     }
   };  */}
-
+  //const colorScheme = "dark";
+  const colorScheme = Appearance.getColorScheme();
+  let color = (colorScheme==="dark" ? "grey" : "white");
+  let color2 = (colorScheme==="dark" ? "grey" : "#6200ed");
   
   return (
-    <SafeAreaView style={styles.back}>
-      {/* Email input field */}
+    <SafeAreaView style={styles.noPadContainer}>
+      <View style={styles.generalOverlay}>
+        {/* Email input field */}
       <TextInput
         style={styles.TextInput}
         label= "Email"
@@ -98,11 +103,12 @@ const SignInScreenFun = ({ navigation }) => {
         errorText={password.error}
       />
       {/* Login button */}
-      <Button loading ={isLoading} mode="contained" onPress={() => onLoginPressed()}>Login</Button>
-      <Button icon="account-plus"  onPress={newAccount}>Create Account</Button>
+      <Button style={styles.generalButtonContained} color= {color} loading ={isLoading} onPress={() => onLoginPressed()}>Login</Button>
+      {/* Account Creation */}
+      <Button style={styles.generalButton} color={color2} icon="account-plus"  onPress={newAccount}>Create Account</Button>
       {/* Forgot password */}
       <TouchableOpacity style={styles.centerPage} onPress={() => alert("Then remember it!")}>
-        <Text>Forgot Password?</Text>
+        <Text style={styles.generalText}>Forgot Password?</Text>
       </TouchableOpacity>
       <View style = {styles.centerPage}>
       <Image
@@ -110,6 +116,8 @@ const SignInScreenFun = ({ navigation }) => {
         source={require('../assets/ClassyLogoSquare.png')}
       />
       </View>
+      </View>
+      
     </SafeAreaView>
   );
 };
