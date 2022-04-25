@@ -39,7 +39,7 @@ function passwordValidator(password) {
 const SignInScreenFun = ({ navigation }) => {
   global.AUTH = getAuthorization();
   //global.AUTH = AUTH._W
-  console.log('func call', AUTH._W);
+  console.log('Auth', AUTH);
   const newAccount = () => navigation.navigate("New Account");
   let value = value || "";
 

@@ -1,6 +1,6 @@
 export const getAuthorization = async () => {
     try {
-     const response = await fetch('https://capstonedbapi.azurewebsites.net/user-management/authenticate', {
+     const response = await fetch('https://capstonedbapi.azurewebsites.net/user-management/users/authenticate', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
