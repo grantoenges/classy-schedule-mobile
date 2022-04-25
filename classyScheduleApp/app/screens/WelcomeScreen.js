@@ -68,12 +68,11 @@ const WelcomeScreenFun = ({ navigation }) => {
   
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.scrollview}>
+      <View style={styles.overlay}>
         <View style={styles.viewStyle}>
           <TouchableOpacity
-            mode="contained"
-            activeOpacity={0.8}
             style={styles.buttonStyle}
+            activeOpacity={0.8}
             onPress={login}
             onLongPress={() => setModalLogin(true)}
           >
