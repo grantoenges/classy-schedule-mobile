@@ -86,9 +86,8 @@ const NewAccountFunc = ({navigation}) => {
     };
 
     //const colorScheme = "dark";
-    const colorScheme = Appearance.getColorScheme();
-    let color = (colorScheme==="dark" ? "grey" : "white");
-    let color2 = (colorScheme==="dark" ? "grey" : "#6200ed");
+    let color = (COLORSCHEME[0]==="dark" ? "grey" : "white");
+    let color2 = (COLORSCHEME[0]==="dark" ? "grey" : "#6200ed");
   return (
     <SafeAreaView style={styles.noPadContainer}>
       <View style={styles.generalOverlay}>
