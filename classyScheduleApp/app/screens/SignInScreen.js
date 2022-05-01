@@ -1,6 +1,5 @@
 import React, { Component, useState } from "react";
 import {
-  StyleSheet,
   SafeAreaView,
   View,
   Text,
@@ -9,11 +8,10 @@ import {
   Alert,
   Appearance,
 } from "react-native";
-import { Button, TextInput, Title } from "react-native-paper";
+import { Button, TextInput, Title, useTheme} from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAuthorization } from "../databaseService";
 import styles from '../Style'
-
 
 //Function that validates email
 function emailValidator(email) {
@@ -42,10 +40,11 @@ const SignInScreenFun = ({ navigation }) => {
   console.log('Auth', AUTH);
   const newAccount = () => navigation.navigate("New Account");
   let value = value || "";
-
+  //let styles = COLORSCHEME[0] ==='dark' ? darkStyles : lightStyles;
   const [isLoading, setLoading] = useState(false);
   const [email, setEmail] = useState({ value: "", error: "" }); 
   const [password, setPassword] = useState({ value: "", error: "" });
+  
 
   //When login is pressed this will run error checkers and navigation if no problems
   const onLoginPressed = () => {
@@ -72,12 +71,10 @@ const SignInScreenFun = ({ navigation }) => {
     }
   };  */}
   //const colorScheme = "dark";
-  
-  let color = (COLORSCHEME[0]==="dark" ? "grey" : "white");
-  let color2 = (COLORSCHEME[0]==="dark" ? "grey" : "#6200ed");
+  const paperTheme = useTheme();
   
   return (
-    <SafeAreaView style={styles.noPadContainer}>
+    <SafeAreaView style={[styles.noPadContainer, {backgroundColor: paperTheme.colors.background}]}>
       <View style={styles.generalOverlay}>
         {/* Email input field */}
       <TextInput
@@ -103,12 +100,12 @@ const SignInScreenFun = ({ navigation }) => {
         errorText={password.error}
       />
       {/* Login button */}
-      <Button style={styles.generalButtonContained} color= {color} loading ={isLoading} onPress={() => onLoginPressed()}>Login</Button>
+      <Button mode="contained" style={styles.generalButtonContained}  loading ={isLoading} onPress={() => onLoginPressed()}>Login</Button>
       {/* Account Creation */}
-      <Button style={styles.generalButton} color={color2} icon="account-plus"  onPress={newAccount}>Create Account</Button>
+      <Button mode="contained" style={[styles.generalButton, {marginBottom: 5}]}  icon="account-plus"  onPress={newAccount}>Create Account</Button>
       {/* Forgot password */}
       <TouchableOpacity style={styles.centerPage} onPress={() => alert("Then remember it!")}>
-        <Text style={styles.generalText}>Forgot Password?</Text>
+        <Text style={{color: paperTheme.textStyle.color}}>Forgot Password?</Text>
       </TouchableOpacity>
       <View style = {styles.centerPage}>
       <Image
@@ -121,6 +118,5 @@ const SignInScreenFun = ({ navigation }) => {
     </SafeAreaView>
   );
 };
-
 
 export default SignInScreenFun;

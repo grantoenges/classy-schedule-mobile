@@ -2,37 +2,99 @@
     Styling is adjusted by window and screen dimensions so that
     styling will look nice on multiple devices of varying sizes
 */
+import React from 'react';
 import { StyleSheet, Dimensions, Appearance} from 'react-native';
-import React, { Component } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
-//const colorScheme = 'dark'
+//let pref = 'dark'
 let pref = Appearance.getColorScheme();
-global.COLORSCHEME = [pref];
+//global.COLORSCHEME = [pref];
 const darkTheme = "#1A1A1A"
 const lightTheme = "#FAFAFA"
 
+export const Context = React.createContext();
+/*export const ThemeContext = React.createContext({
+    theme: lightStyles,
+    toggle: () => {},
+});
+
+export const useTheme = () => React.useContext(ThemeContext);
+
+export const ThemeProvider= ({children}) => {
+    const [userTheme, setUserTheme] = React.useState('light' | 'dark');
+    const [theme, setTheme] = React.useState(
+        () => Appearance.getColorScheme() || 'light',
+    );
+
+    const contextValue = React.useMemo(
+        () => ((userTheme || theme) === 'dark' ? darkStyles : lightStyles),
+        [userTheme, theme],
+    );
+
+    const toggleTheme = React.useCallback(async () => {
+        const newTheme = (userTheme || theme) === 'light' ? 'dark' : 'light';
+        setUserTheme(newTheme);
+        await AsyncStorage.setItem('theme', newTheme);
+    }, [theme, userTheme]);
+
+    const restoreTheme = React.useCallback(async () => {
+        const _userTheme = await AsyncStorage.getItem('theme');
+        if (_userTheme) {
+        setUserTheme(_userTheme);
+        }
+    }, []);
+
+    React.useEffect(() => {
+        restoreTheme();
+    }, [restoreTheme]);
+
+    // listen for changes in user preference
+    React.useEffect(() => {
+        if (!userTheme) {
+            const subscription = Appearance.addChangeListener(({colorScheme}) => {
+                if (colorScheme) {
+                    setTheme(colorScheme);
+                }
+            });
+            return () => {
+                subscription.remove();
+            };
+        }
+    }, [userTheme]);
+
+    // render the theme
+    return (
+        <ThemeContext.Provider value={{theme: contextValue, toggle: toggleTheme}}>
+            {children}
+        
+        </ThemeContext.Provider>
+    );
+};
+
+*/
+//dark theme
 export default StyleSheet.create({
     noPadContainer: {
         flex: 1,
-        backgroundColor: COLORSCHEME[0]==="dark" ? darkTheme : lightTheme
+        //backgroundColor: COLORSCHEME[0]==="dark" ? darkTheme : lightTheme
     },
     container: {
         flex: 1,
         padding: 24,
-        backgroundColor: COLORSCHEME[0]==="dark" ? darkTheme : lightTheme
+        //backgroundColor: COLORSCHEME[0]==="dark" ? darkTheme : lightTheme
     },
     TextInput: {
-        backgroundColor: COLORSCHEME[0]==="dark" ? "grey" : "#FAFAFA",
+        //backgroundColor: COLORSCHEME[0]==="dark" ? "grey" : "#FAFAFA",
     },
     overlay: {
         flex: 2,
         position: 'absolute',
         left: 0,
         top: 0,
-        opacity: COLORSCHEME[0]==="dark" ? 0.7 : 1.0,
-        backgroundColor: COLORSCHEME[0]==="dark" ? 'black' : 'transparent',
+        //opacity: COLORSCHEME[0]==="dark" ? 0.7 : 1.0,
+        //backgroundColor: COLORSCHEME[0]==="dark" ? 'black' : 'transparent',
         width: window.width,
         height: window.height,
         alignItems:"center",
@@ -43,22 +105,22 @@ export default StyleSheet.create({
         position: 'absolute',
         left: 0,
         top: 0,
-        opacity: COLORSCHEME[0]==="dark" ? 0.7 : 1.0,
-        backgroundColor: COLORSCHEME[0]==="dark" ? 'black' : 'transparent',
+        //opacity: COLORSCHEME[0]==="dark" ? 0.7 : 1.0,
+        //backgroundColor: COLORSCHEME[0]==="dark" ? 'black' : 'transparent',
         width: window.width,
         height: window.height,
         marginHorizontal: 0,
     },
     generalButtonContained: {
         //backgroundColor: "#6200ed"
-        backgroundColor: COLORSCHEME[0]==="dark" ? '#332940' : '#6200ed',
-        color: COLORSCHEME[0]==="dark" ? '#696969' : '#FAFAFA',
+        //backgroundColor: COLORSCHEME[0]==="dark" ? '#332940' : '#6200ed',
+        //color: COLORSCHEME[0]==="dark" ? '#696969' : '#FAFAFA',
     },
     generalButton: {
-        color: COLORSCHEME[0]==="dark" ? '#696969' : '#FAFAFA',
+        //color: COLORSCHEME[0]==="dark" ? '#696969' : '#FAFAFA',
     },
     generalText: {
-        color: COLORSCHEME[0]==="dark" ? '#696969' : 'black',
+        //color: COLORSCHEME[0]==="dark" ? '#696969' : 'black',
     },
     scrollview: {
         flex: 2,
@@ -94,11 +156,11 @@ export default StyleSheet.create({
         maxWidth: screen.width*.45,
         maxHeight: screen.height*.25,
         textAlign: "center",
-        backgroundColor: COLORSCHEME[0]==="dark" ? '#332940' : '#6200ed',
+        //backgroundColor: COLORSCHEME[0]==="dark" ? '#332940' : '#6200ed',
         //backgroundColor: "#7F46C7",
         borderRadius: 20,
-        borderWidth: 1,
-        borderColor: COLORSCHEME[0]==="dark" ? '#696969' : 'white',
+        borderWidth: 0.75,
+        //borderColor: COLORSCHEME[0]==="dark" ? '#696969' : 'white',
         elevation: 10,
         justifyContent: "center",
         
@@ -106,7 +168,7 @@ export default StyleSheet.create({
     textStyle: {
         
         //color: "#6200ed",
-        color: COLORSCHEME[0]==="dark" ? '#a1a1a1' : 'white',
+        //color: COLORSCHEME[0]==="dark" ? '#a1a1a1' : 'white',
         justifyContent: "center",
         alignItems:"center",
         textAlign: "center",
@@ -169,5 +231,3 @@ export default StyleSheet.create({
         height: screen.height * .82
     }
 });
-
-
