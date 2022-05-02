@@ -22,10 +22,10 @@ of the back button in order to navigate between them.
 const { Navigator, Screen } = createStackNavigator();
 //const colorScheme = Appearance.getColorScheme();
 //const colorScheme = "dark"
-const colorScheme = Appearance.getColorScheme();
 //Maybe darktheme  #1F1A24 or #332940
 const darkTheme = "#1F1A24"
 const lightTheme = "#E1D9D1"
+
 
 /*This variable is what stores every page of the app. This is done as a way to allow for 
 any page of the app to be able to navigate to another page without issues (hopefully)*/
@@ -34,10 +34,10 @@ const AppNavigator = () => (
     <Navigator initialRouteName="Login" 
     screenOptions={
       {headerStyle:{
-        backgroundColor: colorScheme==="dark" ? darkTheme : lightTheme,
+        backgroundColor: COLORSCHEME[0]==="dark" ? darkTheme : lightTheme,
       },
       headerTitleStyle: {
-        color: colorScheme==="dark" ? "grey" : "black"
+        color: COLORSCHEME[0]==="dark" ? "grey" : "black"
       },
       }
       
