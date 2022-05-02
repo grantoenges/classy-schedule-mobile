@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { Button, TextInput, Title } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getAuthorization } from "../databaseService";
+import { getAuthorization, signIn } from "../databaseService";
 import styles from '../Style'
 
 
@@ -37,9 +37,8 @@ function passwordValidator(password) {
 }
 
 const SignInScreenFun = ({ navigation }) => {
-  global.AUTH = getAuthorization();
+  global.AUTH = signIn();
   //global.AUTH = AUTH._W
-  console.log('Auth', AUTH);
   const newAccount = () => navigation.navigate("New Account");
   let value = value || "";
 
@@ -59,8 +58,24 @@ const SignInScreenFun = ({ navigation }) => {
       alert(emailError + " " + passwordError);
       setLoading(false);
     } else {
-      setLoading(false);
-      navigation.navigate("Welcome");
+      //send sign in request 
+      global.TEMP = signIn(email.value, password.value).then((response) => {
+        console.log('response', response);
+        if(response.token){
+          //succesful login
+          console.log('succesful login');
+          global.AUTH = response.token;
+          global.USERNAME = response.username;
+          global.ROLE = response.user_role;
+          global.USERID = response.user_id;
+          setLoading(false);
+          navigation.navigate("Welcome")
+        } else {
+          //unsucessful login
+          alert(response.message);
+          setLoading(false);
+        }
+      });
     }
   };
   {/*
