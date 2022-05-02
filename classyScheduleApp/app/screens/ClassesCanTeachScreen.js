@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Text, ScrollView, View, StyleSheet } from 'react-native';
-import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
+import {Button, Card, Checkbox, TextInput, useTheme} from 'react-native-paper'
 
  const ClassesCTFun = () => {
+  const paperTheme = useTheme();
   /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
   const [isLoading, setLoading] = useState(true);
   const [dummy, setDummy] = React.useState(false);
@@ -62,7 +63,7 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
 
   /*This return is where the actual react part of the app is made and the  */
   return (
-    <View style={{ flex: 1, padding: 24 }}>
+    <View style={[styles.container, {backgroundColor: paperTheme.colors.background}]}>
       <Button onPress={()=>{console.log('h')}} mode="contained" >Save Data</Button>
       {isLoading ? <Button loading ={true} mode="outlined"> Loading</Button> : (
         <FlatList

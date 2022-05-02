@@ -11,7 +11,7 @@ import {
   ScrollView,
   Pressable,
 } from "react-native";
-import { Button, Card, TextInput, TouchableRipple, Modal} from "react-native-paper";
+import { Button, Card, TextInput, TouchableRipple, Modal, useTheme} from "react-native-paper";
 import { MyComponent } from "./Shake";
 import RNShake from "react-native-shake";
 import styles from "../Style";
@@ -23,7 +23,9 @@ import styles from "../Style";
 
 const WelcomeScreenFun = ({ navigation }) => {
   global.auth = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDk0NTA0NDgsImV4cCI6MTY1MDA1NTI0OCwiaWF0IjoxNjQ5NDUwNDQ4fQ.OoPrpvgpbItWR-m_SSq-SqunbLWPSLd2nuBQZldBjGg';
-
+  const paperTheme = useTheme();
+  let buttonColor = paperTheme.buttonStyle;
+  
   /**This function navigates the user to the Login page */
   const login = () => navigation.navigate("Login");
   /**This function navigates the user to the Preferences page */
@@ -67,16 +69,16 @@ const WelcomeScreenFun = ({ navigation }) => {
   const [scheduleModal, setModalSchedule] = useState(false);
   
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, {backgroundColor: paperTheme.colors.background}]}>
       <View style={styles.overlay}>
         <View style={styles.viewStyle}>
           <TouchableOpacity
-            style={styles.buttonStyle}
+            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
             activeOpacity={0.8}
             onPress={login}
             onLongPress={() => setModalLogin(true)}
           >
-            <Text style={styles.textStyle}>Logout</Text>
+            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Logout</Text>
             <Modal
               contentContainerStyle={styles.modalStyle}
               animationType="slide"
@@ -99,12 +101,12 @@ const WelcomeScreenFun = ({ navigation }) => {
 
           <TouchableOpacity
             mode="contained"
-            style={styles.buttonStyle}
+            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
             activeOpacity={0.8}
             onPress={prefs}
             onLongPress={() => setModalPref(true)}
           >
-            <Text style={styles.textStyle}>Preferences</Text>
+            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Preferences</Text>
             <Modal
               contentContainerStyle={styles.modalStyle}
               animationType="slide"
@@ -129,12 +131,12 @@ const WelcomeScreenFun = ({ navigation }) => {
         <View style={styles.viewStyle}>
           <TouchableOpacity
             mode="contained"
-            style={styles.buttonStyle}
+            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
             activeOpacity={0.8}
             onPress={settings}
             onLongPress={() => setModalSettings(true)}
           >
-            <Text style={styles.textStyle}>Settings</Text>
+            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Settings</Text>
             <Modal
               contentContainerStyle={styles.modalStyle}
               animationType="slide"
@@ -156,12 +158,12 @@ const WelcomeScreenFun = ({ navigation }) => {
           </TouchableOpacity>
           <TouchableOpacity
             mode="contained"
-            style={styles.buttonStyle}
+            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
             activeOpacity={0.8}
             onPress={schedule}
             onLongPress={() => setModalSchedule(true)}
           >
-            <Text style={styles.textStyle}>Schedule</Text>
+            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Schedule</Text>
             <Modal
               contentContainerStyle={styles.modalStyle}
               animationType="slide"
@@ -186,29 +188,29 @@ const WelcomeScreenFun = ({ navigation }) => {
         <View style={styles.viewStyle}>
           <TouchableOpacity
             mode="contained"
-            style={styles.buttonStyle}
+            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
             activeOpacity={0.8}
             onPress={Input}
           >
-            <Text style={styles.textStyle}>Class Input</Text>
+            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Class Input</Text>
           </TouchableOpacity>
           <TouchableOpacity
             mode="contained"
-            style={styles.buttonStyle}
+            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
             activeOpacity={0.8}
             onPress={ApiLister}
           >
-            <Text style={styles.textStyle}>API checklist example</Text>
+            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>API checklist example</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.viewStyle}>
           <TouchableOpacity
             mode="contained"
-            style={styles.buttonStyle}
+            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
             activeOpacity={0.8}
             onPress={ApiTester}
           >
-            <Text style={styles.textStyle}>APi test</Text>
+            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>APi test</Text>
           </TouchableOpacity>
         </View>
       </View>

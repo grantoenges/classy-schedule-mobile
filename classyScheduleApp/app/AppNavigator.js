@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from 'react-native-paper';
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import SignInScreenFun from "./screens/SignInScreen";
@@ -29,15 +30,17 @@ const lightTheme = "#E1D9D1"
 
 /*This variable is what stores every page of the app. This is done as a way to allow for 
 any page of the app to be able to navigate to another page without issues (hopefully)*/
-const AppNavigator = () => (
+function AppNavigator() {
+  const paperTheme = useTheme();
+  return(
   <NavigationContainer>
     <Navigator initialRouteName="Login" 
     screenOptions={
       {headerStyle:{
-        backgroundColor: COLORSCHEME[0]==="dark" ? darkTheme : lightTheme,
+        backgroundColor: paperTheme.headerStyle.color,
       },
       headerTitleStyle: {
-        color: COLORSCHEME[0]==="dark" ? "grey" : "black"
+        color: paperTheme.headerStyle.textColor
       },
       }
       
@@ -62,7 +65,12 @@ const AppNavigator = () => (
       <Screen name="Api Test" component={Apites} />
       <Screen name="Api List" component={ApiList} />
     </Navigator>
-  </NavigationContainer>
-);
+  </NavigationContainer>)
+ 
+}
+  
+  
+  
+
 
 export default AppNavigator;

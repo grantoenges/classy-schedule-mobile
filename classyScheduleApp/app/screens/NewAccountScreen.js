@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { SafeAreaView, View,Text, Image, Appearance } from 'react-native';
-import {Button, TextInput} from 'react-native-paper'
+import {Button, TextInput, useTheme} from 'react-native-paper'
 import styles from '../Style'
 
 //Function that checks to see if there is valid email
@@ -66,6 +66,7 @@ function passwordSame(password, value) {
 }
 
 const NewAccountFunc = ({navigation}) => {
+    const paperTheme = useTheme();
     const login = () => navigation.navigate("Welcome");
     //const newAccount = () => navigation.navigate("NewAccount");
     const [email, setEmail] = useState({ value: "", error: "" });
@@ -84,12 +85,10 @@ const NewAccountFunc = ({navigation}) => {
         navigation.navigate("Welcome");
       }
     };
+    
 
-    //const colorScheme = "dark";
-    let color = (COLORSCHEME[0]==="dark" ? "grey" : "white");
-    let color2 = (COLORSCHEME[0]==="dark" ? "grey" : "#6200ed");
   return (
-    <SafeAreaView style={styles.noPadContainer}>
+    <SafeAreaView style={[styles.noPadContainer, {backgroundColor: paperTheme.colors.background}]}>
       <View style={styles.generalOverlay}>
         {/* Email input field */}
         <TextInput
@@ -124,8 +123,8 @@ const NewAccountFunc = ({navigation}) => {
           onChangeText={(passConf) => confirmPass(passConf, password.value)}
         />
         {/* Create account button */}
-        <Button style={styles.generalButtonContained} color={color} icon="account-plus"  onPress={onPressed}>Create Account</Button>
-        <Button style={styles.generalButton} color={color2} onPress={login}>Navigate to Welcome</Button>
+        <Button mode="contained" style={styles.generalButtonContained} icon="account-plus"  onPress={onPressed}>Create Account</Button>
+        <Button style={styles.generalButton} onPress={login}>Navigate to Welcome</Button>
           
         <View style = {styles.centerPage}>
           <Image

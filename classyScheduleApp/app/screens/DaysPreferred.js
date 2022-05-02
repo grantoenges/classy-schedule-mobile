@@ -1,13 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import { SafeAreaView, View, StyleSheet, Alert } from "react-native";
-import { Button, Card, Checkbox, Text } from "react-native-paper";
+import { Button, Card, Checkbox, Text, useTheme } from "react-native-paper";
 
 import styles from "../Style";
 
 // DaysPrefFun creates useState objects for each possible day of the week
 // it then creates the page view, containing title and checkboxes for each day of the week
 const DaysPrefFun = ({ navigation }) => {
+  const paperTheme = useTheme();
   const [mondayChecked, setMondayChecked] = useState(false);
   const [tuesdayChecked, setTuesdayChecked] = useState(false);
   const [wednesdayChecked, setWednesdayChecked] = useState(false);
@@ -15,7 +16,7 @@ const DaysPrefFun = ({ navigation }) => {
   const [fridayChecked, setFridayChecked] = useState(false);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, {backgroundColor: paperTheme.colors.background}]}>
       <Card style={styles.cardStyle}>
         
         <Text style={styles.title}>Days Preferred to Teach</Text>
