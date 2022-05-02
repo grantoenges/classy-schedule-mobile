@@ -102,7 +102,7 @@ const SignInScreenFun = ({ navigation }) => {
       {/* Login button */}
       <Button mode="contained" style={styles.generalButtonContained}  loading ={isLoading} onPress={() => onLoginPressed()}>Login</Button>
       {/* Account Creation */}
-      <Button mode="contained" style={[styles.generalButton, {marginBottom: 5}]}  icon="account-plus"  onPress={newAccount}>Create Account</Button>
+      <Button mode="text" style={[styles.generalButton, {marginBottom: 5}]}  icon="account-plus"  onPress={newAccount}>Create Account</Button>
       {/* Forgot password */}
       <TouchableOpacity style={styles.centerPage} onPress={() => alert("Then remember it!")}>
         <Text style={{color: paperTheme.textStyle.color}}>Forgot Password?</Text>

@@ -15,66 +15,7 @@ const darkTheme = "#1A1A1A"
 const lightTheme = "#FAFAFA"
 
 export const Context = React.createContext();
-/*export const ThemeContext = React.createContext({
-    theme: lightStyles,
-    toggle: () => {},
-});
 
-export const useTheme = () => React.useContext(ThemeContext);
-
-export const ThemeProvider= ({children}) => {
-    const [userTheme, setUserTheme] = React.useState('light' | 'dark');
-    const [theme, setTheme] = React.useState(
-        () => Appearance.getColorScheme() || 'light',
-    );
-
-    const contextValue = React.useMemo(
-        () => ((userTheme || theme) === 'dark' ? darkStyles : lightStyles),
-        [userTheme, theme],
-    );
-
-    const toggleTheme = React.useCallback(async () => {
-        const newTheme = (userTheme || theme) === 'light' ? 'dark' : 'light';
-        setUserTheme(newTheme);
-        await AsyncStorage.setItem('theme', newTheme);
-    }, [theme, userTheme]);
-
-    const restoreTheme = React.useCallback(async () => {
-        const _userTheme = await AsyncStorage.getItem('theme');
-        if (_userTheme) {
-        setUserTheme(_userTheme);
-        }
-    }, []);
-
-    React.useEffect(() => {
-        restoreTheme();
-    }, [restoreTheme]);
-
-    // listen for changes in user preference
-    React.useEffect(() => {
-        if (!userTheme) {
-            const subscription = Appearance.addChangeListener(({colorScheme}) => {
-                if (colorScheme) {
-                    setTheme(colorScheme);
-                }
-            });
-            return () => {
-                subscription.remove();
-            };
-        }
-    }, [userTheme]);
-
-    // render the theme
-    return (
-        <ThemeContext.Provider value={{theme: contextValue, toggle: toggleTheme}}>
-            {children}
-        
-        </ThemeContext.Provider>
-    );
-};
-
-*/
-//dark theme
 export default StyleSheet.create({
     noPadContainer: {
         flex: 1,

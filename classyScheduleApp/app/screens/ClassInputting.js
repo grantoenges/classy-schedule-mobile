@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, View,Text,StyleSheet } from 'react-native';
-import {Button, Card, TextInput} from 'react-native-paper'
+import {Button, Card, TextInput, useTheme} from 'react-native-paper'
 import {Picker} from '@react-native-picker/picker';
 import { useState } from 'react';
 import styles from '../Style'
@@ -8,7 +8,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const ClassInputFun = () => {
-  /** This use state is used to hold onto selected language (test variable) allowing for dynamic selection in the drop down menu. */
+    const paperTheme = useTheme();
+    /** This use state is used to hold onto selected language (test variable) allowing for dynamic selection in the drop down menu. */
     const [selectedLanguage, setSelectedLanguage] = useState();
     /** This use state is used for storage of the classes string title. */
     const [classTitle, setClassTitle] = useState();
@@ -54,7 +55,7 @@ const ClassInputFun = () => {
       alert(selectedLanguage)
     }
   return (
-    <SafeAreaView style={style.container}>
+    <SafeAreaView style={[styles.container, {backgroundColor: paperTheme.colors.background}]}>
         <Card style={style.cardStyle}>
             
             <Picker color='purple' style={style.buttonStyle} selectedValue={selectedLanguage} dropdownIconRippleColor='#7F46C7' prompt='Pick department' onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}>
