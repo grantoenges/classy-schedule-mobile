@@ -7,8 +7,8 @@ export const getAuthorization = async () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        username: 'test',
-        password: 'test'
+        username: 'User@stthomas.edu',
+        password: 'user'
       })
     });
      const json = await response.json();
