@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Text, ScrollView, View, StyleSheet } from 'react-native';
-import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
+import {Button, Card, Checkbox, TextInput, useTheme} from 'react-native-paper'
 
  const ClassesCTFun = () => {
+  const paperTheme = useTheme();
   /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
   const [isLoading, setLoading] = useState(true);
   const [dummy, setDummy] = React.useState(false);

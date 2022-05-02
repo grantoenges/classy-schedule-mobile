@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, View,Text,StyleSheet } from 'react-native';
-import {Button, Card, TextInput} from 'react-native-paper'
+import {Button, Card, TextInput, useTheme} from 'react-native-paper'
 import styles from '../Style'
 import WeeklyCalendar from 'react-native-weekly-calendar';
  
@@ -9,6 +9,7 @@ import WeeklyCalendar from 'react-native-weekly-calendar';
 It should set the day to the current day, having the calandar sync with the current day.
 */
 const ScheduleFun = () =>{
+  const paperTheme = useTheme();
   //This current iteration of the app cannot fetch a users schedule just yet so we have just made a sample version of a schedule for testing.
   const sampleEvents = [
     { 'start': '2022-04-11 10:15:00', 'duration':  '01:00:00', 'note': 'Teach Intro to Cisc' },
@@ -22,7 +23,7 @@ const ScheduleFun = () =>{
   ]
   //"#7F46C7" original schedule color
   return (
-    <View style={styless.container}>
+    <View style={[styless.container, {backgroundColor: paperTheme.colors.background}]}>
       <WeeklyCalendar events={sampleEvents} style={styles.scheduleHeight} themeColor='#6200ed' selected='2022-04-11'/>
     </View>
   );
@@ -31,7 +32,6 @@ const ScheduleFun = () =>{
 const styless = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   }

@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Pressable,
 } from "react-native";
-import { Button, Card, TextInput, Modal} from "react-native-paper";
+import { Button, Card, TextInput, Modal, useTheme} from "react-native-paper";
 import styles from "../Style";
 
 /** This method is what displays the screen for this page
@@ -27,18 +27,21 @@ const PreferenceFun = ({ navigation }) => {
   const [timesCTModal, setModalTime] = useState(false);
   const [daysPTModal, setModalDays] = useState(false);
 
+  const paperTheme = useTheme();
+  let buttonColor = paperTheme.buttonStyle;
+
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, {backgroundColor: paperTheme.colors.background}]}>
       <View style={styles.overlay}>
 
         <View style={styles.viewStyle}>
           <TouchableOpacity
             activeOpacity={0.8}
-            style={styles.buttonStyle}
+            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
             onPress={ClassesCT}
             onLongPress={() => setModalCT(true)}
           >
-            <Text style={styles.textStyle}>Classes Can Teach</Text>
+            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Classes Can Teach</Text>
             <Modal
               contentContainerStyle={styles.modalStyle}
               animationType="slide"
@@ -61,12 +64,12 @@ const PreferenceFun = ({ navigation }) => {
           </TouchableOpacity>
           <TouchableOpacity
             mode="contained"
-            style={styles.buttonStyle}
+            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
             activeOpacity={0.8}
             onPress={ClassesPT}
             onLongPress={() => setModalPT(true)}
           >
-            <Text style={styles.textStyle}>Classes Preferred To Teach</Text>
+            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Classes Preferred To Teach</Text>
             <Modal
               contentContainerStyle={styles.modalStyle}
               animationType="slide"
@@ -92,11 +95,11 @@ const PreferenceFun = ({ navigation }) => {
           <TouchableOpacity
             mode="contained"
             activeOpacity={0.8}
-            style={styles.buttonStyle}
+            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
             onPress={TimesCT}
             onLongPress={() => setModalTime(true)}
           >
-            <Text style={styles.textStyle}>Times Unable To Teach</Text>
+            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Times Unable To Teach</Text>
             <Modal
               contentContainerStyle={styles.modalStyle}
               animationType="slide"
@@ -119,12 +122,12 @@ const PreferenceFun = ({ navigation }) => {
           </TouchableOpacity>
           <TouchableOpacity
             mode="contained"
-            style={styles.buttonStyle}
+            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
             activeOpacity={0.8}
             onPress={DaysPT}
             onLongPress={() => setModalDays(true)}
           >
-            <Text style={styles.textStyle}>Days Prefered To Teach</Text>
+            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Days Prefered To Teach</Text>
             <Modal
               contentContainerStyle={styles.modalStyle}
               animationType="slide"
