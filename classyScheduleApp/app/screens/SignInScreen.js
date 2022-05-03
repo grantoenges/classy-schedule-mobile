@@ -63,10 +63,22 @@ const SignInScreenFun = ({ navigation }) => {
         if(response.token){
           //succesful login
           console.log('succesful login');
-          global.AUTH = response.token;
-          global.USERNAME = response.username;
-          global.ROLE = response.user_role;
-          global.USERID = response.user_id;
+          AsyncStorage.setItem(
+            'Auth',
+            response.token
+          );
+          AsyncStorage.setItem(
+            'Username',
+            response.username
+          );
+          AsyncStorage.setItem(
+            'Role',
+            response.user_role
+          );
+          AsyncStorage.setItem(
+            'UserId',
+            response.token
+          );
           setLoading(false);
           navigation.navigate("Welcome")
         } else {
