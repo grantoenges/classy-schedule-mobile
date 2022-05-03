@@ -14,11 +14,11 @@ const ClassInputFun = () => {
     /** This use state is used for storage of the classes string title. */
     const [classTitle, setClassTitle] = useState();
     /** This use state is used for the storage of the classes integer number. */
-    const [classNumber, setClassNum] = useState();
+    const [classNumber, setClassNum] = useState("");
     /** This use state is used for the storage of the classes integer capacity. */
     const [classCapacity, setClassCapacity] = useState();
         /** This use state is used for the storage of the classes integer credits value. */
-    const [classCredits, setClassCredits] = useState();
+    const [classCredits, setClassCredits] = useState("4");
 
     /** This method use is to store a given value into one predetermined location into the devices memory.
      *   Inputs: value (should be integer but can be anything)
@@ -31,7 +31,17 @@ const ClassInputFun = () => {
           // saving error
         }
     }
-
+  
+    const validateNum = (num) => {
+      const emailRegex = /^\d+$/;
+      console.log(num.replace(/[^0-9]/g, ''));
+      return num.replace(/[^0-9]/g, '');
+      if(emailRegex.test(email)){
+          return true;
+      }else{
+          return false;
+      }
+  }
     /**This method is used to access the stored item from the async storage*/
     const getData = async () => {
         try {
@@ -54,6 +64,22 @@ const ClassInputFun = () => {
       alert(classNumber)
       alert(selectedLanguage)
     }
+    const onChange = (val) =>{
+      setClassNum(val.replace(/[^0-9]/g, ''));
+  }
+
+ const onChangeNumericInput = (value) =>{
+   if (value.length ===0 || value == 'NaN'){
+     return ''
+   }
+  let x = parseInt(value.replace(/[^0-9]/g, '')).toString();
+  if (x =='NaN'){
+    return '';
+  }
+  return(x);
+}
+
+    //mobile: class.replace(/[^0-9]/g, ''  (classNumber) => setClassNum(validateNum(classNumber))
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: paperTheme.colors.background}]}>
         <Card style={style.cardStyle}>
@@ -62,10 +88,11 @@ const ClassInputFun = () => {
               <Picker.Item label="Computer Science" value="CISC" />
               <Picker.Item label="Statistics" value="STAT" />
             </Picker>
-            <TextInput keyboardType="numeric" maxLength={4} onChangeText={(classNumber) => setClassNum(classNumber)} label={'Class Number'}></TextInput>
+            <TextInput keyboardType="numeric" maxLength={4} value={classNumber} onChangeText={classNumber =>setClassNum(onChangeNumericInput(classNumber))}  label={'Class Number'}></TextInput>
+            
             <TextInput maxLength={30}multiline={false} onChangeText={(classTitle) => setClassTitle(classTitle)} label={'Class Title'}></TextInput>
-            <TextInput keyboardType='numeric' maxLength={4} onChangeText={(classCapacity) => setClassCapacity(classCapacity)} label={'Capacity'}></TextInput>
-            <TextInput keyboardType='numeric' maxLength={2} defaultValue='4' onChangeText={(classCredits) => setClassCredits(classCredits)} label={'Credits'}></TextInput>
+            <TextInput keyboardType='numeric' maxLength={4} value={classCapacity} onChangeText={(classCapacity) => setClassCapacity(onChangeNumericInput(classCapacity))} label={'Capacity'}></TextInput>
+            <TextInput keyboardType='numeric' maxLength={2}  value={classCredits} onChangeText={(classCredits) => setClassCredits(onChangeNumericInput(classCredits))} label={'Credits'}></TextInput>
 
             <Button mode="contained" onPress={() => storeData(selectedLanguage)} >save data </Button>
             {/*<Button onPress={getstate}>retreive data </Button>*/}
