@@ -151,14 +151,14 @@ export const getAuthorization = async () => {
 
   /*This return is where the actual react part of the app is made and the data will be displayed for the user  */
   return (
-    <View style={{ flex: 1, padding: 24 }}>      
-      <Button onPress={()=>{console.log('hh')}} mode="contained" >Save Data</Button>
-      {isLoading ? <Button loading ={true} mode="outlined"> Loading</Button> : (
+    <View style = {{ flex: 1, padding: 24 }}>      
+      <Button onPress = {() =>{console.log(dataT)}} mode = "contained" >Save Data</Button>
+      {isLoading ? <Button loading = {true} mode = "outlined"> Loading</Button> : (
         <FlatList
-          data={dataT}
-          keyExtractor={({ class_num}) => (class_num) }
-          renderItem={({ item }) => (
-              <Checkbox.Item label={item.class_name} color="darkblue" uncheckedColor="black"status={item.checked? 'checked':'unchecked'} onPress={()=>{item.checked = !item.checked; setDummy(!dummy)}}/>
+          data = {dataT}
+          keyExtractor = {({ class_num}) => (class_num) }
+          renderItem = {({ item }) => (
+              <Checkbox.Item label = {item.class_name} color = "darkblue" uncheckedColor = "black" status = {item.checked? 'checked':'unchecked'} onPress = {()=>{item.checked = !item.checked; setDummy(!dummy)}}/>
             )}
         />   
       )}
