@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, View,Text,StyleSheet } from 'react-native';
-import {Button, Card, TextInput, useTheme,Switch } from 'react-native-paper'
+import {Button, Card, TextInput, useTheme,Switch,Checkbox } from 'react-native-paper'
 import {Picker} from '@react-native-picker/picker';
 import { useState } from 'react';
 import styles from '../Style'
@@ -52,7 +52,7 @@ const ClassInputFun = () => {
      * Outputs: Three alerts stating the current state of the usestate variables
       */
     const getstate = () => {
-      alert("Dept:"+selectedLanguage +"\nNumber:" + classNumber+"\nTitle:" + classTitle +"\nCredits:"+ classCredits);
+      alert("Dept:"+selectedLanguage +"\nNumber:" + classNumber+"\nTitle:" + classTitle +"\nCredits:"+ classCredits +"\nLab:"+isLab);
       
     }
     const onChange = (val) =>{
@@ -69,7 +69,8 @@ const ClassInputFun = () => {
   }
   return(x);
 }
-
+//<Text>{isLab? "This class is a lab" : "This class is not a lab"} </Text>
+//<Switch value = {isLab} onValueChange={() => setIsLab(!isLab)}/>
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: paperTheme.colors.background}]}>
         <Card style={style.cardStyle}>
@@ -82,8 +83,9 @@ const ClassInputFun = () => {
             <TextInput maxLength={30} multiline={false} value={classTitle} onChangeText={(classTitle) => setClassTitle(classTitle)} label={'Class Title'}></TextInput>
             <TextInput keyboardType='numeric' maxLength={4} value={classCapacity} onChangeText={(classCapacity) => setClassCapacity(onChangeNumericInput(classCapacity))} label={'Capacity'}></TextInput>
             <TextInput keyboardType='numeric' maxLength={2}  value={classCredits} onChangeText={(classCredits) => setClassCredits(onChangeNumericInput(classCredits))} label={'Credits'}></TextInput>
-            <Text>{isLab? "This class is a lab" : "This class is not a lab"} </Text>
-            <Switch value = {isLab} onValueChange={() => setIsLab(!isLab)}/>
+            
+            <Checkbox.Item label = {isLab? "This class is a lab" : "This class is not a lab"} color = "darkblue" uncheckedColor = "black" status = {isLab? 'checked':'unchecked'} onPress = {() => setIsLab(!isLab)}/>
+
             <Button mode="contained" onPress={getstate} >save data </Button>
         </Card>
     </SafeAreaView>
