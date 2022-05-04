@@ -84,7 +84,7 @@ const ClassInputFun = () => {
             <TextInput keyboardType='numeric' maxLength={4} value={classCapacity} onChangeText={(classCapacity) => setClassCapacity(onChangeNumericInput(classCapacity))} label={'Capacity'}></TextInput>
             <TextInput keyboardType='numeric' maxLength={2}  value={classCredits} onChangeText={(classCredits) => setClassCredits(onChangeNumericInput(classCredits))} label={'Credits'}></TextInput>
             
-            <Checkbox.Item label = {isLab? "This class is a lab" : "This class is not a lab"} color = "darkblue" uncheckedColor = "black" status = {isLab? 'checked':'unchecked'} onPress = {() => setIsLab(!isLab)}/>
+            <Checkbox.Item label = {isLab? "This class is a lab" : "This class is not a lab"} color = "purple" uncheckedColor = "black" status = {isLab? 'checked':'unchecked'} onPress = {() => setIsLab(!isLab)}/>
 
             <Button mode="contained" onPress={getstate} >save data </Button>
         </Card>
