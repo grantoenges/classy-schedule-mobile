@@ -1,34 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Text, ScrollView, View, StyleSheet } from 'react-native';
-import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
+import {FlatList, View } from 'react-native';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import {Button, Checkbox} from 'react-native-paper'
 
 
-export const getAuthorization = async () => {
-  try {
-   const response = await fetch('https://capstonedbapi.azurewebsites.net/user-management/authenticate', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      username: 'test',
-      password: 'test'
-    })
-  });
-   const json = await response.json();
-   //console.log(json.token);
-   //console.log('json', json.token);
-   return json.token;
-   } catch (error) {
-   console.error(error);
- } finally {
- }
-}
+
 
  const ApiList = () => {
    /*This is a temporary variable that holds the current authorization token to allow for connections with the database */
-  global.auth = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDk0NTA0NDgsImV4cCI6MTY1MDA1NTI0OCwiaWF0IjoxNjQ5NDUwNDQ4fQ.OoPrpvgpbItWR-m_SSq-SqunbLWPSLd2nuBQZldBjGg';
 
   /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
   const [isLoading, setLoading] = useState(true);
@@ -39,52 +18,29 @@ export const getAuthorization = async () => {
   const [dataT, setDataT] = useState([]);
 
 
-
-  /*
-  getAuth's purpose is to make a call to the API point that obtains our authorization token 
-    ------------------
-    Inputs: None
-    Outputs: None (But the auth token from the API should be sent to the console logs)
-    -------------------
-   If for some reason the API call fails then the try catch block should be aware of that failure and 
-   should send that error to the console.log 
-  */
-  const getAuth = async () => {
-    try {
-      setLoading(true);
-     const response = await fetch('https://capstonedbapi.azurewebsites.net/Users/authenticate', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username: 'test',
-        password: 'test'
-      })
-    });
-     const json = await response.json();
-     console.log(json.token);
-     //setAuth(json.token);
-     //console.log(dataT);
-     //setData(json);
-     } catch (error) {
-     console.error(error);
-   } finally {
-     setLoading(false);
-   }
- }
+  const seeSelection = async() =>{
+    try{
+     setLoading(true);
+     console.log(JSON.stringify({dataT}));
+     }
+       catch (error) {
+         console.error(error);
+       } finally {
+         setLoading(false);
+       }
+  }
 
  const sendSelection = async() =>{
    try{
     setLoading(true);
-
+    const auth = await AsyncStorage.getItem('Auth');
+    print(JSON.stringify({dataT}));
     const response = await fetch('https://capstonedbapi.azurewebsites.net/class-management/classes', {
       method: 'POST',
       /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
       headers: { 
         //Will need the authorization to be a saved string each time we sign in
-        'Authorization': AUTH._W//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
+        'Authorization': auth//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
       },
       body: JSON.stringify({
         dataT
@@ -96,7 +52,6 @@ export const getAuthorization = async () => {
       } finally {
         setLoading(false);
       }
-   
  }
   /*
   getJson's purpose is to make a call to the API point and set our usestate variable to the data that 
@@ -112,13 +67,15 @@ export const getAuthorization = async () => {
      try {
        setLoading(true);
        setDataT([]);
-       console.log('Current auth token', AUTH);
+       const auth = await AsyncStorage.getItem('Auth');
+
+       console.log('Current auth token', auth);
       const response = await fetch('https://capstonedbapi.azurewebsites.net/class-management/classes', {
         method: 'GET',
         /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
         headers: { 
           //Will need the authorization to be a saved string each time we sign in
-          'Authorization': AUTH._W//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
+          'Authorization': auth//AUTH._W//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
         },
         });
       const json = await response.json();
@@ -129,12 +86,9 @@ export const getAuthorization = async () => {
             class_num,
             dept_id,
             class_name,
-            checked:false
-          //
+            prefer_to_teach:false
           })),
         ]);
-      //console.log(dataT);
-      //setData(json);
       } catch (error) {
       console.error(error);
     } finally {
@@ -153,12 +107,12 @@ export const getAuthorization = async () => {
   return (
     <View style = {{ flex: 1, padding: 24 }}>      
       <Button onPress = {() =>{console.log(dataT)}} mode = "contained" >Save Data</Button>
-      {isLoading ? <Button loading = {true} mode = "outlined"> Loading</Button> : (
+      {isLoading ? <Button loading = {true} mode = "outlined" onPress={seeSelection}> Loading</Button> : (
         <FlatList
           data = {dataT}
           keyExtractor = {({ class_num}) => (class_num) }
           renderItem = {({ item }) => (
-              <Checkbox.Item label = {item.class_name} color = "darkblue" uncheckedColor = "black" status = {item.checked? 'checked':'unchecked'} onPress = {()=>{item.checked = !item.checked; setDummy(!dummy)}}/>
+              <Checkbox.Item label = {item.class_name} color = "darkblue" uncheckedColor = "black" status = {item.prefer_to_teach? 'checked':'unchecked'} onPress = {()=>{item.prefer_to_teach = !item.prefer_to_teach; setDummy(!dummy)}}/>
             )}
         />   
       )}
