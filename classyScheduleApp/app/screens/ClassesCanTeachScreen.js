@@ -1,8 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Text, ScrollView, View, StyleSheet } from 'react-native';
-import {Button, Card, Checkbox, TextInput, useTheme} from 'react-native-paper'
+import React, { useEffect, useState } from "react";
+import {
+  ActivityIndicator,
+  FlatList,
+  Text,
+  ScrollView,
+  View,
+  StyleSheet,
+} from "react-native";
+import {
+  Button,
+  Card,
+  Checkbox,
+  TextInput,
+  useTheme,
+} from "react-native-paper";
+import styles from "../Style";
 
- const ClassesCTFun = () => {
+const ClassesCTFun = () => {
   const paperTheme = useTheme();
   /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
   const [isLoading, setLoading] = useState(true);
@@ -23,38 +37,43 @@ import {Button, Card, Checkbox, TextInput, useTheme} from 'react-native-paper'
    should send that error to the console.log 
   */
   const getJson = async () => {
-     try {
-       setLoading(true);
-       setDataT([]);
-      const response = await fetch('https://capstonedbapi.azurewebsites.net/class-management/classes', {
-        method: 'GET',
-        /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
-        headers: { 
-          //Will need the authorization to be a saved string each time we sign in
-          'Authorization': AUTH._W
-        },
-        });
+    try {
+      setLoading(true);
+      setDataT([]);
+      const response = await fetch(
+        "https://capstonedbapi.azurewebsites.net/class-management/classes",
+        {
+          method: "GET",
+          /*,  Example of how headers look for if people are to take this to use on other parts of the app */
+          headers: {
+            //Will need the authorization to be a saved string each time we sign in
+            Authorization: AUTH._W,
+          },
+        }
+      );
       const json = await response.json();
       console.log(json);
       /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
-        setDataT((dataT) => [
-          ...dataT,
-          ...json.map(({class_num,dept_id, class_name, capacity, credits}) => ({
+      setDataT((dataT) => [
+        ...dataT,
+        ...json.map(
+          ({ class_num, dept_id, class_name, capacity, credits }) => ({
             class_num,
             dept_id,
             class_name,
-            checked:false
-          })),
-        ]);
+            checked: false,
+          })
+        ),
+      ]);
       //console.log(dataT);
       //setData(json);
-      } catch (error) {
+    } catch (error) {
       console.error(error);
     } finally {
       setLoading(false);
     }
-  }
-  
+  };
+
   /*useEffect is a react native hook that allows us to get to using our usestate variables and allowing
   for the dynamic rendering of that data onto the screen. This useeffect for example calls our getJson method */
   useEffect(() => {
@@ -63,16 +82,43 @@ import {Button, Card, Checkbox, TextInput, useTheme} from 'react-native-paper'
 
   /*This return is where the actual react part of the app is made and the  */
   return (
-    <View style={[styles.container, {backgroundColor: paperTheme.colors.background}]}>
-      <Button onPress={()=>{console.log('h')}} mode="contained" >Save Data</Button>
-      {isLoading ? <Button loading ={true} mode="outlined"> Loading</Button> : (
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: paperTheme.colors.background },
+      ]}
+    >
+      <Button
+        onPress={() => {
+          console.log("h");
+        }}
+        mode="contained"
+      >
+        Save Data
+      </Button>
+      {isLoading ? (
+        <Button loading={true} mode="outlined">
+          {" "}
+          Loading
+        </Button>
+      ) : (
         <FlatList
           data={dataT}
           keyExtractor={({ class_num }) => class_num}
           renderItem={({ item }) => (
-              <Checkbox.Item label={item.class_name} color="darkblue" uncheckedColor="black"status={item.checked? 'checked':'unchecked'} onPress={()=>{item.checked = !item.checked; setDummy(!dummy)}}/>
-            )}
-        />   
+            <Checkbox.Item
+              labelStyle={paperTheme.label.color}
+              label={item.class_name}
+              color={paperTheme.label.color}
+              uncheckedColor={paperTheme.label.color}
+              status={item.checked ? "checked" : "unchecked"}
+              onPress={() => {
+                item.checked = !item.checked;
+                setDummy(!dummy);
+              }}
+            />
+          )}
+        />
       )}
     </View>
   );

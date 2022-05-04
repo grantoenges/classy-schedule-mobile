@@ -8,7 +8,13 @@ import {
   ScrollView,
   Alert,
 } from "react-native";
-import { Button, Card, TextInput, Checkbox, useTheme } from "react-native-paper";
+import {
+  Button,
+  Card,
+  TextInput,
+  Checkbox,
+  useTheme,
+} from "react-native-paper";
 import styles from "../Style";
 
 // TimesCTFun creates useState objects for each teaching time group and each possible teaching time slot
@@ -33,52 +39,80 @@ const TimesCTFun = ({ navigation }) => {
   const [twoDay6Checked, setTwoDay6Checked] = useState(false);
 
   return (
-    <SafeAreaView style={[styles.container, {backgroundColor: paperTheme.colors.background}]}>
+    <SafeAreaView
+      style={[
+        styles.container,
+        { backgroundColor: paperTheme.colors.background },
+      ]}
+    >
       <ScrollView>
-      <Button mode="contained" onPress={()=>{console.log()}}>Save Preferences</Button>
-        <Card style={styles.cardStyle}>
-          <Text style={styles.title}>Time Of Day Preferred To Teach</Text>
+        <Button
+          mode="contained"
+          onPress={() =>
+            Alert.alert(
+              JSON.stringify({
+                morning: morningChecked,
+                afternoon: afternoonChecked,
+                evening: eveningChecked,
+                slot1: threeDay1Checked,
+                slot2: threeDay2Checked,
+                slot3: threeDay3Checked,
+                slot4: threeDay4Checked,
+                slot5: threeDay5Checked,
+                slot1: twoDay1Checked,
+                slot2: twoDay2Checked,
+                slot3: twoDay3Checked,
+                slot4: twoDay4Checked,
+                slot5: twoDay5Checked,
+                slot6: twoDay6Checked,
+              })
+            )
+          }
+        >
+          Save Preferences
+        </Button>
+        <Card
+          style={[
+            styles.cardStyle,
+            { backgroundColor: paperTheme.cardStyle.backgroundColor },
+          ]}
+        >
+          <Text
+            style={[
+              styles.textStyle,
+              { color: paperTheme.cardTextStyle.color },
+            ]}
+          >
+            Time Of Day Preferred To Teach
+          </Text>
         </Card>
 
         <View>
-          <Button
-            onPress={() =>
-              Alert.alert(
-                JSON.stringify({
-                  morning: morningChecked,
-                  afternoon: afternoonChecked,
-                  evening: eveningChecked,
-                })
-              )
-            }
-          >
-            Save Time of Day Preferences
-          </Button>
           <Checkbox.Item
-            labelStyle={styles.label}
+            labelStyle={paperTheme.label.color}
             label="Morning"
-            color="black"
-            uncheckedColor="black"
+            color={paperTheme.label.color}
+            uncheckedColor={paperTheme.label.color}
             status={morningChecked ? "checked" : "unchecked"}
             onPress={() => {
               setMorningChecked(!morningChecked);
             }}
           />
           <Checkbox.Item
-            labelStyle={styles.label}
+            labelStyle={paperTheme.label.color}
             label="Afternoon"
-            color="black"
-            uncheckedColor="black"
+            color={paperTheme.label.color}
+            uncheckedColor={paperTheme.label.color}
             status={afternoonChecked ? "checked" : "unchecked"}
             onPress={() => {
               setAfternoonChecked(!afternoonChecked);
             }}
           />
           <Checkbox.Item
-            labelStyle={styles.label}
+            labelStyle={paperTheme.label.color}
             label="Evening"
-            color="black"
-            uncheckedColor="black"
+            color={paperTheme.label.color}
+            uncheckedColor={paperTheme.label.color}
             status={eveningChecked ? "checked" : "unchecked"}
             onPress={() => {
               setEveningChecked(!eveningChecked);
@@ -86,71 +120,68 @@ const TimesCTFun = ({ navigation }) => {
           />
         </View>
 
-        <Card style={styles.cardStyle}>
-          <Text style={styles.title}>3 Days a Week unable to Teach</Text>
+        <Card
+          style={[
+            styles.cardStyle,
+            { backgroundColor: paperTheme.cardStyle.backgroundColor },
+          ]}
+        >
+          <Text
+            style={[
+              styles.textStyle,
+              { color: paperTheme.cardTextStyle.color },
+            ]}
+          >
+            3 Days a Week Unable to Teach
+          </Text>
         </Card>
 
         <View>
-          <Button
-            onPress={() =>
-              Alert.alert(
-                JSON.stringify({
-                  slot1: threeDay1Checked,
-                  slot2: threeDay2Checked,
-                  slot3: threeDay3Checked,
-                  slot4: threeDay4Checked,
-                  slot5: threeDay5Checked,
-                })
-              )
-            }
-          >
-            Save 3 Days A Week Times Unable To Teach
-          </Button>
           <Checkbox.Item
-            labelStyle={styles.label}
+            labelStyle={paperTheme.label.color}
             label="8:15am-9:20am"
-            color="black"
-            uncheckedColor="black"
+            color={paperTheme.label.color}
+            uncheckedColor={paperTheme.label.color}
             status={threeDay1Checked ? "checked" : "unchecked"}
             onPress={() => {
               setThreeDay1Checked(!threeDay1Checked);
             }}
           />
           <Checkbox.Item
-            labelStyle={styles.label}
+            labelStyle={paperTheme.label.color}
             label="9:35am-10:40am"
-            color="black"
-            uncheckedColor="black"
+            color={paperTheme.label.color}
+            uncheckedColor={paperTheme.label.color}
             status={threeDay2Checked ? "checked" : "unchecked"}
             onPress={() => {
               setThreeDay2Checked(!threeDay2Checked);
             }}
           />
           <Checkbox.Item
-            labelStyle={styles.label}
+            labelStyle={paperTheme.label.color}
             label="10:55am-12:00pm"
-            color="black"
-            uncheckedColor="black"
+            color={paperTheme.label.color}
+            uncheckedColor={paperTheme.label.color}
             status={threeDay3Checked ? "checked" : "unchecked"}
             onPress={() => {
               setThreeDay3Checked(!threeDay3Checked);
             }}
           />
           <Checkbox.Item
-            labelStyle={styles.label}
+            labelStyle={paperTheme.label.color}
             label="12:15pm-1:20pm"
-            color="black"
-            uncheckedColor="black"
+            color={paperTheme.label.color}
+            uncheckedColor={paperTheme.label.color}
             status={threeDay4Checked ? "checked" : "unchecked"}
             onPress={() => {
               setThreeDay4Checked(!threeDay4Checked);
             }}
           />
           <Checkbox.Item
-            labelStyle={styles.label}
+            labelStyle={paperTheme.label.color}
             label="1:35pm-2:40pm"
-            color="black"
-            uncheckedColor="black"
+            color={paperTheme.label.color}
+            uncheckedColor={paperTheme.label.color}
             status={threeDay5Checked ? "checked" : "unchecked"}
             onPress={() => {
               setThreeDay5Checked(!threeDay5Checked);
@@ -158,89 +189,84 @@ const TimesCTFun = ({ navigation }) => {
           />
         </View>
 
-        <Card style={styles.cardStyle}>
-          <Text style={styles.title}>2 Days a Week unable to Teach</Text>
-        </Card>
-      
-        <View>
-          <Button
-            onPress={() =>
-              Alert.alert(
-                JSON.stringify({
-                  slot1: twoDay1Checked,
-                  slot2: twoDay2Checked,
-                  slot3: twoDay3Checked,
-                  slot4: twoDay4Checked,
-                  slot5: twoDay5Checked,
-                  slot6: twoDay6Checked,
-                })
-              )
-            }
+        <Card
+          style={[
+            styles.cardStyle,
+            { backgroundColor: paperTheme.cardStyle.backgroundColor },
+          ]}
+        >
+          <Text
+            style={[
+              styles.textStyle,
+              { color: paperTheme.cardTextStyle.color },
+            ]}
           >
-            Save 2 Days A Week Times Unable To Teach
-          </Button>
+            2 Days a Week Unable to Teach
+          </Text>
+        </Card>
+
+        <View>
           <Checkbox.Item
-            labelStyle={styles.label}
+            labelStyle={paperTheme.label.color}
             label="8:00am-9:40am"
-            color="black"
-            uncheckedColor="black"
+            color={paperTheme.label.color}
+            uncheckedColor={paperTheme.label.color}
             status={twoDay1Checked ? "checked" : "unchecked"}
             onPress={() => {
               setTwoDay1Checked(!twoDay1Checked);
             }}
           />
           <Checkbox.Item
-            labelStyle={styles.label}
+            labelStyle={paperTheme.label.color}
             label="9:55am-11:35am"
-            color="black"
-            uncheckedColor="black"
+            color={paperTheme.label.color}
+            uncheckedColor={paperTheme.label.color}
             status={twoDay2Checked ? "checked" : "unchecked"}
             onPress={() => {
               setTwoDay2Checked(!twoDay2Checked);
             }}
           />
           <Checkbox.Item
-            labelStyle={styles.label}
+            labelStyle={paperTheme.label.color}
             label="1:30pm-3:10pm"
-            color="black"
-            uncheckedColor="black"
+            color={paperTheme.label.color}
+            uncheckedColor={paperTheme.label.color}
             status={twoDay3Checked ? "checked" : "unchecked"}
             onPress={() => {
               setTwoDay3Checked(!twoDay3Checked);
             }}
           />
           <Checkbox.Item
-            labelStyle={styles.label}
+            labelStyle={paperTheme.label.color}
             label="3:25pm-5:00pm"
-            color="black"
-            uncheckedColor="black"
+            color={paperTheme.label.color}
+            uncheckedColor={paperTheme.label.color}
             status={twoDay4Checked ? "checked" : "unchecked"}
             onPress={() => {
               setTwoDay4Checked(!twoDay4Checked);
             }}
           />
           <Checkbox.Item
-            labelStyle={styles.label}
+            labelStyle={paperTheme.label.color}
             label="5:30pm-7:15pm"
-            color="black"
-            uncheckedColor="black"
+            color={paperTheme.label.color}
+            uncheckedColor={paperTheme.label.color}
             status={twoDay5Checked ? "checked" : "unchecked"}
             onPress={() => {
               setTwoDay5Checked(!twoDay5Checked);
             }}
           />
           <Checkbox.Item
-            labelStyle={styles.label}
+            labelStyle={paperTheme.label.color}
             label="7:30pm-9:15pm"
-            color="black"
-            uncheckedColor="black"
+            color={paperTheme.label.color}
+            uncheckedColor={paperTheme.label.color}
             status={twoDay6Checked ? "checked" : "unchecked"}
             onPress={() => {
               setTwoDay6Checked(!twoDay6Checked);
             }}
           />
         </View>
-        <Button mode="contained" onPress={()=>{console.log()}} >Save Preferences</Button>
       </ScrollView>
     </SafeAreaView>
   );
