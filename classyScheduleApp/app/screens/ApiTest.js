@@ -11,9 +11,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
   /*This usestate variable is used as the json data obtained from the api calls storage location*/
   const [data, setData] = useState([]);
-  const [dataT, setDataT] = useState([
-
-  ]);
+  const [dataT, setDataT] = useState([]);
   /*
   getJson's purpose is to make a call to the API point and set our usestate variable to the data that 
   should be returned while also updating the isLoading variable to reflect the loading status 
@@ -49,8 +47,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
           //
           })),
         ]);
-      //console.log(dataT);
-      //setData(json);
       } catch (error) {
       console.error(error);
     } finally {
