@@ -10,7 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const ClassInputFun = () => {
     const paperTheme = useTheme();
     /** This use state is used to hold onto selected language (test variable) allowing for dynamic selection in the drop down menu. */
-    const [selectedLanguage, setSelectedLanguage] = useState();
+    const [selectedLanguage, setSelectedLanguage] = useState("CISC");
     /** This use state is used for storage of the classes string title. */
     const [classTitle, setClassTitle] = useState();
     /** This use state is used for the storage of the classes integer number. */
@@ -60,9 +60,8 @@ const ClassInputFun = () => {
      * Outputs: Three alerts stating the current state of the usestate variables
       */
     const getstate = () => {
-      alert(classTitle)
-      alert(classNumber)
-      alert(selectedLanguage)
+      alert("Dept:"+selectedLanguage +"\nNumber:" + classNumber+"\nTitle:" + classTitle +"\nCredits:"+ classCredits);
+      
     }
     const onChange = (val) =>{
       setClassNum(val.replace(/[^0-9]/g, ''));
@@ -84,17 +83,17 @@ const ClassInputFun = () => {
     <SafeAreaView style={[styles.container, {backgroundColor: paperTheme.colors.background}]}>
         <Card style={style.cardStyle}>
             
-            <Picker color='purple' style={style.buttonStyle} selectedValue={selectedLanguage} dropdownIconRippleColor='#7F46C7' prompt='Pick department' onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}>
+            <Picker color='purple' style={style.buttonStyle} selectedValue={selectedLanguage}  dropdownIconRippleColor='#7F46C7' prompt='Pick department' onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}>
               <Picker.Item label="Computer Science" value="CISC" />
               <Picker.Item label="Statistics" value="STAT" />
             </Picker>
             <TextInput keyboardType="numeric" maxLength={4} value={classNumber} onChangeText={classNumber =>setClassNum(onChangeNumericInput(classNumber))}  label={'Class Number'}></TextInput>
             
-            <TextInput maxLength={30}multiline={false} onChangeText={(classTitle) => setClassTitle(classTitle)} label={'Class Title'}></TextInput>
+            <TextInput maxLength={30} multiline={false} value={classTitle} onChangeText={(classTitle) => setClassTitle(classTitle)} label={'Class Title'}></TextInput>
             <TextInput keyboardType='numeric' maxLength={4} value={classCapacity} onChangeText={(classCapacity) => setClassCapacity(onChangeNumericInput(classCapacity))} label={'Capacity'}></TextInput>
             <TextInput keyboardType='numeric' maxLength={2}  value={classCredits} onChangeText={(classCredits) => setClassCredits(onChangeNumericInput(classCredits))} label={'Credits'}></TextInput>
 
-            <Button mode="contained" onPress={() => storeData(selectedLanguage)} >save data </Button>
+            <Button mode="contained" onPress={getstate} >save data </Button>
             {/*<Button onPress={getstate}>retreive data </Button>*/}
         </Card>
     </SafeAreaView>
