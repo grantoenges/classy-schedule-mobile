@@ -21,7 +21,7 @@ import {Button, Checkbox} from 'react-native-paper'
   const seeSelection = async() =>{
     try{
      setLoading(true);
-     console.log(JSON.stringify({dataT}));
+     console.log(JSON.stringify(dataT));
      }
        catch (error) {
          console.error(error);
@@ -34,18 +34,21 @@ import {Button, Checkbox} from 'react-native-paper'
    try{
     setLoading(true);
     const auth = await AsyncStorage.getItem('Auth');
-    print(JSON.stringify({dataT}));
-    const response = await fetch('https://capstonedbapi.azurewebsites.net/class-management/classes', {
+    const id = await AsyncStorage.getItem('UserId');
+
+    const response = await fetch('https://capstonedbapi.azurewebsites.net/preference-management/class-preferences/prefer-to-teach/save/'+id, {
       method: 'POST',
       /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
       headers: { 
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
         //Will need the authorization to be a saved string each time we sign in
         'Authorization': auth//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
       },
-      body: JSON.stringify({
-        dataT
-      })
+        body: JSON.stringify(dataT)
       });
+      const json = await response.json();
+    console.log(json);
     }
       catch (error) {
         console.error(error);
@@ -75,17 +78,18 @@ import {Button, Checkbox} from 'react-native-paper'
         /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
         headers: { 
           //Will need the authorization to be a saved string each time we sign in
-          'Authorization': auth//AUTH._W//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
+          'Authorization': auth
         },
         });
       const json = await response.json();
       /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
         setDataT((dataT) => [
           ...dataT,
-          ...json.map(({class_num,dept_id, class_name, capacity, credits}) => ({
+          ...json.map(({class_num,dept_id, class_name,is_lab, capacity, credits}) => ({
             class_num,
             dept_id,
             class_name,
+            is_lab,
             prefer_to_teach:false
           })),
         ]);
@@ -106,7 +110,7 @@ import {Button, Checkbox} from 'react-native-paper'
   /*This return is where the actual react part of the app is made and the data will be displayed for the user  */
   return (
     <View style = {{ flex: 1, padding: 24 }}>      
-      <Button onPress = {() =>{console.log(dataT)}} mode = "contained" >Save Data</Button>
+      <Button onPress = {sendSelection} mode = "contained" >Save Data</Button>
       {isLoading ? <Button loading = {true} mode = "outlined" onPress={seeSelection}> Loading</Button> : (
         <FlatList
           data = {dataT}
@@ -116,6 +120,8 @@ import {Button, Checkbox} from 'react-native-paper'
             )}
         />   
       )}
+        <Button mode="contained" onPress={seeSelection} >see data </Button>
+
     </View>
   );
 };

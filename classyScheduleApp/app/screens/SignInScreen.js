@@ -77,7 +77,7 @@ const SignInScreenFun = ({ navigation }) => {
           );
           AsyncStorage.setItem(
             'UserId',
-            response.token
+            response.user_id.toString()
           );
           setLoading(false);
           navigation.navigate("Welcome")
