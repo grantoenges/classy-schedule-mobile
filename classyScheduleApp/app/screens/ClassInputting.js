@@ -31,17 +31,7 @@ const ClassInputFun = () => {
           // saving error
         }
     }
-  
-    const validateNum = (num) => {
-      const emailRegex = /^\d+$/;
-      console.log(num.replace(/[^0-9]/g, ''));
-      return num.replace(/[^0-9]/g, '');
-      if(emailRegex.test(email)){
-          return true;
-      }else{
-          return false;
-      }
-  }
+
     /**This method is used to access the stored item from the async storage*/
     const getData = async () => {
         try {
@@ -78,7 +68,6 @@ const ClassInputFun = () => {
   return(x);
 }
 
-    //mobile: class.replace(/[^0-9]/g, ''  (classNumber) => setClassNum(validateNum(classNumber))
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: paperTheme.colors.background}]}>
         <Card style={style.cardStyle}>
@@ -88,13 +77,10 @@ const ClassInputFun = () => {
               <Picker.Item label="Statistics" value="STAT" />
             </Picker>
             <TextInput keyboardType="numeric" maxLength={4} value={classNumber} onChangeText={classNumber =>setClassNum(onChangeNumericInput(classNumber))}  label={'Class Number'}></TextInput>
-            
             <TextInput maxLength={30} multiline={false} value={classTitle} onChangeText={(classTitle) => setClassTitle(classTitle)} label={'Class Title'}></TextInput>
             <TextInput keyboardType='numeric' maxLength={4} value={classCapacity} onChangeText={(classCapacity) => setClassCapacity(onChangeNumericInput(classCapacity))} label={'Capacity'}></TextInput>
             <TextInput keyboardType='numeric' maxLength={2}  value={classCredits} onChangeText={(classCredits) => setClassCredits(onChangeNumericInput(classCredits))} label={'Credits'}></TextInput>
-
             <Button mode="contained" onPress={getstate} >save data </Button>
-            {/*<Button onPress={getstate}>retreive data </Button>*/}
         </Card>
     </SafeAreaView>
  );
