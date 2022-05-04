@@ -4,7 +4,7 @@ import {Button, Card, Checkbox, TextInput, useTheme} from 'react-native-paper';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
- const ClassesPTFun = () => {
+const ClassesPTFun = () => {
   const paperTheme = useTheme();
   /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
   const [isLoading, setLoading] = useState(true);
@@ -57,6 +57,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
    }
  }
   
+   
   /*useEffect is a react native hook that allows us to get to using our usestate variables and allowing
   for the dynamic rendering of that data onto the screen. This useeffect for example calls our getJson method */
   useEffect(() => {
@@ -68,13 +69,24 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
     <View style={{ flex: 1, padding: 24 }}>
       <Button onPress={()=>{console.log(dataT)}} mode="contained" >Save Data</Button>
       {isLoading ? <Button loading ={true} mode="outlined"> Loading</Button> : (
+
         <FlatList
           data={dataT}
           keyExtractor={({ class_num }) => class_num}
           renderItem={({ item }) => (
-              <Checkbox.Item label={item.class_name} color="darkblue" uncheckedColor="black"status={item.checked? 'checked':'unchecked'} onPress={()=>{item.checked = !item.checked; setDummy(!dummy)}}/>
-            )}
-        />   
+            <Checkbox.Item
+              labelStyle={paperTheme.label.color}
+              label={item.class_name}
+              color={paperTheme.label.color}
+              uncheckedColor={paperTheme.label.color}
+              status={item.checked ? "checked" : "unchecked"}
+              onPress={() => {
+                item.checked = !item.checked;
+                setDummy(!dummy);
+              }}
+            />
+          )}
+        />
       )}
     </View>
   );
