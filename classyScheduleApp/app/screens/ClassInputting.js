@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, View,Text,StyleSheet } from 'react-native';
-import {Button, Card, TextInput, useTheme} from 'react-native-paper'
+import {Button, Card, TextInput, useTheme,Switch } from 'react-native-paper'
 import {Picker} from '@react-native-picker/picker';
 import { useState } from 'react';
 import styles from '../Style'
@@ -19,6 +19,8 @@ const ClassInputFun = () => {
     const [classCapacity, setClassCapacity] = useState();
         /** This use state is used for the storage of the classes integer credits value. */
     const [classCredits, setClassCredits] = useState("4");
+
+    const [isLab, setIsLab] = useState(false);
 
     /** This method use is to store a given value into one predetermined location into the devices memory.
      *   Inputs: value (should be integer but can be anything)
@@ -80,6 +82,8 @@ const ClassInputFun = () => {
             <TextInput maxLength={30} multiline={false} value={classTitle} onChangeText={(classTitle) => setClassTitle(classTitle)} label={'Class Title'}></TextInput>
             <TextInput keyboardType='numeric' maxLength={4} value={classCapacity} onChangeText={(classCapacity) => setClassCapacity(onChangeNumericInput(classCapacity))} label={'Capacity'}></TextInput>
             <TextInput keyboardType='numeric' maxLength={2}  value={classCredits} onChangeText={(classCredits) => setClassCredits(onChangeNumericInput(classCredits))} label={'Credits'}></TextInput>
+            <Text>{isLab? "This class is a lab" : "This class is not a lab"} </Text>
+            <Switch value = {isLab} onValueChange={() => setIsLab(!isLab)}/>
             <Button mode="contained" onPress={getstate} >save data </Button>
         </Card>
     </SafeAreaView>

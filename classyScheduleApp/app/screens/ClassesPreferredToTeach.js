@@ -57,7 +57,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
    }
  }
   
-  
   /*useEffect is a react native hook that allows us to get to using our usestate variables and allowing
   for the dynamic rendering of that data onto the screen. This useeffect for example calls our getJson method */
   useEffect(() => {
@@ -66,8 +65,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
   /*This return is where the actual react part of the app is made and the  */
   return (
-    <View style={[styles.container, {backgroundColor: paperTheme.colors.background}]}>
-      <Button onPress={()=>{console.log('h')}} mode="contained" >Save Data</Button>
+    <View style={{ flex: 1, padding: 24 }}>
+      <Button onPress={()=>{console.log(dataT)}} mode="contained" >Save Data</Button>
       {isLoading ? <Button loading ={true} mode="outlined"> Loading</Button> : (
         <FlatList
           data={dataT}
