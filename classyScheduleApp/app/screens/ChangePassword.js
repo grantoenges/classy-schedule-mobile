@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { SafeAreaView, View,Text, Image, Appearance } from 'react-native';
-import {Button, TextInput, useTheme} from 'react-native-paper'
-import styles from '../Style'
+import {Button, TextInput, useTheme} from 'react-native-paper';
+import styles from '../Style';
+import { updatePass } from '../databaseService'
 
 //Function that checks to see if there is valid email
 function emailValidator(email) {
@@ -73,7 +74,6 @@ const NewAccountFunc = ({navigation}) => {
     const [password, setPassword] = useState({ value: "", error: "" });
     const [repass, confirmPass] = useState({value:"", error: ""});
     const onPressed = () => {
-      console.log(AUTH._W);
       const emailError = emailValidator(email.value);
       const passwordError = passwordValidator(password.value);
       const samePass = passwordSame(repass, password.value)
@@ -82,13 +82,17 @@ const NewAccountFunc = ({navigation}) => {
         setPassword({ ...password, error: passwordError });
         alert(emailError + " " + passwordError + " " + samePass);
       } else {
+        //updatePass(password);
         navigation.navigate("Welcome");
+
       }
     };
     
 
   return (
-    <SafeAreaView style={[styles.noPadContainer, {backgroundColor: paperTheme.colors.background}]}>
+    <SafeAreaView 
+      style={[styles.noPadContainer, 
+        {backgroundColor: paperTheme.colors.background}]}>
       <View style={styles.generalOverlay}>
         {/* Email input field */}
         <TextInput
@@ -123,8 +127,18 @@ const NewAccountFunc = ({navigation}) => {
           onChangeText={(passConf) => confirmPass(passConf, password.value)}
         />
         {/* Create account button */}
-        <Button mode="contained" style={styles.generalButtonContained} icon="account-plus"  onPress={onPressed}>Create Account</Button>
-        <Button style={styles.generalButton} onPress={login}>Navigate to Welcome</Button>
+        <Button 
+          mode="contained" 
+          style={styles.generalButtonContained} 
+          icon="account-plus"  
+          onPress={onPressed}>
+            Create Account
+          </Button>
+        <Button 
+          style={styles.generalButton} 
+          onPress={login}>
+            Navigate to Welcome
+          </Button>
           
         <View style = {styles.centerPage}>
           <Image
@@ -133,7 +147,6 @@ const NewAccountFunc = ({navigation}) => {
           />
         </View>
       </View>
-        
     </SafeAreaView>
   );
 }
