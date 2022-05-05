@@ -37,7 +37,7 @@ function passwordValidator(password) {
 const SignInScreenFun = ({ navigation }) => {
   global.AUTH = signIn();
   //global.AUTH = AUTH._W
-  const newAccount = () => navigation.navigate("New Account");
+  const newAccount = () => navigation.navigate("Change Password");
   let value = value || "";
   //let styles = COLORSCHEME[0] ==='dark' ? darkStyles : lightStyles;
   const [isLoading, setLoading] = useState(false);

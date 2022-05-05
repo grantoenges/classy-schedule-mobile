@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import SignInScreenFun from "./screens/SignInScreen";
 import WelcomeScreenFun from "./screens/WelcomeScreen";
-import NewAccountScreen from "./screens/NewAccountScreen";
+import ChangePassword from "./screens/ChangePassword";
 import PreferenceFun from "./screens/PreferencesScreen";
 import SettingFun from "./screens/Settings";
 import ScheduleFun from "./screens/Schedule";
@@ -53,7 +53,7 @@ function AppNavigator() {
         options={{ headerLeft: (props) => null }}
       />
       <Screen name="Login" component={SignInScreenFun} />
-      <Screen name="New Account" component={NewAccountScreen} />
+      <Screen name="Change Password" component={ChangePassword} />
       <Screen name="Preferences" component={PreferenceFun} />
       <Screen name="Settings" component={SettingFun} />
       <Screen name="Schedule" component={ScheduleFun} />
