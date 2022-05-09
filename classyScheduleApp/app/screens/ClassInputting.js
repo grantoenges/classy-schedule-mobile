@@ -119,6 +119,3 @@ buttonStyle:{
   
 
 export default ClassInputFun;
-
-
-
