@@ -41,3 +41,28 @@ export const getAuthorization = async () => {
       } finally {
       }
   }
+
+
+  export const updatePass = async (password) => {
+    try {
+        const response = await fetch('https://capstonedbapi.azurewebsites.net/user-management/user-management/change-password', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+                //'Authorization': whatever token is
+            },
+            body: JSON.stringify({
+                new_password: password,
+            })
+        });
+
+        const json = await response.json();
+        return json;
+
+        } catch (error) {
+        console.error(error);
+      } finally {
+      }
+  }
+
