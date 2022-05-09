@@ -1,8 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Text, ScrollView, View } from 'react-native';
-import {Button, Card, Checkbox, TextInput, useTheme} from 'react-native-paper';
+import React, { useEffect, useState } from "react";
+import {
+  ActivityIndicator,
+  FlatList,
+  Text,
+  ScrollView,
+  View,
+} from "react-native";
+import {
+  Button,
+  Card,
+  Checkbox,
+  TextInput,
+  useTheme,
+} from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import styles from "../Style";
 
 const ClassesPTFun = () => {
    /*This is a temporary variable that holds the current authorization token to allow for connections with the database */
@@ -65,39 +77,43 @@ const ClassesPTFun = () => {
    should send that error to the console.log 
   */
   const getJson = async () => {
-     try {
-       setLoading(true);
-       setDataT([]);
-       const auth = await AsyncStorage.getItem('Auth');
+    try {
+      setLoading(true);
+      setDataT([]);
+      const auth = await AsyncStorage.getItem("Auth");
 
-       console.log('Current auth token', auth);
-      const response = await fetch('https://capstonedbapi.azurewebsites.net/class-management/classes', {
-        method: 'GET',
-        /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
-        headers: { 
-          //Will need the authorization to be a saved string each time we sign in
-          'Authorization': auth
-        },
-        });
+      console.log("Current auth token", auth);
+      const response = await fetch(
+        "https://capstonedbapi.azurewebsites.net/class-management/classes",
+        {
+          method: "GET",
+          /*,  Example of how headers look for if people are to take this to use on other parts of the app */
+          headers: {
+            //Will need the authorization to be a saved string each time we sign in
+            Authorization: auth, //AUTH._W//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
+          },
+        }
+      );
       const json = await response.json();
       /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
-        setDataT((dataT) => [
-          ...dataT,
-          ...json.map(({class_num,dept_id, class_name,is_lab, capacity, credits}) => ({
+      setDataT((dataT) => [
+        ...dataT,
+        ...json.map(
+          ({ class_num, dept_id, class_name, capacity, credits }) => ({
             class_num,
             dept_id,
             class_name,
-            is_lab,
-            prefer_to_teach:false
-          })),
-        ]);
-      } catch (error) {
+            checked: false,
+          })
+        ),
+      ]);
+    } catch (error) {
       console.error(error);
     } finally {
       setLoading(false);
     }
-  }
-  
+  };
+
   /*useEffect is a react native hook that allows us to get to using our usestate variables and allowing
   for the dynamic rendering of that data onto the screen. This useeffect for example calls our getJson method */
   useEffect(() => {
@@ -107,9 +123,26 @@ const ClassesPTFun = () => {
 
   /*This return is where the actual react part of the app is made and the data will be displayed for the user  */
   return (
-    <View style = {{ flex: 1, padding: 24 }}>      
-      <Button onPress = {sendSelection} mode = "contained" >Save Data</Button>
-      {isLoading ? <Button loading = {true} mode = "outlined" onPress={seeSelection}> Loading</Button> : (
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: paperTheme.colors.background },
+      ]}
+    >
+      <Button
+        onPress={() => {
+          console.log(dataT);
+        }}
+        mode="contained"
+      >
+        Save Data
+      </Button>
+      {isLoading ? (
+        <Button loading={true} mode="outlined">
+          {" "}
+          Loading
+        </Button>
+      ) : (
         <FlatList
           data = {dataT}
           keyExtractor = {({ class_num}) => (class_num) }
