@@ -15,12 +15,22 @@ import {
   Checkbox,
   useTheme,
 } from "react-native-paper";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../Style";
 
 // TimesCTFun creates useState objects for each teaching time group and each possible teaching time slot
 // it then creates the page view, containing title and checkboxes for each time group and each possible teaching time slot
 const TimesCTFun = ({ navigation }) => {
   const paperTheme = useTheme();
+
+  /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
+  const [isLoading, setLoading] = useState(true);
+  const [dummy, setDummy] = React.useState(false);
+
+  /*This usestate variable is used as the json data obtained from the api calls storage location*/
+  const [data, setData] = useState([]);
+  const [dataT, setDataT] = useState([]);
+
   const [morningChecked, setMorningChecked] = useState(false);
   const [afternoonChecked, setAfternoonChecked] = useState(false);
   const [eveningChecked, setEveningChecked] = useState(false);
