@@ -10,7 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const ClassInputFun = () => {
     const paperTheme = useTheme();
     /** This use state is used to hold onto selected language (test variable) allowing for dynamic selection in the drop down menu. */
-    const [selectedLanguage, setSelectedLanguage] = useState("CISC");
+    const [selectedLanguage, setSelectedLanguage] = useState("1");
     /** This use state is used for storage of the classes string title. */
     const [classTitle, setClassTitle] = useState();
     /** This use state is used for the storage of the classes integer number. */
@@ -34,6 +34,32 @@ const ClassInputFun = () => {
         }
     }
 
+    const sendClass = async() =>{
+      try{
+       setLoading(true);
+       const auth = await AsyncStorage.getItem('Auth');
+       const id = await AsyncStorage.getItem('UserId');
+   
+       const response = await fetch('https://capstonedbapi.azurewebsites.net/preference-management/class-preferences/prefer-to-teach/save/'+id, {
+         method: 'POST',
+         /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
+         headers: { 
+           'Accept': 'application/json',
+           'Content-Type': 'application/json',
+           'Authorization': auth//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
+         },
+           body: JSON.stringify(dataT)
+         });
+         const json = await response.json();
+       alert(json);
+       }
+         catch (error) {
+           console.error(error);
+         } finally {
+           setLoading(false);
+         }
+    }
+
     /**This method is used to access the stored item from the async storage*/
     const getData = async () => {
         try {
@@ -52,7 +78,7 @@ const ClassInputFun = () => {
      * Outputs: Three alerts stating the current state of the usestate variables
       */
     const getstate = () => {
-      alert("Dept:"+selectedLanguage +"\nNumber:" + classNumber+"\nTitle:" + classTitle +"\nCredits:"+ classCredits +"\nLab:"+isLab);
+      alert("dept_id:"+selectedLanguage +"\nclass_num:" + classNumber+"\nTitle:" + classTitle +"\nCredits:"+ classCredits +"\nLab:"+isLab);
       
     }
     const onChange = (val) =>{
@@ -76,8 +102,8 @@ const ClassInputFun = () => {
         <Card style={style.cardStyle}>
             
             <Picker color='purple' style={style.buttonStyle} selectedValue={selectedLanguage}  dropdownIconRippleColor='#7F46C7' prompt='Pick department' onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}>
-              <Picker.Item label="Computer Science" value="CISC" />
-              <Picker.Item label="Statistics" value="STAT" />
+              <Picker.Item label="Computer Science" value="1" />
+              <Picker.Item label="Statistics" value="0" />
             </Picker>
             <TextInput keyboardType="numeric" maxLength={4} value={classNumber} onChangeText={classNumber =>setClassNum(onChangeNumericInput(classNumber))}  label={'Class Number'}></TextInput>
             <TextInput maxLength={30} multiline={false} value={classTitle} onChangeText={(classTitle) => setClassTitle(classTitle)} label={'Class Title'}></TextInput>

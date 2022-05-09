@@ -4,7 +4,7 @@ import {Button, Card, Checkbox, TextInput, useTheme} from 'react-native-paper'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ClassesCTFun = () => {
-   /*This is a temporary variable that holds the current authorization token to allow for connections with the database */
+  /*This is a temporary variable that holds the current authorization token to allow for connections with the database */
 
   /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
   const [isLoading, setLoading] = useState(true);
