@@ -186,8 +186,11 @@ const SignInScreenFun = ({ navigation }) => {
       />
       {/* Login button */}
       <Button mode="contained" style={styles.generalButtonContained}  loading ={isLoading} onPress={() => onLoginPressed()}>Login</Button>
+      {/* Biometrics button*/}
+      <Button icon="fingerprint" mode="text" style={styles.generalButtonContained}  loading ={isLoading} onPress={() => onBiometricsPressed()}>Biometric Login</Button>
+        
       {/* Navigate to welcome- will delete */}
-      <Button mode="text" style={[styles.generalButton, {marginBottom: 5}]}  icon="account-plus"  onPress={Welcome}>Navigate to Welcome</Button>
+      <Button mode="text" style={[styles.generalButton, {marginBottom: 5}]} onPress={Welcome}>Navigate to Welcome</Button>
       {/* Forgot password */}
       <TouchableOpacity style={styles.centerPage} onPress={() => alert("Then remember it!")}>
         <Text style={{color: paperTheme.textStyle.color}}>Forgot Password?</Text>
