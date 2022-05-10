@@ -37,7 +37,7 @@ function passwordValidator(password) {
 const SignInScreenFun = ({ navigation }) => {
   global.AUTH = signIn();
   //global.AUTH = AUTH._W
-  const newAccount = () => navigation.navigate("Change Password");
+  const Welcome = () => navigation.navigate("Welcome");
   let value = value || "";
   //let styles = COLORSCHEME[0] ==='dark' ? darkStyles : lightStyles;
   const [isLoading, setLoading] = useState(false);
@@ -129,7 +129,7 @@ const SignInScreenFun = ({ navigation }) => {
       {/* Login button */}
       <Button mode="contained" style={styles.generalButtonContained}  loading ={isLoading} onPress={() => onLoginPressed()}>Login</Button>
       {/* Account Creation */}
-      <Button mode="text" style={[styles.generalButton, {marginBottom: 5}]}  icon="account-plus"  onPress={newAccount}>Create Account</Button>
+      <Button mode="text" style={[styles.generalButton, {marginBottom: 5}]}  icon="account-plus"  onPress={Welcome}>Navigate to Welcome</Button>
       {/* Forgot password */}
       <TouchableOpacity style={styles.centerPage} onPress={() => alert("Then remember it!")}>
         <Text style={{color: paperTheme.textStyle.color}}>Forgot Password?</Text>

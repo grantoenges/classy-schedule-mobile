@@ -5,7 +5,7 @@ import styles from '../Style';
 import { updatePass } from '../databaseService'
 
 //Function that checks to see if there is valid email
-function emailValidator(email) {
+/*function emailValidator(email) {
   //Regular expression that checks if valid email format
   const re = /\S+@\S+\.\S+/
   if (!email) {
@@ -16,7 +16,7 @@ function emailValidator(email) {
   }
   return "";
 }
-
+*/
 //Function that checks if password is valid and strong
 function passwordValidator(password) {
   //if str does not contain a capital letter return false
@@ -54,8 +54,8 @@ return (specialChars.test(str));
 //takes in a string and determines whether or not the substring "password"
 //is in it. returns -1 if password is not found in the string
 function containsPassword(str) {
-lowerCase = str.toLowerCase();
-return lowerCase.search("password");
+  let lowerCase = str.toLowerCase();
+  return lowerCase.search("password");
 }  
 
 //Checks to see if password and retype password field are same
@@ -68,22 +68,23 @@ function passwordSame(password, value) {
 
 const NewAccountFunc = ({navigation}) => {
     const paperTheme = useTheme();
-    const login = () => navigation.navigate("Welcome");
+    const welcome = () => navigation.navigate("Welcome");
     //const newAccount = () => navigation.navigate("NewAccount");
-    const [email, setEmail] = useState({ value: "", error: "" });
+    //const [email, setEmail] = useState({ value: "", error: "" });
     const [password, setPassword] = useState({ value: "", error: "" });
     const [repass, confirmPass] = useState({value:"", error: ""});
     const onPressed = () => {
-      const emailError = emailValidator(email.value);
+      //const emailError = emailValidator(email.value);
       const passwordError = passwordValidator(password.value);
       const samePass = passwordSame(repass, password.value)
-      if ((emailError || passwordError) || samePass) {
-        setEmail({ ...email, error: emailError });
+      if (passwordError || samePass) {
+        //setEmail({ ...email, error: emailError });
         setPassword({ ...password, error: passwordError });
-        alert(emailError + " " + passwordError + " " + samePass);
+        alert(passwordError + " " + samePass);
       } else {
-        //updatePass(password);
-        navigation.navigate("Welcome");
+        updatePass(password.value);
+        alert("Updated password");
+        password.error = "";
 
       }
     };
@@ -94,7 +95,7 @@ const NewAccountFunc = ({navigation}) => {
       style={[styles.noPadContainer, 
         {backgroundColor: paperTheme.colors.background}]}>
       <View style={styles.generalOverlay}>
-        {/* Email input field */}
+        {/* Email input field 
         <TextInput
         style={styles.TextInput}
         label= "Email"
@@ -106,6 +107,8 @@ const NewAccountFunc = ({navigation}) => {
         textContentType="emailAddress"
         keyboardType="email-address"
         />
+       */}
+
         {/* Password input field */}
         <TextInput
         style={styles.TextInput}
@@ -125,6 +128,8 @@ const NewAccountFunc = ({navigation}) => {
           value={repass.value}
           secureTextEntry={true}
           onChangeText={(passConf) => confirmPass(passConf, password.value)}
+          error={!!password.error}
+          errorText={password.error}
         />
         {/* Create account button */}
         <Button 
@@ -132,14 +137,17 @@ const NewAccountFunc = ({navigation}) => {
           style={styles.generalButtonContained} 
           icon="account-plus"  
           onPress={onPressed}>
-            Create Account
-          </Button>
+            Update Password
+        </Button>
+
         <Button 
-          style={styles.generalButton} 
-          onPress={login}>
-            Navigate to Welcome
-          </Button>
-          
+          mode="text" 
+          style={styles.generalButtonContained} 
+          onPress={welcome}>
+            Back to Welcome
+        </Button>
+
+        
         <View style = {styles.centerPage}>
           <Image
             style={styles.tinyLogo}

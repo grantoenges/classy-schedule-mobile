@@ -11,6 +11,7 @@ const SettingFun = ({navigation}) => {
 
   const { toggleTheme } = React.useContext(Context);
   const paperTheme = useTheme();
+  const changePassword = () => navigation.navigate("Change Password");
 
   /*This usestate variable is used as a flag, keeping track of the when the page has information changed and will need a reload of the data*/
   
@@ -25,7 +26,8 @@ const SettingFun = ({navigation}) => {
     <SafeAreaView style={[styles.container, {backgroundColor: paperTheme.colors.background}]}>
       <Card >
           <Card.Title title= "User Preferences"/>
-          <Button loading={dummy} onPress={()=>{ toggleTheme(); setDummy(!dummy);}} mode={dummy? "contained":'outlined'} >{dummy? darkMode: lightMode}</Button>
+          <Button loading={dummy} onPress={()=>{ toggleTheme(); setDummy(!dummy);}} mode={dummy? "contained":'outlined'} style={[styles.generalButton, {marginBottom: 5}]}>{dummy? darkMode: lightMode}</Button>
+          <Button mode={dummy? "contained":'outlined'} style={[styles.generalButton, {marginBottom: 5}]}  icon="account-plus"  onPress={changePassword}>Update Password</Button>
       </Card>
     </SafeAreaView>
  );
