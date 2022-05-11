@@ -17,15 +17,55 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../Style";
 
 const ClassesCTFun = () => {
-  const paperTheme = useTheme();
+  /*This is a temporary variable that holds the current authorization token to allow for connections with the database */
+
   /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
   const [isLoading, setLoading] = useState(true);
-  const [dummy, setDummy] = React.useState(false);
-
+  /*This usestate variable is used as a flag, keeping track of the when the page has information changed and will need a reload of the data*/
+  const [dummy, setDummy] = useState(false);
   /*This usestate variable is used as the json data obtained from the api calls storage location*/
-  const [data, setData] = useState([]);
+  //const [data, setData] = useState([]);
   const [dataT, setDataT] = useState([]);
 
+
+  const seeSelection = async() =>{
+    try{
+     setLoading(true);
+     console.log(JSON.stringify(dataT));
+     }
+       catch (error) {
+         console.error(error);
+       } finally {
+         setLoading(false);
+       }
+  }
+
+ const sendSelection = async() =>{
+   try{
+    setLoading(true);
+    const auth = await AsyncStorage.getItem('Auth');
+    const id = await AsyncStorage.getItem('UserId');
+
+    const response = await fetch('https://capstonedbapi.azurewebsites.net/preference-management/class-preferences/can-teach/save/'+id, {
+      method: 'POST',
+      /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
+      headers: { 
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        //Will need the authorization to be a saved string each time we sign in
+        'Authorization': auth//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
+      },
+        body: JSON.stringify(dataT)
+      });
+      const json = await response.json();
+    console.log(json);
+    }
+      catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+ }
   /*
   getJson's purpose is to make a call to the API point and set our usestate variable to the data that 
   should be returned while also updating the isLoading variable to reflect the loading status 
@@ -76,10 +116,11 @@ const ClassesCTFun = () => {
   /*useEffect is a react native hook that allows us to get to using our usestate variables and allowing
   for the dynamic rendering of that data onto the screen. This useeffect for example calls our getJson method */
   useEffect(() => {
+    //getAuth();
     getJson();
   }, []);
 
-  /*This return is where the actual react part of the app is made and the  */
+  /*This return is where the actual react part of the app is made and the data will be displayed for the user  */
   return (
     <View
       style={[
@@ -102,25 +143,18 @@ const ClassesCTFun = () => {
         </Button>
       ) : (
         <FlatList
-          data={dataT}
-          keyExtractor={({ class_num }) => class_num}
-          renderItem={({ item }) => (
-            <Checkbox.Item
-              labelStyle={paperTheme.label.color}
-              label={item.class_name}
-              color={paperTheme.label.color}
-              uncheckedColor={paperTheme.label.color}
-              status={item.checked ? "checked" : "unchecked"}
-              onPress={() => {
-                item.checked = !item.checked;
-                setDummy(!dummy);
-              }}
-            />
-          )}
-        />
+          data = {dataT}
+          keyExtractor = {({ class_num}) => (class_num) }
+          renderItem = {({ item }) => (
+              <Checkbox.Item label = {item.class_name} color = "darkblue" uncheckedColor = "black" status = {item.prefer_to_teach? 'checked':'unchecked'} onPress = {()=>{item.prefer_to_teach = !item.prefer_to_teach; setDummy(!dummy)}}/>
+            )}
+        />   
       )}
+        <Button mode="contained" onPress={seeSelection} >see data </Button>
+
     </View>
   );
 };
+
 
 export default ClassesCTFun;
