@@ -143,6 +143,8 @@ import {Button, Checkbox} from 'react-native-paper'
     }
   }
   const allTrues = async() =>{
+    setLoading(true);
+
     var arr = [];
     if(pref.length != undefined){
     pref.map(item =>
@@ -164,6 +166,7 @@ import {Button, Checkbox} from 'react-native-paper'
           return item; // else return unmodified item 
         });
     setDataT(ns);
+    setLoading(false);
  }
   /*useEffect is a react native hook that allows us to get to using our usestate variables and allowing
   for the dynamic rendering of that data onto the screen. This useeffect for example calls our getJson method */
@@ -172,7 +175,7 @@ import {Button, Checkbox} from 'react-native-paper'
     getJson();
     //allTrues();
   }, []);
-  
+
   /*This return is where the actual react part of the app is made and the data will be displayed for the user  */
   return (
     <View style = {{ flex: 1, padding: 24 }}>      
