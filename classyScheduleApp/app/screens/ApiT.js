@@ -139,35 +139,38 @@ import {Button, Checkbox} from 'react-native-paper'
       console.error(error);
     } finally {
       setLoading(false);
+    
     }
   }
   const allTrues = async() =>{
+    var arr = [];
+    if(pref.length != undefined){
     pref.map(item =>
       {
         if (item.prefer_to_teach == true){
-          getTF(item.class_id); //gets everything that was already in item, and updates "done"
+          console.log("adding" + item.class_id);
+          arr.push(item.class_id);
         }
-      });
+      });}
+      getTF(arr);
   }
   const getTF =(id) => {
     // loop over the todos list and find the provided id.
     let ns = dataT.map(item =>
         {
-          if (item.class_id == id){
+          if (id.includes(item.class_id)){
             return {...item, prefer_to_teach: true}; //gets everything that was already in item, and updates "done"
           }
           return item; // else return unmodified item 
         });
-
     setDataT(ns);
-    setDummy(!dummy);
  }
   /*useEffect is a react native hook that allows us to get to using our usestate variables and allowing
   for the dynamic rendering of that data onto the screen. This useeffect for example calls our getJson method */
   useEffect(() => {
     getPreferencesJson();
     getJson();
-    //getTF();
+    //allTrues();
   }, []);
   
   /*This return is where the actual react part of the app is made and the data will be displayed for the user  */
@@ -183,7 +186,7 @@ import {Button, Checkbox} from 'react-native-paper'
             )}
         />   
       )}
-        <Button mode="contained" onPress={allTrues} >see data </Button>
+        <Button mode="contained" onPress={allTrues} >see current saved preferences </Button>
 
     </View>
   );
