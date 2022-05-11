@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Text, ScrollView, View, StyleSheet } from 'react-native';
 import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
  const Apites = () => {
   /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
@@ -25,13 +27,14 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
   const getJson = async () => {
      try {
        setLoading(true);
+       const auth = await AsyncStorage.getItem('Auth');
        setDataT([]);
       const response = await fetch('https://capstonedbapi.azurewebsites.net/class-management/classes', {
         method: 'GET',
         /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
         headers: { 
           //Will need the authorization to be a saved string each time we sign in
-          'Authorization': AUTH._W
+          'Authorization': auth
         },
         });
         const json = await response.json();
@@ -51,8 +54,6 @@ import {Button, Card, Checkbox, TextInput} from 'react-native-paper'
       } catch (error) {
       console.error(error);
     } finally {
-
-      
       setLoading(false);
     }
   }

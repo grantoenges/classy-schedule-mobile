@@ -15,12 +15,22 @@ import {
   Checkbox,
   useTheme,
 } from "react-native-paper";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../Style";
 
 // TimesCTFun creates useState objects for each teaching time group and each possible teaching time slot
 // it then creates the page view, containing title and checkboxes for each time group and each possible teaching time slot
 const TimesCTFun = ({ navigation }) => {
   const paperTheme = useTheme();
+
+  /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
+  const [isLoading, setLoading] = useState(true);
+  const [dummy, setDummy] = React.useState(false);
+
+  /*This usestate variable is used as the json data obtained from the api calls storage location*/
+  const [data, setData] = useState([]);
+  const [dataT, setDataT] = useState([]);
+
   const [morningChecked, setMorningChecked] = useState(false);
   const [afternoonChecked, setAfternoonChecked] = useState(false);
   const [eveningChecked, setEveningChecked] = useState(false);
@@ -38,6 +48,173 @@ const TimesCTFun = ({ navigation }) => {
   const [twoDay5Checked, setTwoDay5Checked] = useState(false);
   const [twoDay6Checked, setTwoDay6Checked] = useState(false);
 
+  /*
+  sendTimeOfDayPreferences's purpose is to make a call to the API point and set our usestate variable to the data that 
+  should be returned while also updating the isLoading variable to reflect the loading status 
+    ------------------
+    Inputs: None
+    Outputs: None (But the data variable should be set to the json from the API)
+    -------------------
+   If for some reason the API call fails then the try catch block should be aware of that failure and 
+   should send that error to the console.log 
+  */
+  const sendTimeOfDayPreferences = async () => {
+    try {
+      setLoading(true);
+      setDataT([]);
+      const auth = await AsyncStorage.getItem("Auth");
+      const userRole = await AsyncStorage.getItem("Role");
+      const userId = await AsyncStorage.getItem("UserId");
+
+      console.log("Current auth token", auth);
+      console.log("Current userId", userId);
+      console.log("Current userRole", userRole);
+      const response = await fetch(
+        "https://capstonedbapi.azurewebsites.net/preference-management/time-of-day-preferences/save/" +
+          userId,
+        {
+          method: "POST",
+          /*,  Example of how headers look for if people are to take this to use on other parts of the app */
+          headers: {
+            //Will need the authorization to be a saved string each time we sign in
+            Authorization: auth, //AUTH._W//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
+            "Content-Type": "application/json",
+            accept: "*/*",
+          },
+          body: JSON.stringify({
+            prefer_morning: morningChecked,
+            prefer_afternoon: afternoonChecked,
+            prefer_evening: eveningChecked,
+          }),
+        }
+      );
+      const json = await response.json();
+      /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected 
+      setDataT((dataT) => [
+        ...dataT,
+        ...json.map(
+          ({ class_num, dept_id, class_name, capacity, credits }) => ({
+            class_num,
+            dept_id,
+            class_name,
+            checked: false,
+          })
+        ),
+      ]);*/
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  /*
+  sendTimesPreferences's purpose is to make a call to the API point and set our usestate variable to the data that 
+  should be returned while also updating the isLoading variable to reflect the loading status 
+    ------------------
+    Inputs: None
+    Outputs: None (But the data variable should be set to the json from the API)
+    -------------------
+   If for some reason the API call fails then the try catch block should be aware of that failure and 
+   should send that error to the console.log 
+  */
+  const sendTimesPreferences = async () => {
+    try {
+      setLoading(true);
+      setDataT([]);
+      const auth = await AsyncStorage.getItem("Auth");
+      const userRole = await AsyncStorage.getItem("Role");
+      const userId = await AsyncStorage.getItem("UserId");
+
+      console.log("Current auth token", auth);
+      console.log("Current userId", userId);
+      console.log("Current userRole", userRole);
+      const response = await fetch(
+        "https://capstonedbapi.azurewebsites.net/preference-management/time-slot-preferences/can-teach/save/" +
+          userId,
+        {
+          method: "POST",
+          /*,  Example of how headers look for if people are to take this to use on other parts of the app */
+          headers: {
+            //Will need the authorization to be a saved string each time we sign in
+            Authorization: auth, //AUTH._W//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
+            "Content-Type": "application/json",
+            accept: "*/*",
+          },
+          body: JSON.stringify([
+            {
+              time_slot_id: 1,
+              can_teach: twoDay1Checked,
+            },
+            {
+              time_slot_id: 2,
+              can_teach: threeDay1Checked,
+            },
+            {
+              time_slot_id: 3,
+              can_teach: threeDay2Checked,
+            },
+            {
+              time_slot_id: 4,
+              can_teach: twoDay2Checked,
+            },
+            {
+              time_slot_id: 5,
+              can_teach: threeDay3Checked,
+            },
+            {
+              time_slot_id: 6,
+              can_teach: threeDay4Checked,
+            },
+            {
+              time_slot_id: 7,
+              can_teach: twoDay3Checked,
+            },
+            {
+              time_slot_id: 8,
+              can_teach: threeDay5Checked,
+            },
+            {
+              time_slot_id: 9,
+              can_teach: twoDay4Checked,
+            },
+            {
+              time_slot_id: 10,
+              can_teach: twoDay5Checked,
+            },
+            {
+              time_slot_id: 11,
+              can_teach: twoDay6Checked,
+            },
+          ]),
+        }
+      );
+      const json = await response.json();
+      /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected 
+      setDataT((dataT) => [
+        ...dataT,
+        ...json.map(
+          ({ class_num, dept_id, class_name, capacity, credits }) => ({
+            class_num,
+            dept_id,
+            class_name,
+            checked: false,
+          })
+        ),
+      ]);*/
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // This function enables the button to run two functions to send professor preferences to the database
+  const sendFunctionsCombined = async () => {
+    sendTimeOfDayPreferences();
+    sendTimesPreferences();
+  };
+
   return (
     <SafeAreaView
       style={[
@@ -46,29 +223,7 @@ const TimesCTFun = ({ navigation }) => {
       ]}
     >
       <ScrollView>
-        <Button
-          mode="contained"
-          onPress={() =>
-            Alert.alert(
-              JSON.stringify({
-                morning: morningChecked,
-                afternoon: afternoonChecked,
-                evening: eveningChecked,
-                slot1: threeDay1Checked,
-                slot2: threeDay2Checked,
-                slot3: threeDay3Checked,
-                slot4: threeDay4Checked,
-                slot5: threeDay5Checked,
-                slot1: twoDay1Checked,
-                slot2: twoDay2Checked,
-                slot3: twoDay3Checked,
-                slot4: twoDay4Checked,
-                slot5: twoDay5Checked,
-                slot6: twoDay6Checked,
-              })
-            )
-          }
-        >
+        <Button mode="contained" onPress={() => sendFunctionsCombined()}>
           Save Preferences
         </Button>
         <Card

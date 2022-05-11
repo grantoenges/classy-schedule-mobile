@@ -5,7 +5,6 @@ import {
   Text,
   ScrollView,
   View,
-  StyleSheet,
 } from "react-native";
 import {
   Button,
@@ -14,6 +13,7 @@ import {
   TextInput,
   useTheme,
 } from "react-native-paper";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../Style";
 
 const ClassesCTFun = () => {
@@ -40,6 +40,9 @@ const ClassesCTFun = () => {
     try {
       setLoading(true);
       setDataT([]);
+      const auth = await AsyncStorage.getItem("Auth");
+
+      console.log("Current auth token", auth);
       const response = await fetch(
         "https://capstonedbapi.azurewebsites.net/class-management/classes",
         {
@@ -47,12 +50,11 @@ const ClassesCTFun = () => {
           /*,  Example of how headers look for if people are to take this to use on other parts of the app */
           headers: {
             //Will need the authorization to be a saved string each time we sign in
-            Authorization: AUTH._W,
+            Authorization: auth, //AUTH._W//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
           },
         }
       );
       const json = await response.json();
-      console.log(json);
       /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
       setDataT((dataT) => [
         ...dataT,
@@ -65,15 +67,12 @@ const ClassesCTFun = () => {
           })
         ),
       ]);
-      //console.log(dataT);
-      //setData(json);
     } catch (error) {
       console.error(error);
     } finally {
       setLoading(false);
     }
   };
-
   /*useEffect is a react native hook that allows us to get to using our usestate variables and allowing
   for the dynamic rendering of that data onto the screen. This useeffect for example calls our getJson method */
   useEffect(() => {
@@ -90,7 +89,7 @@ const ClassesCTFun = () => {
     >
       <Button
         onPress={() => {
-          console.log("h");
+          console.log(dataT);
         }}
         mode="contained"
       >
