@@ -48,7 +48,7 @@ async function saveSecureValue(key, value) {
 
 
 const SignInScreenFun = ({ navigation }) => {
-  global.AUTH = signIn();
+  //global.AUTH = signIn();
   //global.AUTH = AUTH._W
   const Welcome = () => navigation.navigate("Welcome");
   let value = value || "";
@@ -147,7 +147,6 @@ const SignInScreenFun = ({ navigation }) => {
     }
   };  */
   }
-  //const colorScheme = "dark";
   const paperTheme = useTheme();
 
   return (
