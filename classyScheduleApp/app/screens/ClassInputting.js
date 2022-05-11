@@ -22,6 +22,9 @@ const ClassInputFun = () => {
 
     const [isLab, setIsLab] = useState(false);
 
+    const [isLoading, setLoading] = useState(false);
+
+
     /** This method use is to store a given value into one predetermined location into the devices memory.
      *   Inputs: value (should be integer but can be anything)
      *   Outputs: nothing (may add consol log if needed)
@@ -36,11 +39,11 @@ const ClassInputFun = () => {
 
     const sendClass = async() =>{
       try{
-       setLoading(true);
+      setLoading(true);
        const auth = await AsyncStorage.getItem('Auth');
        const id = await AsyncStorage.getItem('UserId');
    
-       const response = await fetch('https://capstonedbapi.azurewebsites.net/preference-management/class-preferences/prefer-to-teach/save/'+id, {
+       const response = await fetch('https://capstonedbapi.azurewebsites.net/class-management/classes/create', {
          method: 'POST',
          /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
          headers: { 
@@ -48,10 +51,17 @@ const ClassInputFun = () => {
            'Content-Type': 'application/json',
            'Authorization': auth//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
          },
-           body: JSON.stringify(dataT)
+           body:JSON.stringify( {
+            "class_num": classNumber,
+            "dept_id": selectedLanguage,
+            "class_name": classTitle,
+            "capacity": classCapacity,
+            "credits": classCredits,
+            "is_lab": isLab
+          })
          });
          const json = await response.json();
-       alert(json);
+       console.log(json);
        }
          catch (error) {
            console.error(error);
@@ -78,7 +88,7 @@ const ClassInputFun = () => {
      * Outputs: Three alerts stating the current state of the usestate variables
       */
     const getstate = () => {
-      alert("dept_id:"+selectedLanguage +"\nclass_num:" + classNumber+"\nTitle:" + classTitle +"\nCredits:"+ classCredits +"\nLab:"+isLab);
+      alert("dept_id:"+selectedLanguage +"\nclass_num:" + classNumber+"\ntitle:" + classTitle +"\ncredits:"+ classCredits +"\nis_lab:"+isLab);
       
     }
     const onChange = (val) =>{
@@ -112,7 +122,8 @@ const ClassInputFun = () => {
             
             <Checkbox.Item label = {isLab? "This class is a lab" : "This class is not a lab"} color = "purple" uncheckedColor = "black" status = {isLab? 'checked':'unchecked'} onPress = {() => setIsLab(!isLab)}/>
 
-            <Button mode="contained" onPress={getstate} >save data </Button>
+            {isLoading ? <Button loading = {true} mode = "outlined" > Loading</Button> : (            <Button mode="contained" onPress={() => sendClass()} >save data </Button>)}
+
         </Card>
     </SafeAreaView>
  );

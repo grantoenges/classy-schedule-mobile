@@ -82,6 +82,7 @@ const SignInScreenFun = ({ navigation }) => {
           const password = await SecureStore.getItemAsync('password');
           //send the sign in request and change the page the user is on
           global.TEMP = signIn(username, password).then((response) => {
+            console.log(response);
             if(response.token){
               //succesful login
               AsyncStorage.setItem("Auth", response.token);
@@ -92,7 +93,9 @@ const SignInScreenFun = ({ navigation }) => {
               navigation.navigate("Welcome")
             } else {
               //unsucessful login
-              alert(response.message);
+              //alert(response.message);
+              alert("else string");
+
               setLoading(false);
             }
           });
