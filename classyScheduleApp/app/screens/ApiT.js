@@ -21,8 +21,9 @@ import {Button, Checkbox} from 'react-native-paper'
   const seeSelection = async() =>{
     try{
      setLoading(true);
-     console.log(pref);
-     console.log(pref.find(element => element.class_num === 12345).prefer_to_teach);
+     let found = dataT.find(element=> element.class_id ==8)
+    setDummy(!dummy);
+    console.log(" ses "+found.prefer_to_teach);
      }
        catch (error) {
          console.error(error);
@@ -74,20 +75,21 @@ import {Button, Checkbox} from 'react-native-paper'
      },
      });
 
-   const json = await response.json();
-   /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
+     const json = await response.json();
+     /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
+     console.log("JOSN IS"+json.length);
+     if(json.length != undefined){
      setPref((pref) => [
-       ...pref,
-       ...json.map(({class_num,dept_id,is_lab, class_name, prefer_to_teach}) => ({
-         class_num,
-         dept_id,
-         is_lab,
-         class_name,
-         prefer_to_teach
-       })),
-     ]);
-     console.log(json);
+      ...pref,
+      ...json.map(({class_id,prefer_to_teach}) => ({
+        class_id,
+        prefer_to_teach
+      })),
+    ]);}
+     //console.log(json);
    } catch (error) {
+    setPref([]);
+
    console.error(error);
  } finally {
    setLoading(false);
@@ -118,53 +120,70 @@ import {Button, Checkbox} from 'react-native-paper'
           'Authorization': auth
         },
         });
-        if(response.json()){
-          console.log("RESP ++ UND:"+response)
-        }
+        
       const json = await response.json();
       /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
-      
-        console.log("Status = "+json.status);
+      if(json.length != undefined){
         setDataT((dataT) => [
           ...dataT,
-          ...json.map(({class_num,dept_id, class_name,is_lab, capacity, credits}) => ({
+          ...json.map(({class_id, class_num,dept_id, class_name,is_lab, capacity, credits}) => ({
+            class_id,
             class_num,
             dept_id,
             class_name,
             is_lab,
-            prefer_to_teach:false //pref.find(element => element.class_num === 12345)? true: false
+            prefer_to_teach: false //pref.find(element => (element.class_id == 8))
           })),
-        ]);
+        ]);}
       } catch (error) {
-        //console.log("Error");
-      //console.error(error);
+      console.error(error);
     } finally {
       setLoading(false);
     }
   }
-  
+  const allTrues = async() =>{
+    pref.map(item =>
+      {
+        if (item.prefer_to_teach == true){
+          getTF(item.class_id); //gets everything that was already in item, and updates "done"
+        }
+      });
+  }
+  const getTF =(id) => {
+    // loop over the todos list and find the provided id.
+    let ns = dataT.map(item =>
+        {
+          if (item.class_id == id){
+            return {...item, prefer_to_teach: true}; //gets everything that was already in item, and updates "done"
+          }
+          return item; // else return unmodified item 
+        });
+
+    setDataT(ns);
+    setDummy(!dummy);
+ }
   /*useEffect is a react native hook that allows us to get to using our usestate variables and allowing
   for the dynamic rendering of that data onto the screen. This useeffect for example calls our getJson method */
   useEffect(() => {
-    //getAuth();
     getPreferencesJson();
     getJson();
+    //getTF();
   }, []);
-
+  
   /*This return is where the actual react part of the app is made and the data will be displayed for the user  */
   return (
     <View style = {{ flex: 1, padding: 24 }}>      
       <Button onPress = {sendSelection} mode = "contained" >Save Data</Button>
-      {isLoading ? <Button loading = {true} mode = "outlined" onPress={seeSelection}> Loading</Button> : (
+      {isLoading ? <Button loading = {true} mode = "outlined" onPress={sendSelection}> Loading</Button> : (
         <FlatList
           data = {dataT}
-          keyExtractor = {({ class_num}) => (class_num) }
+          keyExtractor = {({ class_id}) => class_id}
           renderItem = {({ item }) => (
-              <Checkbox.Item label = {item.class_name} color = "darkblue" uncheckedColor = "black" status = {item.prefer_to_teach? 'checked':'unchecked'} onPress = {()=>{item.prefer_to_teach = !item.prefer_to_teach; setDummy(!dummy)}}/>
+              <Checkbox.Item label = {item.class_name} color = "darkblue" uncheckedColor = "black" status = {item.prefer_to_teach? 'checked':'unchecked'} onPress = {()=>{item.prefer_to_teach = !item.prefer_to_teach; setDummy(!dummy);}}/>
             )}
         />   
       )}
-        <Button mode="contained" onPress={seeSelection} >see data </Button>
+        <Button mode="contained" onPress={allTrues} >see data </Button>
 
     </View>
   );
