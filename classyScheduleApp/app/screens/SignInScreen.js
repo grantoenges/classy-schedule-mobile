@@ -82,19 +82,23 @@ const SignInScreenFun = ({ navigation }) => {
               navigation.navigate("Welcome")
             } else {
               //unsucessful login
-              alert('unsucessful login');
+              alert('username and password have not been previously saved, please log into the app with username and password');
               setLoading(false);
             }
           });
         } else {
           alert('could not Authenticate user');
+          setLoading(false);
+          return;
         }
       } else {
         alert('No Saved Biometrics on device');
+        setLoading(false);
         return;
       }
     } else {
       alert('device does not support biometrics');
+      setLoading(false);
       return;
     }
   }
