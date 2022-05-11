@@ -48,7 +48,9 @@ async function saveSecureValue(key, value) {
 
 
 const SignInScreenFun = ({ navigation }) => {
-  const newAccount = () => navigation.navigate("New Account");
+  global.AUTH = signIn();
+  //global.AUTH = AUTH._W
+  const Welcome = () => navigation.navigate("Welcome");
   let value = value || "";
   //let styles = COLORSCHEME[0] ==='dark' ? darkStyles : lightStyles;
   const [isLoading, setLoading] = useState(false);
@@ -70,14 +72,15 @@ const SignInScreenFun = ({ navigation }) => {
           const savedUsrname = await SecureStore.getItemAsync('username');
           const savedPassword = await SecureStore.getItemAsync('password');
           //send the sign in request and change the page the user is on
+
           signIn(savedUsrname, savedPassword).then((response) => {
             console.log('response', response);
             if(response.token){
               //succesful login
-              global.AUTH = response.token;
-              global.USERNAME = response.username;
-              global.ROLE = response.user_role;
-              global.USERID = response.user_id;
+              AsyncStorage.setItem("Auth", response.token);
+              AsyncStorage.setItem("Username", response.username);
+              AsyncStorage.setItem("Role", response.user_role);
+              AsyncStorage.setItem("UserId", response.user_id.toString());
               setLoading(false);
               navigation.navigate("Welcome")
             } else {
@@ -163,65 +166,45 @@ const SignInScreenFun = ({ navigation }) => {
     >
       <View style={styles.generalOverlay}>
         {/* Email input field */}
-        <TextInput
-          style={styles.TextInput}
-          label="Email"
-          placeholderTextColor="#ABC"
-          value={email.value}
-          onChangeText={(email) => setEmail({ value: email, error: "" })}
-          error={!!email.error}
-          errorText={email.error}
-          textContentType="emailAddress"
-          keyboardType="email-address"
-        />
-        {/* Password input field */}
-        <TextInput
-          style={styles.TextInput}
-          label="Password"
-          placeholderTextColor="#ABC"
-          value={password.value}
-          secureTextEntry={true}
-          onChangeText={(password) =>
-            setPassword({ value: password, error: "" })
-          }
-          error={!!password.error}
-          errorText={password.error}
-        />
-        {/* Login button */}
-        <Button
-          mode="contained"
-          style={styles.generalButtonContained}
-          loading={isLoading}
-          onPress={() => onLoginPressed()}
-        >
-          Login
-        </Button>
+      <TextInput
+        style={styles.TextInput}
+        label= "Email"
+        placeholderTextColor="#ABC"
+        value={email.value}
+        onChangeText={(email) => setEmail({ value: email, error: "" })}
+        error={!!email.error}
+        errorText={email.error}
+        textContentType="emailAddress"
+        keyboardType="email-address"
+      />
+      {/* Password input field */}
+      <TextInput
+        style={styles.TextInput}
+        label = "Password"
+        placeholderTextColor="#ABC"
+        value={password.value}
+        secureTextEntry={true}
+        onChangeText={(password) => setPassword({ value: password, error: "" })}
+        error={!!password.error}
+        errorText={password.error}
+      />
+      {/* Login button */}
+      <Button mode="contained" style={styles.generalButtonContained}  loading ={isLoading} onPress={() => onLoginPressed()}>Login</Button>
       {/* Biometrics button*/}
-      <Button mode="text" style={styles.generalButtonContained}  loading ={isLoading} onPress={() => onBiometricsPressed()}>Biometric Login</Button>
-        {/* Account Creation */}
-        <Button
-          mode="text"
-          style={[styles.generalButton, { marginBottom: 5 }]}
-          icon="account-plus"
-          onPress={newAccount}
-        >
-          Create Account
-        </Button>
-        {/* Forgot password */}
-        <TouchableOpacity
-          style={styles.centerPage}
-          onPress={() => alert("Then remember it!")}
-        >
-          <Text style={{ color: paperTheme.textStyle.color }}>
-            Forgot Password?
-          </Text>
-        </TouchableOpacity>
-        <View style={styles.centerPage}>
-          <Image
-            style={styles.tinyLogo}
-            source={require("../assets/ClassyLogoSquare.png")}
-          />
-        </View>
+      <Button icon="fingerprint" mode="text" style={styles.generalButtonContained}  loading ={isLoading} onPress={() => onBiometricsPressed()}>Biometric Login</Button>
+        
+      {/* Navigate to welcome- will delete */}
+      <Button mode="text" style={[styles.generalButton, {marginBottom: 5}]} onPress={Welcome}>Navigate to Welcome</Button>
+      {/* Forgot password */}
+      <TouchableOpacity style={styles.centerPage} onPress={() => alert("Then remember it!")}>
+        <Text style={{color: paperTheme.textStyle.color}}>Forgot Password?</Text>
+      </TouchableOpacity>
+      <View style = {styles.centerPage}>
+      <Image
+        style={styles.tinyLogo}
+        source={require('../assets/ClassyLogoSquare.png')}
+      />
+      </View>
       </View>
     </SafeAreaView>
   );
