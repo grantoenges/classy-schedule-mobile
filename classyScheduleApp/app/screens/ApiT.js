@@ -73,6 +73,7 @@ import {Button, Checkbox} from 'react-native-paper'
        'Authorization': auth
      },
      });
+
    const json = await response.json();
    /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
      setPref((pref) => [
@@ -117,8 +118,13 @@ import {Button, Checkbox} from 'react-native-paper'
           'Authorization': auth
         },
         });
+        if(response.json()){
+          console.log("RESP ++ UND:"+response)
+        }
       const json = await response.json();
       /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
+      
+        console.log("Status = "+json.status);
         setDataT((dataT) => [
           ...dataT,
           ...json.map(({class_num,dept_id, class_name,is_lab, capacity, credits}) => ({
@@ -130,7 +136,8 @@ import {Button, Checkbox} from 'react-native-paper'
           })),
         ]);
       } catch (error) {
-      console.error(error);
+        //console.log("Error");
+      //console.error(error);
     } finally {
       setLoading(false);
     }
