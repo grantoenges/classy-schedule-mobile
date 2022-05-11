@@ -65,3 +65,21 @@ export const getAuthorization = async () => {
       }
   }
 
+  export const forgotPass = async (email) => {
+    try {
+        const response = await fetch('https:capstonedbapi.azurewebsites.net/user-management/forgot-password?user_email='+email, {
+            method: 'POST',
+            headers: {
+                accept: '*/*'
+            }
+        });
+        
+        return response;
+        } catch (error) {
+        console.error(error);
+        alert("Error with email");
+      } finally {
+      }
+  }
+
+

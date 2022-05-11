@@ -15,6 +15,7 @@ import DaysPrefFun from "./screens/DaysPreferred";
 import ClassInputFun from "./screens/ClassInputting";
 import Apites from "./screens/ApiTest";
 import ApiList from "./screens/ApiT";
+import ForgotPassword from "./screens/ForgotPassword";
 import { Appearance } from 'react-native';
 /*This variable creates a stack navigator, this is our holder that allows for 
 screens to be navigated to from other screens as well as allowing for native use
@@ -53,6 +54,7 @@ function AppNavigator() {
         options={{ headerLeft: (props) => null }}
       />
       <Screen name="Login" component={SignInScreenFun} />
+      <Screen name="Forgot Password" component={ForgotPassword} />
       <Screen name="Change Password" component={ChangePassword} />
       <Screen name="Preferences" component={PreferenceFun} />
       <Screen name="Settings" component={SettingFun} />

@@ -67,6 +67,7 @@ const WelcomeScreenFun = ({ navigation }) => {
   const [prefModal, setModalPref] = useState(false);
   const [settingsModal, setModalSettings] = useState(false);
   const [scheduleModal, setModalSchedule] = useState(false);
+  const [CIModal, setModalCI] = useState(false);
   
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: paperTheme.colors.background}]}>
@@ -191,9 +192,29 @@ const WelcomeScreenFun = ({ navigation }) => {
             style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
             activeOpacity={0.8}
             onPress={Input}
+            onLongPress={() => setModalCI(true)}
           >
             <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Class Input</Text>
+            <Modal
+              contentContainerStyle={styles.modalStyle}
+              animationType="slide"
+              transparent={true}
+              visible={CIModal}
+              onDismiss={() => {
+                setModalCI(!CIModal);
+              }}
+            >
+            
+            <Pressable
+              style={styles.modalStyle}
+              onPress={() => setModalCI(!CIModal)}
+              >
+                <Text style={styles.modalText}>Brings the user to the Class Input page where they can input classes.</Text>
+            </Pressable>
+            
+            </Modal>
           </TouchableOpacity>
+          
           <TouchableOpacity
             mode="contained"
             style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}

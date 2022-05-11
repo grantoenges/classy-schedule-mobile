@@ -1,8 +1,10 @@
+
 import React from "react";
 import { SafeAreaView, View, Text, StyleSheet } from "react-native";
 import { Button, Card, TextInput, useTheme } from "react-native-paper";
 import styles from "../Style";
 import WeeklyCalendar from "react-native-weekly-calendar";
+
 
 /*This method is used to fetch and to display a users schedule to them.
 It should set the day to the current day, having the calandar sync with the current day.

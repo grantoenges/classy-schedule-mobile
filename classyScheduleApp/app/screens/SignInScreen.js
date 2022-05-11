@@ -51,6 +51,7 @@ const SignInScreenFun = ({ navigation }) => {
   global.AUTH = signIn();
   //global.AUTH = AUTH._W
   const Welcome = () => navigation.navigate("Welcome");
+  const ForgotPass = () => navigation.navigate("Forgot Password");
   let value = value || "";
   //let styles = COLORSCHEME[0] ==='dark' ? darkStyles : lightStyles;
   const [isLoading, setLoading] = useState(false);
@@ -196,7 +197,7 @@ const SignInScreenFun = ({ navigation }) => {
       {/* Navigate to welcome- will delete */}
       <Button mode="text" style={[styles.generalButton, {marginBottom: 5}]} onPress={Welcome}>Navigate to Welcome</Button>
       {/* Forgot password */}
-      <TouchableOpacity style={styles.centerPage} onPress={() => alert("Then remember it!")}>
+      <TouchableOpacity style={styles.centerPage} onPress={ForgotPass}>
         <Text style={{color: paperTheme.textStyle.color}}>Forgot Password?</Text>
       </TouchableOpacity>
       <View style = {styles.centerPage}>
