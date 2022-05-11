@@ -40,16 +40,7 @@ function passwordValidator(password) {
   return "";
 }
 
-//function that securely stores the username/password
-async function getSecureValue(key) {
-  let result = await SecureStore.getItemAsync(key);
-  if (result) {
-    alert("Here's your value \n" + result);
-  } else {
-    alert('No values stored under that key.');
-  }
-}
-
+//fucntion to securely save to the device
 async function saveSecureValue(key, value) {
   await SecureStore.setItemAsync(key, value);
 }
@@ -76,11 +67,12 @@ const SignInScreenFun = ({ navigation }) => {
       if(savedBiometrics) {
         const bioAuthenticate = await authenticateAsync();
         if(bioAuthenticate.success){
-          //user is authenticated, get username and password
-          const username = await SecureStore.getItemAsync('username');
-          const password = await SecureStore.getItemAsync('password');
+          //user is autheenticated, get username and password
+          const savedUsrname = await SecureStore.getItemAsync('username');
+          const savedPassword = await SecureStore.getItemAsync('password');
           //send the sign in request and change the page the user is on
-          global.TEMP = signIn(username, password).then((response) => {
+          signIn(savedUsrname, savedPassword).then((response) => {
+            console.log('response', response);
             if(response.token){
               //succesful login
               global.AUTH = response.token;
@@ -91,7 +83,7 @@ const SignInScreenFun = ({ navigation }) => {
               navigation.navigate("Welcome")
             } else {
               //unsucessful login
-              alert(response.message);
+              alert('unsucessful login');
               setLoading(false);
             }
           });
@@ -121,7 +113,11 @@ const SignInScreenFun = ({ navigation }) => {
     } else {
       //send sign in request 
       global.TEMP = signIn(email.value, password.value).then((response) => {
-        if(response.token){
+        console.log("response", response);
+        if (response.token) {
+          //save username and password securely to device for bioauth
+          saveSecureValue('username', email.value);
+          saveSecureValue('password', password.value);
           //succesful login
           saveSecureValue('username', email.value);
           saveSecureValue('password', password.value);
