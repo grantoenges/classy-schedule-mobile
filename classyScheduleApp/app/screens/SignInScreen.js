@@ -187,11 +187,12 @@ const SignInScreenFun = ({ navigation }) => {
       <Button icon="fingerprint" mode="text" style={styles.generalButtonContained}  loading ={isLoading} onPress={() => onBiometricsPressed()}>Biometric Login</Button>
         
       {/* Navigate to welcome- will delete */}
-      <Button mode="text" style={[styles.generalButton, {marginBottom: 5}]} onPress={Welcome}>Navigate to Welcome</Button>
       {/* Forgot password */}
       <TouchableOpacity style={styles.centerPage} onPress={() => alert("Then remember it!")}>
         <Text style={{color: paperTheme.textStyle.color}}>Forgot Password?</Text>
       </TouchableOpacity>
+      <Button mode="text" style={[styles.generalButton, {marginBottom: 5}]} onPress={Welcome}></Button>
+
       <View style = {styles.centerPage}>
       <Image
         style={styles.tinyLogo}
