@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { SafeAreaView, View, StyleSheet, Alert } from "react-native";
 import { Button, Card, Checkbox, Text, useTheme } from "react-native-paper";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import styles from "../Style";
 
@@ -9,11 +10,81 @@ import styles from "../Style";
 // it then creates the page view, containing title and checkboxes for each day of the week
 const DaysPrefFun = ({ navigation }) => {
   const paperTheme = useTheme();
+
+  /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
+  const [isLoading, setLoading] = useState(true);
+  const [dummy, setDummy] = React.useState(false);
+
+  /*This usestate variable is used as the json data obtained from the api calls storage location*/
+  const [data, setData] = useState([]);
+  const [dataT, setDataT] = useState([]);
+
   const [mondayChecked, setMondayChecked] = useState(false);
   const [tuesdayChecked, setTuesdayChecked] = useState(false);
   const [wednesdayChecked, setWednesdayChecked] = useState(false);
   const [thursdayChecked, setThursdayChecked] = useState(false);
   const [fridayChecked, setFridayChecked] = useState(false);
+
+  /*
+  sendPreferences's purpose is to make a call to the API point and set our usestate variable to the data that 
+  should be returned while also updating the isLoading variable to reflect the loading status 
+    ------------------
+    Inputs: None
+    Outputs: None (But the data variable should be set to the json from the API)
+    -------------------
+   If for some reason the API call fails then the try catch block should be aware of that failure and 
+   should send that error to the console.log 
+  */
+  const sendPreferences = async () => {
+    try {
+      setLoading(true);
+      setDataT([]);
+      const auth = await AsyncStorage.getItem("Auth");
+      const userRole = await AsyncStorage.getItem("Role");
+      const userId = await AsyncStorage.getItem("UserId");
+
+      console.log("Current auth token", auth);
+      console.log("Current userId", userId);
+      console.log("Current userRole", userRole);
+      const response = await fetch(
+        "https://capstonedbapi.azurewebsites.net/preference-management/day-of-week-preferences/save/" +
+          userId,
+        {
+          method: "POST",
+          /*,  Example of how headers look for if people are to take this to use on other parts of the app */
+          headers: {
+            //Will need the authorization to be a saved string each time we sign in
+            Authorization: auth, //AUTH._W//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            prefer_monday: mondayChecked,
+            prefer_tuesday: tuesdayChecked,
+            prefer_wednesday: wednesdayChecked,
+            prefer_thursday: thursdayChecked,
+            prefer_friday: fridayChecked,
+          }),
+        }
+      );
+      const json = await response.json();
+      /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected 
+      setDataT((dataT) => [
+        ...dataT,
+        ...json.map(
+          ({ class_num, dept_id, class_name, capacity, credits }) => ({
+            class_num,
+            dept_id,
+            class_name,
+            checked: false,
+          })
+        ),
+      ]);*/
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <SafeAreaView
@@ -22,20 +93,7 @@ const DaysPrefFun = ({ navigation }) => {
         { backgroundColor: paperTheme.colors.background },
       ]}
     >
-      <Button
-        mode="contained"
-        onPress={() =>
-          Alert.alert(
-            JSON.stringify({
-              monday: mondayChecked,
-              tuesday: tuesdayChecked,
-              wednesday: wednesdayChecked,
-              thursday: thursdayChecked,
-              friday: fridayChecked,
-            })
-          )
-        }
-      >
+      <Button mode="contained" onPress={() => sendPreferences()}>
         Save Preferences
       </Button>
       <Card
@@ -103,26 +161,6 @@ const DaysPrefFun = ({ navigation }) => {
           }}
         />
       </View>
-
-      {/* Code in preparation for database endpoints to be made to receive day preferences
-      <Button
-        onPress={() =>
-          fetch("https://mywebsite.com/endpoint/", {
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              monday: mondayChecked,
-              tuesday: "yourOtherValue",
-            }),
-          })
-        }
-      >
-        Save Days Preferred to Teach
-      </Button>
-      */}
     </SafeAreaView>
   );
 };
