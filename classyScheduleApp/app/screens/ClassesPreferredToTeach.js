@@ -28,20 +28,6 @@ const ClassesPTFun = () => {
   const [dataT, setDataT] = useState([]);
 
 
-  const seeSelection = async() =>{
-    try{
-     setLoading(true);
-     let found = dataT.find(element=> element.class_id ==8)
-    setDummy(!dummy);
-    console.log(" ses "+found.prefer_to_teach);
-     }
-       catch (error) {
-         console.error(error);
-       } finally {
-         setLoading(false);
-       }
-  }
-
  const sendSelection = async() =>{
    try{
     setLoading(true);
@@ -59,8 +45,7 @@ const ClassesPTFun = () => {
         body: JSON.stringify(dataT)
       });
       const json = await response.json();
-    
-    //alert(json);
+      alert(json);
     }
       catch (error) {
         console.error(error);
