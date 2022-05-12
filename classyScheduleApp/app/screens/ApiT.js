@@ -143,7 +143,6 @@ import {Button, Checkbox} from 'react-native-paper'
     }
   }
   const allTrues = async() =>{
-    setLoading(true);
     var arr = [];
     if(pref.length != undefined){
     pref.map(item =>
@@ -158,15 +157,14 @@ import {Button, Checkbox} from 'react-native-paper'
   const getTF =(id) => {
     // loop over the todos list and find the provided id.
     console.log(isLoading);
-    let ns = dataT.map(item =>
+    let newData = dataT.map(item =>
         {
           if (id.includes(item.class_id)){
             return {...item, prefer_to_teach: true}; //gets everything that was already in item, and updates "done"
           }
           return item; // else return unmodified item 
         });
-    setDataT(ns);
-    setLoading(false);
+    setDataT(newData);
  }
   /*useEffect is a react native hook that allows us to get to using our usestate variables and allowing
   for the dynamic rendering of that data onto the screen. This useeffect for example calls our getJson method */
