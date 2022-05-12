@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  SafeAreaView,
   ActivityIndicator,
   FlatList,
   Text,
@@ -17,7 +18,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../Style";
 
 const ClassesPTFun = () => {
-   /*This is a temporary variable that holds the current authorization token to allow for connections with the database */
+   const paperTheme = useTheme();
 
   /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
   const [isLoading, setLoading] = useState(true);
@@ -28,6 +29,7 @@ const ClassesPTFun = () => {
   const [dataT, setDataT] = useState([]);
 
 
+  
  const sendSelection = async() =>{
    try{
     setLoading(true);
@@ -173,20 +175,19 @@ const ClassesPTFun = () => {
 
   /*This return is where the actual react part of the app is made and the data will be displayed for the user  */
   return (
-    <View style = {{ flex: 1, padding: 24 }}>      
+    <SafeAreaView style = {[styles.noPadContainer, {backgroundColor: paperTheme.colors.background}]}>      
       <Button onPress = {sendSelection} mode = "contained" >Save Data</Button>
-      {isLoading ? <Button loading = {true} mode = "outlined" onPress={sendSelection}> Loading</Button> : (
+      {isLoading ? <Button loading = {true} mode = "outlined"> Loading</Button> : (
         <FlatList
           data = {dataT}
           keyExtractor = {({ class_id}) => class_id}
           renderItem = {({ item }) => (
-              <Checkbox.Item label = {item.class_name} color = "darkblue" uncheckedColor = "black" status = {item.prefer_to_teach? 'checked':'unchecked'} onPress = {()=>{item.prefer_to_teach = !item.prefer_to_teach; setDummy(!dummy);}}/>
+              <Checkbox.Item labelStyle={{color: paperTheme.checkboxStyle.textColor}} label = {item.class_name} color = {paperTheme.checkboxStyle.color} uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor} status = {item.prefer_to_teach? 'checked':'unchecked'} onPress = {()=>{item.prefer_to_teach = !item.prefer_to_teach; setDummy(!dummy);}}/>
             )}
         />   
-      )}
-        <Button mode="contained" onPress={allTrues} >see current saved preferences </Button>
-
-    </View>
+      )}        
+        <Button mode="contained" onPress={allTrues} >see current saved preferences </Button>  
+    </SafeAreaView>
   );
 };
 

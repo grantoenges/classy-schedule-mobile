@@ -1,6 +1,6 @@
 import React from "react";
 import { useState ,useEffect} from "react";
-import { SafeAreaView, View, StyleSheet, Alert } from "react-native";
+import { SafeAreaView, View, StyleSheet, Alert, ScrollView } from "react-native";
 import { Button, Card, Checkbox, Text, useTheme } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -225,6 +225,8 @@ const DaysPrefFun = ({ navigation }) => {
         { backgroundColor: paperTheme.colors.background },
       ]}
     >
+    <ScrollView>
+    
       <Button mode="contained" onPress={() => sendPreferences()}>
         Save Preferences
       </Button>
@@ -247,8 +249,8 @@ const DaysPrefFun = ({ navigation }) => {
         <Checkbox.Item
           labelStyle={paperTheme.label.color}
           label="Monday"
-          color={paperTheme.label.color}
-          uncheckedColor={paperTheme.label.color}
+          color={paperTheme.checkboxStyle.color}
+            uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
           status={mondayChecked ? "checked" : "unchecked"}
           onPress={() => {
             setMondayChecked(!mondayChecked);
@@ -257,8 +259,8 @@ const DaysPrefFun = ({ navigation }) => {
         <Checkbox.Item
           labelStyle={paperTheme.label.color}
           label="Tuesday"
-          color={paperTheme.label.color}
-          uncheckedColor={paperTheme.label.color}
+          color={paperTheme.checkboxStyle.color}
+          uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
           status={tuesdayChecked ? "checked" : "unchecked"}
           onPress={() => {
             setTuesdayChecked(!tuesdayChecked);
@@ -267,8 +269,8 @@ const DaysPrefFun = ({ navigation }) => {
         <Checkbox.Item
           labelStyle={paperTheme.label.color}
           label="Wednesday"
-          color={paperTheme.label.color}
-          uncheckedColor={paperTheme.label.color}
+          color={paperTheme.checkboxStyle.color}
+          uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
           status={wednesdayChecked ? "checked" : "unchecked"}
           onPress={() => {
             setWednesdayChecked(!wednesdayChecked);
@@ -277,8 +279,8 @@ const DaysPrefFun = ({ navigation }) => {
         <Checkbox.Item
           labelStyle={paperTheme.label.color}
           label="Thursday"
-          color={paperTheme.label.color}
-          uncheckedColor={paperTheme.label.color}
+          color={paperTheme.checkboxStyle.color}
+          uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
           status={thursdayChecked ? "checked" : "unchecked"}
           onPress={() => {
             setThursdayChecked(!thursdayChecked);
@@ -287,8 +289,8 @@ const DaysPrefFun = ({ navigation }) => {
         <Checkbox.Item
           labelStyle={paperTheme.label.color}
           label="Friday"
-          color={paperTheme.label.color}
-          uncheckedColor={paperTheme.label.color}
+          color={paperTheme.checkboxStyle.color}
+          uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
           status={fridayChecked ? "checked" : "unchecked"}
           onPress={() => {
             setFridayChecked(!fridayChecked);
@@ -316,8 +318,8 @@ const DaysPrefFun = ({ navigation }) => {
   <Checkbox.Item
             labelStyle={paperTheme.label.color}
             label="Morning"
-            color={paperTheme.label.color}
-            uncheckedColor={paperTheme.label.color}
+            color={paperTheme.checkboxStyle.color}
+            uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
             status={morningChecked ? "checked" : "unchecked"}
             onPress={() => {
               setMorningChecked(!morningChecked);
@@ -326,8 +328,8 @@ const DaysPrefFun = ({ navigation }) => {
           <Checkbox.Item
             labelStyle={paperTheme.label.color}
             label="Afternoon"
-            color={paperTheme.label.color}
-            uncheckedColor={paperTheme.label.color}
+            color={paperTheme.checkboxStyle.color}
+            uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
             status={afternoonChecked ? "checked" : "unchecked"}
             onPress={() => {
               setAfternoonChecked(!afternoonChecked);
@@ -336,8 +338,8 @@ const DaysPrefFun = ({ navigation }) => {
           <Checkbox.Item
             labelStyle={paperTheme.label.color}
             label="Evening"
-            color={paperTheme.label.color}
-            uncheckedColor={paperTheme.label.color}
+            color={paperTheme.checkboxStyle.color}
+            uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
             status={eveningChecked ? "checked" : "unchecked"}
             onPress={() => {
               setEveningChecked(!eveningChecked);
@@ -345,6 +347,7 @@ const DaysPrefFun = ({ navigation }) => {
           />
 </View>
 )} 
+    </ScrollView>
     </SafeAreaView>
   );
 };

@@ -170,8 +170,8 @@ const TimesCTFun = ({ navigation }) => {
           <Checkbox.Item
             labelStyle={paperTheme.label.color}
             label="8:15am-9:20am"
-            color={paperTheme.label.color}
-            uncheckedColor={paperTheme.label.color}
+            color={paperTheme.checkboxStyle.color}
+            uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
             status={threeDay1Checked ? "checked" : "unchecked"}
             onPress={() => {
               setThreeDay1Checked(!threeDay1Checked);
@@ -180,8 +180,8 @@ const TimesCTFun = ({ navigation }) => {
           <Checkbox.Item
             labelStyle={paperTheme.label.color}
             label="9:35am-10:40am"
-            color={paperTheme.label.color}
-            uncheckedColor={paperTheme.label.color}
+            color={paperTheme.checkboxStyle.color}
+            uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
             status={threeDay2Checked ? "checked" : "unchecked"}
             onPress={() => {
               setThreeDay2Checked(!threeDay2Checked);
@@ -190,8 +190,8 @@ const TimesCTFun = ({ navigation }) => {
           <Checkbox.Item
             labelStyle={paperTheme.label.color}
             label="10:55am-12:00pm"
-            color={paperTheme.label.color}
-            uncheckedColor={paperTheme.label.color}
+            color={paperTheme.checkboxStyle.color}
+            uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
             status={threeDay3Checked ? "checked" : "unchecked"}
             onPress={() => {
               setThreeDay3Checked(!threeDay3Checked);
@@ -200,8 +200,8 @@ const TimesCTFun = ({ navigation }) => {
           <Checkbox.Item
             labelStyle={paperTheme.label.color}
             label="12:15pm-1:20pm"
-            color={paperTheme.label.color}
-            uncheckedColor={paperTheme.label.color}
+            color={paperTheme.checkboxStyle.color}
+            uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
             status={threeDay4Checked ? "checked" : "unchecked"}
             onPress={() => {
               setThreeDay4Checked(!threeDay4Checked);
@@ -210,8 +210,8 @@ const TimesCTFun = ({ navigation }) => {
           <Checkbox.Item
             labelStyle={paperTheme.label.color}
             label="1:35pm-2:40pm"
-            color={paperTheme.label.color}
-            uncheckedColor={paperTheme.label.color}
+            color={paperTheme.checkboxStyle.color}
+            uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
             status={threeDay5Checked ? "checked" : "unchecked"}
             onPress={() => {
               setThreeDay5Checked(!threeDay5Checked);
@@ -239,8 +239,8 @@ const TimesCTFun = ({ navigation }) => {
           <Checkbox.Item
             labelStyle={paperTheme.label.color}
             label="8:00am-9:40am"
-            color={paperTheme.label.color}
-            uncheckedColor={paperTheme.label.color}
+            color={paperTheme.checkboxStyle.color}
+            uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
             status={twoDay1Checked ? "checked" : "unchecked"}
             onPress={() => {
               setTwoDay1Checked(!twoDay1Checked);
@@ -249,8 +249,8 @@ const TimesCTFun = ({ navigation }) => {
           <Checkbox.Item
             labelStyle={paperTheme.label.color}
             label="9:55am-11:35am"
-            color={paperTheme.label.color}
-            uncheckedColor={paperTheme.label.color}
+            color={paperTheme.checkboxStyle.color}
+            uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
             status={twoDay2Checked ? "checked" : "unchecked"}
             onPress={() => {
               setTwoDay2Checked(!twoDay2Checked);
@@ -259,8 +259,8 @@ const TimesCTFun = ({ navigation }) => {
           <Checkbox.Item
             labelStyle={paperTheme.label.color}
             label="1:30pm-3:10pm"
-            color={paperTheme.label.color}
-            uncheckedColor={paperTheme.label.color}
+            color={paperTheme.checkboxStyle.color}
+            uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
             status={twoDay3Checked ? "checked" : "unchecked"}
             onPress={() => {
               setTwoDay3Checked(!twoDay3Checked);
@@ -269,8 +269,8 @@ const TimesCTFun = ({ navigation }) => {
           <Checkbox.Item
             labelStyle={paperTheme.label.color}
             label="3:25pm-5:00pm"
-            color={paperTheme.label.color}
-            uncheckedColor={paperTheme.label.color}
+            color={paperTheme.checkboxStyle.color}
+            uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
             status={twoDay4Checked ? "checked" : "unchecked"}
             onPress={() => {
               setTwoDay4Checked(!twoDay4Checked);
@@ -279,8 +279,8 @@ const TimesCTFun = ({ navigation }) => {
           <Checkbox.Item
             labelStyle={paperTheme.label.color}
             label="5:30pm-7:15pm"
-            color={paperTheme.label.color}
-            uncheckedColor={paperTheme.label.color}
+            color={paperTheme.checkboxStyle.color}
+            uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
             status={twoDay5Checked ? "checked" : "unchecked"}
             onPress={() => {
               setTwoDay5Checked(!twoDay5Checked);
@@ -289,8 +289,8 @@ const TimesCTFun = ({ navigation }) => {
           <Checkbox.Item
             labelStyle={paperTheme.label.color}
             label="7:30pm-9:15pm"
-            color={paperTheme.label.color}
-            uncheckedColor={paperTheme.label.color}
+            color={paperTheme.checkboxStyle.color}
+            uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
             status={twoDay6Checked ? "checked" : "unchecked"}
             onPress={() => {
               setTwoDay6Checked(!twoDay6Checked);
