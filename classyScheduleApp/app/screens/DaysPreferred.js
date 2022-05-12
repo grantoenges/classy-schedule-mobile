@@ -187,7 +187,6 @@ const DaysPrefFun = ({ navigation }) => {
             setFridayChecked(!fridayChecked);
           }}
         />
-        
       </View>
       )} 
       
