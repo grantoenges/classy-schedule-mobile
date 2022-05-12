@@ -42,7 +42,7 @@ const SettingFun = ({ navigation }) => {
       <Card>
         <Card.Title title="User Preferences" />
         <Button
-          loading={dummy}
+          icon={dummy ? "moon-waxing-crescent" : "lightbulb-on"}
           onPress={() => {
             toggleTheme();
             setDummy(!dummy);
@@ -61,6 +61,7 @@ const SettingFun = ({ navigation }) => {
           Update Password
         </Button>
         <Button
+          icon={dummy ? "card-account-details-outline" : "card-account-details"}
           mode={dummy ? "contained" : "outlined"}
           onPress={showDialog}
           style={[styles.generalButton, { marginBottom: 5 }]}

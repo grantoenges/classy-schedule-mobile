@@ -43,6 +43,11 @@ function App() {
     cardTextStyle: {
       color: "white",
     },
+    checkboxStyle: {
+      uncheckedColor: "#a1a1a1",
+      color: "#CBC3E3",
+      textColor: "lightgray",
+    }
   };
 
   const lightStyle = {
@@ -73,6 +78,11 @@ function App() {
     cardTextStyle: {
       color: "white",
     },
+    checkboxStyle: {
+      uncheckedColor: "black",
+      color: "darkblue",
+      textColor: "black",
+    }
   };
 
   const theme = isDarkTheme ? darkStyle : lightStyle;
