@@ -48,7 +48,7 @@ async function saveSecureValue(key, value) {
 
 
 const SignInScreenFun = ({ navigation }) => {
-  global.AUTH = signIn();
+  //global.AUTH = signIn();
   //global.AUTH = AUTH._W
   const Welcome = () => navigation.navigate("Welcome");
   const ForgotPass = () => navigation.navigate("Forgot Password");
@@ -155,7 +155,6 @@ const SignInScreenFun = ({ navigation }) => {
     }
   };  */
   }
-  //const colorScheme = "dark";
   const paperTheme = useTheme();
 
   return (
@@ -195,11 +194,12 @@ const SignInScreenFun = ({ navigation }) => {
       <Button icon="fingerprint" mode="text" style={styles.generalButtonContained}  loading ={isLoading} onPress={() => onBiometricsPressed()}>Biometric Login</Button>
         
       {/* Navigate to welcome- will delete */}
-      <Button mode="text" style={[styles.generalButton, {marginBottom: 5}]} onPress={Welcome}>Navigate to Welcome</Button>
       {/* Forgot password */}
       <TouchableOpacity style={styles.centerPage} onPress={ForgotPass}>
         <Text style={{color: paperTheme.textStyle.color}}>Forgot Password?</Text>
       </TouchableOpacity>
+      <Button mode="text" style={[styles.generalButton, {marginBottom: 5}]} onPress={Welcome}></Button>
+
       <View style = {styles.centerPage}>
       <Image
         style={styles.tinyLogo}

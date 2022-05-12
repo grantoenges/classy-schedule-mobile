@@ -62,6 +62,12 @@ const ClassInputFun = () => {
          });
          const json = await response.json();
        console.log(json);
+       if (json.title == undefined){
+         alert("Sent to database");
+       }else{
+        alert(json.title);
+
+       }
        }
          catch (error) {
            console.error(error);
@@ -110,7 +116,6 @@ const ClassInputFun = () => {
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: paperTheme.colors.background}]}>
         <Card style={style.cardStyle}>
-            
             <Picker color='purple' style={style.buttonStyle} selectedValue={selectedLanguage}  dropdownIconRippleColor='#7F46C7' prompt='Pick department' onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}>
               <Picker.Item label="Computer Science" value="1" />
               <Picker.Item label="Statistics" value="0" />
@@ -119,10 +124,10 @@ const ClassInputFun = () => {
             <TextInput maxLength={30} multiline={false} value={classTitle} onChangeText={(classTitle) => setClassTitle(classTitle)} label={'Class Title'}></TextInput>
             <TextInput keyboardType='numeric' maxLength={4} value={classCapacity} onChangeText={(classCapacity) => setClassCapacity(onChangeNumericInput(classCapacity))} label={'Capacity'}></TextInput>
             <TextInput keyboardType='numeric' maxLength={2}  value={classCredits} onChangeText={(classCredits) => setClassCredits(onChangeNumericInput(classCredits))} label={'Credits'}></TextInput>
-            
             <Checkbox.Item label = {isLab? "This class is a lab" : "This class is not a lab"} color = "purple" uncheckedColor = "black" status = {isLab? 'checked':'unchecked'} onPress = {() => setIsLab(!isLab)}/>
-
-            {isLoading ? <Button loading = {true} mode = "outlined" > Loading</Button> : (            <Button mode="contained" onPress={() => sendClass()} >save data </Button>)}
+            {isLoading ? <Button loading = {true} mode = "outlined" > Loading</Button> : (<Button mode="contained" onPress={() => sendClass()} >save data </Button>)}
+            
+            
 
         </Card>
     </SafeAreaView>
