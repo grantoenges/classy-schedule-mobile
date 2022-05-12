@@ -50,7 +50,7 @@ import {Button, Checkbox} from 'react-native-paper'
       });
       const json = await response.json();
     
-    alert(json);
+    //alert(json);
     }
       catch (error) {
         console.error(error);

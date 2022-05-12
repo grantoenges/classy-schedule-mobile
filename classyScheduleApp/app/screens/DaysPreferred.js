@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import { SafeAreaView, View, StyleSheet, Alert } from "react-native";
 import { Button, Card, Checkbox, Text, useTheme } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -66,19 +66,6 @@ const DaysPrefFun = ({ navigation }) => {
           }),
         }
       );
-      //const json = await response.json();
-      /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected 
-      setDataT((dataT) => [
-        ...dataT,
-        ...json.map(
-          ({ class_num, dept_id, class_name, capacity, credits }) => ({
-            class_num,
-            dept_id,
-            class_name,
-            checked: false,
-          })
-        ),
-      ]);*/
     } catch (error) {
       console.error(error);
     } finally {
@@ -86,6 +73,44 @@ const DaysPrefFun = ({ navigation }) => {
     }
   };
 
+
+  const getPreferencesJson = async () => {
+    try {
+      setLoading(true);
+      //setPref([]);
+      const auth = await AsyncStorage.getItem('Auth');
+      const id = await AsyncStorage.getItem('UserId');
+  
+     const response = await fetch('https://capstonedbapi.azurewebsites.net/preference-management/day-of-week-preferences/'+id, {
+       method: 'GET',
+       /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
+       headers: { 
+         //Will need the authorization to be a saved string each time we sign in
+         'Authorization': auth
+       },
+       });
+  
+       const json = await response.json();
+       /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
+        if(json != undefined){
+          setMondayChecked(json.prefer_monday);
+          setTuesdayChecked(json.prefer_tuesday);
+          setWednesdayChecked(json.prefer_wednesday);
+          setThursdayChecked(json.prefer_thursday);
+          setFridayChecked(json.prefer_friday);
+      }
+       //console.log(json);
+     } catch (error) {
+      //setPref([]);
+  
+     console.error(error);
+   } finally {
+     setLoading(false);
+   }
+  }
+  useEffect(() => {
+    getPreferencesJson();
+  }, []);
   return (
     <SafeAreaView
       style={[
@@ -108,8 +133,10 @@ const DaysPrefFun = ({ navigation }) => {
           Days Preferred to Teach
         </Text>
       </Card>
+      {isLoading ? <Button loading = {true} mode = "outlined"> Loading</Button> : (
 
       <View>
+
         <Checkbox.Item
           labelStyle={paperTheme.label.color}
           label="Monday"
@@ -161,6 +188,8 @@ const DaysPrefFun = ({ navigation }) => {
           }}
         />
       </View>
+      )} 
+      
     </SafeAreaView>
   );
 };
