@@ -46,6 +46,7 @@ import styles from "../Style";
       <Card>
         <Card.Title title="Help Sections" />
         <Button
+          icon = "help-circle"
           mode={dummy ? "contained" : "outlined"}
           onPress={showDialog0}
           style={[styles.generalButton, { marginBottom: 5 }]}
