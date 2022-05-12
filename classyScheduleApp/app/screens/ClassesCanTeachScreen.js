@@ -46,8 +46,7 @@ const ClassesCTFun = () => {
         body: JSON.stringify(dataT)
       });
       const json = await response.json();
-    
-    //alert(json);
+      alert(json);
     }
       catch (error) {
         console.error(error);

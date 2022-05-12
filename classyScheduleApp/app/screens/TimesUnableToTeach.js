@@ -133,7 +133,7 @@ const TimesCTFun = ({ navigation }) => {
 
   // This function enables the button to run two functions to send professor preferences to the database
   const sendFunctionsCombined = async () => {
-    sendTimeOfDayPreferences();
+    //sendTimeOfDayPreferences();
     sendTimesPreferences();
   };
 

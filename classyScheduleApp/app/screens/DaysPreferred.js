@@ -92,6 +92,7 @@ const DaysPrefFun = ({ navigation }) => {
   function sendPreferences(){
     sendPreferencesDOW();
     sendTimeOfDayPreferences();
+    alert("Sent to database!");
   }
 
   /*
