@@ -15,6 +15,7 @@ import { Button, Card, TextInput, TouchableRipple, Modal, useTheme} from "react-
 import { MyComponent } from "./Shake";
 import RNShake from "react-native-shake";
 import styles from "../Style";
+import Help from "./Help";
 
 /** This method is what displays the screen for this page
  * Inputs: Navigation class (allowing for the page to navigate to other pages)
@@ -22,7 +23,6 @@ import styles from "../Style";
  */
 
 const WelcomeScreenFun = ({ navigation }) => {
-  global.auth = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDk0NTA0NDgsImV4cCI6MTY1MDA1NTI0OCwiaWF0IjoxNjQ5NDUwNDQ4fQ.OoPrpvgpbItWR-m_SSq-SqunbLWPSLd2nuBQZldBjGg';
   const paperTheme = useTheme();
   let buttonColor = paperTheme.buttonStyle;
   
@@ -37,7 +37,7 @@ const WelcomeScreenFun = ({ navigation }) => {
   /**This function navigates the user to the Class page */
   const Input = () => navigation.navigate("Class Input");
   /**This function navigates the user to the Api test page */
-  const ApiTester = () => navigation.navigate("Api Test");
+  const Helper = () => navigation.navigate("Help");
   /**This function navigates the user to the Api list page */
   const ApiLister = () => navigation.navigate("Api List");
 
@@ -229,9 +229,9 @@ const WelcomeScreenFun = ({ navigation }) => {
             mode="contained"
             style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
             activeOpacity={0.8}
-            onPress={ApiTester}
+            onPress={Helper}
           >
-            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>APi test</Text>
+            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Help</Text>
           </TouchableOpacity>
         </View>
       </View>

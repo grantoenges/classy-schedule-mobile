@@ -144,7 +144,6 @@ import {Button, Checkbox} from 'react-native-paper'
   }
   const allTrues = async() =>{
     setLoading(true);
-
     var arr = [];
     if(pref.length != undefined){
     pref.map(item =>
@@ -158,6 +157,7 @@ import {Button, Checkbox} from 'react-native-paper'
   }
   const getTF =(id) => {
     // loop over the todos list and find the provided id.
+    console.log(isLoading);
     let ns = dataT.map(item =>
         {
           if (id.includes(item.class_id)){
@@ -173,14 +173,13 @@ import {Button, Checkbox} from 'react-native-paper'
   useEffect(() => {
     getPreferencesJson();
     getJson();
-    //allTrues();
   }, []);
 
   /*This return is where the actual react part of the app is made and the data will be displayed for the user  */
   return (
     <View style = {{ flex: 1, padding: 24 }}>      
       <Button onPress = {sendSelection} mode = "contained" >Save Data</Button>
-      {isLoading ? <Button loading = {true} mode = "outlined" onPress={sendSelection}> Loading</Button> : (
+      {isLoading ? <Button loading = {true} mode = "outlined"> Loading</Button> : (
         <FlatList
           data = {dataT}
           keyExtractor = {({ class_id}) => class_id}
@@ -188,9 +187,8 @@ import {Button, Checkbox} from 'react-native-paper'
               <Checkbox.Item label = {item.class_name} color = "darkblue" uncheckedColor = "black" status = {item.prefer_to_teach? 'checked':'unchecked'} onPress = {()=>{item.prefer_to_teach = !item.prefer_to_teach; setDummy(!dummy);}}/>
             )}
         />   
-      )}
-        <Button mode="contained" onPress={allTrues} >see current saved preferences </Button>
-
+      )}        
+        <Button mode="contained" onPress={allTrues} >see current saved preferences </Button>  
     </View>
   );
 };

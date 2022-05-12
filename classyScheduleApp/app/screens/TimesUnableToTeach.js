@@ -27,13 +27,6 @@ const TimesCTFun = ({ navigation }) => {
   const [isLoading, setLoading] = useState(true);
   const [dummy, setDummy] = React.useState(false);
 
-  /*This usestate variable is used as the json data obtained from the api calls storage location*/
-  const [data, setData] = useState([]);
-  const [dataT, setDataT] = useState([]);
-
-  const [morningChecked, setMorningChecked] = useState(false);
-  const [afternoonChecked, setAfternoonChecked] = useState(false);
-  const [eveningChecked, setEveningChecked] = useState(false);
 
   const [threeDay1Checked, setThreeDay1Checked] = useState(false);
   const [threeDay2Checked, setThreeDay2Checked] = useState(false);
@@ -47,66 +40,8 @@ const TimesCTFun = ({ navigation }) => {
   const [twoDay4Checked, setTwoDay4Checked] = useState(false);
   const [twoDay5Checked, setTwoDay5Checked] = useState(false);
   const [twoDay6Checked, setTwoDay6Checked] = useState(false);
+ 
 
-  /*
-  sendTimeOfDayPreferences's purpose is to make a call to the API point and set our usestate variable to the data that 
-  should be returned while also updating the isLoading variable to reflect the loading status 
-    ------------------
-    Inputs: None
-    Outputs: None (But the data variable should be set to the json from the API)
-    -------------------
-   If for some reason the API call fails then the try catch block should be aware of that failure and 
-   should send that error to the console.log 
-  */
-  const sendTimeOfDayPreferences = async () => {
-    try {
-      setLoading(true);
-      setDataT([]);
-      const auth = await AsyncStorage.getItem("Auth");
-      const userRole = await AsyncStorage.getItem("Role");
-      const userId = await AsyncStorage.getItem("UserId");
-
-      console.log("Current auth token", auth);
-      console.log("Current userId", userId);
-      console.log("Current userRole", userRole);
-      const response = await fetch(
-        "https://capstonedbapi.azurewebsites.net/preference-management/time-of-day-preferences/save/" +
-          userId,
-        {
-          method: "POST",
-          /*,  Example of how headers look for if people are to take this to use on other parts of the app */
-          headers: {
-            //Will need the authorization to be a saved string each time we sign in
-            Authorization: auth, //AUTH._W//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
-            "Content-Type": "application/json",
-            accept: "*/*",
-          },
-          body: JSON.stringify({
-            prefer_morning: morningChecked,
-            prefer_afternoon: afternoonChecked,
-            prefer_evening: eveningChecked,
-          }),
-        }
-      );
-      //const json = await response.json();
-      /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected 
-      setDataT((dataT) => [
-        ...dataT,
-        ...json.map(
-          ({ class_num, dept_id, class_name, capacity, credits }) => ({
-            class_num,
-            dept_id,
-            class_name,
-            checked: false,
-          })
-        ),
-      ]);*/
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   /*
   sendTimesPreferences's purpose is to make a call to the API point and set our usestate variable to the data that 
@@ -121,7 +56,6 @@ const TimesCTFun = ({ navigation }) => {
   const sendTimesPreferences = async () => {
     try {
       setLoading(true);
-      setDataT([]);
       const auth = await AsyncStorage.getItem("Auth");
       const userRole = await AsyncStorage.getItem("Role");
       const userId = await AsyncStorage.getItem("UserId");
@@ -190,18 +124,6 @@ const TimesCTFun = ({ navigation }) => {
         }
       );
       //const json = await response.json();
-      /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected 
-      setDataT((dataT) => [
-        ...dataT,
-        ...json.map(
-          ({ class_num, dept_id, class_name, capacity, credits }) => ({
-            class_num,
-            dept_id,
-            class_name,
-            checked: false,
-          })
-        ),
-      ]);*/
     } catch (error) {
       console.error(error);
     } finally {
@@ -226,55 +148,8 @@ const TimesCTFun = ({ navigation }) => {
         <Button mode="contained" onPress={() => sendFunctionsCombined()}>
           Save Preferences
         </Button>
-        <Card
-          style={[
-            styles.cardStyle,
-            { backgroundColor: paperTheme.cardStyle.backgroundColor },
-          ]}
-        >
-          <Text
-            style={[
-              styles.textStyle,
-              { color: paperTheme.cardTextStyle.color },
-            ]}
-          >
-            Time Of Day Preferred To Teach
-          </Text>
-        </Card>
-
-        <View>
-          <Checkbox.Item
-            labelStyle={paperTheme.label.color}
-            label="Morning"
-            color={paperTheme.label.color}
-            uncheckedColor={paperTheme.label.color}
-            status={morningChecked ? "checked" : "unchecked"}
-            onPress={() => {
-              setMorningChecked(!morningChecked);
-            }}
-          />
-          <Checkbox.Item
-            labelStyle={paperTheme.label.color}
-            label="Afternoon"
-            color={paperTheme.label.color}
-            uncheckedColor={paperTheme.label.color}
-            status={afternoonChecked ? "checked" : "unchecked"}
-            onPress={() => {
-              setAfternoonChecked(!afternoonChecked);
-            }}
-          />
-          <Checkbox.Item
-            labelStyle={paperTheme.label.color}
-            label="Evening"
-            color={paperTheme.label.color}
-            uncheckedColor={paperTheme.label.color}
-            status={eveningChecked ? "checked" : "unchecked"}
-            onPress={() => {
-              setEveningChecked(!eveningChecked);
-            }}
-          />
-        </View>
-
+        
+        
         <Card
           style={[
             styles.cardStyle,
