@@ -1,21 +1,19 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
-  SafeAreaView,
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  Alert,
-  Appearance,
+    SafeAreaView,
+    View,
+    Text,
+    Image,
+    TouchableOpacity,
 } from "react-native";
-import { Button, TextInput, Title, useTheme } from "react-native-paper";
+import { Button, TextInput, useTheme } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getAuthorization, signIn } from "../databaseService";
+import { signIn } from "../databaseService";
 import styles from '../Style'
 import { 
-  hasHardwareAsync,
-  isEnrolledAsync,
-  authenticateAsync 
+    hasHardwareAsync,
+    isEnrolledAsync,
+    authenticateAsync 
 } from 'expo-local-authentication';
 import * as SecureStore from 'expo-secure-store';
 

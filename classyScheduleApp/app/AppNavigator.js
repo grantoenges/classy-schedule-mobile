@@ -25,40 +25,40 @@ const { Navigator, Screen } = createStackNavigator();
 /*This variable is what stores every page of the app. This is done as a way to allow for 
 any page of the app to be able to navigate to another page without issues (hopefully)*/
 function AppNavigator() {
-  const paperTheme = useTheme();
-  return (
-    <NavigationContainer>
-      <Navigator
-        initialRouteName="Login"
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: paperTheme.headerStyle.color,
-          },
-          headerTitleStyle: {
-            color: paperTheme.headerStyle.textColor,
-          },
-        }}
-      >
-        <Screen
-          name="Welcome"
-          component={WelcomeScreenFun}
-          options={{ headerLeft: (props) => null }}
-        />
-        <Screen name="Login" component={SignInScreenFun} />
-        <Screen name="Forgot Password" component={ForgotPassword} />
-        <Screen name="Change Password" component={ChangePassword} />
-        <Screen name="Preferences" component={PreferenceFun} />
-        <Screen name="Settings" component={SettingFun} />
-        <Screen name="Schedule" component={ScheduleFun} />
-        <Screen name="Classes Can Teach" component={ClassesCTFun} />
-        <Screen name="Classes Preferred To Teach" component={ClassesPTFun} />
-        <Screen name="Times Unable To Teach" component={TimesCTFun} />
-        <Screen name="Days Preferred To Teach" component={DaysPrefFun} />
-        <Screen name="Class Input" component={ClassInputFun} />
-        <Screen name="Help" component={Help} />
-        <Screen name="Api List" component={ApiList} />
-      </Navigator>
-    </NavigationContainer>
-  );
+    const paperTheme = useTheme();
+    return (
+      <NavigationContainer>
+          <Navigator
+            initialRouteName = "Login"
+            screenOptions = {{
+              headerStyle: {
+                backgroundColor: paperTheme.headerStyle.color,
+              },
+              headerTitleStyle: {
+                color: paperTheme.headerStyle.textColor,
+              },
+            }}
+          >
+              <Screen
+                  name = "Welcome"
+                  component = {WelcomeScreenFun}
+                  options = {{ headerLeft: (props) => null }}
+              />
+              <Screen name = "Login" component={SignInScreenFun} />
+              <Screen name = "Forgot Password" component={ForgotPassword} />
+              <Screen name = "Change Password" component={ChangePassword} />
+              <Screen name = "Preferences" component={PreferenceFun} />
+              <Screen name = "Settings" component={SettingFun} />
+              <Screen name = "Schedule" component={ScheduleFun} />
+              <Screen name = "Classes Can Teach" component={ClassesCTFun} />
+              <Screen name = "Classes Preferred To Teach" component={ClassesPTFun} />
+              <Screen name = "Times Unable To Teach" component={TimesCTFun} />
+              <Screen name = "Days Preferred To Teach" component={DaysPrefFun} />
+              <Screen name = "Class Input" component={ClassInputFun} />
+              <Screen name = "Help" component={Help} />
+              <Screen name = "Api List" component={ApiList} />
+          </Navigator>
+      </NavigationContainer>
+    );
 }
 export default AppNavigator;
