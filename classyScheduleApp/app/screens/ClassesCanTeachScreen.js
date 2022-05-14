@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import {
-  SafeAreaView,
-  ActivityIndicator,
-  FlatList,
-  Text,
-  ScrollView,
-  View,
+    SafeAreaView,
+    ActivityIndicator,
+    FlatList,
+    Text,
+    ScrollView,
+    View,
 } from "react-native";
 import {
-  Button,
-  Card,
-  Checkbox,
-  TextInput,
-  useTheme,
+    Button,
+    Card,
+    Checkbox,
+    TextInput,
+    useTheme,
 } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../Style";
