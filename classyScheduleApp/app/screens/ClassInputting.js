@@ -1,6 +1,6 @@
 import React from 'react';
-import { SafeAreaView, View,Text,StyleSheet } from 'react-native';
-import {Button, Card, TextInput, useTheme,Switch,Checkbox } from 'react-native-paper'
+import { SafeAreaView,StyleSheet } from 'react-native';
+import {Button, Card, TextInput, useTheme,Checkbox } from 'react-native-paper'
 import {Picker} from '@react-native-picker/picker';
 import { useState } from 'react';
 import styles from '../Style'
@@ -25,17 +25,6 @@ const ClassInputFun = () => {
     const [isLoading, setLoading] = useState(false);
 
 
-    /** This method use is to store a given value into one predetermined location into the devices memory.
-     *   Inputs: value (should be integer but can be anything)
-     *   Outputs: nothing (may add consol log if needed)
-     */
-    const storeData = async (value) => {
-        try {
-          await AsyncStorage.setItem('@storage_Key', value)
-        } catch (e) {
-          // saving error
-        }
-    }
 
     const sendClass = async() =>{
       try{
@@ -61,12 +50,10 @@ const ClassInputFun = () => {
           })
          });
          const json = await response.json();
-       console.log(json);
        if (json.title == undefined){
          alert("Sent to database");
        }else{
         alert(json.title);
-
        }
        }
          catch (error) {
@@ -76,59 +63,32 @@ const ClassInputFun = () => {
          }
     }
 
-    /**This method is used to access the stored item from the async storage*/
-    const getData = async () => {
-        try {
-          const value = await AsyncStorage.getItem('@storage_Key')
-          if(value !== null) {
-            // value previously stored
-            alert(value)
-          }
-        } catch(e) {
-          // error reading value
-        }
-    }
-    /**This method sends three simple alerts to the user. Is a test method 
-     * that tries to see more of the ways the usestate variables can be used and accessed.
-     * Inputs: none
-     * Outputs: Three alerts stating the current state of the usestate variables
-      */
-    const getstate = () => {
-      alert("dept_id:"+selectedLanguage +"\nclass_num:" + classNumber+"\ntitle:" + classTitle +"\ncredits:"+ classCredits +"\nis_lab:"+isLab);
-      
-    }
-    const onChange = (val) =>{
-      setClassNum(val.replace(/[^0-9]/g, ''));
-  }
+
 
  const onChangeNumericInput = (value) =>{
-   if (value.length ===0 || value == 'NaN'){
+   if (value.length === 0 || value == 'NaN'){
      return ''
    }
   let x = parseInt(value.replace(/[^0-9]/g, '')).toString();
-  if (x =='NaN'){
+  if (x == 'NaN'){
     return '';
   }
   return(x);
 }
-//<Text>{isLab? "This class is a lab" : "This class is not a lab"} </Text>
-//<Switch value = {isLab} onValueChange={() => setIsLab(!isLab)}/>
+
   return (
-    <SafeAreaView style={[styles.container, {backgroundColor: paperTheme.colors.background}]}>
-        <Card style={style.cardStyle}>
-            <Picker color='purple' style={style.buttonStyle} selectedValue={selectedLanguage}  dropdownIconRippleColor='#7F46C7' prompt='Pick department' onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}>
-              <Picker.Item label="Computer Science" value="1" />
-              <Picker.Item label="Statistics" value="0" />
+    <SafeAreaView style = {[styles.container, {backgroundColor: paperTheme.colors.background}]}>
+        <Card style = {style.cardStyle}>
+            <Picker color = 'purple' style = {style.buttonStyle} selectedValue = {selectedLanguage}  dropdownIconRippleColor = '#7F46C7' prompt = 'Pick department' onValueChange = {(itemValue, itemIndex) => setSelectedLanguage(itemValue)}>
+              <Picker.Item label = "Computer Science" value = "1" />
+              <Picker.Item label = "Statistics" value = "2" />
             </Picker>
-            <TextInput keyboardType="numeric" maxLength={4} value={classNumber} onChangeText={classNumber =>setClassNum(onChangeNumericInput(classNumber))}  label={'Class Number'}></TextInput>
-            <TextInput maxLength={30} multiline={false} value={classTitle} onChangeText={(classTitle) => setClassTitle(classTitle)} label={'Class Title'}></TextInput>
-            <TextInput keyboardType='numeric' maxLength={4} value={classCapacity} onChangeText={(classCapacity) => setClassCapacity(onChangeNumericInput(classCapacity))} label={'Capacity'}></TextInput>
-            <TextInput keyboardType='numeric' maxLength={2}  value={classCredits} onChangeText={(classCredits) => setClassCredits(onChangeNumericInput(classCredits))} label={'Credits'}></TextInput>
+            <TextInput keyboardType = "numeric" maxLength = {4} value = {classNumber} onChangeText = {classNumber =>setClassNum(onChangeNumericInput(classNumber))}  label = {'Class Number'}></TextInput>
+            <TextInput maxLength = {30} multiline = {false} value = {classTitle} onChangeText = {(classTitle) => setClassTitle(classTitle)} label = {'Class Title'}></TextInput>
+            <TextInput keyboardType = 'numeric' maxLength = {4} value = {classCapacity} onChangeText = {(classCapacity) => setClassCapacity(onChangeNumericInput(classCapacity))} label = {'Capacity'}></TextInput>
+            <TextInput keyboardType = 'numeric' maxLength = {2}  value = {classCredits} onChangeText = {(classCredits) => setClassCredits(onChangeNumericInput(classCredits))} label = {'Credits'}></TextInput>
             <Checkbox.Item label = {isLab? "This class is a lab" : "This class is not a lab"} color = "purple" uncheckedColor = "black" status = {isLab? 'checked':'unchecked'} onPress = {() => setIsLab(!isLab)}/>
             {isLoading ? <Button loading = {true} mode = "outlined" > Loading</Button> : (<Button mode="contained" onPress={() => sendClass()} >save data </Button>)}
-            
-            
-
         </Card>
     </SafeAreaView>
  );
@@ -139,9 +99,6 @@ const style = StyleSheet.create({
     flex: 1,
     padding: 24,
   },
-  cardStyle:{
-   // backgroundColor:"powderblue"
-},
 buttonStyle:{
     backgroundColor :"silver"
 },

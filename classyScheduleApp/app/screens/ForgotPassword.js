@@ -40,44 +40,44 @@ const NewAccountFunc = ({navigation}) => {
 
     return (
         <SafeAreaView 
-        style={[styles.noPadContainer, 
+        style = {[styles.noPadContainer, 
             {backgroundColor: paperTheme.colors.background}]}>
-        <View style={styles.generalOverlay}>
+        <View style = {styles.generalOverlay}>
             {/* Email input field */}
             <TextInput
-            style={[styles.TextInput, {marginBottom: 2}]}
-            label= "Email"
-            placeholderTextColor="#ABC"
-            value={email.value}
-            onChangeText={(email) => setEmail({ value: email, error: "" })}
-            error={!!email.error}
-            errorText={email.error}
-            textContentType="emailAddress"
-            keyboardType="email-address"
+            style = {[styles.TextInput, {marginBottom: 2}]}
+            label = "Email"
+            placeholderTextColor = "#ABC"
+            value = {email.value}
+            onChangeText = {(email) => setEmail({ value: email, error: "" })}
+            error = {!!email.error}
+            errorText = {email.error}
+            textContentType = "emailAddress"
+            keyboardType = "email-address"
             />
 
             
             {/* Create account button */}
             <Button 
-            mode="contained" 
-            style={styles.generalButtonContained} 
-            icon="account-plus"  
-            onPress={onPressed}>
+            mode = "contained" 
+            style = {styles.generalButtonContained} 
+            icon = "account-plus"  
+            onPress = {onPressed}>
                 Send Email
             </Button>
 
             <Button 
-            mode="text" 
-            style={styles.generalButtonContained} 
-            onPress={Login}>
+            mode = "text" 
+            style = {styles.generalButtonContained} 
+            onPress = {Login}>
                 Back to Login
             </Button>
 
             
             <View style = {styles.centerPage}>
             <Image
-                style={styles.tinyLogo}
-                source={require('../assets/ClassyLogoSquare.png')}
+                style = {styles.tinyLogo}
+                source = {require('../assets/ClassyLogoSquare.png')}
             />
             </View>
         </View>

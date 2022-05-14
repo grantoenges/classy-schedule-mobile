@@ -189,22 +189,22 @@ const DaysPrefFun = ({ navigation }) => {
 
   return (
     <SafeAreaView
-      style={[
+      style = {[
         styles.container,
         { backgroundColor: paperTheme.colors.background },
       ]}
     >
-      <Button mode="contained" onPress={() => sendPreferences()}>
+      <Button mode = "contained" onPress = {() => sendPreferences()}>
         Save Preferences
       </Button>
       <Card
-        style={[
+        style = {[
           styles.cardStyle,
           { backgroundColor: paperTheme.cardStyle.backgroundColor },
         ]}
       >
         <Text
-          style={[styles.textStyle, { color: paperTheme.cardTextStyle.color }]}
+          style = {[styles.textStyle, { color: paperTheme.cardTextStyle.color }]}
         >
           Days Preferred to Teach
         </Text>
@@ -214,52 +214,52 @@ const DaysPrefFun = ({ navigation }) => {
       <View>
 
         <Checkbox.Item
-          labelStyle={paperTheme.label.color}
-          label="Monday"
-          color={paperTheme.label.color}
-          uncheckedColor={paperTheme.label.color}
-          status={mondayChecked ? "checked" : "unchecked"}
-          onPress={() => {
+          labelStyle = {paperTheme.label.color}
+          label = "Monday"
+          color = {paperTheme.label.color}
+          uncheckedColor = {paperTheme.label.color}
+          status = {mondayChecked ? "checked" : "unchecked"}
+          onPress = {() => {
             setMondayChecked(!mondayChecked);
           }}
         />
         <Checkbox.Item
-          labelStyle={paperTheme.label.color}
-          label="Tuesday"
-          color={paperTheme.label.color}
-          uncheckedColor={paperTheme.label.color}
-          status={tuesdayChecked ? "checked" : "unchecked"}
-          onPress={() => {
+          labelStyle = {paperTheme.label.color}
+          label = "Tuesday"
+          color = {paperTheme.label.color}
+          uncheckedColor = {paperTheme.label.color}
+          status = {tuesdayChecked ? "checked" : "unchecked"}
+          onPress = {() => {
             setTuesdayChecked(!tuesdayChecked);
           }}
         />
         <Checkbox.Item
-          labelStyle={paperTheme.label.color}
-          label="Wednesday"
-          color={paperTheme.label.color}
-          uncheckedColor={paperTheme.label.color}
-          status={wednesdayChecked ? "checked" : "unchecked"}
-          onPress={() => {
+          labelStyle = {paperTheme.label.color}
+          label = "Wednesday"
+          color = {paperTheme.label.color}
+          uncheckedColor = {paperTheme.label.color}
+          status = {wednesdayChecked ? "checked" : "unchecked"}
+          onPress = {() => {
             setWednesdayChecked(!wednesdayChecked);
           }}
         />
         <Checkbox.Item
-          labelStyle={paperTheme.label.color}
-          label="Thursday"
-          color={paperTheme.label.color}
-          uncheckedColor={paperTheme.label.color}
-          status={thursdayChecked ? "checked" : "unchecked"}
-          onPress={() => {
+          labelStyle = {paperTheme.label.color}
+          label = "Thursday"
+          color = {paperTheme.label.color}
+          uncheckedColor = {paperTheme.label.color}
+          status = {thursdayChecked ? "checked" : "unchecked"}
+          onPress = {() => {
             setThursdayChecked(!thursdayChecked);
           }}
         />
         <Checkbox.Item
-          labelStyle={paperTheme.label.color}
-          label="Friday"
-          color={paperTheme.label.color}
-          uncheckedColor={paperTheme.label.color}
-          status={fridayChecked ? "checked" : "unchecked"}
-          onPress={() => {
+          labelStyle = {paperTheme.label.color}
+          label = "Friday"
+          color = {paperTheme.label.color}
+          uncheckedColor = {paperTheme.label.color}
+          status = {fridayChecked ? "checked" : "unchecked"}
+          onPress = {() => {
             setFridayChecked(!fridayChecked);
           }}
         />
@@ -267,13 +267,13 @@ const DaysPrefFun = ({ navigation }) => {
       )} 
 
 <Card
-        style={[
+        style = {[
           styles.cardStyle,
           { backgroundColor: paperTheme.cardStyle.backgroundColor },
         ]}
       >
         <Text
-          style={[styles.textStyle, { color: paperTheme.cardTextStyle.color }]}
+          style = {[styles.textStyle, { color: paperTheme.cardTextStyle.color }]}
         >
           Days Preferred to Teach
         </Text>
@@ -282,32 +282,32 @@ const DaysPrefFun = ({ navigation }) => {
         
 <View>
   <Checkbox.Item
-            labelStyle={paperTheme.label.color}
-            label="Morning"
-            color={paperTheme.label.color}
-            uncheckedColor={paperTheme.label.color}
-            status={morningChecked ? "checked" : "unchecked"}
-            onPress={() => {
+            labelStyle = {paperTheme.label.color}
+            label = "Morning"
+            color = {paperTheme.label.color}
+            uncheckedColor = {paperTheme.label.color}
+            status = {morningChecked ? "checked" : "unchecked"}
+            onPress = {() => {
               setMorningChecked(!morningChecked);
             }}
           />
           <Checkbox.Item
-            labelStyle={paperTheme.label.color}
-            label="Afternoon"
-            color={paperTheme.label.color}
-            uncheckedColor={paperTheme.label.color}
-            status={afternoonChecked ? "checked" : "unchecked"}
-            onPress={() => {
+            labelStyle = {paperTheme.label.color}
+            label = "Afternoon"
+            color = {paperTheme.label.color}
+            uncheckedColor = {paperTheme.label.color}
+            status = {afternoonChecked ? "checked" : "unchecked"}
+            onPress = {() => {
               setAfternoonChecked(!afternoonChecked);
             }}
           />
           <Checkbox.Item
-            labelStyle={paperTheme.label.color}
-            label="Evening"
-            color={paperTheme.label.color}
-            uncheckedColor={paperTheme.label.color}
-            status={eveningChecked ? "checked" : "unchecked"}
-            onPress={() => {
+            labelStyle = {paperTheme.label.color}
+            label = "Evening"
+            color = {paperTheme.label.color}
+            uncheckedColor = {paperTheme.label.color}
+            status = {eveningChecked ? "checked" : "unchecked"}
+            onPress = {() => {
               setEveningChecked(!eveningChecked);
             }}
           />

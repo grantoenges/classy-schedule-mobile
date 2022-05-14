@@ -158,7 +158,7 @@ const ClassesPTFun = () => {
   return (
     <View style = {{ flex: 1, padding: 24 }}>      
       <Button onPress = {sendSelection} mode = "contained" >Save Data</Button>
-      {isLoading ? <Button loading = {true} mode = "outlined" onPress={sendSelection}> Loading</Button> : (
+      {isLoading ? <Button loading = {true} mode = "outlined" onPress = {sendSelection}> Loading</Button> : (
         <FlatList
           data = {dataT}
           keyExtractor = {({ class_id}) => class_id}

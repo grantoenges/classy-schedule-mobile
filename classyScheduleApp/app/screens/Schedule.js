@@ -48,11 +48,6 @@ const ScheduleFun = () => {
       duration: "02:00:00",
       note: "Intro to cisc lab",
     },
-    {
-      start: "2022-04-16 13:35:00",
-      duration: "01:00:00",
-      note: "Read Sawins angry emails",
-    },
   ];
   //"#7F46C7" original schedule color
   return (

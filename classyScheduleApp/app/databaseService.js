@@ -15,8 +15,6 @@ export const getAuthorization = async () => {
         })
       });
       const json = await response.json();
-      //console.log(json.token);
-      //console.log('json', json.token);
       return json.token;
       } catch (error) {
         console.error(error);
