@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Pressable,
 } from "react-native";
-import { Button, Card, TextInput, Modal, useTheme } from "react-native-paper";
+import { Button, Card, TextInput, Modal, useTheme} from "react-native-paper";
 import styles from "../Style";
 
 /** This method is what displays the screen for this page
@@ -19,8 +19,8 @@ const PreferenceFun = ({ navigation }) => {
   const ClassesCT = () => navigation.navigate("Classes Can Teach");
   const ClassesPT = () => navigation.navigate("Classes Preferred To Teach");
   const TimesCT = () => navigation.navigate("Times Unable To Teach");
-  const DaysPT = () => navigation.navigate("Days Preferred To Teach");
-
+  const DaysPT = () => navigation.navigate("Days Prefered To Teach");
+  
   //Use state constants for modal visibility
   const [classCTModal, setModalCT] = useState(false);
   const [classPTModal, setModalPT] = useState(false);
@@ -31,29 +31,17 @@ const PreferenceFun = ({ navigation }) => {
   let buttonColor = paperTheme.buttonStyle;
 
   return (
-    <SafeAreaView
-      style={[
-        styles.container,
-        { backgroundColor: paperTheme.colors.background },
-      ]}
-    >
+    <SafeAreaView style={[styles.container, {backgroundColor: paperTheme.colors.background}]}>
       <View style={styles.overlay}>
+
         <View style={styles.viewStyle}>
           <TouchableOpacity
             activeOpacity={0.8}
-            style={[
-              styles.buttonStyle,
-              {
-                backgroundColor: buttonColor.color,
-                borderColor: buttonColor.borderColor,
-              },
-            ]}
+            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
             onPress={ClassesCT}
             onLongPress={() => setModalCT(true)}
           >
-            <Text style={[styles.textStyle, { color: buttonColor.textColor }]}>
-              Classes Can Teach
-            </Text>
+            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Classes Can Teach</Text>
             <Modal
               contentContainerStyle={styles.modalStyle}
               animationType="slide"
@@ -63,33 +51,25 @@ const PreferenceFun = ({ navigation }) => {
                 setModalCT(!classCTModal);
               }}
             >
-              <Pressable
-                style={styles.modalStyle}
-                onPress={() => setModalCT(!classCTModal)}
+            
+            <Pressable
+              style={styles.modalStyle}
+              onPress={() => setModalCT(!classCTModal)}
               >
-                <Text style={styles.modalText}>
-                  Brings the user to the classes can teach page where they can
-                  select the classes they can teach.
-                </Text>
-              </Pressable>
+                <Text style={styles.modalText}>Brings the user to the classes can teach page where they can select the classes they can teach.</Text>
+            </Pressable>
+            
             </Modal>
+
           </TouchableOpacity>
           <TouchableOpacity
             mode="contained"
-            style={[
-              styles.buttonStyle,
-              {
-                backgroundColor: buttonColor.color,
-                borderColor: buttonColor.borderColor,
-              },
-            ]}
+            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
             activeOpacity={0.8}
             onPress={ClassesPT}
             onLongPress={() => setModalPT(true)}
           >
-            <Text style={[styles.textStyle, { color: buttonColor.textColor }]}>
-              Classes Preferred To Teach
-            </Text>
+            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Classes Preferred To Teach</Text>
             <Modal
               contentContainerStyle={styles.modalStyle}
               animationType="slide"
@@ -99,35 +79,27 @@ const PreferenceFun = ({ navigation }) => {
                 setModalPT(!classPTModal);
               }}
             >
-              <Pressable
-                style={styles.modalStyle}
-                onPress={() => setModalPT(!classPTModal)}
+            
+            <Pressable
+              style={styles.modalStyle}
+              onPress={() => setModalPT(!classPTModal)}
               >
-                <Text style={styles.modalText}>
-                  Brings user to the classess preferred to teach page where they
-                  can select the classes they prefer to teach.
-                </Text>
-              </Pressable>
+                <Text style={styles.modalText}>Brings user to the classess preferred to teach page where they can select the classes they prefer to teach.</Text>
+            </Pressable>
+            
             </Modal>
+
           </TouchableOpacity>
         </View>
         <View style={styles.viewStyle}>
           <TouchableOpacity
             mode="contained"
             activeOpacity={0.8}
-            style={[
-              styles.buttonStyle,
-              {
-                backgroundColor: buttonColor.color,
-                borderColor: buttonColor.borderColor,
-              },
-            ]}
+            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
             onPress={TimesCT}
             onLongPress={() => setModalTime(true)}
           >
-            <Text style={[styles.textStyle, { color: buttonColor.textColor }]}>
-              Times Unable To Teach
-            </Text>
+            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Times Unable To Teach</Text>
             <Modal
               contentContainerStyle={styles.modalStyle}
               animationType="slide"
@@ -137,33 +109,25 @@ const PreferenceFun = ({ navigation }) => {
                 setModalTime(!timesCTModal);
               }}
             >
-              <Pressable
-                style={styles.modalStyle}
-                onPress={() => setModalTime(!timesCTModal)}
+            
+            <Pressable
+              style={styles.modalStyle}
+              onPress={() => setModalTime(!timesCTModal)}
               >
-                <Text style={styles.modalText}>
-                  Brings the user to the times unable to teach page where they
-                  can select the times they are unable to teach.
-                </Text>
-              </Pressable>
+                <Text style={styles.modalText}>Brings the user to the times unable to teach page where they can select the times they are unable to teach.</Text>
+            </Pressable>
+            
             </Modal>
+
           </TouchableOpacity>
           <TouchableOpacity
             mode="contained"
-            style={[
-              styles.buttonStyle,
-              {
-                backgroundColor: buttonColor.color,
-                borderColor: buttonColor.borderColor,
-              },
-            ]}
+            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
             activeOpacity={0.8}
             onPress={DaysPT}
             onLongPress={() => setModalDays(true)}
           >
-            <Text style={[styles.textStyle, { color: buttonColor.textColor }]}>
-              Days Preferred To Teach
-            </Text>
+            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Days Prefered To Teach</Text>
             <Modal
               contentContainerStyle={styles.modalStyle}
               animationType="slide"
@@ -173,16 +137,16 @@ const PreferenceFun = ({ navigation }) => {
                 setModalDays(!daysPTModal);
               }}
             >
-              <Pressable
-                style={styles.modalStyle}
-                onPress={() => setModalDays(!daysPTModal)}
+            
+            <Pressable
+              style={styles.modalStyle}
+              onPress={() => setModalDays(!daysPTModal)}
               >
-                <Text style={styles.modalText}>
-                  Brings the user to the days preferred to teach page where they
-                  can select the days they prefer to teach.
-                </Text>
-              </Pressable>
+                <Text style={styles.modalText}>Brings the user to the days preferred to teach page where they can select the days they prefer to teach.</Text>
+            </Pressable>
+            
             </Modal>
+
           </TouchableOpacity>
         </View>
       </View>
