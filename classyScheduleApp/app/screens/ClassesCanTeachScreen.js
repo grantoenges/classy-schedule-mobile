@@ -35,8 +35,7 @@ const ClassesCTFun = () => {
       const id = await AsyncStorage.getItem("UserId");
 
       const response = await fetch(
-        "https://capstonedbapi.azurewebsites.net/preference-management/class-preferences/can-teach/save/" +
-          id,
+        "https://capstonedbapi.azurewebsites.net/preference-management/class-preferences/can-teach/save/"+id,
         {
           method: "POST",
           /*,  Example of how headers look for if people are to take this to use on other parts of the app */
@@ -65,8 +64,7 @@ const ClassesCTFun = () => {
       const id = await AsyncStorage.getItem("UserId");
 
       const response = await fetch(
-        "https://capstonedbapi.azurewebsites.net/preference-management/class-preferences/can-teach/" +
-          id,
+        "https://capstonedbapi.azurewebsites.net/preference-management/class-preferences/can-teach/"+id,
         {
           method: "GET",
           /*,  Example of how headers look for if people are to take this to use on other parts of the app */
@@ -89,7 +87,7 @@ const ClassesCTFun = () => {
           })),
         ]);
       }
-      //console.log(json);
+      console.log(pref);
     } catch (error) {
       setPref([]);
 
@@ -160,7 +158,6 @@ const ClassesCTFun = () => {
   };
   const allTrues = async () => {
     setLoading(true);
-
     var arr = [];
     if (pref.length != undefined) {
       pref.map((item) => {
@@ -227,7 +224,7 @@ const ClassesCTFun = () => {
         />
       )}
       <Button mode="contained" onPress={allTrues}>
-        see current saved preferences{" "}
+        see current saved preferences
       </Button>
     </SafeAreaView>
   );
