@@ -1,6 +1,12 @@
 import React from "react";
-import { useState ,useEffect} from "react";
-import { SafeAreaView, View, StyleSheet, Alert, ScrollView } from "react-native";
+import { useState, useEffect } from "react";
+import {
+  SafeAreaView,
+  View,
+  StyleSheet,
+  Alert,
+  ScrollView,
+} from "react-native";
 import { Button, Card, Checkbox, Text, useTheme } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -29,7 +35,7 @@ const DaysPrefFun = ({ navigation }) => {
   const [afternoonChecked, setAfternoonChecked] = useState(false);
   const [eveningChecked, setEveningChecked] = useState(false);
 
-    /*
+  /*
   sendTimeOfDayPreferences's purpose is to make a call to the API point and set our usestate variable to the data that 
   should be returned while also updating the isLoading variable to reflect the loading status 
     ------------------
@@ -39,7 +45,7 @@ const DaysPrefFun = ({ navigation }) => {
    If for some reason the API call fails then the try catch block should be aware of that failure and 
    should send that error to the console.log 
   */
-   const sendTimeOfDayPreferences = async () => {
+  const sendTimeOfDayPreferences = async () => {
     try {
       setLoading(true);
       setDataT([]);
@@ -89,7 +95,7 @@ const DaysPrefFun = ({ navigation }) => {
     }
   };
 
-  function sendPreferences(){
+  function sendPreferences() {
     sendPreferencesDOW();
     sendTimeOfDayPreferences();
     alert("Sent to database!");
@@ -147,207 +153,224 @@ const DaysPrefFun = ({ navigation }) => {
     try {
       setLoading(true);
       //setPref([]);
-      const auth = await AsyncStorage.getItem('Auth');
-      const id = await AsyncStorage.getItem('UserId');
-  
-     const response = await fetch('https://capstonedbapi.azurewebsites.net/preference-management/time-of-day-preferences/'+id, {
-       method: 'GET',
-       /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
-       headers: { 
-         //Will need the authorization to be a saved string each time we sign in
-         'Authorization': auth
-       },
-       });
-  
-       const json = await response.json();
-       /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
-        if(json != undefined){
-          setMorningChecked(json.prefer_morning);
-          setAfternoonChecked(json.prefer_afternoon);
-          setEveningChecked(json.prefer_evening);
+      const auth = await AsyncStorage.getItem("Auth");
+      const id = await AsyncStorage.getItem("UserId");
+
+      const response = await fetch(
+        "https://capstonedbapi.azurewebsites.net/preference-management/time-of-day-preferences/" +
+          id,
+        {
+          method: "GET",
+          /*,  Example of how headers look for if people are to take this to use on other parts of the app */
+          headers: {
+            //Will need the authorization to be a saved string each time we sign in
+            Authorization: auth,
+          },
+        }
+      );
+
+      const json = await response.json();
+      /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
+      if (json != undefined) {
+        setMorningChecked(json.prefer_morning);
+        setAfternoonChecked(json.prefer_afternoon);
+        setEveningChecked(json.prefer_evening);
       }
-       //console.log(json);
-     } catch (error) {
+      //console.log(json);
+    } catch (error) {
       //setPref([]);
-  
-     console.error(error);
-   } finally {
-     setLoading(false);
-   }
-  }
+
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const getPreferencesJson = async () => {
     try {
       setLoading(true);
       //setPref([]);
-      const auth = await AsyncStorage.getItem('Auth');
-      const id = await AsyncStorage.getItem('UserId');
-  
-     const response = await fetch('https://capstonedbapi.azurewebsites.net/preference-management/day-of-week-preferences/'+id, {
-       method: 'GET',
-       /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
-       headers: { 
-         //Will need the authorization to be a saved string each time we sign in
-         'Authorization': auth
-       },
-       });
-  
-       const json = await response.json();
-       /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
-        if(json != undefined){
-          setMondayChecked(json.prefer_monday);
-          setTuesdayChecked(json.prefer_tuesday);
-          setWednesdayChecked(json.prefer_wednesday);
-          setThursdayChecked(json.prefer_thursday);
-          setFridayChecked(json.prefer_friday);
-      }
-       //console.log(json);
-     } catch (error) {
-      //setPref([]);
-  
-     console.error(error);
-   } finally {
-     setLoading(false);
-   }
-  }
+      const auth = await AsyncStorage.getItem("Auth");
+      const id = await AsyncStorage.getItem("UserId");
 
+      const response = await fetch(
+        "https://capstonedbapi.azurewebsites.net/preference-management/day-of-week-preferences/" +
+          id,
+        {
+          method: "GET",
+          /*,  Example of how headers look for if people are to take this to use on other parts of the app */
+          headers: {
+            //Will need the authorization to be a saved string each time we sign in
+            Authorization: auth,
+          },
+        }
+      );
+
+      const json = await response.json();
+      /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
+      if (json != undefined) {
+        setMondayChecked(json.prefer_monday);
+        setTuesdayChecked(json.prefer_tuesday);
+        setWednesdayChecked(json.prefer_wednesday);
+        setThursdayChecked(json.prefer_thursday);
+        setFridayChecked(json.prefer_friday);
+      }
+      //console.log(json);
+    } catch (error) {
+      //setPref([]);
+
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     getPreferencesJson();
     getTODPreferences();
   }, []);
 
-
   return (
     <SafeAreaView
       style={[
-        styles.container,
+        styles.noPadcontainer,
         { backgroundColor: paperTheme.colors.background },
       ]}
     >
-    <ScrollView>
-    
       <Button mode="contained" onPress={() => sendPreferences()}>
-        Save Preferences
+        Save Data
       </Button>
-      <Card
-        style={[
-          styles.cardStyle,
-          { backgroundColor: paperTheme.cardStyle.backgroundColor },
-        ]}
-      >
-        <Text
-          style={[styles.textStyle, { color: paperTheme.cardTextStyle.color }]}
+      <ScrollView>
+        <Card
+          style={[
+            styles.cardStyle,
+            { backgroundColor: paperTheme.cardStyle.backgroundColor },
+          ]}
         >
-          Days Preferred to Teach
-        </Text>
-      </Card>
-      {isLoading ? <Button loading = {true} mode = "outlined"> Loading</Button> : (
+          <Text
+            style={[
+              styles.textStyle,
+              { color: paperTheme.cardTextStyle.color },
+            ]}
+          >
+            Days Preferred to Teach
+          </Text>
+        </Card>
+        {isLoading ? (
+          <Button loading={true} mode="outlined">
+            {" "}
+            Loading
+          </Button>
+        ) : (
+          <View>
+            <Checkbox.Item
+              labelStyle={paperTheme.label.color}
+              label="Monday"
+              color={paperTheme.checkboxStyle.color}
+              uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
+              status={mondayChecked ? "checked" : "unchecked"}
+              onPress={() => {
+                setMondayChecked(!mondayChecked);
+              }}
+            />
+            <Checkbox.Item
+              labelStyle={paperTheme.label.color}
+              label="Tuesday"
+              color={paperTheme.checkboxStyle.color}
+              uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
+              status={tuesdayChecked ? "checked" : "unchecked"}
+              onPress={() => {
+                setTuesdayChecked(!tuesdayChecked);
+              }}
+            />
+            <Checkbox.Item
+              labelStyle={paperTheme.label.color}
+              label="Wednesday"
+              color={paperTheme.checkboxStyle.color}
+              uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
+              status={wednesdayChecked ? "checked" : "unchecked"}
+              onPress={() => {
+                setWednesdayChecked(!wednesdayChecked);
+              }}
+            />
+            <Checkbox.Item
+              labelStyle={paperTheme.label.color}
+              label="Thursday"
+              color={paperTheme.checkboxStyle.color}
+              uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
+              status={thursdayChecked ? "checked" : "unchecked"}
+              onPress={() => {
+                setThursdayChecked(!thursdayChecked);
+              }}
+            />
+            <Checkbox.Item
+              labelStyle={paperTheme.label.color}
+              label="Friday"
+              color={paperTheme.checkboxStyle.color}
+              uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
+              status={fridayChecked ? "checked" : "unchecked"}
+              onPress={() => {
+                setFridayChecked(!fridayChecked);
+              }}
+            />
+          </View>
+        )}
 
-      <View>
-
-        <Checkbox.Item
-          labelStyle={paperTheme.label.color}
-          label="Monday"
-          color={paperTheme.checkboxStyle.color}
-            uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
-          status={mondayChecked ? "checked" : "unchecked"}
-          onPress={() => {
-            setMondayChecked(!mondayChecked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={paperTheme.label.color}
-          label="Tuesday"
-          color={paperTheme.checkboxStyle.color}
-          uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
-          status={tuesdayChecked ? "checked" : "unchecked"}
-          onPress={() => {
-            setTuesdayChecked(!tuesdayChecked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={paperTheme.label.color}
-          label="Wednesday"
-          color={paperTheme.checkboxStyle.color}
-          uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
-          status={wednesdayChecked ? "checked" : "unchecked"}
-          onPress={() => {
-            setWednesdayChecked(!wednesdayChecked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={paperTheme.label.color}
-          label="Thursday"
-          color={paperTheme.checkboxStyle.color}
-          uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
-          status={thursdayChecked ? "checked" : "unchecked"}
-          onPress={() => {
-            setThursdayChecked(!thursdayChecked);
-          }}
-        />
-        <Checkbox.Item
-          labelStyle={paperTheme.label.color}
-          label="Friday"
-          color={paperTheme.checkboxStyle.color}
-          uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
-          status={fridayChecked ? "checked" : "unchecked"}
-          onPress={() => {
-            setFridayChecked(!fridayChecked);
-          }}
-        />
-      </View>
-      )} 
-
-<Card
-        style={[
-          styles.cardStyle,
-          { backgroundColor: paperTheme.cardStyle.backgroundColor },
-        ]}
-      >
-        <Text
-          style={[styles.textStyle, { color: paperTheme.cardTextStyle.color }]}
+        <Card
+          style={[
+            styles.cardStyle,
+            { backgroundColor: paperTheme.cardStyle.backgroundColor },
+          ]}
         >
-          Days Preferred to Teach
-        </Text>
-      </Card>
-      {isLoading ? <Button loading = {true} mode = "outlined"> Loading</Button> : (
-        
-<View>
-
-  <Checkbox.Item
-            labelStyle={paperTheme.label.color}
-            label="Morning"
-            color={paperTheme.checkboxStyle.color}
-            uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
-            status={morningChecked ? "checked" : "unchecked"}
-            onPress={() => {
-              setMorningChecked(!morningChecked);
-            }}
-          />
-          <Checkbox.Item
-            labelStyle={paperTheme.label.color}
-            label="Afternoon"
-            color={paperTheme.checkboxStyle.color}
-            uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
-            status={afternoonChecked ? "checked" : "unchecked"}
-            onPress={() => {
-              setAfternoonChecked(!afternoonChecked);
-            }}
-          />
-          <Checkbox.Item
-            labelStyle={paperTheme.label.color}
-            label="Evening"
-            color={paperTheme.checkboxStyle.color}
-            uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
-            status={eveningChecked ? "checked" : "unchecked"}
-            onPress={() => {
-              setEveningChecked(!eveningChecked);
-            }}
-          />
-</View>
-)} 
-    </ScrollView>
+          <Text
+            style={[
+              styles.textStyle,
+              { color: paperTheme.cardTextStyle.color },
+            ]}
+          >
+            Days Preferred to Teach
+          </Text>
+        </Card>
+        {isLoading ? (
+          <Button loading={true} mode="outlined">
+            {" "}
+            Loading
+          </Button>
+        ) : (
+          <View>
+            <Checkbox.Item
+              labelStyle={paperTheme.label.color}
+              label="Morning"
+              color={paperTheme.checkboxStyle.color}
+              uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
+              status={morningChecked ? "checked" : "unchecked"}
+              onPress={() => {
+                setMorningChecked(!morningChecked);
+              }}
+            />
+            <Checkbox.Item
+              labelStyle={paperTheme.label.color}
+              label="Afternoon"
+              color={paperTheme.checkboxStyle.color}
+              uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
+              status={afternoonChecked ? "checked" : "unchecked"}
+              onPress={() => {
+                setAfternoonChecked(!afternoonChecked);
+              }}
+            />
+            <Checkbox.Item
+              labelStyle={paperTheme.label.color}
+              label="Evening"
+              color={paperTheme.checkboxStyle.color}
+              uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
+              status={eveningChecked ? "checked" : "unchecked"}
+              onPress={() => {
+                setEveningChecked(!eveningChecked);
+              }}
+            />
+          </View>
+        )}
+      </ScrollView>
     </SafeAreaView>
   );
 };
