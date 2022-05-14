@@ -15,7 +15,6 @@ const ClassesCTFun = () => {
   const [dataT, setDataT] = useState([]);
 
 
-
  const sendSelection = async() =>{
    try{
     setLoading(true);
