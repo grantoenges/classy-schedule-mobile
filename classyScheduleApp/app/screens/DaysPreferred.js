@@ -3,7 +3,6 @@ import { useState ,useEffect} from "react";
 import { SafeAreaView, View, StyleSheet, Alert } from "react-native";
 import { Button, Card, Checkbox, Text, useTheme } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import styles from "../Style";
 
 // DaysPrefFun creates useState objects for each possible day of the week
@@ -13,18 +12,12 @@ const DaysPrefFun = ({ navigation }) => {
 
   /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
   const [isLoading, setLoading] = useState(true);
-  const [dummy, setDummy] = React.useState(false);
-
-  /*This usestate variable is used as the json data obtained from the api calls storage location*/
-  const [data, setData] = useState([]);
-  const [dataT, setDataT] = useState([]);
 
   const [mondayChecked, setMondayChecked] = useState(false);
   const [tuesdayChecked, setTuesdayChecked] = useState(false);
   const [wednesdayChecked, setWednesdayChecked] = useState(false);
   const [thursdayChecked, setThursdayChecked] = useState(false);
   const [fridayChecked, setFridayChecked] = useState(false);
-
   const [morningChecked, setMorningChecked] = useState(false);
   const [afternoonChecked, setAfternoonChecked] = useState(false);
   const [eveningChecked, setEveningChecked] = useState(false);
@@ -42,7 +35,6 @@ const DaysPrefFun = ({ navigation }) => {
    const sendTimeOfDayPreferences = async () => {
     try {
       setLoading(true);
-      setDataT([]);
       const auth = await AsyncStorage.getItem("Auth");
       const userRole = await AsyncStorage.getItem("Role");
       const userId = await AsyncStorage.getItem("UserId");
@@ -69,19 +61,6 @@ const DaysPrefFun = ({ navigation }) => {
           }),
         }
       );
-      //const json = await response.json();
-      /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected 
-      setDataT((dataT) => [
-        ...dataT,
-        ...json.map(
-          ({ class_num, dept_id, class_name, capacity, credits }) => ({
-            class_num,
-            dept_id,
-            class_name,
-            checked: false,
-          })
-        ),
-      ]);*/
     } catch (error) {
       console.error(error);
     } finally {
@@ -92,7 +71,7 @@ const DaysPrefFun = ({ navigation }) => {
   function sendPreferences(){
     sendPreferencesDOW();
     sendTimeOfDayPreferences();
-    alert("Sent to database!");
+    alert("Preference sent to database!");
   }
 
   /*
@@ -108,7 +87,6 @@ const DaysPrefFun = ({ navigation }) => {
   const sendPreferencesDOW = async () => {
     try {
       setLoading(true);
-      setDataT([]);
       const auth = await AsyncStorage.getItem("Auth");
       const userRole = await AsyncStorage.getItem("Role");
       const userId = await AsyncStorage.getItem("UserId");
@@ -146,7 +124,6 @@ const DaysPrefFun = ({ navigation }) => {
   const getTODPreferences = async () => {
     try {
       setLoading(true);
-      //setPref([]);
       const auth = await AsyncStorage.getItem('Auth');
       const id = await AsyncStorage.getItem('UserId');
   
@@ -166,10 +143,7 @@ const DaysPrefFun = ({ navigation }) => {
           setAfternoonChecked(json.prefer_afternoon);
           setEveningChecked(json.prefer_evening);
       }
-       //console.log(json);
-     } catch (error) {
-      //setPref([]);
-  
+     } catch (error) {  
      console.error(error);
    } finally {
      setLoading(false);
@@ -179,11 +153,9 @@ const DaysPrefFun = ({ navigation }) => {
   const getPreferencesJson = async () => {
     try {
       setLoading(true);
-      //setPref([]);
       const auth = await AsyncStorage.getItem('Auth');
       const id = await AsyncStorage.getItem('UserId');
-  
-     const response = await fetch('https://capstonedbapi.azurewebsites.net/preference-management/day-of-week-preferences/'+id, {
+      const response = await fetch('https://capstonedbapi.azurewebsites.net/preference-management/day-of-week-preferences/'+id, {
        method: 'GET',
        /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
        headers: { 
@@ -201,10 +173,7 @@ const DaysPrefFun = ({ navigation }) => {
           setThursdayChecked(json.prefer_thursday);
           setFridayChecked(json.prefer_friday);
       }
-       //console.log(json);
      } catch (error) {
-      //setPref([]);
-  
      console.error(error);
    } finally {
      setLoading(false);
@@ -312,7 +281,6 @@ const DaysPrefFun = ({ navigation }) => {
       {isLoading ? <Button loading = {true} mode = "outlined"> Loading</Button> : (
         
 <View>
-
   <Checkbox.Item
             labelStyle={paperTheme.label.color}
             label="Morning"

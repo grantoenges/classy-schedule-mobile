@@ -1,20 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {
-  ActivityIndicator,
-  FlatList,
-  Text,
-  ScrollView,
-  View,
-} from "react-native";
-import {
-  Button,
-  Card,
-  Checkbox,
-  TextInput,
-  useTheme,
-} from "react-native-paper";
+import {FlatList,View,} from "react-native";
+import {Button,Checkbox,} from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import styles from "../Style";
 
 const ClassesPTFun = () => {
    /*This is a temporary variable that holds the current authorization token to allow for connections with the database */
@@ -72,7 +59,6 @@ const ClassesPTFun = () => {
 
      const json = await response.json();
      /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
-     console.log("JOSN IS"+json.length);
      if(json.length != undefined){
      setPref((pref) => [
       ...pref,
@@ -81,7 +67,6 @@ const ClassesPTFun = () => {
         prefer_to_teach
       })),
     ]);}
-     //console.log(json);
    } catch (error) {
     setPref([]);
 
@@ -106,7 +91,6 @@ const ClassesPTFun = () => {
        setDataT([]);
        const auth = await AsyncStorage.getItem('Auth');
 
-       console.log('Current auth token', auth);
       const response = await fetch('https://capstonedbapi.azurewebsites.net/class-management/classes', {
         method: 'GET',
         /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
@@ -145,7 +129,6 @@ const ClassesPTFun = () => {
     pref.map(item =>
       {
         if (item.prefer_to_teach == true){
-          console.log("adding" + item.class_id);
           arr.push(item.class_id);
         }
       });}

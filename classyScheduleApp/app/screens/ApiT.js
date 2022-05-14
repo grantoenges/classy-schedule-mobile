@@ -18,20 +18,6 @@ import {Button, Checkbox} from 'react-native-paper'
   const [dataT, setDataT] = useState([]);
 
 
-  const seeSelection = async() =>{
-    try{
-     setLoading(true);
-     let found = dataT.find(element=> element.class_id ==8)
-    setDummy(!dummy);
-    console.log(" ses "+found.prefer_to_teach);
-     }
-       catch (error) {
-         console.error(error);
-       } finally {
-         setLoading(false);
-       }
-  }
-
  const sendSelection = async() =>{
    try{
     setLoading(true);
@@ -77,7 +63,6 @@ import {Button, Checkbox} from 'react-native-paper'
 
      const json = await response.json();
      /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
-     console.log("JOSN IS"+json.length);
      if(json.length != undefined){
      setPref((pref) => [
       ...pref,
@@ -86,10 +71,8 @@ import {Button, Checkbox} from 'react-native-paper'
         prefer_to_teach
       })),
     ]);}
-     //console.log(json);
    } catch (error) {
     setPref([]);
-
    console.error(error);
  } finally {
    setLoading(false);
@@ -111,7 +94,6 @@ import {Button, Checkbox} from 'react-native-paper'
        setDataT([]);
        const auth = await AsyncStorage.getItem('Auth');
 
-       console.log('Current auth token', auth);
       const response = await fetch('https://capstonedbapi.azurewebsites.net/class-management/classes', {
         method: 'GET',
         /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
@@ -148,7 +130,6 @@ import {Button, Checkbox} from 'react-native-paper'
     pref.map(item =>
       {
         if (item.prefer_to_teach == true){
-          console.log("adding" + item.class_id);
           arr.push(item.class_id);
         }
       });}
@@ -156,7 +137,6 @@ import {Button, Checkbox} from 'react-native-paper'
   }
   const getTF =(id) => {
     // loop over the todos list and find the provided id.
-    console.log(isLoading);
     let newData = dataT.map(item =>
         {
           if (id.includes(item.class_id)){

@@ -25,7 +25,7 @@ const TimesCTFun = ({ navigation }) => {
 
   /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
   const [isLoading, setLoading] = useState(true);
-  const [dummy, setDummy] = React.useState(false);
+  //const [dummy, setDummy] = React.useState(false);
 
 
   const [threeDay1Checked, setThreeDay1Checked] = useState(false);
@@ -41,7 +41,6 @@ const TimesCTFun = ({ navigation }) => {
   const [twoDay5Checked, setTwoDay5Checked] = useState(false);
   const [twoDay6Checked, setTwoDay6Checked] = useState(false);
  
-
 
   /*
   sendTimesPreferences's purpose is to make a call to the API point and set our usestate variable to the data that 
@@ -124,6 +123,7 @@ const TimesCTFun = ({ navigation }) => {
         }
       );
       //const json = await response.json();
+      //alert(json);
     } catch (error) {
       console.error(error);
     } finally {
@@ -135,6 +135,7 @@ const TimesCTFun = ({ navigation }) => {
   const sendFunctionsCombined = async () => {
     //sendTimeOfDayPreferences();
     sendTimesPreferences();
+    alert("Preference sent to database!");
   };
 
   return (
