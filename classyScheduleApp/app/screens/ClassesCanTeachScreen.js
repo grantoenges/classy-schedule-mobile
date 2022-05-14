@@ -28,71 +28,76 @@ const ClassesCTFun = () => {
   const [pref, setPref] = useState([]);
   const [dataT, setDataT] = useState([]);
 
+  const sendSelection = async () => {
+    try {
+      setLoading(true);
+      const auth = await AsyncStorage.getItem("Auth");
+      const id = await AsyncStorage.getItem("UserId");
 
-  
-
- const sendSelection = async() =>{
-   try{
-    setLoading(true);
-    const auth = await AsyncStorage.getItem('Auth');
-    const id = await AsyncStorage.getItem('UserId');
-
-    const response = await fetch('https://capstonedbapi.azurewebsites.net/preference-management/class-preferences/can-teach/save/'+id, {
-      method: 'POST',
-      /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
-      headers: { 
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': auth//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
-      },
-        body: JSON.stringify(dataT)
-      });
+      const response = await fetch(
+        "https://capstonedbapi.azurewebsites.net/preference-management/class-preferences/can-teach/save/" +
+          id,
+        {
+          method: "POST",
+          /*,  Example of how headers look for if people are to take this to use on other parts of the app */
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: auth, //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
+          },
+          body: JSON.stringify(dataT),
+        }
+      );
       const json = await response.json();
       alert(json);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
-      catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
+  };
+
+  const getPreferencesJson = async () => {
+    try {
+      setLoading(true);
+      setPref([]);
+      const auth = await AsyncStorage.getItem("Auth");
+      const id = await AsyncStorage.getItem("UserId");
+
+      const response = await fetch(
+        "https://capstonedbapi.azurewebsites.net/preference-management/class-preferences/can-teach/" +
+          id,
+        {
+          method: "GET",
+          /*,  Example of how headers look for if people are to take this to use on other parts of the app */
+          headers: {
+            //Will need the authorization to be a saved string each time we sign in
+            Authorization: auth,
+          },
+        }
+      );
+
+      const json = await response.json();
+      /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
+      console.log("JOSN IS" + json.length);
+      if (json.length != undefined) {
+        setPref((pref) => [
+          ...pref,
+          ...json.map(({ class_id, can_teach }) => ({
+            class_id,
+            can_teach,
+          })),
+        ]);
       }
- }
+      //console.log(json);
+    } catch (error) {
+      setPref([]);
 
- const getPreferencesJson = async () => {
-  try {
-    setLoading(true);
-    setPref([]);
-    const auth = await AsyncStorage.getItem('Auth');
-    const id = await AsyncStorage.getItem('UserId');
-
-   const response = await fetch('https://capstonedbapi.azurewebsites.net/preference-management/class-preferences/can-teach/'+id, {
-     method: 'GET',
-     /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
-     headers: { 
-       //Will need the authorization to be a saved string each time we sign in
-       'Authorization': auth
-     },
-     });
-
-     const json = await response.json();
-     /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
-     console.log("JOSN IS"+json.length);
-     if(json.length != undefined){
-     setPref((pref) => [
-      ...pref,
-      ...json.map(({class_id,can_teach}) => ({
-        class_id,
-        can_teach
-      })),
-    ]);}
-     //console.log(json);
-   } catch (error) {
-    setPref([]);
-
-   console.error(error);
- } finally {
-   setLoading(false);
- }
-}
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
   /*
   getJson's purpose is to make a call to the API point and set our usestate variable to the data that 
   should be returned while also updating the isLoading variable to reflect the loading status 
@@ -104,68 +109,80 @@ const ClassesCTFun = () => {
    should send that error to the console.log 
   */
   const getJson = async () => {
-     try {
-       setLoading(true);
-       setDataT([]);
-       const auth = await AsyncStorage.getItem('Auth');
+    try {
+      setLoading(true);
+      setDataT([]);
+      const auth = await AsyncStorage.getItem("Auth");
 
-       console.log('Current auth token', auth);
-      const response = await fetch('https://capstonedbapi.azurewebsites.net/class-management/classes', {
-        method: 'GET',
-        /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
-        headers: { 
-          //Will need the authorization to be a saved string each time we sign in
-          'Authorization': auth
-        },
-        });
-        
+      console.log("Current auth token", auth);
+      const response = await fetch(
+        "https://capstonedbapi.azurewebsites.net/class-management/classes",
+        {
+          method: "GET",
+          /*,  Example of how headers look for if people are to take this to use on other parts of the app */
+          headers: {
+            //Will need the authorization to be a saved string each time we sign in
+            Authorization: auth,
+          },
+        }
+      );
+
       const json = await response.json();
       /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
-      if(json.length != undefined){
+      if (json.length != undefined) {
         setDataT((dataT) => [
           ...dataT,
-          ...json.map(({class_id, class_num,dept_id, class_name,is_lab, capacity, credits}) => ({
-            class_id,
-            class_num,
-            dept_id,
-            class_name,
-            is_lab,
-            can_teach: false //pref.find(element => (element.class_id == 8))
-          })),
-        ]);}
-      } catch (error) {
+          ...json.map(
+            ({
+              class_id,
+              class_num,
+              dept_id,
+              class_name,
+              is_lab,
+              capacity,
+              credits,
+            }) => ({
+              class_id,
+              class_num,
+              dept_id,
+              class_name,
+              is_lab,
+              can_teach: false, //pref.find(element => (element.class_id == 8))
+            })
+          ),
+        ]);
+      }
+    } catch (error) {
       console.error(error);
     } finally {
       setLoading(false);
-    
     }
-  }
-  const allTrues = async() =>{
+  };
+  const allTrues = async () => {
     setLoading(true);
 
     var arr = [];
-    if(pref.length != undefined){
-    pref.map(item =>
-      {
-        if (item.can_teach == true){
+    if (pref.length != undefined) {
+      pref.map((item) => {
+        if (item.can_teach == true) {
           console.log("adding" + item.class_id);
           arr.push(item.class_id);
         }
-      });}
-      getTF(arr);
-  }
-  const getTF =(id) => {
+      });
+    }
+    getTF(arr);
+  };
+  const getTF = (id) => {
     // loop over the todos list and find the provided id.
-    let ns = dataT.map(item =>
-        {
-          if (id.includes(item.class_id)){
-            return {...item, can_teach: true}; //gets everything that was already in item, and updates "done"
-          }
-          return item; // else return unmodified item 
-        });
+    let ns = dataT.map((item) => {
+      if (id.includes(item.class_id)) {
+        return { ...item, can_teach: true }; //gets everything that was already in item, and updates "done"
+      }
+      return item; // else return unmodified item
+    });
     setDataT(ns);
     setLoading(false);
- }
+  };
   /*useEffect is a react native hook that allows us to get to using our usestate variables and allowing
   for the dynamic rendering of that data onto the screen. This useeffect for example calls our getJson method */
   useEffect(() => {
@@ -176,21 +193,44 @@ const ClassesCTFun = () => {
 
   /*This return is where the actual react part of the app is made and the data will be displayed for the user  */
   return (
-    <SafeAreaView style = {[styles.noPadContainer, {backgroundColor: paperTheme.colors.background}]}>      
-      <Button onPress = {sendSelection} mode = "contained" >Save Data</Button>
-      {isLoading ? <Button loading = {true} mode = "outlined"> Loading</Button> : (
+    <SafeAreaView
+      style={[
+        styles.noPadContainer,
+        { backgroundColor: paperTheme.colors.background },
+      ]}
+    >
+      <Button onPress={sendSelection} mode="contained">
+        Save Data
+      </Button>
+      {isLoading ? (
+        <Button loading={true} mode="outlined">
+          {" "}
+          Loading
+        </Button>
+      ) : (
         <FlatList
-          data = {dataT}
-          keyExtractor = {({ class_id}) => class_id}
-          renderItem = {({ item }) => (
-              <Checkbox.Item labelStyle={{color: paperTheme.checkboxStyle.textColor}} label = {item.class_name} color = {paperTheme.checkboxStyle.color} uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor} status = {item.prefer_to_teach? 'checked':'unchecked'} onPress = {()=>{item.prefer_to_teach = !item.prefer_to_teach; setDummy(!dummy);}}/>
-            )}
-        />   
-      )}        
-        <Button mode="contained" onPress={allTrues} >see current saved preferences </Button>  
+          data={dataT}
+          keyExtractor={({ class_id }) => class_id}
+          renderItem={({ item }) => (
+            <Checkbox.Item
+              labelStyle={{ color: paperTheme.checkboxStyle.textColor }}
+              label={item.class_name}
+              color={paperTheme.checkboxStyle.color}
+              uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
+              status={item.prefer_to_teach ? "checked" : "unchecked"}
+              onPress={() => {
+                item.prefer_to_teach = !item.prefer_to_teach;
+                setDummy(!dummy);
+              }}
+            />
+          )}
+        />
+      )}
+      <Button mode="contained" onPress={allTrues}>
+        see current saved preferences{" "}
+      </Button>
     </SafeAreaView>
   );
 };
-
 
 export default ClassesCTFun;
