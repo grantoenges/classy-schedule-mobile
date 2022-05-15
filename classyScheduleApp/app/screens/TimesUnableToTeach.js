@@ -177,6 +177,7 @@ const TimesCTFun = ({ navigation }) => {
     const sendFunctionsCombined = async () => {
         //sendTimeOfDayPreferences();
         sendTimesPreferences();
+        alert("Preference sent!");
     };
 
     useEffect(() => {
