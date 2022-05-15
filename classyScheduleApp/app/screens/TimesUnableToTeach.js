@@ -147,7 +147,6 @@ const TimesCTFun = ({ navigation }) => {
             },
             }
         );
-
         const json = await response.json();
         /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
         if (json != undefined && json.status != 404) {
