@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
 import {
-    SafeAreaView,
-    ActivityIndicator,
-    FlatList,
-    Text,
-    ScrollView,
-    View,
+  SafeAreaView,
+  ActivityIndicator,
+  FlatList,
+  Text,
+  ScrollView,
+  View,
 } from "react-native";
 import {
-    Button,
-    Card,
-    Checkbox,
-    TextInput,
-    useTheme,
+  Button,
+  Card,
+  Checkbox,
+  TextInput,
+  useTheme,
 } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../Style";
 
-const ClassesCTFun = () => {
+const ClassesPTFun = () => {
   const paperTheme = useTheme();
 
   /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
@@ -217,9 +217,9 @@ const ClassesCTFun = () => {
               label={item.class_name}
               color={paperTheme.checkboxStyle.color}
               uncheckedColor={paperTheme.checkboxStyle.uncheckedColor}
-              status={item.prefer_to_teach ? "checked" : "unchecked"}
+              status={item.can_teach ? "checked" : "unchecked"}
               onPress={() => {
-                item.prefer_to_teach = !item.prefer_to_teach;
+                item.can_teach = !item.can_teach;
                 setDummy(!dummy);
               }}
             />
@@ -233,4 +233,4 @@ const ClassesCTFun = () => {
   );
 };
 
-export default ClassesCTFun;
+export default ClassesPTFun;
