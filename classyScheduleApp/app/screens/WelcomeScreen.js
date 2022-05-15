@@ -147,41 +147,6 @@ const WelcomeScreenFun = ({ navigation }) => {
                         </Pressable>
                         </Modal>
                     </TouchableOpacity>
-                    {/* Schedule Button */}
-                    <TouchableOpacity
-                        mode = "contained"
-                        style = {[styles.buttonStyle, 
-                            {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
-                        activeOpacity = {0.8}
-                        onPress = {schedule}
-                        onLongPress = {() => setModalSchedule(true)}
-                    >
-                        <Text style = {[styles.textStyle, {color: buttonColor.textColor}]}>
-                            Schedule
-                        </Text>
-                        <Modal
-                            contentContainerStyle = {styles.modalStyle}
-                            animationType = "slide"
-                            transparent = {true}
-                            visible = {scheduleModal}
-                            onDismiss = {() => {
-                                setModalSchedule(!scheduleModal);
-                            }}
-                        >
-                        
-                        <Pressable
-                            style = {styles.modalStyle}
-                            onPress = {() => setModalSchedule(!scheduleModal)}
-                            >
-                            <Text style = {styles.modalText}>
-                                Brings the user to the schedule page where they can see their schedule.
-                            </Text>
-                        </Pressable>
-                        </Modal>
-                    </TouchableOpacity>
-                </View>
-
-                <View style = {styles.viewStyle}>
                     {/* Class Input Button */}
                     <TouchableOpacity
                         mode = "contained"
@@ -213,20 +178,11 @@ const WelcomeScreenFun = ({ navigation }) => {
                         </Pressable>
                         </Modal>
                     </TouchableOpacity>
-                    {/* API Checklist Button */}
-                    <TouchableOpacity
-                        mode = "contained"
-                        style = {[styles.buttonStyle, 
-                            {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
-                        activeOpacity = {0.8}
-                        onPress = {ApiLister}
-                    >
-                        <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>
-                            API checklist example
-                        </Text>
-                    </TouchableOpacity>
+                    
                 </View>
-                <View style={styles.viewStyle}>
+
+                <View style = {styles.viewStyle}>
+                    
                     {/* Help Button */}
                     <TouchableOpacity
                         mode = "contained"
@@ -258,6 +214,21 @@ const WelcomeScreenFun = ({ navigation }) => {
                         </Pressable>
                         </Modal>
                     </TouchableOpacity>
+                    {/* API Checklist Button <TouchableOpacity
+                        mode = "contained"
+                        style = {[styles.buttonStyle, 
+                            {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
+                        activeOpacity = {0.8}
+                        onPress = {ApiLister}
+                    >
+                        <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>
+                            API checklist example
+                        </Text>
+                    </TouchableOpacity>*/}
+                    
+                </View>
+                <View style={styles.viewStyle}>
+                    
                 </View>
             </View>
         </SafeAreaView>
