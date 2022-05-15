@@ -194,7 +194,7 @@ const ClassesPTFun = () => {
     /*This return is where the actual react part of the app is made and the data will be displayed for the user  */
     return (
         <SafeAreaView
-        style = {[
+            style = {[
             styles.noPadContainer,
             { backgroundColor: paperTheme.colors.background },
         ]}
@@ -204,26 +204,26 @@ const ClassesPTFun = () => {
         </Button>
         {isLoading ? (
             <Button loading={true} mode="outlined">
-            {" "}
-            Loading
+                {" "}
+                Loading
             </Button>
         ) : (
             <FlatList
-            data = {dataT}
-            keyExtractor = {({ class_id }) => class_id}
-            renderItem = {({ item }) => (
-                <Checkbox.Item
-                labelStyle = {{ color: paperTheme.checkboxStyle.textColor }}
-                label = {item.class_name}
-                color = {paperTheme.checkboxStyle.color}
-                uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor}
-                status = {item.prefer_to_teach ? "checked" : "unchecked"}
-                onPress = {() => {
-                    item.prefer_to_teach = !item.prefer_to_teach;
-                    setDummy(!dummy);
-                }}
-                />
-            )}
+                data = {dataT}
+                keyExtractor = {({ class_id }) => class_id}
+                renderItem = {({ item }) => (
+                    <Checkbox.Item
+                    labelStyle = {{ color: paperTheme.checkboxStyle.textColor }}
+                    label = {item.class_name}
+                    color = {paperTheme.checkboxStyle.color}
+                    uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor}
+                    status = {item.prefer_to_teach ? "checked" : "unchecked"}
+                    onPress = {() => {
+                        item.prefer_to_teach = !item.prefer_to_teach;
+                        setDummy(!dummy);
+                    }}
+                    />
+                )}
             />
         )}
         <Button mode = "contained" onPress = {allTrues}>

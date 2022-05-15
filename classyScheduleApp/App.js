@@ -6,16 +6,17 @@ import {
 } from "react-native-paper";
 import AppNavigator from "./app/AppNavigator";
 import { Context } from "./app/Style";
-/*This method is technically the default starting page for the app 
-  ours is made in such a way that the default page is used as a container 
-  that holds onto the paper provider, the style import that is used
-  to make the app look nice along with the app navigator that allows
-  for different app pages to be navigated to.
+/*
+This method is technically the default starting page for the app 
+ours is made in such a way that the default page is used as a container 
+that holds onto the paper provider, the style import that is used
+to make the app look nice along with the app navigator that allows
+for different app pages to be navigated to.
 */
 function App() {
     const [isDarkTheme, setIsDarkTheme] = React.useState(false);
 
-      const darkStyle = {
+    const darkStyle = {
         ...DarkTheme,
         colors: {
             ...DarkTheme.colors,
@@ -32,7 +33,7 @@ function App() {
         },
         textStyle: {
             color: "grey",
-          },
+        },
         label: {
             color: "white",
         },
@@ -48,9 +49,9 @@ function App() {
             color: "#CBC3E3",
             textColor: "lightgray",
         }
-      };
+    };
 
-      const lightStyle = {
+    const lightStyle = {
         ...DefaultTheme,
         colors: {
             ...DefaultTheme.colors,

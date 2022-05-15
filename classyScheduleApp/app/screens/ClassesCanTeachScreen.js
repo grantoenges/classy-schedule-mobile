@@ -194,7 +194,7 @@ const ClassesPTFun = () => {
 /*This return is where the actual react part of the app is made and the data will be displayed for the user  */
     return (
         <SafeAreaView
-        style = {[
+            style = {[
             styles.noPadContainer,
             { backgroundColor: paperTheme.colors.background },
         ]}
@@ -209,20 +209,20 @@ const ClassesPTFun = () => {
             </Button>
         ) : (
             <FlatList
-            data = {dataT}
-            keyExtractor = {({ class_id }) => class_id}
-            renderItem = {({ item }) => (
-                <Checkbox.Item
-                labelStyle = {{ color: paperTheme.checkboxStyle.textColor }}
-                label = {item.class_name}
-                color = {paperTheme.checkboxStyle.color}
-                uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor}
-                status = {item.can_teach ? "checked" : "unchecked"}
-                onPress={() => {
-                    item.can_teach = !item.can_teach;
-                    setDummy(!dummy);
-                }}
-                />
+                data = {dataT}
+                keyExtractor = {({ class_id }) => class_id}
+                renderItem = {({ item }) => (
+                    <Checkbox.Item
+                        labelStyle = {{ color: paperTheme.checkboxStyle.textColor }}
+                        label = {item.class_name}
+                        color = {paperTheme.checkboxStyle.color}
+                        uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor}
+                        status = {item.can_teach ? "checked" : "unchecked"}
+                        onPress={() => {
+                            item.can_teach = !item.can_teach;
+                            setDummy(!dummy);
+                        }}
+                    />
             )}
             />
         )}
