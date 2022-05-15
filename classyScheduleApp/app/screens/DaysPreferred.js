@@ -232,7 +232,7 @@ const DaysPrefFun = ({ navigation }) => {
 
     return (
         <SafeAreaView
-        style = {[
+            style = {[
             styles.noPadcontainer,
             { backgroundColor: paperTheme.colors.background },
         ]}
@@ -242,7 +242,7 @@ const DaysPrefFun = ({ navigation }) => {
         </Button>
         <ScrollView>
             <Card
-            style = {[
+                style = {[
                 styles.cardStyle,
                 { backgroundColor: paperTheme.cardStyle.backgroundColor },
             ]}
@@ -264,60 +264,60 @@ const DaysPrefFun = ({ navigation }) => {
             ) : (
             <View>
                 <Checkbox.Item
-                labelStyle = {paperTheme.label.color}
-                label = "Monday"
-                color = {paperTheme.checkboxStyle.color}
-                uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor}
-                status = {mondayChecked ? "checked" : "unchecked"}
-                onPress = {() => {
-                    setMondayChecked(!mondayChecked);
-                }}
+                    labelStyle = {paperTheme.label.color}
+                    label = "Monday"
+                    color = {paperTheme.checkboxStyle.color}
+                    uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor}
+                    status = {mondayChecked ? "checked" : "unchecked"}
+                    onPress = {() => {
+                        setMondayChecked(!mondayChecked);
+                    }}
                 />
                 <Checkbox.Item
-                labelStyle = {paperTheme.label.color}
-                label = "Tuesday"
-                color = {paperTheme.checkboxStyle.color}
-                uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor}
-                status = {tuesdayChecked ? "checked" : "unchecked"}
-                onPress={() => {
-                    setTuesdayChecked(!tuesdayChecked);
-                }}
+                    labelStyle = {paperTheme.label.color}
+                    label = "Tuesday"
+                    color = {paperTheme.checkboxStyle.color}
+                    uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor}
+                    status = {tuesdayChecked ? "checked" : "unchecked"}
+                    onPress={() => {
+                        setTuesdayChecked(!tuesdayChecked);
+                    }}
                 />
                 <Checkbox.Item
-                labelStyle = {paperTheme.label.color}
-                label = "Wednesday"
-                color = {paperTheme.checkboxStyle.color}
-                uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor}
-                status = {wednesdayChecked ? "checked" : "unchecked"}
-                onPress={() => {
-                    setWednesdayChecked(!wednesdayChecked);
-                }}
+                    labelStyle = {paperTheme.label.color}
+                    label = "Wednesday"
+                    color = {paperTheme.checkboxStyle.color}
+                    uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor}
+                    status = {wednesdayChecked ? "checked" : "unchecked"}
+                    onPress={() => {
+                        setWednesdayChecked(!wednesdayChecked);
+                    }}
                 />
                 <Checkbox.Item
-                labelStyle = {paperTheme.label.color}
-                label = "Thursday"
-                color = {paperTheme.checkboxStyle.color}
-                uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor}
-                status = {thursdayChecked ? "checked" : "unchecked"}
-                onPress = {() => {
-                    setThursdayChecked(!thursdayChecked);
-                }}
+                    labelStyle = {paperTheme.label.color}
+                    label = "Thursday"
+                    color = {paperTheme.checkboxStyle.color}
+                    uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor}
+                    status = {thursdayChecked ? "checked" : "unchecked"}
+                    onPress = {() => {
+                        setThursdayChecked(!thursdayChecked);
+                    }}
                 />
                 <Checkbox.Item
-                labelStyle = {paperTheme.label.color}
-                label = "Friday"
-                color = {paperTheme.checkboxStyle.color}
-                uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor}
-                status = {fridayChecked ? "checked" : "unchecked"}
-                onPress = {() => {
-                    setFridayChecked(!fridayChecked);
-                }}
+                    labelStyle = {paperTheme.label.color}
+                    label = "Friday"
+                    color = {paperTheme.checkboxStyle.color}
+                    uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor}
+                    status = {fridayChecked ? "checked" : "unchecked"}
+                    onPress = {() => {
+                        setFridayChecked(!fridayChecked);
+                    }}
                 />
             </View>
             )}
 
             <Card
-            style = {[
+                style = {[
                 styles.cardStyle,
                 { backgroundColor: paperTheme.cardStyle.backgroundColor },
             ]}
@@ -339,34 +339,34 @@ const DaysPrefFun = ({ navigation }) => {
             ) : (
             <View>
                 <Checkbox.Item
-                labelStyle = {paperTheme.label.color}
-                label = "Morning"
-                color = {paperTheme.checkboxStyle.color}
-                uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor}
-                status = {morningChecked ? "checked" : "unchecked"}
-                onPress = {() => {
-                    setMorningChecked(!morningChecked);
-                }}
+                    labelStyle = {paperTheme.label.color}
+                    label = "Morning"
+                    color = {paperTheme.checkboxStyle.color}
+                    uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor}
+                    status = {morningChecked ? "checked" : "unchecked"}
+                    onPress = {() => {
+                        setMorningChecked(!morningChecked);
+                    }}
                 />
                 <Checkbox.Item
-                labelStyle = {paperTheme.label.color}
-                label = "Afternoon"
-                color = {paperTheme.checkboxStyle.color}
-                uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor}
-                status = {afternoonChecked ? "checked" : "unchecked"}
-                onPress = {() => {
-                    setAfternoonChecked(!afternoonChecked);
-                }}
+                    labelStyle = {paperTheme.label.color}
+                    label = "Afternoon"
+                    color = {paperTheme.checkboxStyle.color}
+                    uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor}
+                    status = {afternoonChecked ? "checked" : "unchecked"}
+                    onPress = {() => {
+                        setAfternoonChecked(!afternoonChecked);
+                    }}
                 />
                 <Checkbox.Item
-                labelStyle = {paperTheme.label.color}
-                label = "Evening"
-                color = {paperTheme.checkboxStyle.color}
-                uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor}
-                status = {eveningChecked ? "checked" : "unchecked"}
-                onPress = {() => {
-                    setEveningChecked(!eveningChecked);
-                }}
+                    labelStyle = {paperTheme.label.color}
+                    label = "Evening"
+                    color = {paperTheme.checkboxStyle.color}
+                    uncheckedColor = {paperTheme.checkboxStyle.uncheckedColor}
+                    status = {eveningChecked ? "checked" : "unchecked"}
+                    onPress = {() => {
+                        setEveningChecked(!eveningChecked);
+                    }}
                 />
             </View>
             )}

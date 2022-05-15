@@ -1,23 +1,23 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const signIn = async (username, password) => {
-  try {
-      const response = await fetch('https://capstonedbapi.azurewebsites.net/user-management/users/authenticate', {
-          method: 'POST',
-          headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-              username: username,
-              password: password,
-          })
-      });
-      const json = await response.json();
-      return json;
-  } catch (error) {
-      console.error(error);
-  } finally {}
+    try {
+        const response = await fetch('https://capstonedbapi.azurewebsites.net/user-management/users/authenticate', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password,
+            })
+        });
+        const json = await response.json();
+        return json;
+    } catch (error) {
+        console.error(error);
+    } finally {}
 }
 
 
