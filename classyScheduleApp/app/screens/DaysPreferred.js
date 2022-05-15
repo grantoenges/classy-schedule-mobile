@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import { Button, Card, Checkbox, Text, useTheme } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import styles from "../Style";
 
 // DaysPrefFun creates useState objects for each possible day of the week

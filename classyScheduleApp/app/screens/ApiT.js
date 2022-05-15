@@ -19,20 +19,6 @@ import styles from "../Style";
   const [dataT, setDataT] = useState([]);
 
 
-  const seeSelection = async() =>{
-    try{
-     setLoading(true);
-     let found = dataT.find(element=> element.class_id ==8)
-    setDummy(!dummy);
-    console.log(" ses "+found.prefer_to_teach);
-     }
-       catch (error) {
-         console.error(error);
-       } finally {
-         setLoading(false);
-       }
-  }
-
  const sendSelection = async() =>{
    try{
     setLoading(true);
@@ -78,7 +64,6 @@ import styles from "../Style";
 
      const json = await response.json();
      /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
-     console.log("JOSN IS"+json.length);
      if(json.length != undefined){
      setPref((pref) => [
       ...pref,
@@ -87,10 +72,8 @@ import styles from "../Style";
         prefer_to_teach
       })),
     ]);}
-     //console.log(json);
    } catch (error) {
     setPref([]);
-
    console.error(error);
  } finally {
    setLoading(false);
@@ -112,7 +95,6 @@ import styles from "../Style";
        setDataT([]);
        const auth = await AsyncStorage.getItem('Auth');
 
-       console.log('Current auth token', auth);
       const response = await fetch('https://capstonedbapi.azurewebsites.net/class-management/classes', {
         method: 'GET',
         /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
@@ -144,13 +126,11 @@ import styles from "../Style";
     }
   }
   const allTrues = async() =>{
-    setLoading(true);
     var arr = [];
     if(pref.length != undefined){
     pref.map(item =>
       {
         if (item.prefer_to_teach == true){
-          console.log("adding" + item.class_id);
           arr.push(item.class_id);
         }
       });}
@@ -158,16 +138,14 @@ import styles from "../Style";
   }
   const getTF =(id) => {
     // loop over the todos list and find the provided id.
-    console.log(isLoading);
-    let ns = dataT.map(item =>
+    let newData = dataT.map(item =>
         {
           if (id.includes(item.class_id)){
             return {...item, prefer_to_teach: true}; //gets everything that was already in item, and updates "done"
           }
           return item; // else return unmodified item 
         });
-    setDataT(ns);
-    setLoading(false);
+    setDataT(newData);
  }
   /*useEffect is a react native hook that allows us to get to using our usestate variables and allowing
   for the dynamic rendering of that data onto the screen. This useeffect for example calls our getJson method */
