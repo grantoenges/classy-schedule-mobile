@@ -1,19 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import {
-  SafeAreaView,
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  Alert,
-  ScrollView,
-  Pressable,
+    SafeAreaView,
+    View,
+    Text,
+    TouchableOpacity,
+    Pressable,
 } from "react-native";
-import { Button, Card, TextInput, TouchableRipple, Modal, useTheme} from "react-native-paper";
-import { MyComponent } from "./Shake";
-import RNShake from "react-native-shake";
+import { 
+    Modal,  
+    useTheme, 
+} from "react-native-paper";
 import styles from "../Style";
 import Help from "./Help";
 
@@ -23,220 +20,248 @@ import Help from "./Help";
  */
 
 const WelcomeScreenFun = ({ navigation }) => {
-  const paperTheme = useTheme();
-  let buttonColor = paperTheme.buttonStyle;
-  
-  /**This function navigates the user to the Login page */
-  const login = () => navigation.navigate("Login");
-  /**This function navigates the user to the Preferences page */
-  const prefs = () => navigation.navigate("Preferences");
-  /**This function navigates the user to the Settings page */
-  const settings = () => navigation.navigate("Settings");
-  /**This function navigates the user to the Schedule page */
-  const schedule = () => navigation.navigate("Schedule");
-  /**This function navigates the user to the Class page */
-  const Input = () => navigation.navigate("Class Input");
-  /**This function navigates the user to the Api test page */
-  const Helper = () => navigation.navigate("Help");
-  /**This function navigates the user to the Api list page */
-  const ApiLister = () => navigation.navigate("Api List");
+    const paperTheme = useTheme();
+    let buttonColor = paperTheme.buttonStyle;
+    
+    /**This function navigates the user to the Login page */
+    const login = () => navigation.navigate("Login");
+    /**This function navigates the user to the Preferences page */
+    const prefs = () => navigation.navigate("Preferences");
+    /**This function navigates the user to the Settings page */
+    const settings = () => navigation.navigate("Settings");
+    /**This function navigates the user to the Schedule page */
+    const schedule = () => navigation.navigate("Schedule");
+    /**This function navigates the user to the Class page */
+    const Input = () => navigation.navigate("Class Input");
+    /**This function navigates the user to the Api test page */
+    const Helper = () => navigation.navigate("Help");
+    /**This function navigates the user to the Api list page */
+    const ApiLister = () => navigation.navigate("Api List");
 
-  //Color for react native button text is #6200ed
-  //Might need to change textFamily for android in textStyle
+    //Use state constants for modal visibility
+    const [loginModal, setModalLogin] = useState(false); 
+    const [prefModal, setModalPref] = useState(false);
+    const [settingsModal, setModalSettings] = useState(false);
+    const [scheduleModal, setModalSchedule] = useState(false);
+    const [CIModal, setModalCI] = useState(false);
+    const [helpModal, setModalHelp] = useState(false);
+    
+    return (
+        <SafeAreaView style={[styles.container, 
+            {backgroundColor: paperTheme.colors.background}]}>
+            <View style={styles.overlay}>
+                <View style={styles.viewStyle}>
+                    {/* Logout Button */}
+                    <TouchableOpacity
+                        style = {[styles.buttonStyle, 
+                            {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
+                        activeOpacity = {0.8}
+                        onPress = {login}
+                        onLongPress = {() => setModalLogin(true)}
+                    >
+                        <Text style = {[styles.textStyle, {color: buttonColor.textColor}]}>
+                            Logout
+                        </Text>
+                        <Modal
+                            contentContainerStyle = {styles.modalStyle}
+                            animationType = "slide"
+                            transparent = {true}
+                            visible = {loginModal}
+                            onDismiss = {() => {
+                                setModalLogin(!loginModal);
+                            }}
+                        >
+                        
+                        <Pressable
+                            style = {styles.modalStyle}
+                            onPress = {() => setModalLogin(!loginModal)}
+                        >
+                            <Text style={styles.modalText}>
+                                Logs the user out and returns the user to the login page.
+                            </Text>
+                        </Pressable>
+                        </Modal>
+                    </TouchableOpacity>
+                    {/* Preferences Button */}
+                    <TouchableOpacity
+                        mode = "contained"
+                        style = {[styles.buttonStyle, 
+                            {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
+                        activeOpacity = {0.8}
+                        onPress = {prefs}
+                        onLongPress = {() => setModalPref(true)}
+                    >
+                        <Text style = {[styles.textStyle, {color: buttonColor.textColor}]}>
+                            Preferences
+                        </Text>
+                        <Modal
+                            contentContainerStyle = {styles.modalStyle}
+                            animationType = "slide"
+                            transparent = {true}
+                            visible = {prefModal}
+                            onDismiss = {() => {
+                                setModalPref(!prefModal);
+                            }}
+                        >
+                        <Pressable
+                            style = {styles.modalStyle}
+                            onPress = {() => setModalPref(!prefModal)}
+                        >
+                            <Text style = {styles.modalText}>
+                                Brings the user to the preferences menu where they can select their preferences.
+                            </Text>
+                        </Pressable>
+                        </Modal>
+                    </TouchableOpacity>
+                </View>
 
-  //This is where the shake work/testing/failure is happening
-  const MyComponent = () => {
-    React.useEffect(() => {
-      const subscription = RNShake.addListener(() => {
-        // Your code here...
-        console.log("shook");
-      });
+                <View style = {styles.viewStyle}>
+                    {/* Settings Button */}
+                    <TouchableOpacity
+                        mode = "contained"
+                        style = {[styles.buttonStyle,
+                            {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
+                        activeOpacity = {0.8}
+                        onPress = {settings}
+                        onLongPress = {() => setModalSettings(true)}
+                    >
+                        <Text style = {[styles.textStyle, {color: buttonColor.textColor}]}>
+                            Settings
+                        </Text>
+                        <Modal
+                            contentContainerStyle = {styles.modalStyle}
+                            animationType = "slide"
+                            transparent = {true}
+                            visible = {settingsModal}
+                            onDismiss = {() => {
+                                setModalSettings(!settingsModal);
+                            }}
+                        >
+                        <Pressable
+                            style = {styles.modalStyle}
+                            onPress = {() => setModalSettings(!settingsModal)}
+                            >
+                            <Text style={styles.modalText}>
+                                Brings the user to the settings menu where they can adjust their settings.
+                            </Text>
+                        </Pressable>
+                        </Modal>
+                    </TouchableOpacity>
+                    {/* Schedule Button */}
+                    <TouchableOpacity
+                        mode = "contained"
+                        style = {[styles.buttonStyle, 
+                            {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
+                        activeOpacity = {0.8}
+                        onPress = {schedule}
+                        onLongPress = {() => setModalSchedule(true)}
+                    >
+                        <Text style = {[styles.textStyle, {color: buttonColor.textColor}]}>
+                            Schedule
+                        </Text>
+                        <Modal
+                            contentContainerStyle = {styles.modalStyle}
+                            animationType = "slide"
+                            transparent = {true}
+                            visible = {scheduleModal}
+                            onDismiss = {() => {
+                                setModalSchedule(!scheduleModal);
+                            }}
+                        >
+                        
+                        <Pressable
+                            style = {styles.modalStyle}
+                            onPress = {() => setModalSchedule(!scheduleModal)}
+                            >
+                            <Text style = {styles.modalText}>
+                                Brings the user to the schedule page where they can see their schedule.
+                            </Text>
+                        </Pressable>
+                        </Modal>
+                    </TouchableOpacity>
+                </View>
 
-      return () => {
-        // Your code here...
-        console.log("Not ");
-        //subscription.remove()
-      };
-    }, []);
-  };
-
-
-  
-//Use state constants for modal visibility
-  const [loginModal, setModalLogin] = useState(false);
-  const [prefModal, setModalPref] = useState(false);
-  const [settingsModal, setModalSettings] = useState(false);
-  const [scheduleModal, setModalSchedule] = useState(false);
-  const [CIModal, setModalCI] = useState(false);
-  
-  return (
-    <SafeAreaView style={[styles.container, {backgroundColor: paperTheme.colors.background}]}>
-      <View style={styles.overlay}>
-        <View style={styles.viewStyle}>
-          <TouchableOpacity
-            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
-            activeOpacity={0.8}
-            onPress={login}
-            onLongPress={() => setModalLogin(true)}
-          >
-            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Logout</Text>
-            <Modal
-              contentContainerStyle={styles.modalStyle}
-              animationType="slide"
-              transparent={true}
-              visible={loginModal}
-              onDismiss={() => {
-                setModalLogin(!loginModal);
-              }}
-            >
-            
-            <Pressable
-              style={styles.modalStyle}
-              onPress={() => setModalLogin(!loginModal)}
-              >
-                <Text style={styles.modalText}>Logs the user out and returns the user to the login page.</Text>
-            </Pressable>
-            
-            </Modal>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            mode="contained"
-            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
-            activeOpacity={0.8}
-            onPress={prefs}
-            onLongPress={() => setModalPref(true)}
-          >
-            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Preferences</Text>
-            <Modal
-              contentContainerStyle={styles.modalStyle}
-              animationType="slide"
-              transparent={true}
-              visible={prefModal}
-              onDismiss={() => {
-                setModalPref(!prefModal);
-              }}
-            >
-            
-            <Pressable
-              style={styles.modalStyle}
-              onPress={() => setModalPref(!prefModal)}
-              >
-                <Text style={styles.modalText}>Brings the user to the preferences menu where they can select their preferences.</Text>
-            </Pressable>
-            
-            </Modal>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.viewStyle}>
-          <TouchableOpacity
-            mode="contained"
-            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
-            activeOpacity={0.8}
-            onPress={settings}
-            onLongPress={() => setModalSettings(true)}
-          >
-            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Settings</Text>
-            <Modal
-              contentContainerStyle={styles.modalStyle}
-              animationType="slide"
-              transparent={true}
-              visible={settingsModal}
-              onDismiss={() => {
-                setModalSettings(!settingsModal);
-              }}
-            >
-            
-            <Pressable
-              style={styles.modalStyle}
-              onPress={() => setModalSettings(!settingsModal)}
-              >
-                <Text style={styles.modalText}>Brings the user to the settings menu where they can adjust their settings.</Text>
-            </Pressable>
-            
-            </Modal>
-          </TouchableOpacity>
-          <TouchableOpacity
-            mode="contained"
-            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
-            activeOpacity={0.8}
-            onPress={schedule}
-            onLongPress={() => setModalSchedule(true)}
-          >
-            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Schedule</Text>
-            <Modal
-              contentContainerStyle={styles.modalStyle}
-              animationType="slide"
-              transparent={true}
-              visible={scheduleModal}
-              onDismiss={() => {
-                setModalSchedule(!scheduleModal);
-              }}
-            >
-            
-            <Pressable
-              style={styles.modalStyle}
-              onPress={() => setModalSchedule(!scheduleModal)}
-              >
-                <Text style={styles.modalText}>Brings the user to the schedule page where they can see their schedule.</Text>
-            </Pressable>
-            
-            </Modal>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.viewStyle}>
-          <TouchableOpacity
-            mode="contained"
-            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
-            activeOpacity={0.8}
-            onPress={Input}
-            onLongPress={() => setModalCI(true)}
-          >
-            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Class Input</Text>
-            <Modal
-              contentContainerStyle={styles.modalStyle}
-              animationType="slide"
-              transparent={true}
-              visible={CIModal}
-              onDismiss={() => {
-                setModalCI(!CIModal);
-              }}
-            >
-            
-            <Pressable
-              style={styles.modalStyle}
-              onPress={() => setModalCI(!CIModal)}
-              >
-                <Text style={styles.modalText}>Brings the user to the Class Input page where they can input classes.</Text>
-            </Pressable>
-            
-            </Modal>
-          </TouchableOpacity>
-          
-          <TouchableOpacity
-            mode="contained"
-            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
-            activeOpacity={0.8}
-            onPress={ApiLister}
-          >
-            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>API checklist example</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.viewStyle}>
-          <TouchableOpacity
-            mode="contained"
-            style={[styles.buttonStyle, {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
-            activeOpacity={0.8}
-            onPress={Helper}
-          >
-            <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>Help</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </SafeAreaView>
-  );
+                <View style = {styles.viewStyle}>
+                    {/* Class Input Button */}
+                    <TouchableOpacity
+                        mode = "contained"
+                        style = {[styles.buttonStyle, 
+                            {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
+                        activeOpacity = {0.8}
+                        onPress = {Input}
+                        onLongPress={() => setModalCI(true)}
+                    >
+                        <Text style = {[styles.textStyle, {color: buttonColor.textColor}]}>
+                            Class Input
+                        </Text>
+                        <Modal
+                            contentContainerStyle = {styles.modalStyle}
+                            animationType = "slide"
+                            transparent = {true}
+                            visible = {CIModal}
+                            onDismiss = {() => {
+                                setModalCI(!CIModal);
+                            }}
+                        >
+                        <Pressable
+                            style = {styles.modalStyle}
+                            onPress = {() => setModalCI(!CIModal)}
+                        >
+                            <Text style = {styles.modalText}>
+                                Brings the user to the Class Input page where they can input classes.
+                            </Text>
+                        </Pressable>
+                        </Modal>
+                    </TouchableOpacity>
+                    {/* API Checklist Button */}
+                    <TouchableOpacity
+                        mode = "contained"
+                        style = {[styles.buttonStyle, 
+                            {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
+                        activeOpacity = {0.8}
+                        onPress = {ApiLister}
+                    >
+                        <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>
+                            API checklist example
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.viewStyle}>
+                    {/* Help Button */}
+                    <TouchableOpacity
+                        mode = "contained"
+                        style = {[styles.buttonStyle, 
+                            {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
+                        activeOpacity = {0.8}
+                        onPress = {Helper}
+                        onLongPress = {() => setModalHelp(true)}
+                    >
+                        <Text style = {[styles.textStyle, {color: buttonColor.textColor}]}>
+                            Help
+                        </Text>
+                        <Modal
+                            contentContainerStyle = {styles.modalStyle}
+                            animationType = "slide"
+                            transparent = {true}
+                            visible = {helpModal}
+                            onDismiss = {() => {
+                                setModalHelp(!helpModal);
+                            }}
+                        >
+                        <Pressable
+                            style = {styles.modalStyle}
+                            onPress = {() => setModalHelp(!helpModal)}
+                        >
+                            <Text style = {styles.modalText}>
+                                Brings the user to the Help page where they can learn more about the app
+                            </Text>
+                        </Pressable>
+                        </Modal>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        </SafeAreaView>
+    );
 };
 
 export default WelcomeScreenFun;
