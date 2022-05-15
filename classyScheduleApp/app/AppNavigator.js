@@ -7,14 +7,12 @@ import WelcomeScreenFun from "./screens/WelcomeScreen";
 import ChangePassword from "./screens/ChangePassword";
 import PreferenceFun from "./screens/PreferencesScreen";
 import SettingFun from "./screens/Settings";
-import ScheduleFun from "./screens/Schedule";
 import ClassesCTFun from "./screens/ClassesCanTeachScreen";
 import ClassesPTFun from "./screens/ClassesPreferredToTeach";
 import TimesCTFun from "./screens/TimesUnableToTeach";
 import DaysPrefFun from "./screens/DaysPreferred";
 import ClassInputFun from "./screens/ClassInputting";
 import Help from "./screens/Help";
-import ApiList from "./screens/ApiT";
 import ForgotPassword from "./screens/ForgotPassword";
 /*This variable creates a stack navigator, this is our holder that allows for 
 screens to be navigated to from other screens as well as allowing for native use
@@ -49,14 +47,12 @@ function AppNavigator() {
                 <Screen name = "Change Password" component={ChangePassword} />
                 <Screen name = "Preferences" component={PreferenceFun} />
                 <Screen name = "Settings" component={SettingFun} />
-                <Screen name = "Schedule" component={ScheduleFun} />
                 <Screen name = "Classes Can Teach" component={ClassesCTFun} />
                 <Screen name = "Classes Preferred To Teach" component={ClassesPTFun} />
                 <Screen name = "Times Unable To Teach" component={TimesCTFun} />
                 <Screen name = "Days Preferred To Teach" component={DaysPrefFun} />
                 <Screen name = "Class Input" component={ClassInputFun} />
                 <Screen name = "Help" component={Help} />
-                <Screen name = "Api List" component={ApiList} />
             </Navigator>
         </NavigationContainer>
     );

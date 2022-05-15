@@ -135,7 +135,7 @@ const ClassInputFun = () => {
                     onValueChange = {(itemValue, itemIndex) => 
                         setSelectedLanguage(itemValue)}>
                     <Picker.Item label = "Computer Science" value = "1" />
-                    <Picker.Item label = "Statistics" value = "0"/>
+                    <Picker.Item label = "Statistics" value = "2"/>
                 </Picker>
                 <TextInput 
                     keyboardType = "numeric"
