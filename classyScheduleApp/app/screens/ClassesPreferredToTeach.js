@@ -15,6 +15,8 @@ import {
     useTheme,
 } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import styles from "../Style";
+
 
 const ClassesPTFun = () => {
     const paperTheme = useTheme();
