@@ -32,10 +32,21 @@ export const updatePass = async (password) => {
             }
         });
         
-        return response;
+        if(typeof response == "json") {
+            const message = await response.json();
+            let string = JSON.stringify(message);
+            let holder = JSON.parse(string);
+            alert(holder.message);
+            return message;
+        } else {
+            const message = await response.text();
+            alert(message);
+            return message;
+        }
     } catch (error) {
-        console.error(error);
-        alert("Error updating password");
+        console.log(error);
+        alert(error);
+        return error;
     } finally {}
 }
 
@@ -47,11 +58,13 @@ export const forgotPass = async (email) => {
                 accept: '*/*'
             }
         });
-        
-        return response;
+        const message = await response.text();
+        alert(message);
+        return message;
     } catch (error) {
-        console.error(error);
-        alert("Error with email");
+        console.log(error);
+        alert("Error: request failed");
+        return error;
     } finally {}
 }
 

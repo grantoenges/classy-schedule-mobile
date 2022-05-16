@@ -70,7 +70,6 @@ const NewAccountFunc = ({navigation}) => {
             alert(passwordError + " " + samePass);
         } else {
             updatePass(password.value);
-            alert("Updated password");
             password.error = "";
 
         }
