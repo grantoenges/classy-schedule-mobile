@@ -81,9 +81,9 @@ const ClassInputFun = () => {
     return (
         <SafeAreaView style = {[styles.container,
             {backgroundColor: paperTheme.colors.background}]}>
-            <Card style = {style.cardStyle}>
+            <Card>
                 <Picker color = 'purple' 
-                    style = {style.buttonStyle} 
+                    style = {styles.buttonStyleT} 
                     selectedValue = {selectedLanguage}  
                     dropdownIconRippleColor = '#7F46C7' 
                     prompt = 'Pick department' 
@@ -139,28 +139,5 @@ const ClassInputFun = () => {
         </SafeAreaView>
     );
 }
-
-const style = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 24,
-    },
-    buttonStyle:{
-        backgroundColor :"silver"
-    },
-    title: {
-        marginTop: 16,
-        paddingVertical: 8,
-        borderWidth: 4,
-        borderColor: "#20232a",
-        borderRadius: 6,
-        backgroundColor: "#61dafb",
-        color: "#20232a",
-        textAlign: "center",
-        fontSize: 30,
-        fontWeight: "bold"
-    }
-});
-
 
 export default ClassInputFun;

@@ -46,7 +46,6 @@ export default StyleSheet.create({
         
     },
     generalButton: {
-        
     },
     generalText: {
         
