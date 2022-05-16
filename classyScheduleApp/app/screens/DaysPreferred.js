@@ -232,14 +232,14 @@ const DaysPrefFun = ({ navigation }) => {
     return (
         <SafeAreaView
             style = {[
-            styles.noPadcontainer,
+            styles.container,
             { backgroundColor: paperTheme.colors.background },
         ]}
         >
         <Button mode = "contained" onPress = {() => sendPreferences()}>
             Save Data
         </Button>
-        <ScrollView>
+        <ScrollView style= {{ backgroundColor: paperTheme.colors.background }}>
             <Card
                 style = {[
                 styles.cardStyle,
@@ -336,7 +336,7 @@ const DaysPrefFun = ({ navigation }) => {
                 Loading
             </Button>
             ) : (
-            <View>
+            <View style= {{ backgroundColor: paperTheme.colors.background }}>
                 <Checkbox.Item
                     labelStyle = {paperTheme.label.color}
                     label = "Morning"
