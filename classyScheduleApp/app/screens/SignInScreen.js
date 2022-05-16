@@ -73,7 +73,6 @@ const SignInScreenFun = ({ navigation }) => {
             //send the sign in request and change the page the user is on
 
             signIn(savedUsrname, savedPassword).then((response) => {
-                console.log('response', response);
                 if(response.token) {
                     //succesful login
                     AsyncStorage.setItem("Auth", response.token);
@@ -123,13 +122,11 @@ const SignInScreenFun = ({ navigation }) => {
         } else {
             //send sign in request
             global.TEMP = signIn(email.value, password.value).then((response) => {
-                console.log("response", response);
                 if (response.token) {
                     //save username and password securely to device for bioauth
                     saveSecureValue('username', email.value);
                     saveSecureValue('password', password.value);
                     //succesful login
-                    console.log("succesful login");
                     AsyncStorage.setItem("Auth", response.token);
                     AsyncStorage.setItem("Username", response.username);
                     AsyncStorage.setItem("Role", response.user_role);

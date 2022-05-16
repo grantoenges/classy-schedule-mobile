@@ -44,7 +44,6 @@ export const updatePass = async (password) => {
             return message;
         }
     } catch (error) {
-        console.log(error);
         alert(error);
         return error;
     } finally {}
@@ -62,7 +61,6 @@ export const forgotPass = async (email) => {
         alert(message);
         return message;
     } catch (error) {
-        console.log(error);
         alert("Error: request failed");
         return error;
     } finally {}
