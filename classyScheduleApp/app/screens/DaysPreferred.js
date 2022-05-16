@@ -17,6 +17,7 @@ const DaysPrefFun = ({ navigation }) => {
     /*This usestate variable is used as the json data obtained from the api calls storage location*/
     const [dataT, setDataT] = useState([]);
 
+    /* useStates for days of week and times of day*/
     const [mondayChecked, setMondayChecked] = useState(false);
     const [tuesdayChecked, setTuesdayChecked] = useState(false);
     const [wednesdayChecked, setWednesdayChecked] = useState(false);

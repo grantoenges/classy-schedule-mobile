@@ -14,7 +14,6 @@ const TimesCTFun = ({ navigation }) => {
     /* This usestate variable is used as a flag, keeping 
     track of the loading vs not loading of the data */
     const [isLoading, setLoading] = useState(true);
-    //const [dummy, setDummy] = React.useState(false);
 
     /* useStates for the checkboxes for each time slot for 3 days a week */
     const [threeDay1Checked, setThreeDay1Checked] = useState(false);
@@ -53,14 +52,13 @@ const TimesCTFun = ({ navigation }) => {
         console.log("Current userId", userId);
         console.log("Current userRole", userRole);
         const response = await fetch(
-            "https://capstonedbapi.azurewebsites.net/preference-management/time-slot-preferences/can-teach/save/" +
-            userId,
+            "https://capstonedbapi.azurewebsites.net/preference-management/" +
+            "time-slot-preferences/can-teach/save/" + userId,
             {
             method: "POST",
-            /*,  Example of how headers look for if people are to take this to use on other parts of the app */
+            /* Request headers*/
             headers: {
-                //Will need the authorization to be a saved string each time we sign in
-                Authorization: auth, //AUTH._W//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
+                Authorization: auth, 
                 "Content-Type": "application/json",
                 accept: "*/*",
             },
@@ -112,7 +110,6 @@ const TimesCTFun = ({ navigation }) => {
             ]),
             }
         );
-        //const json = await response.json();
         } catch (error) {
         console.error(error);
         } finally {
@@ -123,18 +120,16 @@ const TimesCTFun = ({ navigation }) => {
     const getPreferencesJson = async () => {
         try {
         setLoading(true);
-        //setPref([]);
         const auth = await AsyncStorage.getItem("Auth");
         const id = await AsyncStorage.getItem("UserId");
 
         const response = await fetch(
-            "https://capstonedbapi.azurewebsites.net/preference-management/time-slot-preferences/can-teach/" +
-            id,
+            "https://capstonedbapi.azurewebsites.net/preference-management/" +
+            "time-slot-preferences/can-teach/" + id,
             {
             method: "GET",
-            /*,  Example of how headers look for if people are to take this to use on other parts of the app */
+            /* Request headers */
             headers: {
-                //Will need the authorization to be a saved string each time we sign in
                 Authorization: auth,
             },
             }
@@ -154,23 +149,21 @@ const TimesCTFun = ({ navigation }) => {
             setTwoDay5Checked(json[9].can_teach);
             setTwoDay6Checked(json[10].can_teach);
         }
-        //console.log(json);
         } catch (error) {
-        //setPref([]);
-
         console.error(error);
         } finally {
         setLoading(false);
         }
     };
 
-    // This function enables the button to run two functions to send professor preferences to the database
+    // This function enables the button to run with the alert
     const sendFunctionsCombined = async () => {
-        //sendTimeOfDayPreferences();
         sendTimesPreferences();
         alert("Preference sent!");
     };
 
+    /* useEffect runs the required functions for the API calls 
+    to collect all JSON data for the page*/
     useEffect(() => {
         getPreferencesJson();
     }, []);

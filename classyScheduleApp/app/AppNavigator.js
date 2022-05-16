@@ -14,18 +14,20 @@ import DaysPrefFun from "./screens/DaysPreferred";
 import ClassInputFun from "./screens/ClassInputting";
 import Help from "./screens/Help";
 import ForgotPassword from "./screens/ForgotPassword";
+
 /*This variable creates a stack navigator, this is our holder that allows for 
 screens to be navigated to from other screens as well as allowing for native use
 of the back button in order to navigate between them.
 */
 const { Navigator, Screen } = createStackNavigator();
 
-/*This variable is what stores every page of the app. This is done as a way to allow for 
-any page of the app to be able to navigate to another page without issues (hopefully)*/
+/*This variable is what stores every page of the app. This is done as 
+a way to allow for any page of the app to be able to navigate to 
+another page without issues (hopefully)*/
 function AppNavigator() {
     const paperTheme = useTheme();
     return (
-        <NavigationContainer>
+        <NavigationContainer theme={paperTheme}>
             <Navigator
                 initialRouteName = "Login"
                 screenOptions = {{
