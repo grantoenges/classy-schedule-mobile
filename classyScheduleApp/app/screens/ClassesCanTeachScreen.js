@@ -17,15 +17,21 @@ const ClassesPTFun = () => {
     /*This usestate variable is used as a flag, keeping track 
     of the loading vs not loading of the data*/
     const [isLoading, setLoading] = useState(true);
+
     /*This usestate variable is used as a flag, keeping track of the when the 
     page has information changed and will need a reload of the data*/
     const [dummy, setDummy] = useState(false);
+
     /*This usestate variable is used as the json data obtained from the
     api calls storage location*/
     const [pref, setPref] = useState([]);
+
+    /*This usestate variable is used as the storage data that will be 
+    sent to the database for each classes boolean on can teach or not*/
     const [dataT, setDataT] = useState([]);
 
-    /* Gets authentication from async storage*/
+    /* This const's purpose is to send the current user selections to the 
+    database. It will take in no arguments and will not return anything.*/
     const sendSelection = async () => {
         try {
         setLoading(true);
@@ -37,8 +43,6 @@ const ClassesPTFun = () => {
             "class-preferences/can-teach/save/" + id,
             {
             method: "POST",
-            /*,  Example of how headers look for if people are to take 
-            this to use on other parts of the app */
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
@@ -56,7 +60,7 @@ const ClassesPTFun = () => {
         }
     };
 
-    /* Gets preferences from database as a json */
+    /* Gets preferences from database as a json and stores them in the set pref usestate */
     const getPreferencesJson = async () => {
         try {
         setLoading(true);
@@ -78,9 +82,9 @@ const ClassesPTFun = () => {
             },
             }
         );
-
         const json = await response.json();
-        /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
+        /*This mapping function allows us to tag an extra variable to the
+         data received that tells us if the class is selected */
         if (json.length != undefined) {
             setPref((pref) => [
             ...pref,
@@ -92,7 +96,6 @@ const ClassesPTFun = () => {
         }
         } catch (error) {
         setPref([]);
-
         console.error(error);
         } finally {
         setLoading(false);
@@ -118,16 +121,11 @@ const ClassesPTFun = () => {
             "https://capstonedbapi.azurewebsites.net/class-management/classes",
             {
             method: "GET",
-            /*,  Example of how headers look for if people are to take 
-            this to use on other parts of the app */
             headers: {
-                /*Will need the authorization to be a saved string 
-                each time we sign in*/
                 Authorization: auth,
             },
             }
         );
-
         const json = await response.json();
         /*This mapping function allows us to tag an extra variable to the 
         data received that tells us if the class is selected */
@@ -149,7 +147,6 @@ const ClassesPTFun = () => {
                 dept_id,
                 class_name,
                 is_lab,
-                //pref.find(element => (element.class_id == 8))
                 can_teach: false, 
                 })
             ),
@@ -186,13 +183,13 @@ const ClassesPTFun = () => {
         setDataT(ns);
         setLoading(false);
     };
+
     /*useEffect is a react native hook that allows us to get to using our usestate
     variables and allowing for the dynamic rendering of that data onto the screen.
     This useeffect for example calls our getJson method */
     useEffect(() => {
         getPreferencesJson();
         getJson();
-        //allTrues();
     }, []);
 
 /*This return is where the actual react part of the app is 
