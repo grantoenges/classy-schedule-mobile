@@ -30,7 +30,6 @@ const NewAccountFunc = ({navigation}) => {
             alert(emailError);
         } else {
             forgotPass(email.value);
-            alert("Email Sent");
             email.error = "";
         }
     };
