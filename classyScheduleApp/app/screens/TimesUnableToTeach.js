@@ -1,38 +1,29 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import {
-    SafeAreaView,
-    View,
-    Text,
-    StyleSheet,
-    ScrollView,
-    Alert,
-} from "react-native";
-import {
-    Button,
-    Card,
-    TextInput,
-    Checkbox,
-    useTheme,
-} from "react-native-paper";
+import { SafeAreaView, View, Text, ScrollView } from "react-native";
+import { Button, Card, Checkbox, useTheme } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../Style";
 
-// TimesCTFun creates useState objects for each teaching time group and each possible teaching time slot
-// it then creates the page view, containing title and checkboxes for each time group and each possible teaching time slot
+/* TimesCTFun creates useState objects for each teaching time group and each
+possible teaching time slot it then creates the page view, containing title
+and checkboxes for each time group and each possible teaching time slot */
 const TimesCTFun = ({ navigation }) => {
     const paperTheme = useTheme();
 
-    /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
+    /* This usestate variable is used as a flag, keeping 
+    track of the loading vs not loading of the data */
     const [isLoading, setLoading] = useState(true);
-    const [dummy, setDummy] = React.useState(false);
+    //const [dummy, setDummy] = React.useState(false);
 
+    /* useStates for the checkboxes for each time slot for 3 days a week */
     const [threeDay1Checked, setThreeDay1Checked] = useState(false);
     const [threeDay2Checked, setThreeDay2Checked] = useState(false);
     const [threeDay3Checked, setThreeDay3Checked] = useState(false);
     const [threeDay4Checked, setThreeDay4Checked] = useState(false);
     const [threeDay5Checked, setThreeDay5Checked] = useState(false);
 
+    /* useStates for the checkboxes for each time slot for 2 days a week */
     const [twoDay1Checked, setTwoDay1Checked] = useState(false);
     const [twoDay2Checked, setTwoDay2Checked] = useState(false);
     const [twoDay3Checked, setTwoDay3Checked] = useState(false);
@@ -41,14 +32,15 @@ const TimesCTFun = ({ navigation }) => {
     const [twoDay6Checked, setTwoDay6Checked] = useState(false);
 
     /*
-    sendTimesPreferences's purpose is to make a call to the API point and set our usestate variable to the data that 
-    should be returned while also updating the isLoading variable to reflect the loading status 
+    sendTimesPreferences's purpose is to make a call to the API point and 
+    save the data within the checkbox useState variables to update professor 
+    preferences for time slots
         ------------------
         Inputs: None
         Outputs: None (But the data variable should be set to the json from the API)
         -------------------
-    If for some reason the API call fails then the try catch block should be aware of that failure and 
-    should send that error to the console.log 
+    If for some reason the API call fails then the try catch block should be 
+    aware of that failure and should send that error to the console.log 
     */
     const sendTimesPreferences = async () => {
         try {
