@@ -32,17 +32,6 @@ const ClassInputFun = () => {
     const [isLoading, setLoading] = useState(false);
 
 
-    /** This method use is to store a given value into one predetermined location into the devices memory.
-     *   Inputs: value (should be integer but can be anything)
-     *   Outputs: nothing (may add consol log if needed)
-     */
-    const storeData = async (value) => {
-        try {
-            await AsyncStorage.setItem('@storage_Key', value)
-        } catch (e) {
-          // saving error
-        }
-    }
 
     const sendClass = async() =>{
         try {
@@ -82,34 +71,7 @@ const ClassInputFun = () => {
         }
     }
 
-    /**This method is used to access the stored item from the async storage*/
-    const getData = async () => {
-        try {
-            const value = await AsyncStorage.getItem('@storage_Key')
-            if(value !== null) {
-                // value previously stored
-                alert(value)
-            }
-        } catch(e) {
-          // error reading value
-        }
-    }
 
-    /**This method sends three simple alerts to the user. Is a test method 
-     * that tries to see more of the ways the usestate variables can be used and accessed.
-     * Inputs: none
-     * Outputs: Three alerts stating the current state of the usestate variables
-      */
-    const getstate = () => {
-        alert("dept_id:" + selectedLanguage + 
-        "\nclass_num:" + classNumber + "\ntitle:" + 
-        classTitle + "\ncredits:" + classCredits +
-        "\nis_lab:" + isLab);
-        
-    }
-    const onChange = (val) =>{
-        setClassNum(val.replace(/[^0-9]/g, ''));
-    }
 
     const onChangeNumericInput = (value) =>{
         if (value.length === 0 || value == 'NaN'){
@@ -121,8 +83,7 @@ const ClassInputFun = () => {
         }
         return(x);
     }
-    //<Text>{isLab? "This class is a lab" : "This class is not a lab"} </Text>
-    //<Switch value = {isLab} onValueChange={() => setIsLab(!isLab)}/>
+    
     return (
         <SafeAreaView style = {[styles.container,
             {backgroundColor: paperTheme.colors.background}]}>

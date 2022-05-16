@@ -149,7 +149,9 @@ const TimesCTFun = ({ navigation }) => {
         );
         const json = await response.json();
         /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
-        if (json != undefined && json.status != 404) {
+        console.log(json);
+        if (json != undefined ) {
+            if(json.status != 404){
             setTwoDay1Checked(json[0].can_teach);
             setThreeDay1Checked(json[1].can_teach);
             setThreeDay2Checked(json[2].can_teach);
@@ -161,6 +163,7 @@ const TimesCTFun = ({ navigation }) => {
             setTwoDay4Checked(json[8].can_teach);
             setTwoDay5Checked(json[9].can_teach);
             setTwoDay6Checked(json[10].can_teach);
+            }
         }
         //console.log(json);
         } catch (error) {
