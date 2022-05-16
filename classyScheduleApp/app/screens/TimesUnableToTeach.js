@@ -1,38 +1,28 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import {
-    SafeAreaView,
-    View,
-    Text,
-    StyleSheet,
-    ScrollView,
-    Alert,
-} from "react-native";
-import {
-    Button,
-    Card,
-    TextInput,
-    Checkbox,
-    useTheme,
-} from "react-native-paper";
+import { SafeAreaView, View, Text, ScrollView } from "react-native";
+import { Button, Card, Checkbox, useTheme } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../Style";
 
-// TimesCTFun creates useState objects for each teaching time group and each possible teaching time slot
-// it then creates the page view, containing title and checkboxes for each time group and each possible teaching time slot
+/* TimesCTFun creates useState objects for each teaching time group and each
+possible teaching time slot it then creates the page view, containing title
+and checkboxes for each time group and each possible teaching time slot */
 const TimesCTFun = ({ navigation }) => {
     const paperTheme = useTheme();
 
-    /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
+    /* This usestate variable is used as a flag, keeping 
+    track of the loading vs not loading of the data */
     const [isLoading, setLoading] = useState(true);
-    const [dummy, setDummy] = React.useState(false);
 
+    /* useStates for the checkboxes for each time slot for 3 days a week */
     const [threeDay1Checked, setThreeDay1Checked] = useState(false);
     const [threeDay2Checked, setThreeDay2Checked] = useState(false);
     const [threeDay3Checked, setThreeDay3Checked] = useState(false);
     const [threeDay4Checked, setThreeDay4Checked] = useState(false);
     const [threeDay5Checked, setThreeDay5Checked] = useState(false);
 
+    /* useStates for the checkboxes for each time slot for 2 days a week */
     const [twoDay1Checked, setTwoDay1Checked] = useState(false);
     const [twoDay2Checked, setTwoDay2Checked] = useState(false);
     const [twoDay3Checked, setTwoDay3Checked] = useState(false);
@@ -41,14 +31,15 @@ const TimesCTFun = ({ navigation }) => {
     const [twoDay6Checked, setTwoDay6Checked] = useState(false);
 
     /*
-    sendTimesPreferences's purpose is to make a call to the API point and set our usestate variable to the data that 
-    should be returned while also updating the isLoading variable to reflect the loading status 
+    sendTimesPreferences's purpose is to make a call to the API point and 
+    save the data within the checkbox useState variables to update professor 
+    preferences for time slots
         ------------------
         Inputs: None
         Outputs: None (But the data variable should be set to the json from the API)
         -------------------
-    If for some reason the API call fails then the try catch block should be aware of that failure and 
-    should send that error to the console.log 
+    If for some reason the API call fails then the try catch block should be 
+    aware of that failure and should send that error to the console.log 
     */
     const sendTimesPreferences = async () => {
         try {
@@ -61,14 +52,13 @@ const TimesCTFun = ({ navigation }) => {
         console.log("Current userId", userId);
         console.log("Current userRole", userRole);
         const response = await fetch(
-            "https://capstonedbapi.azurewebsites.net/preference-management/time-slot-preferences/can-teach/save/" +
-            userId,
+            "https://capstonedbapi.azurewebsites.net/preference-management/" +
+            "time-slot-preferences/can-teach/save/" + userId,
             {
             method: "POST",
-            /*,  Example of how headers look for if people are to take this to use on other parts of the app */
+            /* Request headers*/
             headers: {
-                //Will need the authorization to be a saved string each time we sign in
-                Authorization: auth, //AUTH._W//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
+                Authorization: auth, 
                 "Content-Type": "application/json",
                 accept: "*/*",
             },
@@ -120,7 +110,6 @@ const TimesCTFun = ({ navigation }) => {
             ]),
             }
         );
-        //const json = await response.json();
         } catch (error) {
         console.error(error);
         } finally {
@@ -131,18 +120,16 @@ const TimesCTFun = ({ navigation }) => {
     const getPreferencesJson = async () => {
         try {
         setLoading(true);
-        //setPref([]);
         const auth = await AsyncStorage.getItem("Auth");
         const id = await AsyncStorage.getItem("UserId");
 
         const response = await fetch(
-            "https://capstonedbapi.azurewebsites.net/preference-management/time-slot-preferences/can-teach/" +
-            id,
+            "https://capstonedbapi.azurewebsites.net/preference-management/" +
+            "time-slot-preferences/can-teach/" + id,
             {
             method: "GET",
-            /*,  Example of how headers look for if people are to take this to use on other parts of the app */
+            /* Request headers */
             headers: {
-                //Will need the authorization to be a saved string each time we sign in
                 Authorization: auth,
             },
             }
@@ -162,23 +149,21 @@ const TimesCTFun = ({ navigation }) => {
             setTwoDay5Checked(json[9].can_teach);
             setTwoDay6Checked(json[10].can_teach);
         }
-        //console.log(json);
         } catch (error) {
-        //setPref([]);
-
         console.error(error);
         } finally {
         setLoading(false);
         }
     };
 
-    // This function enables the button to run two functions to send professor preferences to the database
+    // This function enables the button to run with the alert
     const sendFunctionsCombined = async () => {
-        //sendTimeOfDayPreferences();
         sendTimesPreferences();
         alert("Preference sent!");
     };
 
+    /* useEffect runs the required functions for the API calls 
+    to collect all JSON data for the page*/
     useEffect(() => {
         getPreferencesJson();
     }, []);
