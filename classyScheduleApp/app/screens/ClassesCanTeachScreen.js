@@ -162,7 +162,8 @@ const ClassesPTFun = () => {
                 dept_id,
                 class_name,
                 is_lab,
-                can_teach: false, //pref.find(element => (element.class_id == 8))
+                //pref.find(element => (element.class_id == 8))
+                can_teach: false, 
                 })
             ),
             ]);
