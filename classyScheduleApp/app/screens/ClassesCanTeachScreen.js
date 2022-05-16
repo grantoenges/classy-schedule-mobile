@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {
     SafeAreaView,
-    ActivityIndicator,
     FlatList,
-    Text,
-    ScrollView,
-    View,
 } from "react-native";
 import {
     Button,
-    Card,
     Checkbox,
-    TextInput,
     useTheme,
 } from "react-native-paper";
     import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -43,7 +37,7 @@ const ClassesPTFun = () => {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                Authorization: auth, //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
+                Authorization: auth, 
             },
             body: JSON.stringify(dataT),
             }
@@ -79,7 +73,6 @@ const ClassesPTFun = () => {
 
         const json = await response.json();
         /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
-        console.log("JOSN IS" + json.length);
         if (json.length != undefined) {
             setPref((pref) => [
             ...pref,
@@ -89,7 +82,6 @@ const ClassesPTFun = () => {
             })),
             ]);
         }
-        //console.log(json);
         } catch (error) {
         setPref([]);
 
@@ -113,8 +105,6 @@ const ClassesPTFun = () => {
         setLoading(true);
         setDataT([]);
         const auth = await AsyncStorage.getItem("Auth");
-
-        console.log("Current auth token", auth);
         const response = await fetch(
             "https://capstonedbapi.azurewebsites.net/class-management/classes",
             {
@@ -165,7 +155,6 @@ const ClassesPTFun = () => {
         if (pref.length != undefined) {
         pref.map((item) => {
             if (item.can_teach == true) {
-            console.log("adding" + item.class_id);
             arr.push(item.class_id);
             }
         });

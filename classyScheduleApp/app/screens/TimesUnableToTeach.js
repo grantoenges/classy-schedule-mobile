@@ -48,9 +48,6 @@ const TimesCTFun = ({ navigation }) => {
         const userRole = await AsyncStorage.getItem("Role");
         const userId = await AsyncStorage.getItem("UserId");
 
-        console.log("Current auth token", auth);
-        console.log("Current userId", userId);
-        console.log("Current userRole", userRole);
         const response = await fetch(
             "https://capstonedbapi.azurewebsites.net/preference-management/" +
             "time-slot-preferences/can-teach/save/" + userId,
@@ -136,7 +133,6 @@ const TimesCTFun = ({ navigation }) => {
         );
         const json = await response.json();
         /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
-        console.log(json);
         if (json != undefined ) {
             if(json.status != 404){
             setTwoDay1Checked(json[0].can_teach);

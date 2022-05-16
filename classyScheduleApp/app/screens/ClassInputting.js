@@ -30,8 +30,6 @@ const ClassInputFun = () => {
 
     const [isLoading, setLoading] = useState(false);
 
-
-
     const sendClass = async() =>{
         try {
             setLoading(true);
@@ -55,7 +53,6 @@ const ClassInputFun = () => {
             });
 
             const json = await response.json();
-            console.log(json);
             if (json.title == undefined) {
                 alert("Sent to database");
             } else {
