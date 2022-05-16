@@ -1,11 +1,10 @@
 import React from 'react';
-import { SafeAreaView, View,Text,StyleSheet } from 'react-native';
+import { SafeAreaView,StyleSheet } from 'react-native';
 import { 
     Button, 
     Card, 
     TextInput, 
-    useTheme, 
-    Switch, 
+    useTheme,
     Checkbox 
 } from 'react-native-paper'
 import { Picker } from '@react-native-picker/picker';
@@ -16,7 +15,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ClassInputFun = () => {
     const paperTheme = useTheme();
-    /** This use state is used to hold onto selected language (test variable) allowing for dynamic selection in the drop down menu. */
+    /** allowing for dynamic selection in the drop down menu. */
     const [selectedLanguage, setSelectedLanguage] = useState("1");
     /** This use state is used for storage of the classes string title. */
     const [classTitle, setClassTitle] = useState();
@@ -24,7 +23,7 @@ const ClassInputFun = () => {
     const [classNumber, setClassNum] = useState("");
     /** This use state is used for the storage of the classes integer capacity. */
     const [classCapacity, setClassCapacity] = useState();
-        /** This use state is used for the storage of the classes integer credits value. */
+    /** This use state is used for the storage of the classes integer credits value. */
     const [classCredits, setClassCredits] = useState("4");
 
     const [isLab, setIsLab] = useState(false);
@@ -36,16 +35,14 @@ const ClassInputFun = () => {
     const sendClass = async() =>{
         try {
             setLoading(true);
-            const auth = await AsyncStorage.getItem('Auth');
-            const id = await AsyncStorage.getItem('UserId');
-        
-            const response = await fetch('https://capstonedbapi.azurewebsites.net/class-management/classes/create', {
+            const auth = await AsyncStorage.getItem('Auth');        
+            const response = await fetch('https://capstonedbapi.azurewebsites.net/class-management/classes/create',{
                 method: 'POST',
                 /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
                 headers: { 
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': auth//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
+                'Authorization': auth
                 },
                 body:JSON.stringify( {
                     "class_num": classNumber,
@@ -83,7 +80,7 @@ const ClassInputFun = () => {
         }
         return(x);
     }
-    
+
     return (
         <SafeAreaView style = {[styles.container,
             {backgroundColor: paperTheme.colors.background}]}>
@@ -135,7 +132,7 @@ const ClassInputFun = () => {
                     uncheckedColor = "black" 
                     status = {isLab? 'checked':'unchecked'} 
                     onPress = {() => setIsLab(!isLab)}/>
-                    {isLoading ? <Button loading = {true} mode = "outlined" > Loading </Button> 
+                    {isLoading ? <Button loading = {true} mode = "outlined"> Loading </Button> 
                     : (<Button 
                         mode = "contained" 
                         onPress = {() => sendClass()}>
@@ -150,9 +147,6 @@ const style = StyleSheet.create({
     container: {
         flex: 1,
         padding: 24,
-    },
-    cardStyle:{
-    // backgroundColor:"powderblue"
     },
     buttonStyle:{
         backgroundColor :"silver"

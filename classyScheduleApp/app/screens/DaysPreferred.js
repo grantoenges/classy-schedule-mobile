@@ -44,15 +44,9 @@ const DaysPrefFun = ({ navigation }) => {
         setLoading(true);
         setDataT([]);
         const auth = await AsyncStorage.getItem("Auth");
-        const userRole = await AsyncStorage.getItem("Role");
         const userId = await AsyncStorage.getItem("UserId");
-
-        console.log("Current auth token", auth);
-        console.log("Current userId", userId);
-        console.log("Current userRole", userRole);
         const response = await fetch (
-            "https://capstonedbapi.azurewebsites.net/preference-management/" +
-            "time-of-day-preferences/save/" + userId,
+            "https://capstonedbapi.azurewebsites.net/preference-management/time-of-day-preferences/save/"+ userId,
             {
             method: "POST",
             /*  Request headers */
@@ -101,9 +95,6 @@ const DaysPrefFun = ({ navigation }) => {
         const userRole = await AsyncStorage.getItem("Role");
         const userId = await AsyncStorage.getItem("UserId");
 
-        console.log("Current auth token", auth);
-        console.log("Current userId", userId);
-        console.log("Current userRole", userRole);
         const response = await fetch(
             "https://capstonedbapi.azurewebsites.net/preference-management/" +
             "day-of-week-preferences/save/" + userId,
