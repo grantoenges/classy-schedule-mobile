@@ -186,7 +186,7 @@ const TimesCTFun = ({ navigation }) => {
     return (
         <SafeAreaView
             style = {[
-            styles.noPadcontainer,
+            styles.container,
             { backgroundColor: paperTheme.colors.background },
         ]}
         >
@@ -194,7 +194,7 @@ const TimesCTFun = ({ navigation }) => {
                 Save Data
             </Button>
 
-            <ScrollView>
+            <ScrollView style= {{ backgroundColor: paperTheme.colors.background }}>
                 <Card
                     style = {[
                     styles.cardStyle,

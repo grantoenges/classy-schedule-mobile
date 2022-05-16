@@ -195,7 +195,7 @@ const ClassesPTFun = () => {
     return (
         <SafeAreaView
             style = {[
-            styles.noPadContainer,
+            styles.container,
             { backgroundColor: paperTheme.colors.background },
         ]}
         >
