@@ -15,14 +15,18 @@ import styles from "../Style";
 const ClassesPTFun = () => {
     const paperTheme = useTheme();
 
-    /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
+    /*This usestate variable is used as a flag, keeping track of the loading
+    vs not loading of the data*/
     const [isLoading, setLoading] = useState(true);
-    /*This usestate variable is used as a flag, keeping track of the when the page has information changed and will need a reload of the data*/
+    /*This usestate variable is used as a flag, keeping track of the when the page 
+    has information changed and will need a reload of the data*/
     const [dummy, setDummy] = useState(false);
-    /*This usestate variable is used as the json data obtained from the api calls storage location*/
+    /*This usestate variable is used as the json data obtained from the api calls 
+    storage location*/
     const [pref, setPref] = useState([]);
     const [dataT, setDataT] = useState([]);
 
+    /* Gets authentication from async storage*/
     const sendSelection = async () => {
         try {
         setLoading(true);
@@ -30,11 +34,12 @@ const ClassesPTFun = () => {
         const id = await AsyncStorage.getItem("UserId");
 
         const response = await fetch(
-            "https://capstonedbapi.azurewebsites.net/preference-management/class-preferences/prefer-to-teach/save/" +
-            id,
+            "https://capstonedbapi.azurewebsites.net/preference-management/" +
+            "class-preferences/prefer-to-teach/save/" + id,
             {
             method: "POST",
-            /*,  Example of how headers look for if people are to take this to use on other parts of the app */
+            /*,  Example of how headers look for if people are to take 
+            this to use on other parts of the app */
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
@@ -51,7 +56,7 @@ const ClassesPTFun = () => {
         setLoading(false);
         }
     };
-
+    /* Gets preferences from database as a json */
     const getPreferencesJson = async () => {
         try {
         setLoading(true);
@@ -60,12 +65,13 @@ const ClassesPTFun = () => {
         const id = await AsyncStorage.getItem("UserId");
 
         const response = await fetch(
-            "https://capstonedbapi.azurewebsites.net/preference-management/class-preferences/prefer-to-teach/" +
-            id,
+            "https://capstonedbapi.azurewebsites.net/preference-management/" + 
+            "class-preferences/prefer-to-teach/" + id,
             {
             method: "GET",
             headers: {
-                //Will need the authorization to be a saved string each time we sign in
+                /* Will need the authorization to be a saved string
+                each time we sign in */
                 Authorization: auth,
             },
             }
@@ -90,14 +96,15 @@ const ClassesPTFun = () => {
         }
     };
     /*
-    getJson's purpose is to make a call to the API point and set our usestate variable to the data that 
-    should be returned while also updating the isLoading variable to reflect the loading status 
+    getJson's purpose is to make a call to the API point and set
+    our usestate variable to the data that should be returned while 
+    also updating the isLoading variable to reflect the loading status 
         ------------------
         Inputs: None
         Outputs: None (But the data variable should be set to the json from the API)
         -------------------
-    If for some reason the API call fails then the try catch block should be aware of that failure and 
-    should send that error to the console.log 
+    If for some reason the API call fails then the try catch block should be
+    aware of that failure and should send that error to the console.log 
     */
     const getJson = async () => {
         try {
@@ -108,16 +115,19 @@ const ClassesPTFun = () => {
             "https://capstonedbapi.azurewebsites.net/class-management/classes",
             {
             method: "GET",
-            /*,  Example of how headers look for if people are to take this to use on other parts of the app */
+            /*,  Example of how headers look for if people are to take this to
+            use on other parts of the app */
             headers: {
-                //Will need the authorization to be a saved string each time we sign in
+                /* Will need the authorization to be a saved string each
+                time we sign in */
                 Authorization: auth,
             },
             }
         );
 
         const json = await response.json();
-        /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
+        /* This mapping function allows us to tag an extra variable to the
+        data received that tells us if the class is selected */
         if (json.length != undefined) {
             setDataT((dataT) => [
             ...dataT,
@@ -136,7 +146,8 @@ const ClassesPTFun = () => {
                 dept_id,
                 class_name,
                 is_lab,
-                prefer_to_teach: false, //pref.find(element => (element.class_id == 8))
+                // pref.find(element => (element.class_id == 8))
+                prefer_to_teach: false, 
                 })
             ),
             ]);
@@ -163,14 +174,14 @@ const ClassesPTFun = () => {
         // loop over the todos list and find the provided id.
         let ns = dataT.map((item) => {
         if (id.includes(item.class_id)) {
-            return { ...item, prefer_to_teach: true }; //gets everything that was already in item, and updates "done"
+            // gets everything that was already in item, and updates "done"
+            return { ...item, prefer_to_teach: true }; 
         }
         return item; // else return unmodified item
         });
         setDataT(ns);
         setLoading(false);
     };
-
     /*useEffect is a react native hook that allows us to get to using our usestate variables and allowing
     for the dynamic rendering of that data onto the screen. This useeffect for example calls our getJson method */
     useEffect(() => {
@@ -178,7 +189,8 @@ const ClassesPTFun = () => {
         getJson();
     }, []);
 
-    /*This return is where the actual react part of the app is made and the data will be displayed for the user  */
+    /* This return is where the actual react part of the app is made and the
+    data will be displayed for the user */
     return (
         <SafeAreaView
             style = {[
