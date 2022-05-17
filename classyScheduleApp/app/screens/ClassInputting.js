@@ -25,11 +25,16 @@ const ClassInputFun = () => {
     const [classCapacity, setClassCapacity] = useState();
     /** This use state is used for the storage of the classes integer credits value. */
     const [classCredits, setClassCredits] = useState("4");
-
+    /** This use state is used to be a boolean on the selected class being a lab or not*/
     const [isLab, setIsLab] = useState(false);
-
+    /** This usestate is used to tell if the app is currently loading or not */
     const [isLoading, setLoading] = useState(false);
 
+
+    /*This methods use is to send the current class the user has input to the
+    text boxes and to post that class to the database. It uses the current
+    usestate variables as the values to send. If any of the values error 
+    it will notify the user with an alert*/
     const sendClass = async() =>{
         try {
             setLoading(true);
@@ -66,7 +71,9 @@ const ClassInputFun = () => {
     }
 
 
-
+    /* This methods purpose is to set any value it has taken in as an argument
+    and validate it is a valid integer number, and if it is not it either sets
+    the value to empty, or replaces the characters to make it valid. */
     const onChangeNumericInput = (value) =>{
         if (value.length === 0 || value == 'NaN'){
             return ''
