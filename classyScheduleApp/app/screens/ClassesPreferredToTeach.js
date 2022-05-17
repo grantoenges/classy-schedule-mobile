@@ -76,7 +76,8 @@ const ClassesPTFun = () => {
         );
 
         const json = await response.json();
-        /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
+        /*This mapping function allows us to tag an extra variable to the 
+        data received that tells us if the class is selected */
         if (json.length != undefined) {
             setPref((pref) => [
             ...pref,
@@ -176,8 +177,9 @@ const ClassesPTFun = () => {
         setLoading(false);
     };
     
-    /*useEffect is a react native hook that allows us to get to using our usestate variables and allowing
-    for the dynamic rendering of that data onto the screen. This useeffect for example calls our getJson method */
+    /*useEffect is a react native hook that allows us to get to using our 
+    usestate variables and allowing for the dynamic rendering of that data
+    onto the screen. This useeffect for example calls our getJson method */
     useEffect(() => {
         getPreferencesJson();
         getJson();
