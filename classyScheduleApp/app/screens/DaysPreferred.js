@@ -308,7 +308,7 @@ const DaysPrefFun = ({ navigation }) => {
                 { color: paperTheme.cardTextStyle.color },
                 ]}
             >
-                Days Preferred to Teach
+                Time of day preferences
             </Text>
             </Card>
             {isLoading ? (
