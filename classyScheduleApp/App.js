@@ -14,8 +14,10 @@ to make the app look nice along with the app navigator that allows
 for different app pages to be navigated to.
 */
 function App() {
+    // Dark Theme useState
     const [isDarkTheme, setIsDarkTheme] = React.useState(false);
 
+    // Dark Theme
     const darkStyle = {
         ...DarkTheme,
         colors: {
@@ -51,6 +53,7 @@ function App() {
         }
     };
 
+    // Light Theme
     const lightStyle = {
         ...DefaultTheme,
         colors: {
@@ -86,6 +89,7 @@ function App() {
         }
     };
 
+    // Togglability of theming within the app
     const theme = isDarkTheme ? darkStyle : lightStyle;
     const context = React.useMemo(
         () => ({
