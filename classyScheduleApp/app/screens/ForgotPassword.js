@@ -16,8 +16,13 @@ function emailValidator(email) {
     }
     return "";
 }
-
-const NewAccountFunc = ({navigation}) => {
+/*
+Forgot password page where user has ability to input that they forgot 
+password by inputting a valid email that is in user database where an 
+email will be sent out with temporary password so that user can login
+and later update that password
+*/
+const ForgotPassword = ({navigation}) => {
     const paperTheme = useTheme();
     const Login = () => navigation.navigate("Login");
     //const newAccount = () => navigation.navigate("NewAccount");
@@ -81,4 +86,4 @@ const NewAccountFunc = ({navigation}) => {
 }
 
 
-export default NewAccountFunc;
+export default ForgotPassword;

@@ -20,12 +20,13 @@ const PreferenceFun = ({ navigation }) => {
     const TimesCT = () => navigation.navigate("Times Unable To Teach");
     const DaysPT = () => navigation.navigate("Days Preferred To Teach");
 
-    //Use state constants for modal visibility
+    // Use state constants for modal visibility
     const [classCTModal, setModalCT] = useState(false);
     const [classPTModal, setModalPT] = useState(false);
     const [timesCTModal, setModalTime] = useState(false);
     const [daysPTModal, setModalDays] = useState(false);
 
+    // Theming
     const paperTheme = useTheme();
     let buttonColor = paperTheme.buttonStyle;
 
@@ -38,6 +39,7 @@ const PreferenceFun = ({ navigation }) => {
         >
         <View style = {styles.overlay}>
             <View style = {styles.viewStyle}>
+            {/* Classes Can Teach */}
             <TouchableOpacity
                 activeOpacity = {0.8}
                 style = {[
@@ -73,6 +75,7 @@ const PreferenceFun = ({ navigation }) => {
                 </Pressable>
                 </Modal>
             </TouchableOpacity>
+            {/* Classes Preferred to Teach */}
             <TouchableOpacity
                 mode = "contained"
                 style = {[
@@ -111,6 +114,7 @@ const PreferenceFun = ({ navigation }) => {
             </TouchableOpacity>
             </View>
             <View style = {styles.viewStyle}>
+            {/* Times Unable To Teach */}
             <TouchableOpacity
                 mode = "contained"
                 activeOpacity = {0.8}
@@ -147,6 +151,7 @@ const PreferenceFun = ({ navigation }) => {
                 </Pressable>
                 </Modal>
             </TouchableOpacity>
+            {/* Days Preferred to Teach */}
             <TouchableOpacity
                 mode = "contained"
                 style = {[

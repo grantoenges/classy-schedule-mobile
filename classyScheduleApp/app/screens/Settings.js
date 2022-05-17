@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { SafeAreaView, View, Text, StyleSheet, Switch } from "react-native";
+import { 
+    SafeAreaView, 
+    View, 
+    Text, 
+    StyleSheet, 
+    Switch,
+    ScrollView 
+} from "react-native";
 import {
     Button,
     Card,
@@ -77,7 +84,8 @@ const SettingFun = ({ navigation }) => {
                 License
             </Button>
             <Portal>
-                <Dialog visible = {visible} onDismiss={hideDialog}>
+                <Dialog style={styles.container} visible = {visible} onDismiss={hideDialog}>
+                <ScrollView>
                 <Dialog.Title>Application License</Dialog.Title>
                 <Dialog.Content>
                     <Paragraph>
@@ -104,6 +112,7 @@ const SettingFun = ({ navigation }) => {
                 <Dialog.Actions>
                     <Button onPress = {hideDialog}>Done</Button>
                 </Dialog.Actions>
+                </ScrollView>
                 </Dialog>
             </Portal>
             </Card>
