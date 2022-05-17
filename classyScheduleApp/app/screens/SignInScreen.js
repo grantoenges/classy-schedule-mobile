@@ -203,7 +203,11 @@ const SignInScreenFun = ({ navigation }) => {
                     </Text>
                 </TouchableOpacity>
 
-                <Button mode="text" style={[styles.generalButton, {marginBottom: 5}]} onPress={Welcome}></Button>
+                <Button 
+                    mode="text" 
+                    style={[styles.generalButton, {marginBottom: 5}]} 
+                    onPress={Welcome}>
+                </Button>
 
                 <View style = {styles.centerPage}>
                 <Image
