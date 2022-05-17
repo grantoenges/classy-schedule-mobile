@@ -194,11 +194,11 @@ const ClassesPTFun = () => {
             { backgroundColor: paperTheme.colors.background },
         ]}
         >
-        <Button onPress = {sendSelection} mode="contained">
+        <Button onPress = {sendSelection} mode = "contained">
             Save Data
         </Button>
         {isLoading ? (
-            <Button loading={true} mode="outlined">
+            <Button loading = {true} mode = "outlined">
                 {" "}
                 Loading
             </Button>
