@@ -4,11 +4,10 @@ import {
     SafeAreaView,
     View,
     Text,
-    StyleSheet,
     TouchableOpacity,
     Pressable,
 } from "react-native";
-import { Button, Card, TextInput, Modal, useTheme } from "react-native-paper";
+import {Modal, useTheme } from "react-native-paper";
 import styles from "../Style";
 
 /** This method is what displays the screen for this page

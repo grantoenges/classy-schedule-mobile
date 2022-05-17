@@ -123,12 +123,16 @@ const ClassInputFun = () => {
                         setClassCredits(onChangeNumericInput(classCredits))}
                     label = {'Credits'}>
                 </TextInput>
-                <Checkbox.Item 
+                <Checkbox.Item
+                    labelStyle = { paperTheme.label.color }
                     label = {isLab? "This class is a lab" : "This class is not a lab"} 
-                    color = "purple" 
-                    uncheckedColor = "black" 
-                    status = {isLab? 'checked':'unchecked'} 
-                    onPress = {() => setIsLab(!isLab)}/>
+                    color = { paperTheme.checkboxStyle.color }
+                    uncheckedColor = { paperTheme.checkboxStyle.uncheckedColor }
+                    status = { isLab ? "checked" : "unchecked" }
+                    onPress = {() => {
+                        setIsLab(!isLab);
+                    }}
+                />
                     {isLoading ? <Button loading = {true} mode = "outlined"> Loading </Button> 
                     : (<Button 
                         mode = "contained" 
