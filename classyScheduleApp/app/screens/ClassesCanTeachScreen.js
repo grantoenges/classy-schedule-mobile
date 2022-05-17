@@ -158,6 +158,9 @@ const ClassesPTFun = () => {
         setLoading(false);
         }
     };
+
+    /* This method will look at the current db's saved preferences
+    for classes and will make an array of the id's for those classes */
     const allTrues = async () => {
         setLoading(true);
 
@@ -171,6 +174,10 @@ const ClassesPTFun = () => {
         }
         getTF(arr);
     };
+
+    /* This method will look at the passed in list of class_id's
+    for classes and will set the current true falses for the usestate
+    to match the list grabbed from the database */
     const getTF = (id) => {
         // loop over the todos list and find the provided id.
         let ns = dataT.map((item) => {

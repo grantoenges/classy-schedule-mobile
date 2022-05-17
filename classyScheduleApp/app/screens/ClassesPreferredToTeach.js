@@ -24,9 +24,12 @@ const ClassesPTFun = () => {
     /*This usestate variable is used as the json data obtained from the api calls 
     storage location*/
     const [pref, setPref] = useState([]);
+    /*This usestate variable is used as the storage data that will be 
+    sent to the database for each classes boolean on can teach or not*/
     const [dataT, setDataT] = useState([]);
 
-    /* Gets authentication from async storage*/
+    /* This const's purpose is to send the current user selections to the 
+    database. It will take in no arguments and will not return anything.*/
     const sendSelection = async () => {
         try {
         setLoading(true);
@@ -56,7 +59,7 @@ const ClassesPTFun = () => {
         setLoading(false);
         }
     };
-    /* Gets preferences from database as a json */
+    /* Gets preferences from database as a json and stores them in the set pref usestate */
     const getPreferencesJson = async () => {
         try {
         setLoading(true);
@@ -76,7 +79,8 @@ const ClassesPTFun = () => {
         );
 
         const json = await response.json();
-        /*This mapping function allows us to tag an extra variable to the data received that tells us if the class is selected */
+        /*This mapping function allows us to tag an extra variable to the 
+        data received that tells us if the class is selected */
         if (json.length != undefined) {
             setPref((pref) => [
             ...pref,
@@ -151,6 +155,9 @@ const ClassesPTFun = () => {
         setLoading(false);
         }
     };
+
+    /* This method will look at the current db's saved preferences
+    for classes and will make an array of the id's for those classes */
     const allTrues = async () => {
         setLoading(true);
         var arr = [];
@@ -163,6 +170,10 @@ const ClassesPTFun = () => {
         }
         getTF(arr);
     };
+
+    /* This method will look at the passed in list of class_id's
+    for classes and will set the current true falses for the usestate
+    to match the list grabbed from the database */
     const getTF = (id) => {
         // loop over the todos list and find the provided id.
         let ns = dataT.map((item) => {

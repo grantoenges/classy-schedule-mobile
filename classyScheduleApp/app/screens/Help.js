@@ -14,6 +14,10 @@ import styles from "../Style";
   const paperTheme = useTheme();
   const [dummy, setDummy] = useState(paperTheme.dark);
 
+  /**Each of the following usestates and methods with them are used as 
+   * booleans to tell if the corresponding dialog box should be shown to
+   * the user or not along with the changing of that boolean.
+   */
   const [generalVisible, setGeneralVisible] = React.useState(false);
   const showGeneralDialog = () => setGeneralVisible(true);
   const hideGeneralDialog = () => setGeneralVisible(false);
