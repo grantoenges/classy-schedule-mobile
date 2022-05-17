@@ -70,8 +70,6 @@ const ClassesPTFun = () => {
             {
             method: "GET",
             headers: {
-                /* Will need the authorization to be a saved string
-                each time we sign in */
                 Authorization: auth,
             },
             }
@@ -115,11 +113,7 @@ const ClassesPTFun = () => {
             "https://capstonedbapi.azurewebsites.net/class-management/classes",
             {
             method: "GET",
-            /*,  Example of how headers look for if people are to take this to
-            use on other parts of the app */
             headers: {
-                /* Will need the authorization to be a saved string each
-                time we sign in */
                 Authorization: auth,
             },
             }
@@ -146,7 +140,6 @@ const ClassesPTFun = () => {
                 dept_id,
                 class_name,
                 is_lab,
-                // pref.find(element => (element.class_id == 8))
                 prefer_to_teach: false, 
                 })
             ),
@@ -182,6 +175,7 @@ const ClassesPTFun = () => {
         setDataT(ns);
         setLoading(false);
     };
+    
     /*useEffect is a react native hook that allows us to get to using our usestate variables and allowing
     for the dynamic rendering of that data onto the screen. This useeffect for example calls our getJson method */
     useEffect(() => {

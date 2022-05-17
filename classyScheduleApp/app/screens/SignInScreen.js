@@ -46,8 +46,6 @@ async function saveSecureValue(key, value) {
 
 
 const SignInScreenFun = ({ navigation }) => {
-    //global.AUTH = signIn();
-    //global.AUTH = AUTH._W
     const Welcome = () => navigation.navigate("Welcome");
     const ForgotPass = () => navigation.navigate("Forgot Password");
     let value = value || "";
@@ -205,11 +203,6 @@ const SignInScreenFun = ({ navigation }) => {
                     </Text>
                 </TouchableOpacity>
 
-                {/* 
-                --------------------------------
-                Navigate to welcome- will delete 
-                --------------------------------
-                */}
                 <Button mode="text" style={[styles.generalButton, {marginBottom: 5}]} onPress={Welcome}></Button>
 
                 <View style = {styles.centerPage}>

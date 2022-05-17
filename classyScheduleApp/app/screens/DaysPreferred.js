@@ -14,9 +14,6 @@ const DaysPrefFun = ({ navigation }) => {
     /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
     const [isLoading, setLoading] = useState(true);
 
-    /*This usestate variable is used as the json data obtained from the api calls storage location*/
-    const [dataT, setDataT] = useState([]);
-
     /* useStates for days of week and times of day*/
     const [mondayChecked, setMondayChecked] = useState(false);
     const [tuesdayChecked, setTuesdayChecked] = useState(false);
@@ -42,7 +39,6 @@ const DaysPrefFun = ({ navigation }) => {
     const sendTimeOfDayPreferences = async () => {
         try {
         setLoading(true);
-        setDataT([]);
         const auth = await AsyncStorage.getItem("Auth");
         const userId = await AsyncStorage.getItem("UserId");
         const response = await fetch (
@@ -90,7 +86,6 @@ const DaysPrefFun = ({ navigation }) => {
     const sendPreferencesDOW = async () => {
         try {
         setLoading(true);
-        setDataT([]);
         const auth = await AsyncStorage.getItem("Auth");
         const userRole = await AsyncStorage.getItem("Role");
         const userId = await AsyncStorage.getItem("UserId");
@@ -152,9 +147,7 @@ const DaysPrefFun = ({ navigation }) => {
         );
 
         const json = await response.json();
-        /*This mapping function allows us to tag an extra variable to 
-        the data received that tells us if the class is selected */
-        if (json != undefined) {
+        if (json != undefined) { //If there are preferences already saved for professor
             setMorningChecked(json.prefer_morning);
             setAfternoonChecked(json.prefer_afternoon);
             setEveningChecked(json.prefer_evening);

@@ -12,7 +12,6 @@ import {
     useTheme, 
 } from "react-native-paper";
 import styles from "../Style";
-import Help from "./Help";
 
 /** This method is what displays the screen for this page
  * Inputs: Navigation class (allowing for the page to navigate to other pages)
@@ -42,7 +41,6 @@ const WelcomeScreenFun = ({ navigation }) => {
     const [loginModal, setModalLogin] = useState(false); 
     const [prefModal, setModalPref] = useState(false);
     const [settingsModal, setModalSettings] = useState(false);
-    const [scheduleModal, setModalSchedule] = useState(false);
     const [CIModal, setModalCI] = useState(false);
     const [helpModal, setModalHelp] = useState(false);
     
@@ -213,22 +211,7 @@ const WelcomeScreenFun = ({ navigation }) => {
                             </Text>
                         </Pressable>
                         </Modal>
-                    </TouchableOpacity>
-                    {/* API Checklist Button <TouchableOpacity
-                        mode = "contained"
-                        style = {[styles.buttonStyle, 
-                            {backgroundColor: buttonColor.color, borderColor: buttonColor.borderColor}]}
-                        activeOpacity = {0.8}
-                        onPress = {ApiLister}
-                    >
-                        <Text style={[styles.textStyle, {color: buttonColor.textColor}]}>
-                            API checklist example
-                        </Text>
-                    </TouchableOpacity>*/}
-                    
-                </View>
-                <View style={styles.viewStyle}>
-                    
+                    </TouchableOpacity>                    
                 </View>
             </View>
         </SafeAreaView>

@@ -21,7 +21,7 @@ of the back button in order to navigate between them.
 */
 const { Navigator, Screen } = createStackNavigator();
 
-/*This variable is what stores every page of the app. This is done as 
+/*This function is what stores every page of the app. This is done as 
 a way to allow for any page of the app to be able to navigate to 
 another page without issues (hopefully)*/
 function AppNavigator() {
