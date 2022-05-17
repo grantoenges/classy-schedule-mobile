@@ -1,59 +1,40 @@
 import React, { useEffect, useState } from "react";
-import {
-    SafeAreaView,
-    FlatList,
-} from "react-native";
-import {
-    Button,
-    Checkbox,
-    useTheme,
-} from "react-native-paper";
-    import AsyncStorage from "@react-native-async-storage/async-storage";
-    import styles from "../Style";
+import {FlatList,View,} from "react-native";
+import {Button,Checkbox,} from "react-native-paper";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const ClassesPTFun = () => {
-    const paperTheme = useTheme();
+const ClassesCTFun = () => {
+   /*This is a temporary variable that holds the current authorization token to allow for connections with the database */
 
-    /*This usestate variable is used as a flag, keeping track 
-    of the loading vs not loading of the data*/
-    const [isLoading, setLoading] = useState(true);
+  /*This usestate variable is used as a flag, keeping track of the loading vs not loading of the data*/
+  const [isLoading, setLoading] = useState(true);
+  /*This usestate variable is used as a flag, keeping track of the when the page has information changed and will need a reload of the data*/
+  const [dummy, setDummy] = useState(false);
+  /*This usestate variable is used as the json data obtained from the api calls storage location*/
+  const [pref, setPref] = useState([]);
+  const [dataT, setDataT] = useState([]);
 
-    /*This usestate variable is used as a flag, keeping track of the when the 
-    page has information changed and will need a reload of the data*/
-    const [dummy, setDummy] = useState(false);
 
-    /*This usestate variable is used as the json data obtained from the
-    api calls storage location*/
-    const [pref, setPref] = useState([]);
+ const sendSelection = async() =>{
+   try{
+    setLoading(true);
+    const auth = await AsyncStorage.getItem('Auth');
+    const id = await AsyncStorage.getItem('UserId');
 
-    /*This usestate variable is used as the storage data that will be 
-    sent to the database for each classes boolean on can teach or not*/
-    const [dataT, setDataT] = useState([]);
-
-    /* This const's purpose is to send the current user selections to the 
-    database. It will take in no arguments and will not return anything.*/
-    const sendSelection = async () => {
-        try {
-        setLoading(true);
-        const auth = await AsyncStorage.getItem("Auth");
-        const id = await AsyncStorage.getItem("UserId");
-
-        const response = await fetch(
-            "https://capstonedbapi.azurewebsites.net/preference-management/" +
-            "class-preferences/can-teach/save/" + id,
-            {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-                Authorization: auth, 
-            },
-            body: JSON.stringify(dataT),
-            }
-        );
-        const json = await response.json();
-        alert(json);
-        } catch (error) {
+    const response = await fetch('https://capstonedbapi.azurewebsites.net/preference-management/class-preferences/can-teach/save/'+id, {
+      method: 'POST',
+      /*,  Example of how headers look for if people are to take this to use on other parts of the app */ 
+      headers: { 
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': auth//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NDkxMDYwNTEsImV4cCI6MTY0OTcxMDg1MSwiaWF0IjoxNjQ5MTA2MDUxfQ.FlDyEzy_0dDG-VM5oIvvIWYI2Zo7MMUcS9KnEoiJ2_s'
+      },
+        body: JSON.stringify(dataT)
+      });
+      const json = await response.json();
+      alert(json);
+    }
+      catch (error) {
         console.error(error);
         } finally {
         setLoading(false);
