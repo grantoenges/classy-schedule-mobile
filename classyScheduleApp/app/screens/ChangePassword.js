@@ -53,15 +53,22 @@ if(password === value) {
 return "Passwords are not the same!"
 }
 
-const NewAccountFunc = ({navigation}) => {
+/*
+Update password page where user has ability to change their password 
+assuming that they are logged in and have a proper authentication
+token
+*/
+const ChangePassword = ({navigation}) => {
+    // Theming
     const paperTheme = useTheme();
+
     const welcome = () => navigation.navigate("Welcome");
-    //const newAccount = () => navigation.navigate("NewAccount");
-    //const [email, setEmail] = useState({ value: "", error: "" });
+
+    // useState for password and retype password fields
     const [password, setPassword] = useState({ value: "", error: "" });
     const [repass, confirmPass] = useState({value:"", error: ""});
-    const onPressed = () => {
-        //const emailError = emailValidator(email.value);
+    const onPressed = () => { // When update password is pressed
+        // Will check if there are errors in passwords
         const passwordError = passwordValidator(password.value);
         const samePass = passwordSame(repass, password.value)
         if (passwordError || samePass) {
@@ -104,7 +111,7 @@ const NewAccountFunc = ({navigation}) => {
                 error = {!!password.error}
                 errorText = {password.error}
             />
-            {/* Create account button */}
+            {/* Change password button */}
             <Button 
                 mode = "contained" 
                 style = {styles.generalButtonContained} 
@@ -113,6 +120,7 @@ const NewAccountFunc = ({navigation}) => {
                 Update Password
             </Button>
 
+            {/* Back to Welcome page */}
             <Button 
                 mode = "text" 
                 style = {styles.generalButtonContained} 
@@ -133,4 +141,4 @@ const NewAccountFunc = ({navigation}) => {
 }
 
 
-export default NewAccountFunc;
+export default ChangePassword;
