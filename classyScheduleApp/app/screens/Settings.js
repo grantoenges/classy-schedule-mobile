@@ -84,7 +84,7 @@ const SettingFun = ({ navigation }) => {
                 License
             </Button>
             <Portal>
-                <Dialog style={styles.container} visible = {visible} onDismiss={hideDialog}>
+                <Dialog style={styles.noPadContainer} visible = {visible} onDismiss={hideDialog}>
                 <ScrollView>
                 <Dialog.Title>Application License</Dialog.Title>
                 <Dialog.Content>
