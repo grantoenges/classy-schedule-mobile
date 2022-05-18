@@ -7,7 +7,8 @@ they can sign in to the app
 */
 export const signIn = async (username, password) => {
     try {
-        const response = await fetch('https://capstonedbapi.azurewebsites.net/user-management/users/authenticate', {
+        const response = await fetch('https://capstonedbapi.azurewebsites.net/' +
+        'user-management/users/authenticate', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -34,7 +35,8 @@ the users password
 export const updatePass = async (password) => {
     const auth = await AsyncStorage.getItem('Auth');
     try {
-        const response = await fetch('https://capstonedbapi.azurewebsites.net/user-management/change-password?new_password=' + password, {
+        const response = await fetch('https://capstonedbapi.azurewebsites.net/' +
+        'user-management/change-password?new_password=' + password, {
             method: 'POST',
             headers: {
                 accept: '*/*',
@@ -66,7 +68,8 @@ to that email so that user can login and eventually change password
 */
 export const forgotPass = async (email) => {
     try {
-        const response = await fetch('https:capstonedbapi.azurewebsites.net/user-management/forgot-password?user_email=' + email, {
+        const response = await fetch('https:capstonedbapi.azurewebsites.net/' +
+        'user-management/forgot-password?user_email=' + email, {
             method: 'POST',
             headers: {
                 accept: '*/*'
